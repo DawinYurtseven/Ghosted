@@ -19,7 +19,10 @@ public class TalismanTargetMock : MonoBehaviour
         objCollider =  GetComponent<Collider>();
         StartCoroutine(CheckAvailability());
     }
-    
+
+
+    #region Target
+
     private bool CheckIfInFrustum()
     {
         var planes = GeometryUtility.CalculateFrustumPlanes(cam);
@@ -32,6 +35,7 @@ public class TalismanTargetMock : MonoBehaviour
     {
         while(CheckIfInFrustum() == isVisible)
         {
+            canvas.transform.LookAt(cam.transform);
             yield return null;
         }
         isVisible = !isVisible;
@@ -48,7 +52,6 @@ public class TalismanTargetMock : MonoBehaviour
 
     public void Highlight()
     {
-        print("yes");
         lockOnImage.GetComponent<Image>().color = Color.red;
     }
     
@@ -56,4 +59,24 @@ public class TalismanTargetMock : MonoBehaviour
     {
         lockOnImage.GetComponent<Image>().color = Color.white;
     }
+
+    #endregion
+    
+    #region Emotion
+    
+    /*
+     * This is the emotion areas. this will only have the logic of what to do when it is in an emotion
+     * the emotion itself will be declared in the singleton
+     * 
+     */
+    
+    [SerializeField] private Emotion emotion;
+
+    private void EmotionalBehaivour()
+    {
+        
+    }
+    
+    #endregion
+    
 }

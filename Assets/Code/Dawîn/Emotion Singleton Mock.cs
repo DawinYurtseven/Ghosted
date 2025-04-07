@@ -2,10 +2,26 @@ using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 
+public enum Emotion
+{
+    Joy,
+    Fear,
+    Lonely,
+    Love,
+}
+
 public class EmotionSingletonMock : MonoBehaviour
 {
     public static EmotionSingletonMock Instance { get; private set; }
 
+    #region Emotions
+
+    /*
+     * this Area is to change the emotion through the whole area!
+     */
+
+    #endregion
+    
 
     #region LockOn
 
@@ -26,7 +42,8 @@ public class EmotionSingletonMock : MonoBehaviour
 
         availableTalismanTargetMocks.Add(target);
     }
-
+    
+    
     private void CheckTargets()
     {
         if (availableTalismanTargetMocks.Count == 0)
@@ -36,20 +53,21 @@ public class EmotionSingletonMock : MonoBehaviour
         }
 
         TalismanTargetMock closestTarget = availableTalismanTargetMocks[0];
-        Vector3 closestTargetScreenPoint = Vector3.one;
+        Vector3 closestTargetScreenPoint = mainCamera.WorldToScreenPoint(closestTarget.transform.position) -
+                                           new Vector3((Screen.width - 1) / 2, (Screen.height-1) / 2, 0);
         foreach (var target in availableTalismanTargetMocks)
         {
             if (target == null) continue;
             var screenPoint = (mainCamera.WorldToScreenPoint(target.transform.position) -
-                              new Vector3((Screen.width - 1) / 2, (Screen.height-1) / 2, 0)).normalized;
+                              new Vector3((Screen.width - 1) / 2, (Screen.height-1) / 2, 0));
+            screenPoint.z = 0;
             if (screenPoint.magnitude < closestTargetScreenPoint.magnitude)
             {
                 closestTarget = target;
                 closestTargetScreenPoint = screenPoint;
             }
         }
-
-        print(closestTarget.gameObject.name);
+        
         closestTarget.Highlight();
         var temp = currentTarget;
         currentTarget = closestTarget;
