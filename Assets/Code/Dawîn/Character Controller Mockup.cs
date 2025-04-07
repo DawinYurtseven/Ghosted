@@ -118,6 +118,7 @@ public class CharacterControllerMockup : MonoBehaviour
 
     private void CameraUpdate()
     {
+        if (inCameraTransition)return;
         if (lockOn && target != null)
         {
             mockTransform.transform.position = targetPosition;
@@ -233,11 +234,10 @@ public class CharacterControllerMockup : MonoBehaviour
     public void ToggleLockOn(InputAction.CallbackContext context)
     {
         var fov = 60f;
-        var offset = new Vector3(3, 0, 0);
+        var offset = new Vector3(2, 0, 0);
         var newVal = 2.5f;
         if (context.performed && target != null)
         {
-            print("yes!");
             lockOn = true;
             mockTransform = new GameObject();
             mockTransform.transform.position = lookAtTarget.transform.position;
@@ -290,6 +290,7 @@ public class CharacterControllerMockup : MonoBehaviour
         camera.GetComponentInChildren<Cinemachine3rdPersonFollow>().ShoulderOffset = newOffset;
     }
 
+    private bool inCameraTransition = false;
 
     /*
     public void ChangeLockOnTarget(InputAction.CallbackContext context)
@@ -305,56 +306,43 @@ public class CharacterControllerMockup : MonoBehaviour
 
     private IEnumerator LerpTargetPosition()
     {
+        inCameraTransition = true;
         bool firstState = lockOn;
         var lerpTimer = 0f;
         while (lerpTimer < cameraZoomSpeed)
         {
             if (!firstState.Equals(lockOn)) yield break;
             mockTransform.transform.position = targetPosition;
-            cameraPivot.transform.LookAt(targetPosition);
-            xAxisAngle = cameraPivot.transform.localRotation.eulerAngles.x - 360;
-            yAxisAngle = cameraPivot.transform.localRotation.eulerAngles.y - 360;
-            xAxisAngle = Mathf.Clamp(xAxisAngle, -15f, 65f);
-            cameraPivot.transform.eulerAngles = new Vector3(
-                xAxisAngle,
-                yAxisAngle,
-                0
-            );
-            lookAtPivot.transform.localRotation = Quaternion.Euler(0f, yAxisAngle, 0f);
+            
+            cameraPivot
+            
             targetPosition = Vector3.Lerp(targetPosition, target.transform.position, lerpTimer/cameraZoomSpeed);
             lerpTimer += Time.deltaTime;
             yield return null;
         }
 
+        inCameraTransition = false;
         targetPosition = target.transform.position;
     }
 
     private IEnumerator LerpBackFocus()
     {
+        inCameraTransition = true;
         bool firstState = lockOn;
         var lerpTimer = 0f;
         while (lerpTimer < cameraZoomSpeed)
         {
-            if (firstState != lockOn)
-            {
-                Destroy(mockTransform);
-                yield break;
-            }
+            if (firstState != lockOn) yield break;
             mockTransform.transform.position = targetPosition;
-            cameraPivot.transform.LookAt(targetPosition);
-            var camX = cameraPivot.transform.localRotation.eulerAngles.x - 360;
-            var camY = cameraPivot.transform.localRotation.eulerAngles.y - 360;
-            camX = Mathf.Clamp(camX, -15f, 65f);
-            cameraPivot.transform.eulerAngles = new Vector3(
-                camX,
-                camY,
-                0
-            );
             
             xAxisAngle += -cameraDirection.y * cameraSpeed * Time.fixedDeltaTime;
             yAxisAngle += cameraDirection.x * cameraSpeed * Time.fixedDeltaTime;
             xAxisAngle = Mathf.Clamp(xAxisAngle, -15f, 65f);
+
+
+            cameraPivot.transform.localRotation = Quaternion.Euler(xAxisAngle, yAxisAngle, 0f);
             lookAtPivot.transform.localRotation = Quaternion.Euler(0f, yAxisAngle, 0f);
+            
             targetPosition = Vector3.Lerp(targetPosition, lookAtTarget.transform.position, lerpTimer/cameraZoomSpeed);
             lerpTimer += Time.deltaTime;
             yield return null;
@@ -364,6 +352,7 @@ public class CharacterControllerMockup : MonoBehaviour
         camera.m_LookAt = lookAtTarget.transform;
         lockOn = false;
         Destroy(mockTransform);
+        inCameraTransition = false;
     }
 
     #endregion
