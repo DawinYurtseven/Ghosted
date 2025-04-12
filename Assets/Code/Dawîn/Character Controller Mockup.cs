@@ -311,13 +311,13 @@ public class CharacterControllerMockup : MonoBehaviour
         var lerpTimer = 0f;
         while (lerpTimer < cameraZoomSpeed)
         {
-            if (!firstState.Equals(lockOn)) yield break;
-            mockTransform.transform.position = targetPosition;
-            
-            cameraPivot
-            
-            targetPosition = Vector3.Lerp(targetPosition, target.transform.position, lerpTimer/cameraZoomSpeed);
-            lerpTimer += Time.deltaTime;
+            // if (!firstState.Equals(lockOn)) yield break;
+            // mockTransform.transform.position = targetPosition;
+            //
+            // cameraPivot
+            //
+            // targetPosition = Vector3.Lerp(targetPosition, target.transform.position, lerpTimer/cameraZoomSpeed);
+            // lerpTimer += Time.deltaTime;
             yield return null;
         }
 
