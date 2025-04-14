@@ -32,10 +32,11 @@ Shader "ForgottenColours/Sumi-e"
 
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
-            #include "Assets/Code/Ben/Shaders/ShaderLibrary/Voronoi.hlsl"
-            #include "Assets/Code/Ben/Shaders/ShaderLibrary/FbmNoise.hlsl"
-            #include "Assets/Code/Ben/Shaders/ShaderLibrary/LinearLight.hlsl"
-            #include "Assets/Code/Ben/Shaders/ShaderLibrary/ColourRamp.hlsl"
+            #include "Assets/Code/Ben/Shaders/ShaderLibrary/Lighting/BlinnPhong.hlsl"
+            #include "Assets/Code/Ben/Shaders/ShaderLibrary/Maths/Voronoi.hlsl"
+            #include "Assets/Code/Ben/Shaders/ShaderLibrary/Maths/FbmNoise.hlsl"
+            #include "Assets/Code/Ben/Shaders/ShaderLibrary/Maths/LinearLight.hlsl"
+            #include "Assets/Code/Ben/Shaders/ShaderLibrary/Colour/ColourRamp.hlsl"
 
             struct appdata
             {
@@ -54,9 +55,6 @@ Shader "ForgottenColours/Sumi-e"
             float4 _DiffuseColour;
             float3 _k;
             float _SpecularExponent;
-
-            // Function Prototypes
-            half3 BlinnPhong(half3 n, half3 l, half3 v, Light mainLight);
 
             v2f vert(appdata input)
             {
@@ -81,7 +79,7 @@ Shader "ForgottenColours/Sumi-e"
                 int fbmDetail = 15;
 
                 float3 noise = FbmNoise(n, fbmScale, fbmRoughness, fbmDetail);
-                float3 blended = LinearLight(n, noise,0.5);
+                float3 blended = LinearLight(n, noise, 0.5);
 
                 float vScale = 2.2;
                 float smoothness = 0.5;
@@ -94,28 +92,11 @@ Shader "ForgottenColours/Sumi-e"
 
                 VoronoiSmoothF1_3D(blended * vScale, smoothness, exponent, randomness, metricMode, dist, col, pos);
 
-                // Blinn Phong
-                half3 lighting = BlinnPhong(pos, l, v, mainLight);
+                half3 lighting = BlinnPhong(pos, l, v, mainLight, _k, _SpecularExponent, _DiffuseColour);
 
                 half3 mapped = ColourRamp(lighting);
 
-                return half4(lighting, 1.0);
-            }
-
-            half3 BlinnPhong(half3 n, half3 l, half3 v, Light mainLight)
-            {
-                half NdotL = max(dot(n, l), 0);
-                half3 h = normalize(l + v);
-
-                half Ia = _k[0];
-                half Id = _k[1] * NdotL;
-                half Is = _k[2] * pow(max(dot(h, n), 0.0), _SpecularExponent);
-
-                half3 ambient = Ia * _DiffuseColour.rgb;
-                half3 diffuse = Id * _DiffuseColour.rgb * mainLight.color;
-                half3 specular = Is * mainLight.color;
-
-                return ambient + diffuse + specular;
+                return half4(mapped, 1.0);
             }
             ENDHLSL
         }
