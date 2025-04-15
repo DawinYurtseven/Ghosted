@@ -1,20 +1,24 @@
 #ifndef BLINN_PHONG_INCLUDED
 #define BLINN_PHONG_INCLUDED
 
-#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
-
 // Blinn-Phong lighting model
-half3 BlinnPhong(half3 n, half3 l, half3 v, Light mainLight, float3 k, float specularExponent, float3 diffuseColour)
+half3 BlinnPhong(half3 n, half3 l, half3 v, Light mainLight)
 {
     half NdotL = max(dot(n, l), 0);
     half3 h = normalize(l + v);
 
-    half Ia = k.x;
-    half Id = k.y * NdotL;
-    half Is = k.z * pow(max(dot(h, n), 0.0), specularExponent);
+    half Ia = _k.x;
+    half Id = _k.y * NdotL;
 
-    half3 ambient = Ia * diffuseColour;
-    half3 diffuse = Id * diffuseColour * mainLight.color;
+    half Is;
+    #ifdef SPECULAR
+    Is = _k.z * pow(max(dot(h, n), 0.0), _SpecularExponent);
+    #else
+    Is = 0;
+    #endif
+
+    half3 ambient = Ia * _DiffuseColour * SampleSH(n);
+    half3 diffuse = Id * _DiffuseColour * mainLight.color;
     half3 specular = Is * mainLight.color;
 
     return ambient + diffuse + specular;

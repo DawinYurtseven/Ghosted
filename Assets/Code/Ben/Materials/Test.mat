@@ -12,8 +12,7 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
-  m_InvalidKeywords:
-  - SPECULAR
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -106,26 +105,35 @@ Material:
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
+    - _DistanceMetric: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _Emissive: 0
     - _EnvironmentReflections: 1
+    - _FbmAmplitude: 10
+    - _FbmDetail: 15
+    - _FbmFrequency: 1
+    - _FbmLacunarity: 1.88
+    - _FbmRoughness: 0.695
+    - _FbmScale: 5.13
     - _FresnelPower: 0.5
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
+    - _MixAmount: 1
     - _NormalStrength: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _RampCount: 0
     - _ReceiveShadows: 1
     - _Rim: 1
     - _RimThreshold: 0.1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
-    - _Specular: 1
+    - _Specular: 0
     - _SpecularExponent: 80
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -133,18 +141,35 @@ Material:
     - _Surface: 0
     - _UseRim: 0
     - _UseTransparent: 0
+    - _VoronoiExponent: 1
+    - _VoronoiRandomness: 1
+    - _VoronoiRoughness: 2.2
+    - _VoronoiScale: 2.2
+    - _VoronoiSmoothness: 0.672
     - _WorkflowMode: 1
     - _ZWrite: 1
     - _kD: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _DiffuseColour: {r: 1, g: 1, b: 1, a: 1}
+    - _DarkTone: {r: 0.2, g: 0.12797385, b: 0.05098039, a: 1}
+    - _DiffuseColour: {r: 0.8490566, g: 0.8490566, b: 0.8490566, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _EmissiveColour: {r: 1, g: 1, b: 1, a: 1}
+    - _FbmShift: {r: 8, g: 8, b: 8, a: 8}
+    - _Highlight: {r: 1, g: 1, b: 1, a: 1}
+    - _LightTone: {r: 0.9490196, g: 0.8769935, b: 0.8, a: 1}
+    - _MidDarkTone: {r: 0.29803923, g: 0.20137255, b: 0.09803922, a: 1}
+    - _MidLightTone: {r: 0.9019608, g: 0.70862746, b: 0.5019608, a: 1}
+    - _MiddleTone: {r: 0.69803923, g: 0.4819608, b: 0.25098044, a: 1}
+    - _RampColours: {r: 1, g: 1, b: 1, a: 1}
+    - _RampPositions: {r: 0, g: 0, b: 0, a: 0}
+    - _RampPositions0: {r: 0.02, g: 0.12, b: 0.34, a: 0}
+    - _RampPositions1: {r: 0.65, g: 0.81, b: 1, a: 0}
     - _RimColour: {r: 1, g: 1, b: 1, a: 1}
+    - _Shadow: {r: 0.02, g: 0.02, b: 0.09999997, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _k: {r: 0.5, g: 0.5, b: 0, a: 1}
+    - _k: {r: 0.2, g: 0.7, b: 0.5, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &7972439404755219198
 MonoBehaviour:

@@ -1,37 +1,27 @@
 #ifndef COLOUR_RAMP_INCLUDED
 #define COLOUR_RAMP_INCLUDED
 
-float3 _HexToRgb(int hex)
-{
-    float r = float((hex >> 16) & 0xFF) / 255.0;
-    float g = float((hex >> 8) & 0xFF) / 255.0;
-    float b = float(hex & 0xFF) / 255.0;
-    return float3(r, g, b);
-}
-
 float3 ColourRamp(float3 colour)
 {
-    float t = dot(colour, float3(0.299, 0.587, 0.114)); // perceived brightness
+    float t = saturate(dot(colour, float3(0.299, 0.587, 0.114))); // perceived brightness
 
-    // Colour stops
-    float3 c0 = _HexToRgb(0x090966);
-    float3 c1 = _HexToRgb(0x20208c);
-    float3 c2 = _HexToRgb(0x3944db);
-    float3 c3 = _HexToRgb(0x6e83f8);
-    float3 c4 = _HexToRgb(0xc0cbe9);
-    float3 c5 = _HexToRgb(0xebedec);
-    float3 c6 = float3(1.0, 1.0, 1.0);
+    // 6 colour stops
+    half3 c0 = _DarkTone.rgb;
+    half3 c1 = _MidDarkTone.rgb;
+    half3 c2 = _MiddleTone.rgb;
+    half3 c3 = _MidLightTone.rgb;
+    half3 c4 = _LightTone.rgb;
+    half3 c5 = _Highlight.rgb;
 
-    // Ramp positions
-    float p0 = 0.06;
-    float p1 = 0.15;
-    float p2 = 0.2;
-    float p3 = 0.4;
-    float p4 = 0.5;
-    float p5 = 0.8;
-    float p6 = 0.9;
+    // 6 positions stored across two Vector3s
+    half p0 = _RampPositions0.x;
+    half p1 = _RampPositions0.y;
+    half p2 = _RampPositions0.z;
+    half p3 = _RampPositions1.x;
+    half p4 = _RampPositions1.y;
+    half p5 = _RampPositions1.z;
 
-    // Interpolate between colour stops based on luminance t
+    // Interpolation across 6 positions and 6 colours
     if (t < p1)
         return lerp(c0, c1, smoothstep(p0, p1, t));
     else if (t < p2)
@@ -43,7 +33,7 @@ float3 ColourRamp(float3 colour)
     else if (t < p5)
         return lerp(c4, c5, smoothstep(p4, p5, t));
     else
-        return lerp(c5, c6, smoothstep(p5, p6, t));
+        return c5;
 }
 
 #endif // COLOUR_RAMP_INCLUDED
