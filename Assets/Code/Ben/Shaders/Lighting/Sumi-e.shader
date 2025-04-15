@@ -3,7 +3,7 @@ Shader "ForgottenColours/Sumi-E"
     Properties
     {
         // === BASE MATERIAL SETTINGS ===
-        [Header(Base Colour)]
+        [Header(Base Colour)][Space(10)]
         _DiffuseColour("Diffuse Colour", Color) = (1,1,1,1)
 
 
@@ -29,24 +29,25 @@ Shader "ForgottenColours/Sumi-E"
 
         // === NOISE SETTINGS ===
         [Header(Noise)][Space(10)]
-
+        [Enum(Position, 0, Normal, 1)] _SamplingSpace("Sampling Space", Float) = 1
         _MixAmount ("Noise Mix Amount", Range(0,1)) = 0.5
+
         [Header(Voronoi Noise)][Space(10)]
+        [Enum(Euclidean, 1, Manhattan, 2, Chebyshev, 3, Minkowski, 4)]
+        _DistanceMetric ("Distance Metric", Float) = 1
         _VoronoiScale ("Voronoi Scale", Float) = 2.2
         _VoronoiExponent ("Voronoi Exponent", Float) = 1.0
         _VoronoiSmoothness ("Voronoi Smoothness", Range(0,1)) = 0.5
         _VoronoiRandomness ("Voronoi Randomness", Range(0,1)) = 1.0
-        [Enum(Euclidean, 1, Manhattan, 2, Chebyshev, 3, Minkowski, 4)]
-        _DistanceMetric ("Distance Metric", Float) = 1
 
-        [Header(Fractal Brownian Motion (FBM) Noise)][Space(10)]
-        _FbmScale ("FBM Scale", Float) = 2.0
-        _FbmRoughness ("FBM Roughness", Range(0,1)) = 0.5
-        _FbmLacunarity ("FBM Lacunarity", Float) = 2.0
-        _FbmAmplitude ("FBM Amplitude", Float) = 1.0
-        _FbmFrequency ("FBM Frequency", Float) = 1.0
-        _FbmShift ("FBM Shift", Vector) = (8,8,8,8)
-        _FbmDetail ("FBM Detail", Range(1,15)) = 15
+//        [Header(Fractal Brownian Motion (FBM) Noise)][Space(10)]
+//        _FbmScale ("FBM Scale", Float) = 2.0
+//        _FbmRoughness ("FBM Roughness", Range(0,1)) = 0.5
+//        _FbmLacunarity ("FBM Lacunarity", Float) = 2.0
+//        _FbmAmplitude ("FBM Amplitude", Float) = 1.0
+//        _FbmFrequency ("FBM Frequency", Float) = 1.0
+//        _FbmShift ("FBM Shift", Vector) = (8,8,8,8)
+//        _FbmDetail ("FBM Detail", Range(1,15)) = 15
 
     }
 
@@ -115,6 +116,11 @@ Shader "ForgottenColours/Sumi-E"
             half4 _RampPositions0; // (p0, p1, p2)
             half4 _RampPositions1; // (p3, p4, p5)
 
+            // ============================
+            // NOISE SETTINGS
+            // ============================
+            int _SamplingSpace;
+            float _MixAmount;
 
             // ============================
             // NOISE: VORONOI
@@ -136,7 +142,6 @@ Shader "ForgottenColours/Sumi-E"
             float3 _FbmShift;
             int _FbmDetail;
 
-            float _MixAmount;
 
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
@@ -166,14 +171,15 @@ Shader "ForgottenColours/Sumi-E"
                 float3 v = normalize(_WorldSpaceCameraPos - input.fragPos); // _WorldSpaceCameraPos and input.positionWS are usually large floats
 
                 // BUG: Problematic noise
-                float3 noise = FbmNoise(n, _FbmScale, _FbmDetail, _FbmRoughness, _FbmLacunarity);
-                float3 blended = LinearLight(n, noise, _MixAmount);
+                // float3 noise = FbmNoise(n, _FbmScale, _FbmDetail, _FbmRoughness, _FbmLacunarity);
+                // float3 blended = LinearLight(n, noise, _MixAmount);
 
                 float dist;
                 float3 col;
                 float3 pos;
 
-                VoronoiSmoothF1_3D(n * _VoronoiScale, _VoronoiSmoothness, _VoronoiExponent, _VoronoiRandomness, _DistanceMetric, dist, col, pos);
+                float3 sampleCoord = (_SamplingSpace == 0) ? input.fragPos : n;
+                VoronoiSmoothF1_3D(sampleCoord * _VoronoiScale, _VoronoiSmoothness, _VoronoiExponent, _VoronoiRandomness, _DistanceMetric, dist, col, pos);
 
                 half3 lighting = BlinnPhong(pos, l, v, mainLight);
 
