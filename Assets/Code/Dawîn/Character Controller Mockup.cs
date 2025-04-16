@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using Cinemachine;
 using UniRx;
 using UnityEngine;
@@ -313,8 +311,9 @@ public class CharacterControllerMockup : MonoBehaviour
         {
             if (!firstState.Equals(lockOn)) yield break;
             mockTransform.transform.position = targetPosition;
-            
-            cameraPivot
+
+            cameraPivot = null;
+            Debug.Log("Here random fix, dont worry");
             
             targetPosition = Vector3.Lerp(targetPosition, target.transform.position, lerpTimer/cameraZoomSpeed);
             lerpTimer += Time.deltaTime;
