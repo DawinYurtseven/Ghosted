@@ -31,12 +31,17 @@ public class CharacterControllerMockup : MonoBehaviour
         });
     }
 
+    private void Update()
+    {
+        //CameraControl
+        CameraUpdate();
+    }
+
     public void FixedUpdate()
     {
         //Movement
         MovementUpdate();
-        //CameraControl
-        CameraUpdate();
+        
         //jumpControl
         RegulateJump();
     }
@@ -44,7 +49,7 @@ public class CharacterControllerMockup : MonoBehaviour
     #region Speed
 
     [Header("Movement")] [SerializeField] private Vector2 moveVector;
-    [SerializeField] private float maxSpeed, acceleration, currentSpeed, shotLockLimit;
+    [SerializeField] private float maxSpeed, acceleration, currentSpeed, shotLockLimit, deaccelerationTime;
     [SerializeField] private Transform lookAtTarget;
 
     //TODO: affect Direction change in air
@@ -60,18 +65,27 @@ public class CharacterControllerMockup : MonoBehaviour
         else if (context.canceled)
         {
             moveVector = new Vector2(0, 0);
+            StartCoroutine(Deacceleration());
+        }
+    }
+    
+    private IEnumerator Deacceleration()
+    {
+        float timer = 0f;
+        while (timer <deaccelerationTime)
+        {
+            if(moveVector != Vector2.zero) yield break;
+            var velocity = rb.velocity;
+            currentSpeed = velocity.magnitude;
+            rb.velocity = Vector3.Lerp(velocity, new Vector3(0, 0, 0), timer /0.5f);
+            timer += Time.fixedDeltaTime;
+            yield return null;
         }
     }
 
     private void MovementUpdate()
     {
-        if (moveVector == Vector2.zero)
-        {
-            var velocity = rb.velocity;
-            currentSpeed = velocity.magnitude;
-            rb.velocity = Vector3.Lerp(velocity, new Vector3(0, 0, 0), Time.fixedDeltaTime);
-        }
-        else if (!dashedCooldown)
+        if (!dashedCooldown && moveVector != Vector2.zero)
         {
             var right = lookAtTarget.right;
             var forward = lookAtTarget.forward;
@@ -106,6 +120,7 @@ public class CharacterControllerMockup : MonoBehaviour
 
     public void Camera_Move(InputAction.CallbackContext context)
     {
+        
         if (context.performed)
             cameraDirection = context.ReadValue<Vector2>();
         else if (context.canceled)
@@ -152,13 +167,13 @@ public class CharacterControllerMockup : MonoBehaviour
 
     [Header("Jump")] [SerializeField] private float jumpStrength;
     [SerializeField] private float fallStrength;
-    [SerializeField] private bool doublejumped;
     [SerializeField] private float gravity;
+    [SerializeField] private float groundCheckDistance;
 
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (context.action.triggered && Physics.Raycast(transform.position, -transform.up, 1.1f))
+        if (context.started && Physics.Raycast(transform.position, -transform.up, 1.1f))
         {
             var up = transform.up;
             rb.velocity += up * jumpStrength;
@@ -167,9 +182,11 @@ public class CharacterControllerMockup : MonoBehaviour
 
     private void RegulateJump()
     {
-        rb.AddForce(-transform.up * gravity);
+        rb.AddForce(-transform.up * gravity, ForceMode.Acceleration);
         if (rb.velocity.y != 0)
-            rb.AddForce(-transform.up * fallStrength);
+        {
+            rb.AddForce(-transform.up * fallStrength, ForceMode.Acceleration);
+        }
     }
 
     #endregion
@@ -222,22 +239,16 @@ public class CharacterControllerMockup : MonoBehaviour
     private bool lockOn;
     private Vector3 targetPosition;
     [SerializeField] private TalismanTargetMock target;
-    
-    static bool Visible(Collider obj, Camera cam)
-    {
-        Plane[] frustumPlanes = GeometryUtility.CalculateFrustumPlanes(cam);
-        return GeometryUtility.TestPlanesAABB(frustumPlanes, obj.bounds);
-    }
 
     public void ToggleLockOn(InputAction.CallbackContext context)
     {
         var fov = 60f;
         var offset = new Vector3(2, 0, 0);
         var newVal = 2.5f;
-        if (context.performed && target != null)
+        if (context.performed && target != null && !lockOn)
         {
             lockOn = true;
-            mockTransform = new GameObject();
+            if(mockTransform == null) mockTransform = new GameObject();
             mockTransform.transform.position = lookAtTarget.transform.position;
             camera.m_LookAt = mockTransform.transform;
             fov = 30f;
@@ -246,12 +257,15 @@ public class CharacterControllerMockup : MonoBehaviour
             
 
             targetPosition = lookAtTarget.transform.position;
+            
+            
             StartCoroutine(LerpTargetPosition());
             StartCoroutine(LerpActionShotLockInput(fov, offset, newVal));
         }
 
-        if (context.canceled && target != null)
+        if (context.canceled && target != null && lockOn && mockTransform != null)
         {
+            lockOn = false;
             StartCoroutine(LerpBackFocus());
             StartCoroutine(LerpActionShotLockInput(fov, offset, newVal));
             
@@ -277,7 +291,7 @@ public class CharacterControllerMockup : MonoBehaviour
             camera.GetComponentInChildren<Cinemachine3rdPersonFollow>().ShoulderOffset = lerpVector;
 
             var vertArmLength = cine3RdPerson.VerticalArmLength;
-            var lerpLength = Mathf.Lerp(vertArmLength, newVal, lerpTimer/cameraZoomSpeed);
+            var lerpLength = Mathf.Lerp(vertArmLength, newVal, lerpTimer / cameraZoomSpeed);
             camera.GetCinemachineComponent<Cinemachine3rdPersonFollow>().VerticalArmLength = lerpLength;
 
             lerpTimer += Time.deltaTime;
@@ -288,32 +302,25 @@ public class CharacterControllerMockup : MonoBehaviour
         camera.GetComponentInChildren<Cinemachine3rdPersonFollow>().ShoulderOffset = newOffset;
     }
 
-    private bool inCameraTransition = false;
-
-    /*
-    public void ChangeLockOnTarget(InputAction.CallbackContext context)
-    {
-        if (context.performed && targets.Count != 0)
-        {
-            int value = context.ReadValue<float>() > 0 ? 1 : -1;
-            targetIndex = (targetIndex + value);
-            targetIndex = targetIndex < 0 ? targets.Count - 1 : targetIndex % targets.Count;
-            StartCoroutine(LerpTargetPosition());
-        }
-    }*/
+    private bool inCameraTransition;
 
     private IEnumerator LerpTargetPosition()
     {
+        print("target");
         inCameraTransition = true;
-        bool firstState = lockOn;
+        var targetDirection = target.transform.transform.position - cameraPivot.transform.position;
+        var _lookRot = Quaternion.LookRotation(targetDirection);
         var lerpTimer = 0f;
         while (lerpTimer < cameraZoomSpeed)
         {
-            if (!firstState.Equals(lockOn)) yield break;
+            print($"lockon = {lockOn}");
+            if (!lockOn) 
+            {
+                yield break;
+            }
             mockTransform.transform.position = targetPosition;
 
-            cameraPivot = null;
-            Debug.Log("Here random fix, dont worry");
+            cameraPivot.transform.rotation = Quaternion.Slerp(cameraPivot.transform.rotation, _lookRot, lerpTimer/cameraZoomSpeed);
             
             targetPosition = Vector3.Lerp(targetPosition, target.transform.position, lerpTimer/cameraZoomSpeed);
             lerpTimer += Time.deltaTime;
@@ -326,12 +333,16 @@ public class CharacterControllerMockup : MonoBehaviour
 
     private IEnumerator LerpBackFocus()
     {
+        print("Back");
         inCameraTransition = true;
-        bool firstState = lockOn;
         var lerpTimer = 0f;
         while (lerpTimer < cameraZoomSpeed)
         {
-            if (firstState != lockOn) yield break;
+            if (lockOn)
+            {
+                print("I am still here");
+                yield break;
+            }
             mockTransform.transform.position = targetPosition;
             
             xAxisAngle += -cameraDirection.y * cameraSpeed * Time.fixedDeltaTime;
@@ -344,21 +355,20 @@ public class CharacterControllerMockup : MonoBehaviour
             
             targetPosition = Vector3.Lerp(targetPosition, lookAtTarget.transform.position, lerpTimer/cameraZoomSpeed);
             lerpTimer += Time.deltaTime;
-            yield return null;
+            yield return new WaitForEndOfFrame();
         }
 
         targetPosition = lookAtTarget.transform.position;
         camera.m_LookAt = lookAtTarget.transform;
-        lockOn = false;
-        Destroy(mockTransform);
         inCameraTransition = false;
+        Destroy(mockTransform);
     }
 
     #endregion
 
     #region Position and Rotation
 
-    /*private bool _isOnCurvedGround;
+    private bool _isOnCurvedGround;
 
     public void OnCollisionStay(Collision collisionInfo)
     {
@@ -409,7 +419,7 @@ public class CharacterControllerMockup : MonoBehaviour
                 reference.eulerAngles.z);
             yield return null;
         }
-    }*/
+    }
 
     #endregion
 }
