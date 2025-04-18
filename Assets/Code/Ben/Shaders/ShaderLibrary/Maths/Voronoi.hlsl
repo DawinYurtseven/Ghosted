@@ -66,7 +66,7 @@ void VoronoiSmoothF1_3D(float3 coord, float smoothness, float exponent, float ra
     float3 cellPosition = floor(coord);
     float3 localPosition = coord - cellPosition;
 
-    float smoothDistance = 8.0;
+    float smoothDistance = 8;
     float3 smoothColour = float3(0.0, 0.0, 0.0);
     float3 smoothOffset = float3(0.0, 0.0, 0.0);
 

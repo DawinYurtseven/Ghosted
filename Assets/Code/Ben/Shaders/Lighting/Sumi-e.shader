@@ -5,7 +5,9 @@ Shader "ForgottenColours/Sumi-E"
         // === BASE MATERIAL SETTINGS ===
         [Header(Base Colour)][Space(10)]
         _DiffuseColour("Diffuse Colour", Color) = (1,1,1,1)
-
+        _AlbedoTex ("Albedo Texture", 2D) = "white"{}
+        _NormalTex ("Normal Map", 2D) = "bump"{}
+        _NormalStrength ("Normal Strength", Float) = 1
 
         // === BLINN-PHONG LIGHTING ===
         [Header(Blinn Phong Lighting)][Space(10)]
@@ -28,11 +30,11 @@ Shader "ForgottenColours/Sumi-E"
         _RampPositions1 ("Positions p3–p5 (xyz)", Vector) = (0.8, 0.9, 1.0)
 
         // === NOISE SETTINGS ===
-        [Header(Noise)][Space(10)]
-        [Enum(Position, 0, Normal, 1)] _SamplingSpace("Sampling Space", Float) = 1
-        _MixAmount ("Noise Mix Amount", Range(0,1)) = 0.5
+        [Header(Noise Settings)][Space(10)]
+        [Enum(Normal, 0, Position, 1)] _SamplingSpace("Sampling Space", Float) = 1
+        // _MixAmount ("Noise Mix Amount", Range(0,1)) = 0.5
 
-        [Header(Voronoi Noise)][Space(10)]
+        [Header(Voronoi Noise Settings)][Space(10)]
         [Enum(Euclidean, 1, Manhattan, 2, Chebyshev, 3, Minkowski, 4)]
         _DistanceMetric ("Distance Metric", Float) = 1
         _VoronoiScale ("Voronoi Scale", Float) = 2.2
@@ -40,14 +42,14 @@ Shader "ForgottenColours/Sumi-E"
         _VoronoiSmoothness ("Voronoi Smoothness", Range(0,1)) = 0.5
         _VoronoiRandomness ("Voronoi Randomness", Range(0,1)) = 1.0
 
-//        [Header(Fractal Brownian Motion (FBM) Noise)][Space(10)]
-//        _FbmScale ("FBM Scale", Float) = 2.0
-//        _FbmRoughness ("FBM Roughness", Range(0,1)) = 0.5
-//        _FbmLacunarity ("FBM Lacunarity", Float) = 2.0
-//        _FbmAmplitude ("FBM Amplitude", Float) = 1.0
-//        _FbmFrequency ("FBM Frequency", Float) = 1.0
-//        _FbmShift ("FBM Shift", Vector) = (8,8,8,8)
-//        _FbmDetail ("FBM Detail", Range(1,15)) = 15
+        //        [Header(Fractal Brownian Motion (FBM) Noise)][Space(10)]
+        //        _FbmScale ("FBM Scale", Float) = 2.0
+        //        _FbmRoughness ("FBM Roughness", Range(0,1)) = 0.5
+        //        _FbmLacunarity ("FBM Lacunarity", Float) = 2.0
+        //        _FbmAmplitude ("FBM Amplitude", Float) = 1.0
+        //        _FbmFrequency ("FBM Frequency", Float) = 1.0
+        //        _FbmShift ("FBM Shift", Vector) = (8,8,8,8)
+        //        _FbmDetail ("FBM Detail", Range(1,15)) = 15
 
     }
 
@@ -74,24 +76,33 @@ Shader "ForgottenColours/Sumi-E"
 
             struct appdata
             {
-                float4 positionOS : POSITION;
-                float3 normalOS : NORMAL;
-                float2 uv : TEXCOORD0;
+                float4 vertex : POSITION;
+                float3 normal : NORMAL;
+                float4 tangent : TANGENT;
+                float2 uv : TEXCOORD2;
             };
 
             struct v2f
             {
                 float4 fragHCS : SV_POSITION;
-                float2 uv: TEXCOORD0;
-                float3 fragPos : TEXCOORD1;
-                float3 fragNormal : TEXCOORD2;
+                float3 fragWorldPos : TEXCOORD0;
+                float3 fragLocalPos : TEXCOORD1;
+                float3x3 TBN : TEXCOORD2;
+                float2 uv_Albedo : TEXCOORD5;
+                float2 uv_Normal : TEXCOORD6;
+                float2 uv_Emissive : TEXCOORD7;
+                float3 generatedCoord : TEXCOORD8;
             };
 
             // ============================
             // BASE MATERIAL UNIFORMS
             // ============================
             float4 _DiffuseColour;
-
+            sampler2D _AlbedoTex;
+            half4 _AlbedoTex_ST;
+            sampler2D _NormalTex;
+            half4 _NormalTex_ST;
+            half _NormalStrength;
 
             // ============================
             // BLINN-PHONG LIGHTING UNIFORMS
@@ -142,6 +153,9 @@ Shader "ForgottenColours/Sumi-E"
             float3 _FbmShift;
             int _FbmDetail;
 
+            // Function Prototypes
+            half3 ProcessNormals(v2f input);
+
 
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
@@ -154,21 +168,34 @@ Shader "ForgottenColours/Sumi-E"
             v2f vert(appdata input)
             {
                 v2f output;
-                output.fragPos = TransformObjectToWorld(input.positionOS.xyz);
-                output.fragHCS = TransformWorldToHClip(output.fragPos);
-                output.fragNormal = TransformObjectToWorldNormal(input.normalOS);
-                output.uv = input.uv;
+                output.fragLocalPos = input.vertex;
+                output.fragWorldPos = TransformObjectToWorld(input.vertex.xyz);
+                output.fragHCS = TransformWorldToHClip(output.fragWorldPos);
+
+                float3 worldNormal = TransformObjectToWorldNormal(input.normal);
+                float3 worldTangent = mul((float3x3)unity_ObjectToWorld, input.tangent);
+                float3 bitangent = cross(worldNormal, worldTangent);
+                float3 worldBitangent = mul((float3x3)unity_ObjectToWorld, bitangent);
+
+                output.TBN = float3x3(worldTangent, worldBitangent, worldNormal);
+
+                output.uv_Albedo = TRANSFORM_TEX(input.uv, _AlbedoTex);
+                output.uv_Normal = TRANSFORM_TEX(input.uv, _NormalTex);
+
+                output.generatedCoord = (input.vertex.xyz * 0.5) + 0.5;
+
+
                 return output;
             }
 
             half4 frag(v2f input) : SV_Target
             {
+                half3 albedoTexture = tex2D(_AlbedoTex, input.uv_Albedo);
                 Light mainLight = GetMainLight();
 
-                // Normalize normal
-                half3 n = normalize(input.fragNormal);
+                half3 n = ProcessNormals(input);
                 half3 l = mainLight.direction;
-                float3 v = normalize(_WorldSpaceCameraPos - input.fragPos); // _WorldSpaceCameraPos and input.positionWS are usually large floats
+                float3 v = normalize(_WorldSpaceCameraPos - input.fragWorldPos); // _WorldSpaceCameraPos and input.positionWS are usually large floats
 
                 // BUG: Problematic noise
                 // float3 noise = FbmNoise(n, _FbmScale, _FbmDetail, _FbmRoughness, _FbmLacunarity);
@@ -178,14 +205,24 @@ Shader "ForgottenColours/Sumi-E"
                 float3 col;
                 float3 pos;
 
-                float3 sampleCoord = (_SamplingSpace == 0) ? input.fragPos : n;
+                float3 sampleCoord;
+                if (_SamplingSpace == 0) sampleCoord = n; // Normal
+                else if (_SamplingSpace == 1) sampleCoord = input.fragLocalPos; // Local Fragment Position
+
                 VoronoiSmoothF1_3D(sampleCoord * _VoronoiScale, _VoronoiSmoothness, _VoronoiExponent, _VoronoiRandomness, _DistanceMetric, dist, col, pos);
 
-                half3 lighting = BlinnPhong(pos, l, v, mainLight);
+                half3 lighting = BlinnPhong(pos, l, v, mainLight, albedoTexture);
 
                 half3 mapped = ColourRamp(lighting);
 
                 return half4(mapped, 1.0);
+            }
+
+            half3 ProcessNormals(v2f input)
+            {
+                half3 normalMap = UnpackNormal(tex2D(_NormalTex, input.uv_Normal));
+                normalMap.xy *= _NormalStrength;
+                return normalize(mul(transpose(input.TBN), normalMap));
             }
             ENDHLSL
         }
