@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using Cinemachine;
 using UniRx;
 using UnityEngine;
@@ -321,7 +319,7 @@ public class CharacterControllerMockup : MonoBehaviour
                 yield break;
             }
             mockTransform.transform.position = targetPosition;
-            
+
             cameraPivot.transform.rotation = Quaternion.Slerp(cameraPivot.transform.rotation, _lookRot, lerpTimer/cameraZoomSpeed);
             
             targetPosition = Vector3.Lerp(targetPosition, target.transform.position, lerpTimer/cameraZoomSpeed);
