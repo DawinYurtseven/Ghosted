@@ -18,6 +18,7 @@ Shader "ForgottenColours/Sumi-E"
 
         // === COLOUR RAMP ===
         [Header(Colour Ramp Tones)][Space(10)]
+        [Toggle(USECOLOURRAMP)] _UseColourRamp("Use Colour Ramp", Float) = 1
         _DarkTone ("Dark Tone", Color) = (0.05, 0.05, 0.2, 1)
         _MidDarkTone ("Mid Dark Tone", Color) = (0.1, 0.1, 0.3, 1)
         _MiddleTone ("Middle Tone", Color) = (0.25, 0.3, 0.7, 1)
@@ -31,7 +32,7 @@ Shader "ForgottenColours/Sumi-E"
 
         // === NOISE SETTINGS ===
         [Header(Noise Settings)][Space(10)]
-        [Enum(Normal, 0, Position, 1)] _SamplingSpace("Sampling Space", Float) = 1
+        [Enum(Generated, 0, Normal, 1, UV, 2, Object, 3)] _SamplingSpace("Sampling Space", Float) = 1
         // _MixAmount ("Noise Mix Amount", Range(0,1)) = 0.5
 
         [Header(Voronoi Noise Settings)][Space(10)]
@@ -72,6 +73,7 @@ Shader "ForgottenColours/Sumi-E"
             #pragma fragment frag
             #pragma multi_compile_fog
             #pragma shader_feature SPECULAR
+            #pragma shader_feature USECOLOURRAMP
             #define MAX_RAMP_STOPS 64
 
             struct appdata
@@ -88,10 +90,8 @@ Shader "ForgottenColours/Sumi-E"
                 float3 fragWorldPos : TEXCOORD0;
                 float3 fragLocalPos : TEXCOORD1;
                 float3x3 TBN : TEXCOORD2;
-                float2 uv_Albedo : TEXCOORD5;
-                float2 uv_Normal : TEXCOORD6;
-                float2 uv_Emissive : TEXCOORD7;
-                float3 generatedCoord : TEXCOORD8;
+                float2 uv : TEXCOORD5;
+                float3 generatedCoord : TEXCOORD6;
             };
 
             // ============================
@@ -163,6 +163,7 @@ Shader "ForgottenColours/Sumi-E"
             #include "Assets/Code/Ben/Shaders/ShaderLibrary/Maths/Voronoi.hlsl"
             #include "Assets/Code/Ben/Shaders/ShaderLibrary/Maths/FbmNoise.hlsl"
             #include "Assets/Code/Ben/Shaders/ShaderLibrary/Maths/LinearLight.hlsl"
+            #include "Assets/Code/Ben/Shaders/ShaderLibrary/Maths/TextureCoordinate.hlsl"
             #include "Assets/Code/Ben/Shaders/ShaderLibrary/Colour/ColourRamp.hlsl"
 
             v2f vert(appdata input)
@@ -179,48 +180,44 @@ Shader "ForgottenColours/Sumi-E"
 
                 output.TBN = float3x3(worldTangent, worldBitangent, worldNormal);
 
-                output.uv_Albedo = TRANSFORM_TEX(input.uv, _AlbedoTex);
-                output.uv_Normal = TRANSFORM_TEX(input.uv, _NormalTex);
-
-                output.generatedCoord = (input.vertex.xyz * 0.5) + 0.5;
-
+                output.uv = TRANSFORM_TEX(input.uv, _AlbedoTex);
 
                 return output;
             }
 
             half4 frag(v2f input) : SV_Target
             {
-                half3 albedoTexture = tex2D(_AlbedoTex, input.uv_Albedo);
+                half3 albedoTexture = tex2D(_AlbedoTex, input.uv);
                 Light mainLight = GetMainLight();
 
                 half3 n = ProcessNormals(input);
                 half3 l = mainLight.direction;
                 float3 v = normalize(_WorldSpaceCameraPos - input.fragWorldPos); // _WorldSpaceCameraPos and input.positionWS are usually large floats
 
-                // BUG: Problematic noise
-                // float3 noise = FbmNoise(n, _FbmScale, _FbmDetail, _FbmRoughness, _FbmLacunarity);
-                // float3 blended = LinearLight(n, noise, _MixAmount);
-
                 float dist;
                 float3 col;
                 float3 pos;
 
-                float3 sampleCoord;
-                if (_SamplingSpace == 0) sampleCoord = n; // Normal
-                else if (_SamplingSpace == 1) sampleCoord = input.fragLocalPos; // Local Fragment Position
+                float3 sampleCoord = GetTextureSpace(_SamplingSpace, n, input.fragLocalPos, input.uv);
 
                 VoronoiSmoothF1_3D(sampleCoord * _VoronoiScale, _VoronoiSmoothness, _VoronoiExponent, _VoronoiRandomness, _DistanceMetric, dist, col, pos);
 
                 half3 lighting = BlinnPhong(pos, l, v, mainLight, albedoTexture);
 
-                half3 mapped = ColourRamp(lighting);
+                half3 finalColour;
 
-                return half4(mapped, 1.0);
+                #ifdef USECOLOURRAMP
+                finalColour = ColourRamp(lighting);
+                #else
+                finalColour = lighting;
+                #endif
+
+                return half4(sampleCoord, 1.0);
             }
 
             half3 ProcessNormals(v2f input)
             {
-                half3 normalMap = UnpackNormal(tex2D(_NormalTex, input.uv_Normal));
+                half3 normalMap = UnpackNormal(tex2D(_NormalTex, input.uv));
                 normalMap.xy *= _NormalStrength;
                 return normalize(mul(transpose(input.TBN), normalMap));
             }
