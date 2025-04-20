@@ -31,8 +31,8 @@ Shader "ForgottenColours/Sumi-E"
         _RampPositions1 ("Positions p3–p5 (xyz)", Vector) = (0.8, 0.9, 1.0)
 
         // === NOISE SETTINGS ===
-        [Header(Noise Settings)][Space(10)]
-        [Enum(Generated, 0, Normal, 1, UV, 2, Object, 3)] _SamplingSpace("Sampling Space", Float) = 1
+        [Header(Texture Coordinates)][Space(10)]
+        [Enum(Generated, 0, Normal, 1, UV, 2, Object, 3)] _TextureSpace("Texture Space", Float) = 1
         // _MixAmount ("Noise Mix Amount", Range(0,1)) = 0.5
 
         [Header(Voronoi Noise Settings)][Space(10)]
@@ -60,6 +60,7 @@ Shader "ForgottenColours/Sumi-E"
         {
             "RenderType"="Opaque" "Queue"="Geometry"
         }
+
         Pass
         {
             Name "ForwardLit"
@@ -74,6 +75,13 @@ Shader "ForgottenColours/Sumi-E"
             #pragma multi_compile_fog
             #pragma shader_feature SPECULAR
             #pragma shader_feature USECOLOURRAMP
+            #pragma multi_compile _ _MAIN_LIGHT_SHADOWS
+            #pragma multi_compile _ _MAIN_LIGHT_SHADOWS_CASCADE
+            #pragma multi_compile _ _MAIN_LIGHT_SHADOWS_SCREEN
+            #pragma multi_compile _ _ADDITIONAL_LIGHTS_VERTEX _ADDITIONAL_LIGHTS
+            #pragma multi_compile _ _ADDITIONAL_LIGHT_SHADOWS
+            #pragma multi_compile _ _SHADOWS_SOFT
+            #pragma multi_compile _ _MIXED_LIGHTING_SUBTRACTIVE
             #define MAX_RAMP_STOPS 64
 
             struct appdata
@@ -128,9 +136,9 @@ Shader "ForgottenColours/Sumi-E"
             half4 _RampPositions1; // (p3, p4, p5)
 
             // ============================
-            // NOISE SETTINGS
+            // TEXTURE COORDINATES SETTINGS
             // ============================
-            int _SamplingSpace;
+            int _TextureSpace;
             float _MixAmount;
 
             // ============================
@@ -156,7 +164,6 @@ Shader "ForgottenColours/Sumi-E"
             // Function Prototypes
             half3 ProcessNormals(v2f input);
 
-
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
             #include "Assets/Code/Ben/Shaders/ShaderLibrary/Lighting/BlinnPhong.hlsl"
@@ -169,9 +176,11 @@ Shader "ForgottenColours/Sumi-E"
             v2f vert(appdata input)
             {
                 v2f output;
+
+                VertexPositionInputs positions = GetVertexPositionInputs(input.vertex);
                 output.fragLocalPos = input.vertex;
-                output.fragWorldPos = TransformObjectToWorld(input.vertex.xyz);
-                output.fragHCS = TransformWorldToHClip(output.fragWorldPos);
+                output.fragWorldPos = positions.positionWS;
+                output.fragHCS = positions.positionCS;
 
                 float3 worldNormal = TransformObjectToWorldNormal(input.normal);
                 float3 worldTangent = mul((float3x3)unity_ObjectToWorld, input.tangent);
@@ -179,40 +188,48 @@ Shader "ForgottenColours/Sumi-E"
                 float3 worldBitangent = mul((float3x3)unity_ObjectToWorld, bitangent);
 
                 output.TBN = float3x3(worldTangent, worldBitangent, worldNormal);
-
                 output.uv = TRANSFORM_TEX(input.uv, _AlbedoTex);
 
                 return output;
             }
 
+
             half4 frag(v2f input) : SV_Target
             {
+                // Sampling shadow coords in fragment shader to avoid cascading seams.
+                float4 shadowCoords = TransformWorldToShadowCoord(input.fragWorldPos);
+
                 half3 albedoTexture = tex2D(_AlbedoTex, input.uv);
-                Light mainLight = GetMainLight();
+                Light mainLight = GetMainLight(shadowCoords);
 
                 half3 n = ProcessNormals(input);
-                half3 l = mainLight.direction;
-                float3 v = normalize(_WorldSpaceCameraPos - input.fragWorldPos); // _WorldSpaceCameraPos and input.positionWS are usually large floats
+                float3 v = normalize(_WorldSpaceCameraPos - input.fragWorldPos);
 
                 float dist;
-                float3 col;
-                float3 pos;
-
-                float3 sampleCoord = GetTextureSpace(_SamplingSpace, n, input.fragLocalPos, input.uv);
-
+                float3 col, pos;
+                half3 sampleCoord = GetTextureSpace(_TextureSpace, n, input.fragLocalPos, input.uv);
                 VoronoiSmoothF1_3D(sampleCoord * _VoronoiScale, _VoronoiSmoothness, _VoronoiExponent, _VoronoiRandomness, _DistanceMetric, dist, col, pos);
 
-                half3 lighting = BlinnPhong(pos, l, v, mainLight, albedoTexture);
+                half3 lighting = BlinnPhong(pos, v, mainLight, albedoTexture) * mainLight.shadowAttenuation * mainLight.distanceAttenuation;
 
-                half3 finalColour;
-
-                #ifdef USECOLOURRAMP
-                finalColour = ColourRamp(lighting);
-                #else
-                finalColour = lighting;
+                #if defined(_ADDITIONAL_LIGHTS_VERTEX) || defined(_ADDITIONAL_LIGHTS)
+                int addCount = GetAdditionalLightsCount();
+                for (int i = 0; i < addCount; i++)
+                {
+                    Light additionalLight = GetAdditionalLight(i, input.fragWorldPos);
+                    half att = additionalLight.distanceAttenuation * additionalLight.shadowAttenuation;
+                    lighting += BlinnPhong(pos, v, additionalLight, albedoTexture) * att;
+                }
                 #endif
 
-                return half4(sampleCoord, 1.0);
+                half3 finalColour =
+                #ifdef USECOLOURRAMP
+                ColourRamp(lighting);
+                #else
+                lighting;
+                #endif
+
+                return half4(finalColour, 1.0);
             }
 
             half3 ProcessNormals(v2f input)
@@ -221,6 +238,29 @@ Shader "ForgottenColours/Sumi-E"
                 normalMap.xy *= _NormalStrength;
                 return normalize(mul(transpose(input.TBN), normalMap));
             }
+            ENDHLSL
+        }
+
+        Pass
+        {
+            Name "ShadowCaster"
+            Tags
+            {
+                "LightMode" = "ShadowCaster"
+            }
+
+            ZWrite On
+            ZTest LEqual
+            ColorMask 0
+            Cull Off
+
+            HLSLPROGRAM
+            #pragma vertex ShadowPassVertex
+            #pragma fragment ShadowPassFragment
+            #pragma target 2.0
+
+            #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
+            #include "Packages/com.unity.render-pipelines.universal/Shaders/ShadowCasterPass.hlsl"
             ENDHLSL
         }
     }
