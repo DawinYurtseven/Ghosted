@@ -4,9 +4,9 @@ using UnityEngine;
 
 public struct emotionJumpParameters
 {
-    private float jumpStrenght;
-    private float fallStrength;
-    private float gravity;
+    public float jumpStrenght;
+    public float fallStrength;
+    public float gravity;
 
     public emotionJumpParameters(float jumpStrenght,float fallStrength, float gravity)
     {
@@ -18,7 +18,6 @@ public struct emotionJumpParameters
 
 public class EmotionMockUp : MonoBehaviour
 {
-    public GameObject playerObj;
     public CharacterControllerMockup controler;
     private Dictionary<String,emotionJumpParameters> emotionParameters = new Dictionary<String, emotionJumpParameters>();
     
@@ -44,7 +43,9 @@ public class EmotionMockUp : MonoBehaviour
 
     private void applyConfig(CharacterControllerMockup controller, emotionJumpParameters paramsToApply)
     {
-           //TODO:
+        controller.gravity = paramsToApply.gravity;
+        controller.jumpStrength = paramsToApply.jumpStrenght;
+        controller.fallStrength = paramsToApply.fallStrength;
     }
     
 }

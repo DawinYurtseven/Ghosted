@@ -165,9 +165,9 @@ public class CharacterControllerMockup : MonoBehaviour
 
     #region Jump
 
-    [Header("Jump")] [SerializeField] private float jumpStrength;
-    [SerializeField] private float fallStrength;
-    [SerializeField] private float gravity;
+    [Header("Jump")] [SerializeField] public float jumpStrength;
+    [SerializeField] public float fallStrength;
+    [SerializeField] public float gravity;
     [SerializeField] private float groundCheckDistance;
 
 
