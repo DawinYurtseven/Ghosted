@@ -24,7 +24,7 @@ public class EmotionMockUp : MonoBehaviour
     private void Start()
     {
         emotionJumpParameters defaultparams = new emotionJumpParameters(18,70,10);
-        emotionJumpParameters joyParams = new emotionJumpParameters(25, 50, 10);
+        emotionJumpParameters joyParams = new emotionJumpParameters(21, 50, 10);
         emotionParameters.Add("Default", defaultparams);
         emotionParameters.Add("Joy", joyParams);
     }
@@ -33,10 +33,12 @@ public class EmotionMockUp : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.C))
         {
+            Debug.Log("Loading Default Config");
             applyConfig(controler, emotionParameters["Default"]);
         }
         else if(Input.GetKeyUp(KeyCode.E))
         {
+            Debug.Log("Loading Joy config");
             applyConfig(controler, emotionParameters["Joy"]);
         }
     }
