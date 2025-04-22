@@ -39,6 +39,11 @@ public class EmotionMockUp : MonoBehaviour
     [SerializeField] public UnityEvent LonelyTP;
     [SerializeField] public UnityEvent Bind;
 
+    [Header("Room Materials")] 
+    [SerializeField] private Material joyMat;
+    [SerializeField] private Material lonelyMat;
+    [SerializeField] private List<GameObject> roomElements;
+    
     [Header("Emotions")] 
     public List<GameObject> lonelyObjects;
     public List<Transform> teleportPos;
@@ -137,6 +142,8 @@ public class EmotionMockUp : MonoBehaviour
         if(useTP)
             teleport(teleportPos[0]);
         
+        addMaterialToRoom(joyMat);
+        
         Debug.Log("Loading Joy config");
         applyConfig(controler, emotionParameters["Joy"]);
     }
@@ -145,6 +152,8 @@ public class EmotionMockUp : MonoBehaviour
     {
         Debug.Log("Changing to Lonely");
         _roomState = RoomState.Lonely;
+        
+        addMaterialToRoom(lonelyMat);
         
         restoreDefaultConfig();
         //Debug.Log("Not implemented, need objects to deactivate collider from!");
@@ -196,6 +205,23 @@ public class EmotionMockUp : MonoBehaviour
         }
     }
 
+    private void addMaterialTo(GameObject o, Material m)
+    {
+        Renderer renderer = o.GetComponent<Renderer>();
+        if (renderer != null)
+        {
+            renderer.material = m;
+        }
+    }
+
+    private void addMaterialToRoom(Material m)
+    {
+        foreach (GameObject roomElement in roomElements)
+        {
+            addMaterialTo(roomElement, m);
+        }
+    }
+    
     private void addTransparency(GameObject o)
     {
         Renderer renderer = o.GetComponent<Renderer>();
