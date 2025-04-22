@@ -44,12 +44,15 @@ public class EmotionMockUp : MonoBehaviour
     public List<Transform> teleportPos;
     public Material transparentMat;
     public Material ogMat;
-    [SerializeField]private bool isBound = false;
-    [SerializeField]private GameObject boundObj;
+    [SerializeField] private bool isBound = false;
+    [SerializeField] private GameObject boundObj;
     public GameObject dummyObj;
     public bool useTP = false;
-    
-    
+    [SerializeField] private bool allowChange = true;
+    [SerializeField] private bool allowBind = true;
+    public GameObject shooterActiveMsg;
+    public GameObject shooterInactiveMsg;
+        
     private void Start()
     {
         emotionJumpParameters defaultparams = new emotionJumpParameters(18,70,10);
@@ -89,11 +92,20 @@ public class EmotionMockUp : MonoBehaviour
         }
         
         //Emotion Change
-        if (Input.GetKeyDown(KeyCode.Alpha1)) Joy.Invoke();
-        if (Input.GetKeyDown(KeyCode.Alpha2)) Lonely.Invoke();
-        if (Input.GetKeyDown(KeyCode.Alpha3)) LonelyTP.Invoke();
-        if (Input.GetKeyDown(KeyCode.Alpha5)) Fear.Invoke();
+        if (allowChange)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1)) Joy.Invoke();
+            if (Input.GetKeyDown(KeyCode.Alpha2)) Lonely.Invoke();
+            if (Input.GetKeyDown(KeyCode.Alpha3)) LonelyTP.Invoke();
+            
+            if (Input.GetKeyDown(KeyCode.Alpha5)) Fear.Invoke();
+        }
+        
         if(Input.GetKeyDown(KeyCode.Q)) Bind.Invoke();
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            toggleShoot();
+        }
         if(Input.GetKeyDown(KeyCode.R)) SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
@@ -202,6 +214,12 @@ public class EmotionMockUp : MonoBehaviour
         }
     }
 
+    public void setAllowChange(bool newVal) { allowChange = newVal;}
+    public void setAllowBind(bool newVal) { allowBind = newVal;}
+
+    public void toggleAllowChange() { allowChange = !allowChange;}
+    public void toggleAllowBind() { allowBind = !allowBind;}
+
     public void setUseTP(bool newVal)
     {
         useTP = newVal;
@@ -239,8 +257,12 @@ public class EmotionMockUp : MonoBehaviour
 
     public void toggleBind(GameObject gameObject)
     {
+        if(!allowBind)
+            return;
+        
         boundObj = gameObject;
         isBound = !isBound;
+        
         if (isBound)
         {
             Debug.Log("Obj bound");
@@ -258,6 +280,24 @@ public class EmotionMockUp : MonoBehaviour
             removeTransparency(gameObject);
             removeTransparency(dummyObj);
         }
+    }
+
+    private void toggleShoot()
+    {
+        Debug.Log("Toggle shoot mode to: " + (allowChange && allowBind));
         
+        toggleAllowChange();
+        toggleAllowBind();
+        
+        if (allowChange && allowBind)
+        {
+            shooterActiveMsg.SetActive(true);
+            shooterInactiveMsg.SetActive(false);
+        }
+        else
+        {
+            shooterActiveMsg.SetActive(false);
+            shooterInactiveMsg.SetActive(true);
+        }
     }
 }
