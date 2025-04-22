@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 using Image = UnityEngine.UI.Image;
 
@@ -18,6 +19,7 @@ public class TalismanTargetMock : MonoBehaviour
         cam = Camera.main;
         objCollider =  GetComponent<Collider>();
         StartCoroutine(CheckAvailability());
+        
     }
 
 
@@ -70,13 +72,22 @@ public class TalismanTargetMock : MonoBehaviour
      * 
      */
     
-    [SerializeField] private Emotion emotion;
 
     private void EmotionalBehaivour()
     {
         
     }
-    
+
+    public void Bind()
+    {
+        
+    }
+
+    public void EvokeEmotion(Emotion emotion, Vector3 origin)
+    {
+        
+    }
+
     #endregion
-    
+
 }

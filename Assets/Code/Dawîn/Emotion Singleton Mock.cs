@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using UniRx;
 using UnityEngine;
 
@@ -19,6 +20,11 @@ public class EmotionSingletonMock : MonoBehaviour
     /*
      * this Area is to change the emotion through the whole area!
      */
+    
+    private Subject<Emotion> emotionSubject = new Subject<Emotion>();
+    
+    
+    
 
     #endregion
     
@@ -90,7 +96,7 @@ public class EmotionSingletonMock : MonoBehaviour
     #endregion
 
 
-    private void Awake()
+    private void OnEnable()
     {
         if (Instance != null && Instance != this)
         {

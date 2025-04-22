@@ -75,9 +75,9 @@ public class CharacterControllerMockup : MonoBehaviour
         while (timer <deaccelerationTime)
         {
             if(moveVector != Vector2.zero) yield break;
-            var velocity = rb.velocity;
-            currentSpeed = velocity.magnitude;
-            rb.velocity = Vector3.Lerp(velocity, new Vector3(0, 0, 0), timer /0.5f);
+            var velocity = rb.transform.InverseTransformDirection(rb.velocity);
+            currentSpeed = Mathf.Lerp(currentSpeed, 0, timer / deaccelerationTime);
+            rb.velocity = Vector3.Lerp(velocity, new Vector3(0, 0, 0) + lookAtTarget.up * velocity.y, timer /0.5f);
             timer += Time.fixedDeltaTime;
             yield return null;
         }
@@ -116,6 +116,8 @@ public class CharacterControllerMockup : MonoBehaviour
     [SerializeField] private Vector2 cameraDirection;
     [SerializeField] private float cameraSpeed;
 
+    [SerializeField] private bool strifing;
+
     private float xAxisAngle, yAxisAngle;
 
     public void Camera_Move(InputAction.CallbackContext context)
@@ -144,7 +146,7 @@ public class CharacterControllerMockup : MonoBehaviour
                 yAxisAngle,
                 0
             );
-            lookAtPivot.transform.localRotation = Quaternion.Euler(0f, yAxisAngle, 0f);
+            if(strifing) lookAtPivot.transform.localRotation = Quaternion.Euler(0f, yAxisAngle, 0f);
         }
         else
         {
@@ -177,6 +179,7 @@ public class CharacterControllerMockup : MonoBehaviour
         {
             var up = transform.up;
             rb.velocity += up * jumpStrength;
+            //rb.AddForce(up * jumpStrength, ForceMode.Force);
         }
     }
 
@@ -306,14 +309,12 @@ public class CharacterControllerMockup : MonoBehaviour
 
     private IEnumerator LerpTargetPosition()
     {
-        print("target");
         inCameraTransition = true;
         var targetDirection = target.transform.transform.position - cameraPivot.transform.position;
         var _lookRot = Quaternion.LookRotation(targetDirection);
         var lerpTimer = 0f;
         while (lerpTimer < cameraZoomSpeed)
         {
-            print($"lockon = {lockOn}");
             if (!lockOn) 
             {
                 yield break;
@@ -366,8 +367,61 @@ public class CharacterControllerMockup : MonoBehaviour
 
     #endregion
 
+    #region Talismans
+
+    private enum talismanMode
+    {
+        emotions,
+        bind
+    }
+    
+
+    [SerializeField] private TalismanTargetMock currentTalismanBind;
+    [SerializeField] private talismanMode tMode;
+    [SerializeField] private Emotion talismanEmotion;
+    
+    public void ThrowTalisman(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            switch (tMode)
+            {
+                case talismanMode.bind:
+                    target.Bind();
+                    break;
+                case talismanMode.emotions:
+                    target.EvokeEmotion(talismanEmotion, transform.position);
+                    break;
+            }
+        }
+    }
+
+    public void PlaceTalisman(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            switch (tMode)
+            {
+                case talismanMode.bind:
+                    target.Bind();
+                    break;
+                case talismanMode.emotions:
+                    target.EvokeEmotion(talismanEmotion, transform.position);
+                    break;
+            }
+        }
+    }
+
+    #endregion
+
     #region Position and Rotation
 
+    /*
+     * TODO: Overwrite this to make it slope calculation and allow the player to have friction at slopes.
+     * This should work in tandem with the custom gravity and thus needs probably a raycast to check the slope normal
+     * with the characters up direction and thus calculate custom friction. 
+     */
+    
     private bool _isOnCurvedGround;
 
     public void OnCollisionStay(Collision collisionInfo)
