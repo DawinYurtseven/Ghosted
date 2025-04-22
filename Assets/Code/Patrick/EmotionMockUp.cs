@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public struct emotionJumpParameters
 {
@@ -35,6 +36,7 @@ public class EmotionMockUp : MonoBehaviour
     [SerializeField] public UnityEvent Joy;
     [SerializeField] public UnityEvent Fear;
     [SerializeField] public UnityEvent Lonely;
+    [SerializeField] public UnityEvent LonelyTP;
     [SerializeField] public UnityEvent Bind;
 
     [Header("Emotions")] 
@@ -44,6 +46,10 @@ public class EmotionMockUp : MonoBehaviour
     public Material ogMat;
     [SerializeField]private bool isBound = false;
     [SerializeField]private GameObject boundObj;
+    public GameObject dummyObj;
+    public bool useTP = false;
+    
+    
     private void Start()
     {
         emotionJumpParameters defaultparams = new emotionJumpParameters(18,70,10);
@@ -84,9 +90,11 @@ public class EmotionMockUp : MonoBehaviour
         
         //Emotion Change
         if (Input.GetKeyDown(KeyCode.Alpha1)) Joy.Invoke();
-        if (Input.GetKeyDown(KeyCode.Alpha2)) Fear.Invoke();
-        if (Input.GetKeyDown(KeyCode.Alpha3)) Lonely.Invoke();
+        if (Input.GetKeyDown(KeyCode.Alpha2)) Lonely.Invoke();
+        if (Input.GetKeyDown(KeyCode.Alpha3)) LonelyTP.Invoke();
+        if (Input.GetKeyDown(KeyCode.Alpha5)) Fear.Invoke();
         if(Input.GetKeyDown(KeyCode.Q)) Bind.Invoke();
+        if(Input.GetKeyDown(KeyCode.R)) SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void applyConfig(CharacterControllerMockup controller, emotionJumpParameters paramsToApply)
@@ -96,7 +104,7 @@ public class EmotionMockUp : MonoBehaviour
         controller.fallStrength = paramsToApply.fallStrength;
     }
 
-    private void OnJoy()
+    public void OnJoy()
     {
         Debug.Log("Changing to Joy");
         _roomState = RoomState.Joy;
@@ -114,11 +122,14 @@ public class EmotionMockUp : MonoBehaviour
             removeTransparency(boundObj);
         }
         
+        if(useTP)
+            teleport(teleportPos[0]);
+        
         Debug.Log("Loading Joy config");
         applyConfig(controler, emotionParameters["Joy"]);
     }
 
-    private void OnLonely()
+    public void OnLonely()
     {
         Debug.Log("Changing to Lonely");
         _roomState = RoomState.Lonely;
@@ -190,6 +201,11 @@ public class EmotionMockUp : MonoBehaviour
             renderer.material = ogMat;
         }
     }
+
+    public void setUseTP(bool newVal)
+    {
+        useTP = newVal;
+    }
     
     public void teleport(Transform newPos)
     {
@@ -225,18 +241,22 @@ public class EmotionMockUp : MonoBehaviour
     {
         boundObj = gameObject;
         isBound = !isBound;
-        
         if (isBound)
         {
             Debug.Log("Obj bound");
             disableCollider(gameObject);
+            disableCollider(dummyObj);
             addTransparency(gameObject);
+            addTransparency(dummyObj);
         }
         else
         {
             Debug.Log("Obj unbound");
+            
             enableCollider(gameObject);
+            enableCollider(dummyObj);
             removeTransparency(gameObject);
+            removeTransparency(dummyObj);
         }
         
     }
