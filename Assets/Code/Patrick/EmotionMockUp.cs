@@ -38,7 +38,8 @@ public class EmotionMockUp : MonoBehaviour
     [SerializeField] public UnityEvent Lonely;
     [SerializeField] public UnityEvent LonelyTP;
     [SerializeField] public UnityEvent Bind;
-
+    [SerializeField] public UnityEvent Shoot;
+    
     [Header("Room Materials")] 
     [SerializeField] private Material joyMat;
     [SerializeField] private Material lonelyMat;
@@ -57,7 +58,8 @@ public class EmotionMockUp : MonoBehaviour
     [SerializeField] private bool allowBind = true;
     public GameObject shooterActiveMsg;
     public GameObject shooterInactiveMsg;
-        
+    private bool isShooting = false;
+    [SerializeField] private List<GameObject> triggerToDeactivate;
     private void Start()
     {
         emotionJumpParameters defaultparams = new emotionJumpParameters(18,70,10);
@@ -73,6 +75,7 @@ public class EmotionMockUp : MonoBehaviour
         Joy.AddListener(OnJoy);
         Lonely.AddListener(OnLonely);
         Fear.AddListener(OnFear);
+        Shoot.AddListener(toggleShoot);
     }
 
     private void OnDestroy()
@@ -80,6 +83,7 @@ public class EmotionMockUp : MonoBehaviour
         Joy.RemoveListener(OnJoy);
         Lonely.RemoveListener(OnLonely);
         Fear.RemoveListener(OnFear);
+        Shoot.RemoveListener(toggleShoot);
     }
 
     #endregion
@@ -109,7 +113,7 @@ public class EmotionMockUp : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Q)) Bind.Invoke();
         if (Input.GetKeyDown(KeyCode.F))
         {
-            toggleShoot();
+            Shoot.Invoke();
         }
         if(Input.GetKeyDown(KeyCode.R)) SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
@@ -311,9 +315,11 @@ public class EmotionMockUp : MonoBehaviour
     private void toggleShoot()
     {
         Debug.Log("Toggle shoot mode to: " + (allowChange && allowBind));
+
+        if(isShooting) setShooting(false);
+        else setShooting(true);
         
-        toggleAllowChange();
-        toggleAllowBind();
+        setEmotionTriggers(!isShooting);
         
         if (allowChange && allowBind)
         {
@@ -326,4 +332,20 @@ public class EmotionMockUp : MonoBehaviour
             shooterInactiveMsg.SetActive(true);
         }
     }
+
+    private void setShooting(bool newVal)
+    {
+        isShooting = newVal;
+        setAllowBind(newVal);
+        setAllowChange(newVal);
+    }
+
+    private void setEmotionTriggers(bool newVal)
+    {
+        foreach (GameObject o in triggerToDeactivate)
+        {
+            o.SetActive(newVal);
+        }
+    }
+    
 }
