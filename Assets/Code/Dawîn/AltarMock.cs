@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class AltarMock : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void ChangeEmotion(Emotion emotion)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        EmotionSingletonMock.Instance.ChangeEmotion(emotion);
     }
 }

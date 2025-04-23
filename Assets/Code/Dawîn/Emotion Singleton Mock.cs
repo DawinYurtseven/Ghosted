@@ -21,8 +21,15 @@ public class EmotionSingletonMock : MonoBehaviour
      * this Area is to change the emotion through the whole area!
      */
     
-    private Subject<Emotion> emotionSubject = new Subject<Emotion>();
+    public Subject<Emotion> EmotionSubject = new Subject<Emotion>();
+    [SerializeField] private Emotion currentEmotion;
     
+    public void ChangeEmotion(Emotion emotion)
+    {
+        currentEmotion = emotion;
+        print("triggered");
+        EmotionSubject.OnNext(currentEmotion);
+    }
     
     
 

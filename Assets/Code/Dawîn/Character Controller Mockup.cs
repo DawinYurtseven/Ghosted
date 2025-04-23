@@ -1,5 +1,6 @@
 using System.Collections;
 using Cinemachine;
+using TMPro;
 using UniRx;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -14,34 +15,40 @@ public class CharacterControllerMockup : MonoBehaviour
 
     [SerializeField] private float timer;
 
-    [SerializeField] private Camera mainCamera;
-
     public void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
         rb = GetComponent<Rigidbody>();
-        mainCamera = Camera.main;
     }
 
     private void Start()
     {
-        EmotionSingletonMock.Instance.CurrentTarget.Subscribe(talisman =>
+        EmotionSingletonMock.Instance.CurrentTarget.Subscribe(talisman => { target = talisman; });
+        talismanModetext.text = tMode.ToString();
+        if (tMode == talismanMode.bind)
         {
-            target = talisman;
-        });
+            talismanEmotionText.enabled = false;
+        }
+        else
+        {
+            talismanEmotionText.enabled = true;
+            talismanEmotionText.text = talismanEmotion.ToString();
+        }
     }
 
     private void Update()
     {
         //CameraControl
         CameraUpdate();
+        //interactable check
+        CheckForInteractables();
     }
 
     public void FixedUpdate()
     {
         //Movement
         MovementUpdate();
-        
+
         //jumpControl
         RegulateJump();
     }
@@ -68,16 +75,16 @@ public class CharacterControllerMockup : MonoBehaviour
             StartCoroutine(Deacceleration());
         }
     }
-    
+
     private IEnumerator Deacceleration()
     {
         float timer = 0f;
-        while (timer <deaccelerationTime)
+        while (timer < deaccelerationTime)
         {
-            if(moveVector != Vector2.zero) yield break;
+            if (moveVector != Vector2.zero) yield break;
             var velocity = rb.transform.InverseTransformDirection(rb.velocity);
             currentSpeed = Mathf.Lerp(currentSpeed, 0, timer / deaccelerationTime);
-            rb.velocity = Vector3.Lerp(velocity, new Vector3(0, 0, 0) + lookAtTarget.up * velocity.y, timer /0.5f);
+            rb.velocity = Vector3.Lerp(velocity, new Vector3(0, 0, 0) + lookAtTarget.up * velocity.y, timer / 0.5f);
             timer += Time.fixedDeltaTime;
             yield return null;
         }
@@ -122,7 +129,6 @@ public class CharacterControllerMockup : MonoBehaviour
 
     public void Camera_Move(InputAction.CallbackContext context)
     {
-        
         if (context.performed)
             cameraDirection = context.ReadValue<Vector2>();
         else if (context.canceled)
@@ -133,7 +139,7 @@ public class CharacterControllerMockup : MonoBehaviour
 
     private void CameraUpdate()
     {
-        if (inCameraTransition)return;
+        if (inCameraTransition) return;
         if (lockOn && target != null)
         {
             mockTransform.transform.position = targetPosition;
@@ -146,7 +152,7 @@ public class CharacterControllerMockup : MonoBehaviour
                 yAxisAngle,
                 0
             );
-            if(strifing) lookAtPivot.transform.localRotation = Quaternion.Euler(0f, yAxisAngle, 0f);
+            if (strifing) lookAtPivot.transform.localRotation = Quaternion.Euler(0f, yAxisAngle, 0f);
         }
         else
         {
@@ -158,9 +164,6 @@ public class CharacterControllerMockup : MonoBehaviour
             cameraPivot.transform.localRotation = Quaternion.Euler(xAxisAngle, yAxisAngle, 0f);
             lookAtPivot.transform.localRotation = Quaternion.Euler(0f, yAxisAngle, 0f);
         }
-        
-        
-        
     }
 
     #endregion
@@ -251,17 +254,17 @@ public class CharacterControllerMockup : MonoBehaviour
         if (context.performed && target != null && !lockOn)
         {
             lockOn = true;
-            if(mockTransform == null) mockTransform = new GameObject();
+            if (mockTransform == null) mockTransform = new GameObject();
             mockTransform.transform.position = lookAtTarget.transform.position;
             camera.m_LookAt = mockTransform.transform;
             fov = 30f;
             offset = new Vector3(2, 2, 0);
             newVal = 0f;
-            
+
 
             targetPosition = lookAtTarget.transform.position;
-            
-            
+
+
             StartCoroutine(LerpTargetPosition());
             StartCoroutine(LerpActionShotLockInput(fov, offset, newVal));
         }
@@ -271,7 +274,6 @@ public class CharacterControllerMockup : MonoBehaviour
             lockOn = false;
             StartCoroutine(LerpBackFocus());
             StartCoroutine(LerpActionShotLockInput(fov, offset, newVal));
-            
         }
     }
 
@@ -284,13 +286,13 @@ public class CharacterControllerMockup : MonoBehaviour
             if (!firstState.Equals(lockOn)) yield break;
 
             var fov = camera.m_Lens.FieldOfView;
-            var lerpFloat = Mathf.Lerp(fov, newFOV, lerpTimer/cameraZoomSpeed);
+            var lerpFloat = Mathf.Lerp(fov, newFOV, lerpTimer / cameraZoomSpeed);
             camera.m_Lens.FieldOfView = lerpFloat;
 
             var cine3RdPerson = camera.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
 
             var offset = cine3RdPerson.ShoulderOffset;
-            var lerpVector = Vector3.Lerp(offset, newOffset, lerpTimer/cameraZoomSpeed);
+            var lerpVector = Vector3.Lerp(offset, newOffset, lerpTimer / cameraZoomSpeed);
             camera.GetComponentInChildren<Cinemachine3rdPersonFollow>().ShoulderOffset = lerpVector;
 
             var vertArmLength = cine3RdPerson.VerticalArmLength;
@@ -315,15 +317,17 @@ public class CharacterControllerMockup : MonoBehaviour
         var lerpTimer = 0f;
         while (lerpTimer < cameraZoomSpeed)
         {
-            if (!lockOn) 
+            if (!lockOn)
             {
                 yield break;
             }
+
             mockTransform.transform.position = targetPosition;
 
-            cameraPivot.transform.rotation = Quaternion.Slerp(cameraPivot.transform.rotation, _lookRot, lerpTimer/cameraZoomSpeed);
-            
-            targetPosition = Vector3.Lerp(targetPosition, target.transform.position, lerpTimer/cameraZoomSpeed);
+            cameraPivot.transform.rotation =
+                Quaternion.Slerp(cameraPivot.transform.rotation, _lookRot, lerpTimer / cameraZoomSpeed);
+
+            targetPosition = Vector3.Lerp(targetPosition, target.transform.position, lerpTimer / cameraZoomSpeed);
             lerpTimer += Time.deltaTime;
             yield return null;
         }
@@ -334,18 +338,17 @@ public class CharacterControllerMockup : MonoBehaviour
 
     private IEnumerator LerpBackFocus()
     {
-        print("Back");
         inCameraTransition = true;
         var lerpTimer = 0f;
         while (lerpTimer < cameraZoomSpeed)
         {
             if (lockOn)
             {
-                print("I am still here");
                 yield break;
             }
+
             mockTransform.transform.position = targetPosition;
-            
+
             xAxisAngle += -cameraDirection.y * cameraSpeed * Time.fixedDeltaTime;
             yAxisAngle += cameraDirection.x * cameraSpeed * Time.fixedDeltaTime;
             xAxisAngle = Mathf.Clamp(xAxisAngle, -15f, 65f);
@@ -353,8 +356,8 @@ public class CharacterControllerMockup : MonoBehaviour
 
             cameraPivot.transform.localRotation = Quaternion.Euler(xAxisAngle, yAxisAngle, 0f);
             lookAtPivot.transform.localRotation = Quaternion.Euler(0f, yAxisAngle, 0f);
-            
-            targetPosition = Vector3.Lerp(targetPosition, lookAtTarget.transform.position, lerpTimer/cameraZoomSpeed);
+
+            targetPosition = Vector3.Lerp(targetPosition, lookAtTarget.transform.position, lerpTimer / cameraZoomSpeed);
             lerpTimer += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
@@ -374,11 +377,41 @@ public class CharacterControllerMockup : MonoBehaviour
         emotions,
         bind
     }
-    
+
 
     [SerializeField] private TalismanTargetMock currentTalismanBind;
     [SerializeField] private talismanMode tMode;
     [SerializeField] private Emotion talismanEmotion;
+    
+    [SerializeField] private TextMeshProUGUI talismanModetext,talismanEmotionText;
+
+    public void ChangeTalismanMode(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            tMode = tMode == talismanMode.bind ? talismanMode.emotions : talismanMode.bind;
+            if (tMode == talismanMode.bind)
+            {
+                talismanModetext.text = "Bind";
+                talismanEmotionText.enabled = false;
+            }
+            else
+            {
+                talismanEmotionText.enabled = true;
+                talismanModetext.text = "Emotions";
+                talismanEmotionText.text = talismanEmotion.ToString();
+            }
+        }
+    }
+    
+    public void ChangeEmotionTalisman(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            talismanEmotion = talismanEmotion == Emotion.Joy ? Emotion.Lonely : Emotion.Joy;
+            talismanEmotionText.text = talismanEmotion.ToString();
+        }
+    }
     
     public void ThrowTalisman(InputAction.CallbackContext context)
     {
@@ -390,8 +423,42 @@ public class CharacterControllerMockup : MonoBehaviour
                     target.Bind();
                     break;
                 case talismanMode.emotions:
-                    target.EvokeEmotion(talismanEmotion, transform.position);
+                    target.EvokeEmotion(talismanEmotion, gameObject);
                     break;
+            }
+            print(target.name);
+        }
+    }
+
+    private TalismanTargetMock tempTar;
+    private AltarMock tempAltar;
+
+    private void CheckForInteractables()
+    {
+        if (Physics.SphereCast(transform.position, 1f, lookAtPivot.transform.forward, out var hit, 10))
+        {
+            if (hit.collider.gameObject.TryGetComponent(typeof(TalismanTargetMock), out var tar))
+            {
+                tempTar = (TalismanTargetMock)tar;
+                tempTar.HighlightInteract();
+            }
+            else if(hit.collider.gameObject.TryGetComponent(typeof(AltarMock), out var altar))
+            {
+                print("altar");
+                tempAltar = (AltarMock)altar;
+            }
+            else
+            {
+                tempTar = null;
+                tempAltar = null;
+            }
+        }
+        else
+        {
+            if (tempTar != null)
+            {
+                tempTar.UnHighlight();
+                tempTar = null;
             }
         }
     }
@@ -400,13 +467,20 @@ public class CharacterControllerMockup : MonoBehaviour
     {
         if (context.performed)
         {
+            if (tempTar == null && tempAltar == null) return;
+            if (tempAltar != null)
+            {
+                print("sup");
+                tempAltar.ChangeEmotion(talismanEmotion);
+                return;
+            }
             switch (tMode)
             {
                 case talismanMode.bind:
-                    target.Bind();
+                    tempTar.Bind();
                     break;
                 case talismanMode.emotions:
-                    target.EvokeEmotion(talismanEmotion, transform.position);
+                    tempTar.EvokeEmotion(talismanEmotion, gameObject);
                     break;
             }
         }
@@ -419,9 +493,9 @@ public class CharacterControllerMockup : MonoBehaviour
     /*
      * TODO: Overwrite this to make it slope calculation and allow the player to have friction at slopes.
      * This should work in tandem with the custom gravity and thus needs probably a raycast to check the slope normal
-     * with the characters up direction and thus calculate custom friction. 
+     * with the characters up direction and thus calculate custom friction.
      */
-    
+
     private bool _isOnCurvedGround;
 
     public void OnCollisionStay(Collision collisionInfo)
@@ -466,7 +540,7 @@ public class CharacterControllerMockup : MonoBehaviour
         while (!transform.rotation.Equals(Quaternion.Euler(0, 0, 0)))
         {
             if (_isOnCurvedGround) yield break;
-                var transform1 = transform;
+            var transform1 = transform;
             var reference = Quaternion.Lerp(transform1.rotation, Quaternion.Euler(0, 0, 0),
                 animCurve.Evaluate(timer));
             transform.localRotation = Quaternion.Euler(reference.eulerAngles.x, reference.eulerAngles.y,
