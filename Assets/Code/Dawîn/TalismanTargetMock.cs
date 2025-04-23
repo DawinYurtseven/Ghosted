@@ -106,6 +106,12 @@ public class TalismanTargetMock : MonoBehaviour
         Physics.IgnoreCollision(GameObject.FindWithTag("Player").GetComponent<Collider>(), GetComponent<Collider>(), false);
         locked = false;
     }
+
+    public void ResetObject()
+    {
+        currentEmotion = surroundEmotion;
+        EmotionalBehaivour();
+    }
     
     private void EmotionalBehaivour()
     {
@@ -140,7 +146,7 @@ public class TalismanTargetMock : MonoBehaviour
         }
     }
 
-    public void EvokeEmotion(Emotion emotion, GameObject origin)
+    public void EvokeEmotion(Emotion emotion)
     {
         currentEmotion = emotion;
         EmotionalBehaivour();

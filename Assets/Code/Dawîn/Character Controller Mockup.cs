@@ -372,18 +372,11 @@ public class CharacterControllerMockup : MonoBehaviour
 
     #region Talismans
 
-    private enum talismanMode
-    {
-        emotions,
-        bind
-    }
-
-
-    [SerializeField] private TalismanTargetMock currentTalismanBind;
+    [SerializeField] private TalismanTargetMock currentTalismanBind, previousTargetTalismanObject;
     [SerializeField] private talismanMode tMode;
     [SerializeField] private Emotion talismanEmotion;
-    
-    [SerializeField] private TextMeshProUGUI talismanModetext,talismanEmotionText;
+
+    [SerializeField] private TextMeshProUGUI talismanModetext, talismanEmotionText;
 
     public void ChangeTalismanMode(InputAction.CallbackContext context)
     {
@@ -403,7 +396,7 @@ public class CharacterControllerMockup : MonoBehaviour
             }
         }
     }
-    
+
     public void ChangeEmotionTalisman(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -412,21 +405,23 @@ public class CharacterControllerMockup : MonoBehaviour
             talismanEmotionText.text = talismanEmotion.ToString();
         }
     }
-    
+
+    [SerializeField] private GameObject TalismanPrefab;
+
+    private GameObject thrownTalisman;
+
     public void ThrowTalisman(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            switch (tMode)
-            {
-                case talismanMode.bind:
-                    target.Bind();
-                    break;
-                case talismanMode.emotions:
-                    target.EvokeEmotion(talismanEmotion, gameObject);
-                    break;
-            }
-            print(target.name);
+            if (target == null || thrownTalisman != null) return;
+            if (previousTargetTalismanObject != null) previousTargetTalismanObject.ResetObject();
+
+            thrownTalisman = Instantiate(TalismanPrefab, gameObject.transform.position,
+                Quaternion.LookRotation((target.transform.position - transform.position).normalized));
+            thrownTalisman.GetComponent<Talisman>().Initialize(tMode, talismanEmotion);
+            StartCoroutine(thrownTalisman.GetComponent<Talisman>().MoveTowards(target));
+            previousTargetTalismanObject = target;
         }
     }
 
@@ -442,7 +437,7 @@ public class CharacterControllerMockup : MonoBehaviour
                 tempTar = (TalismanTargetMock)tar;
                 tempTar.HighlightInteract();
             }
-            else if(hit.collider.gameObject.TryGetComponent(typeof(AltarMock), out var altar))
+            else if (hit.collider.gameObject.TryGetComponent(typeof(AltarMock), out var altar))
             {
                 print("altar");
                 tempAltar = (AltarMock)altar;
@@ -474,15 +469,20 @@ public class CharacterControllerMockup : MonoBehaviour
                 tempAltar.ChangeEmotion(talismanEmotion);
                 return;
             }
+
+            if (previousTargetTalismanObject != null) previousTargetTalismanObject.ResetObject();
             switch (tMode)
             {
                 case talismanMode.bind:
                     tempTar.Bind();
                     break;
                 case talismanMode.emotions:
-                    tempTar.EvokeEmotion(talismanEmotion, gameObject);
+                    tempTar.EvokeEmotion(talismanEmotion);
                     break;
             }
+
+            previousTargetTalismanObject = tempTar;
+            print(previousTargetTalismanObject);
         }
     }
 
