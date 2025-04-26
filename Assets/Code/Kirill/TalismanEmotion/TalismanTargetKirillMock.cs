@@ -16,6 +16,7 @@ public class TalismanTargetKirillMock : MonoBehaviour
     void Start()
     {
         curEmotion = EmotionEnumKirillMock.JOY;
+        //EmotionSingletonKirillMock.Instance.
         ApplyNewEmotion();
         cam = Camera.main;
         objCollider =  GetComponent<Collider>();
