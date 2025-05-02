@@ -6,15 +6,25 @@ Shader "ForgottenColours/Sumi-E"
         [Header(Base Colour)][Space(10)]
         _DiffuseColour("Diffuse Colour", Color) = (1,1,1,1)
         _AlbedoTex ("Albedo Texture", 2D) = "white"{}
+
+        [Space(10)]
+        [Toggle(USETRANSPARENT)] _UseTransparent("Use Transparent", float) = 0
+         _AlphaCutoff("Alpha Cutoff", Range(0, 1)) = 0.5
+
+        [Space(10)]
         _NormalTex ("Normal Map", 2D) = "bump"{}
         _NormalStrength ("Normal Strength", Float) = 1
+
+        [Space(10)]
+        [Toggle(USEEMISSIVE)] _Emissive("Emissive", float) = 0
+        _EmissiveTex ("Emissive Map", 2D) = "emissive" {}
+        [HDR] _EmissiveColour("Emissive Colour", Color) = (1,1,1,1)
 
         // === BLINN-PHONG LIGHTING ===
         [Header(Blinn Phong Lighting)][Space(10)]
         [Toggle(SPECULAR)] _Specular("Enable Specular Highlight", Float) = 1
         _k ("k Coefficients (Ambient, Diffuse, Specular)", Vector) = (0.5, 0.5, 0.8)
         _SpecularExponent("Specular Exponent", Float) = 80
-
 
         // === COLOUR RAMP ===
         [Header(Colour Ramp Tones)][Space(10)]
@@ -26,14 +36,13 @@ Shader "ForgottenColours/Sumi-E"
         _LightTone ("Light Tone", Color) = (0.8, 0.85, 0.95, 1)
         _Highlight ("Highlight", Color) = (1.0, 1.0, 1.0, 1)
 
-        [Header(Colour Ramp Positions)][Space(5)]
+        [Header(Colour Ramp Positions)][Space(10)]
         _RampPositions0 ("Positions p0–p2 (xyz)", Vector) = (0.2, 0.4, 0.6)
         _RampPositions1 ("Positions p3–p5 (xyz)", Vector) = (0.8, 0.9, 1.0)
 
         // === NOISE SETTINGS ===
         [Header(Texture Coordinates)][Space(10)]
         [Enum(Generated, 0, Normal, 1, UV, 2, Object, 3)] _TextureSpace("Texture Space", Float) = 1
-        // _MixAmount ("Noise Mix Amount", Range(0,1)) = 0.5
 
         [Header(Voronoi Noise Settings)][Space(10)]
         [Enum(Euclidean, 1, Manhattan, 2, Chebyshev, 3, Minkowski, 4)]
@@ -42,16 +51,6 @@ Shader "ForgottenColours/Sumi-E"
         _VoronoiExponent ("Voronoi Exponent", Float) = 1.0
         _VoronoiSmoothness ("Voronoi Smoothness", Range(0,1)) = 0.5
         _VoronoiRandomness ("Voronoi Randomness", Range(0,1)) = 1.0
-
-        //        [Header(Fractal Brownian Motion (FBM) Noise)][Space(10)]
-        //        _FbmScale ("FBM Scale", Float) = 2.0
-        //        _FbmRoughness ("FBM Roughness", Range(0,1)) = 0.5
-        //        _FbmLacunarity ("FBM Lacunarity", Float) = 2.0
-        //        _FbmAmplitude ("FBM Amplitude", Float) = 1.0
-        //        _FbmFrequency ("FBM Frequency", Float) = 1.0
-        //        _FbmShift ("FBM Shift", Vector) = (8,8,8,8)
-        //        _FbmDetail ("FBM Detail", Range(1,15)) = 15
-
     }
 
     SubShader
@@ -75,10 +74,12 @@ Shader "ForgottenColours/Sumi-E"
             #pragma multi_compile_fog
             #pragma shader_feature SPECULAR
             #pragma shader_feature USECOLOURRAMP
+            #pragma shader_feature USEEMISSIVE
+            #pragma shader_feature USETRANSPARENT
             #pragma multi_compile _ _MAIN_LIGHT_SHADOWS
             #pragma multi_compile _ _MAIN_LIGHT_SHADOWS_CASCADE
             #pragma multi_compile _ _MAIN_LIGHT_SHADOWS_SCREEN
-            #pragma multi_compile _ _ADDITIONAL_LIGHTS_VERTEX _ADDITIONAL_LIGHTS
+            #pragma multi_compile _ _ADDITIONAL_LIGHTS
             #pragma multi_compile _ _ADDITIONAL_LIGHT_SHADOWS
             #pragma multi_compile _ _SHADOWS_SOFT
             #pragma multi_compile _ _MIXED_LIGHTING_SUBTRACTIVE
@@ -98,8 +99,9 @@ Shader "ForgottenColours/Sumi-E"
                 float3 fragWorldPos : TEXCOORD0;
                 float3 fragLocalPos : TEXCOORD1;
                 float3x3 TBN : TEXCOORD2;
-                float2 uv : TEXCOORD5;
-                float3 generatedCoord : TEXCOORD6;
+                float3 generatedCoord : TEXCOORD5;
+                float2 uv_Albedo : TEXCOORD6;
+                float2 uv_Emissive : TEXCOORD7;
             };
 
             // ============================
@@ -108,9 +110,16 @@ Shader "ForgottenColours/Sumi-E"
             float4 _DiffuseColour;
             sampler2D _AlbedoTex;
             half4 _AlbedoTex_ST;
+
+            half _AlphaCutoff;
+
             sampler2D _NormalTex;
             half4 _NormalTex_ST;
             half _NormalStrength;
+
+            sampler2D _EmissiveTex;
+            half4 _EmissiveTex_ST;
+            half4 _EmissiveColour;
 
             // ============================
             // BLINN-PHONG LIGHTING UNIFORMS
@@ -156,9 +165,6 @@ Shader "ForgottenColours/Sumi-E"
             float _FbmScale;
             float _FbmRoughness;
             float _FbmLacunarity;
-            float _FbmAmplitude;
-            float _FbmFrequency;
-            float3 _FbmShift;
             int _FbmDetail;
 
             // Function Prototypes
@@ -166,10 +172,9 @@ Shader "ForgottenColours/Sumi-E"
 
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Shadows.hlsl"
             #include "Assets/Code/Ben/Shaders/ShaderLibrary/Lighting/BlinnPhong.hlsl"
             #include "Assets/Code/Ben/Shaders/ShaderLibrary/Maths/Voronoi.hlsl"
-            #include "Assets/Code/Ben/Shaders/ShaderLibrary/Maths/FbmNoise.hlsl"
-            #include "Assets/Code/Ben/Shaders/ShaderLibrary/Maths/LinearLight.hlsl"
             #include "Assets/Code/Ben/Shaders/ShaderLibrary/Maths/TextureCoordinate.hlsl"
             #include "Assets/Code/Ben/Shaders/ShaderLibrary/Colour/ColourRamp.hlsl"
 
@@ -188,7 +193,8 @@ Shader "ForgottenColours/Sumi-E"
                 float3 worldBitangent = mul((float3x3)unity_ObjectToWorld, bitangent);
 
                 output.TBN = float3x3(worldTangent, worldBitangent, worldNormal);
-                output.uv = TRANSFORM_TEX(input.uv, _AlbedoTex);
+                output.uv_Albedo = TRANSFORM_TEX(input.uv, _AlbedoTex);
+                output.uv_Emissive = TRANSFORM_TEX(input.uv, _AlbedoTex);
 
                 return output;
             }
@@ -199,18 +205,30 @@ Shader "ForgottenColours/Sumi-E"
                 // Sampling shadow coords in fragment shader to avoid cascading seams.
                 float4 shadowCoords = TransformWorldToShadowCoord(input.fragWorldPos);
 
-                half3 albedoTexture = tex2D(_AlbedoTex, input.uv);
+                half4 c = tex2D(_AlbedoTex, input.uv_Albedo) * _DiffuseColour;
+
+                #ifdef USETRANSPARENT
+                clip(c.a - _AlphaCutoff);
+                #endif
+                half3 emissive;
+                #ifdef USEEMISSIVE
+                emissive = tex2D(_EmissiveTex, input.uv_Emissive) * _EmissiveColour;
+                #else
+                emissive = 0;
+                #endif
+
                 Light mainLight = GetMainLight(shadowCoords);
 
                 half3 n = ProcessNormals(input);
                 float3 v = normalize(_WorldSpaceCameraPos - input.fragWorldPos);
 
+                half3 noiseCoord = GetTextureSpace(_TextureSpace, n, input.fragLocalPos, input.uv_Albedo);
+
                 float dist;
                 float3 col, pos;
-                half3 sampleCoord = GetTextureSpace(_TextureSpace, n, input.fragLocalPos, input.uv);
-                VoronoiSmoothF1_3D(sampleCoord * _VoronoiScale, _VoronoiSmoothness, _VoronoiExponent, _VoronoiRandomness, _DistanceMetric, dist, col, pos);
+                VoronoiSmoothF1_3D(noiseCoord * _VoronoiScale, _VoronoiSmoothness, _VoronoiExponent, _VoronoiRandomness, _DistanceMetric, dist, col, pos);
 
-                half3 lighting = BlinnPhong(pos, v, mainLight, albedoTexture) * mainLight.shadowAttenuation * mainLight.distanceAttenuation;
+                half3 lighting = BlinnPhong(pos, v, mainLight, c) * mainLight.shadowAttenuation * mainLight.distanceAttenuation;
 
                 #if defined(_ADDITIONAL_LIGHTS_VERTEX) || defined(_ADDITIONAL_LIGHTS)
                 int addCount = GetAdditionalLightsCount();
@@ -218,23 +236,23 @@ Shader "ForgottenColours/Sumi-E"
                 {
                     Light additionalLight = GetAdditionalLight(i, input.fragWorldPos);
                     half att = additionalLight.distanceAttenuation * additionalLight.shadowAttenuation;
-                    lighting += BlinnPhong(pos, v, additionalLight, albedoTexture) * att;
+                    lighting += BlinnPhong(pos, v, additionalLight, c) * att;
                 }
                 #endif
 
                 half3 finalColour =
-                #ifdef USECOLOURRAMP
+                    #ifdef USECOLOURRAMP
                 ColourRamp(lighting);
-                #else
-                lighting;
+                    #else
+                    lighting;
                 #endif
 
-                return half4(finalColour, 1.0);
+                return half4(finalColour + emissive , 1.0);
             }
 
             half3 ProcessNormals(v2f input)
             {
-                half3 normalMap = UnpackNormal(tex2D(_NormalTex, input.uv));
+                half3 normalMap = UnpackNormal(tex2D(_NormalTex, input.uv_Albedo));
                 normalMap.xy *= _NormalStrength;
                 return normalize(mul(transpose(input.TBN), normalMap));
             }
