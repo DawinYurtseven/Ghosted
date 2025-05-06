@@ -212,7 +212,8 @@ Shader "ForgottenColours/Sumi-E"
             }
 
 
-            half4 frag(v2f input) : SV_Target
+
+            half4 frag(v2f input, bool frontFace : SV_IsFrontFace) : SV_Target
             {
                 // Sampling shadow coords in fragment shader to avoid cascading seams.
                 float4 shadowCoords = TransformWorldToShadowCoord(input.fragWorldPos);
