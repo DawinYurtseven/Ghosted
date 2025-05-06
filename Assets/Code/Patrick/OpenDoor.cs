@@ -6,13 +6,18 @@ public class OpenDoor : MonoBehaviour
     [SerializeField] private GameObject indicator;
     [SerializeField] private bool isClosed = true;
     [SerializeField] private bool allowToggle = false;
+    [SerializeField] private bool showText = true;
     
     public void OnInteract()
     {
         setDoor(!isClosed);
 
         if (allowToggle)
+        {
             isClosed = !isClosed;
+            // toggleText();
+        }
+            
     }
 
     private void setDoor(bool status)
@@ -20,4 +25,11 @@ public class OpenDoor : MonoBehaviour
         door.SetActive(status);
         indicator.SetActive(status);
     }
+
+    private void toggleText()
+    {
+        showText = !showText;
+        indicator?.SetActive(showText);
+    }
+    
 }
