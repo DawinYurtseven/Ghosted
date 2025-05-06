@@ -19,7 +19,7 @@ half3 BlinnPhong(half3 n, half3 v, Light mainLight, half3 albedoTexture)
     Is = 0;
     #endif
 
-    half3 ambient = Ia * c * unity_AmbientSky;
+    half3 ambient = Ia * c * SampleSH(n);;
     half3 diffuse = Id * c * mainLight.color;
     half3 specular = Is * mainLight.color;
 
