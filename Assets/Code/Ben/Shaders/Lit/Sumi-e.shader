@@ -67,6 +67,7 @@ Shader "ForgottenColours/Sumi-E"
             {
                 "LightMode"="UniversalForward"
             }
+            Cull Off
 
             HLSLPROGRAM
             #pragma vertex vert
@@ -200,12 +201,17 @@ Shader "ForgottenColours/Sumi-E"
             }
 
 
-            half4 frag(v2f input) : SV_Target
+            half4 frag(v2f input, bool frontFace : SV_IsFrontFace) : SV_Target
             {
                 // Sampling shadow coords in fragment shader to avoid cascading seams.
                 float4 shadowCoords = TransformWorldToShadowCoord(input.fragWorldPos);
 
                 half4 c = tex2D(_AlbedoTex, input.uv_Albedo) * _DiffuseColour;
+
+                if (!frontFace)
+                {
+                    return float4(c.rgb * 0.1, 1.0); // or just float4(0,0,0,1)
+                }
 
                 #ifdef USETRANSPARENT
                 clip(c.a - _AlphaCutoff);
