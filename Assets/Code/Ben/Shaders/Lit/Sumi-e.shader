@@ -9,7 +9,7 @@ Shader "ForgottenColours/Sumi-E"
 
         [Space(10)]
         [Toggle(USETRANSPARENT)] _UseTransparent("Use Transparent", float) = 0
-         _AlphaCutoff("Alpha Cutoff", Range(0, 1)) = 0.5
+        _AlphaCutoff("Alpha Cutoff", Range(0, 1)) = 0.5
 
         [Space(10)]
         _NormalTex ("Normal Map", 2D) = "bump"{}
@@ -19,6 +19,9 @@ Shader "ForgottenColours/Sumi-E"
         [Toggle(USEEMISSIVE)] _Emissive("Emissive", float) = 0
         _EmissiveTex ("Emissive Map", 2D) = "emissive" {}
         [HDR] _EmissiveColour("Emissive Colour", Color) = (1,1,1,1)
+
+        [Space(10)]
+        [Toggle(BACKFACE_LIGHTING)] _BackfaceLighting("Backface Lighting", Float) = 1
 
         // === BLINN-PHONG LIGHTING ===
         [Header(Blinn Phong Lighting)][Space(10)]
@@ -77,6 +80,7 @@ Shader "ForgottenColours/Sumi-E"
             #pragma shader_feature USECOLOURRAMP
             #pragma shader_feature USEEMISSIVE
             #pragma shader_feature USETRANSPARENT
+            #pragma shader_feature BACKFACE_LIGHTING
             #pragma multi_compile _ _MAIN_LIGHT_SHADOWS
             #pragma multi_compile _ _MAIN_LIGHT_SHADOWS_CASCADE
             #pragma multi_compile _ _MAIN_LIGHT_SHADOWS_SCREEN
@@ -179,26 +183,33 @@ Shader "ForgottenColours/Sumi-E"
             #include "Assets/Code/Ben/Shaders/ShaderLibrary/Maths/TextureCoordinate.hlsl"
             #include "Assets/Code/Ben/Shaders/ShaderLibrary/Colour/ColourRamp.hlsl"
 
+            // Vertex shader: transforms vertex data and prepares inputs for the fragment shader
             v2f vert(appdata input)
             {
                 v2f output;
 
+                // Transform object-space position into world space and clip space
                 VertexPositionInputs positions = GetVertexPositionInputs(input.vertex);
-                output.fragLocalPos = input.vertex;
-                output.fragWorldPos = positions.positionWS;
-                output.fragHCS = positions.positionCS;
+                output.fragLocalPos = input.vertex;              // Store local-space position (useful for procedural effects)
+                output.fragWorldPos = positions.positionWS;      // Store world-space position (used for lighting, shadows, etc.)
+                output.fragHCS = positions.positionCS;           // Store homogeneous clip space position (used for screen-space effects)
 
-                float3 worldNormal = TransformObjectToWorldNormal(input.normal);
-                float3 worldTangent = mul((float3x3)unity_ObjectToWorld, input.tangent);
-                float3 bitangent = cross(worldNormal, worldTangent);
-                float3 worldBitangent = mul((float3x3)unity_ObjectToWorld, bitangent);
+                // Convert normal, tangent, and bitangent from object space to world space
+                float3 worldNormal = TransformObjectToWorldNormal(input.normal);                   // Object-space normal → world-space
+                float3 worldTangent = mul((float3x3)unity_ObjectToWorld, input.tangent);           // Transform tangent to world-space
+                float3 bitangent = cross(worldNormal, worldTangent);                               // Reconstruct bitangent
+                float3 worldBitangent = mul((float3x3)unity_ObjectToWorld, bitangent);             // Transform bitangent to world-space
 
+                // Construct TBN matrix for transforming tangent-space normals to world space
                 output.TBN = float3x3(worldTangent, worldBitangent, worldNormal);
-                output.uv_Albedo = TRANSFORM_TEX(input.uv, _AlbedoTex);
-                output.uv_Emissive = TRANSFORM_TEX(input.uv, _AlbedoTex);
+
+                // Pass transformed texture coordinates to the fragment shader
+                output.uv_Albedo = TRANSFORM_TEX(input.uv, _AlbedoTex);     // Albedo texture UVs
+                output.uv_Emissive = TRANSFORM_TEX(input.uv, _AlbedoTex);   // Emissive texture UVs (currently using same set)
 
                 return output;
             }
+
 
 
             half4 frag(v2f input, bool frontFace : SV_IsFrontFace) : SV_Target
@@ -206,36 +217,52 @@ Shader "ForgottenColours/Sumi-E"
                 // Sampling shadow coords in fragment shader to avoid cascading seams.
                 float4 shadowCoords = TransformWorldToShadowCoord(input.fragWorldPos);
 
+                // Sample albedo texture and apply diffuse colour tint
                 half4 c = tex2D(_AlbedoTex, input.uv_Albedo) * _DiffuseColour;
 
-                if (!frontFace)
-                {
-                    return float4(c.rgb * 0.1, 1.0); // or just float4(0,0,0,1)
-                }
-
+                // Enable alpha clipping
                 #ifdef USETRANSPARENT
                 clip(c.a - _AlphaCutoff);
                 #endif
+
                 half3 emissive;
+
+                // Sample emissive map (if enabled) and apply emissive colour tint
                 #ifdef USEEMISSIVE
                 emissive = tex2D(_EmissiveTex, input.uv_Emissive) * _EmissiveColour;
                 #else
                 emissive = 0;
                 #endif
 
+                // Retrieve URP's main lighting data for pixel using shadow coordinates
                 Light mainLight = GetMainLight(shadowCoords);
 
+                // Sample and transform normal from normal map into world space
                 half3 n = ProcessNormals(input);
+
+                // Flip normal for backfaces if lighting is enabled on both sides
+                #ifdef BACKFACE_LIGHTING
+                if (!frontFace)
+                {
+                    n *= -1;
+                }
+                #endif
+
+                // Calculate view direction (camera to fragment)
                 float3 v = normalize(_WorldSpaceCameraPos - input.fragWorldPos);
 
+                // Select coordinate system for Voronoi noise based on material settings
                 half3 noiseCoord = GetTextureSpace(_TextureSpace, n, input.fragLocalPos, input.uv_Albedo);
 
+                // Generate 3D Voronoi noise with smooth blending and distortion options
                 float dist;
                 float3 col, pos;
                 VoronoiSmoothF1_3D(noiseCoord * _VoronoiScale, _VoronoiSmoothness, _VoronoiExponent, _VoronoiRandomness, _DistanceMetric, dist, col, pos);
 
+                // Compute Blinn-Phong lighting with shadows and attenuation from main light
                 half3 lighting = BlinnPhong(pos, v, mainLight, c) * mainLight.shadowAttenuation * mainLight.distanceAttenuation;
 
+                // Accumulate lighting from additional point/spot lights if enabled
                 #if defined(_ADDITIONAL_LIGHTS_VERTEX) || defined(_ADDITIONAL_LIGHTS)
                 int addCount = GetAdditionalLightsCount();
                 for (int i = 0; i < addCount; i++)
@@ -246,6 +273,7 @@ Shader "ForgottenColours/Sumi-E"
                 }
                 #endif
 
+                // Optionally remap lighting result using a stylised colour ramp
                 half3 finalColour =
                     #ifdef USECOLOURRAMP
                 ColourRamp(lighting);
@@ -253,13 +281,17 @@ Shader "ForgottenColours/Sumi-E"
                     lighting;
                 #endif
 
-                return half4(finalColour + emissive , 1.0);
+                return half4(finalColour + emissive, 1.0);
             }
 
+            // Samples and transforms the normal map into world space
             half3 ProcessNormals(v2f input)
             {
+                // Sample the normal from the normal map texture (in tangent space)
                 half3 normalMap = UnpackNormal(tex2D(_NormalTex, input.uv_Albedo));
+                // Apply user-defined strength to exaggerate or soften bump detail
                 normalMap.xy *= _NormalStrength;
+                // Transform from tangent space to world space using the TBN matrix
                 return normalize(mul(transpose(input.TBN), normalMap));
             }
             ENDHLSL
@@ -267,22 +299,23 @@ Shader "ForgottenColours/Sumi-E"
 
         Pass
         {
-            Name "ShadowCaster"
+            Name "ShadowCaster" // Identifies this pass as the one responsible for writing to the shadow map
             Tags
             {
-                "LightMode" = "ShadowCaster"
+                "LightMode" = "ShadowCaster" // Informs URP to use this pass during shadow map rendering
             }
 
-            ZWrite On
-            ZTest LEqual
-            ColorMask 0
-            Cull Off
+            ZWrite On          // Enable depth writing (required for shadow mapping)
+            ZTest LEqual       // Use standard depth test (pass if incoming depth is <= current)
+            ColorMask 0        // Disable colour output (only depth matters for shadow caster)
+            Cull Off           // Disable face culling to ensure backfaces can cast shadows (especially important for double-sided objects)
 
             HLSLPROGRAM
             #pragma vertex ShadowPassVertex
             #pragma fragment ShadowPassFragment
             #pragma target 2.0
 
+            // Include core input and logic for URP shadow casting
             #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
             #include "Packages/com.unity.render-pipelines.universal/Shaders/ShadowCasterPass.hlsl"
             ENDHLSL
