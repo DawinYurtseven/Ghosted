@@ -56,7 +56,7 @@ public class CharacterControllerMockup : MonoBehaviour
     #region Speed
 
     [Header("Movement")] [SerializeField] private Vector2 moveVector;
-    [SerializeField] private float maxSpeed, acceleration, currentSpeed, shotLockLimit, deaccelerationTime;
+    [SerializeField] public float maxSpeed, acceleration, currentSpeed, shotLockLimit, deaccelerationTime;
     [SerializeField] private Transform lookAtTarget;
 
     //TODO: affect Direction change in air
@@ -163,7 +163,6 @@ public class CharacterControllerMockup : MonoBehaviour
             xAxisAngle = Mathf.Clamp(xAxisAngle, xAxisMin, xAxisMax);
 
             cameraPivot.transform.localRotation = Quaternion.Euler(xAxisAngle, yAxisAngle, 0f);
-            print($"{cameraPivot.transform.localRotation.eulerAngles}, {xAxisAngle}, {yAxisAngle}");
             lookAtPivot.transform.localRotation = Quaternion.Euler(0f, yAxisAngle, 0f);
         }
     }
@@ -172,9 +171,9 @@ public class CharacterControllerMockup : MonoBehaviour
 
     #region Jump
 
-    [Header("Jump")] [SerializeField] private float jumpStrength;
-    [SerializeField] private float fallStrength;
-    [SerializeField] private float gravity;
+    [Header("Jump")] [SerializeField] public float jumpStrength;
+    [SerializeField] public float fallStrength;
+    [SerializeField] public float gravity;
     [SerializeField] private float groundCheckDistance;
 
 
@@ -246,7 +245,9 @@ public class CharacterControllerMockup : MonoBehaviour
 
     private bool lockOn;
     private Vector3 targetPosition;
-    [SerializeField] private TalismanTargetMock target;
+
+    //If merge conflict -> change to private, used for Mock for level design
+    [SerializeField] public TalismanTargetMock target;
 
     public void ToggleLockOn(InputAction.CallbackContext context)
     {
