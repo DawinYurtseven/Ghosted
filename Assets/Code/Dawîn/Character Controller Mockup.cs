@@ -126,6 +126,8 @@ public class CharacterControllerMockup : MonoBehaviour
     [SerializeField] private bool strifing;
 
     private float xAxisAngle, yAxisAngle;
+    
+    [SerializeField] private float xAxisMin, xAxisMax, xAxisMinLock, xAxisMaxLock;
 
     public void Camera_Move(InputAction.CallbackContext context)
     {
@@ -146,7 +148,7 @@ public class CharacterControllerMockup : MonoBehaviour
             cameraPivot.transform.LookAt(targetPosition);
             xAxisAngle = cameraPivot.transform.localRotation.eulerAngles.x - 360;
             yAxisAngle = cameraPivot.transform.localRotation.eulerAngles.y - 360;
-            xAxisAngle = Mathf.Clamp(xAxisAngle, -15f, 65f);
+            xAxisAngle = Mathf.Clamp(xAxisAngle, xAxisMinLock, xAxisMaxLock);
             cameraPivot.transform.eulerAngles = new Vector3(
                 xAxisAngle,
                 yAxisAngle,
@@ -158,10 +160,10 @@ public class CharacterControllerMockup : MonoBehaviour
         {
             xAxisAngle += -cameraDirection.y * cameraSpeed * Time.fixedDeltaTime;
             yAxisAngle += cameraDirection.x * cameraSpeed * Time.fixedDeltaTime;
-            xAxisAngle = Mathf.Clamp(xAxisAngle, -15f, 65f);
-
+            xAxisAngle = Mathf.Clamp(xAxisAngle, xAxisMin, xAxisMax);
 
             cameraPivot.transform.localRotation = Quaternion.Euler(xAxisAngle, yAxisAngle, 0f);
+            print($"{cameraPivot.transform.localRotation.eulerAngles}, {xAxisAngle}, {yAxisAngle}");
             lookAtPivot.transform.localRotation = Quaternion.Euler(0f, yAxisAngle, 0f);
         }
     }
