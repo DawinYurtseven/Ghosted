@@ -58,6 +58,33 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Throw Talisman",
+                    "type": "Button",
+                    "id": "54bcec2c-9fbc-4910-b883-236ef43c82f8",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Place Talisman",
+                    "type": "Button",
+                    "id": "3e9d5ec9-d3fd-4904-96dd-455b8cbaf8ea",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ChangeEmotion",
+                    "type": "Button",
+                    "id": "8022b709-e1a3-4d00-aecb-985eb1fcfd09",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -218,7 +245,7 @@
                 {
                     "name": "",
                     "id": "df3f42cb-77c0-4dd2-91af-60aafd2eafdf",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -229,7 +256,7 @@
                 {
                     "name": "",
                     "id": "04828c7f-5490-4090-a3f8-c26a202fd192",
-                    "path": "<Gamepad>/rightTrigger",
+                    "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -379,6 +406,72 @@
                     "action": "LockOnChangeObject(Not Fix)",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "1f0c44b5-08da-4957-948e-f63b2b1bdd17",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Throw Talisman",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "41a21951-d989-4e45-9492-893fb212dbe7",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Throw Talisman",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c01937eb-ac54-4d23-8f76-ce4ce39f737d",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Place Talisman",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1fd25037-bae9-4cb7-a562-977a5e55a276",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Place Talisman",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "775a06aa-76a5-49fe-81f7-b76c7dc55c4f",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeEmotion",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "185cba29-67d2-4322-a03a-ca1765836350",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeEmotion",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
@@ -396,16 +489,16 @@
             ]
         },
         {
-            "name": "M&K",
-            "bindingGroup": "M&K",
+            "name": "MK",
+            "bindingGroup": "MK",
             "devices": [
                 {
-                    "devicePath": "<Keyboard>",
+                    "devicePath": "<Mouse>",
                     "isOptional": false,
                     "isOR": false
                 },
                 {
-                    "devicePath": "<Mouse>",
+                    "devicePath": "<Keyboard>",
                     "isOptional": false,
                     "isOR": false
                 }
