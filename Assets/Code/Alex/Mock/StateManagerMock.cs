@@ -33,8 +33,9 @@ public class StateManagerMock : MonoBehaviour
             else {
                 stateObjects[i]?.SetActive(false);
             }
-            
         }
+
+        changeState(currentState);
     }
 
     // Update is called once per frame
