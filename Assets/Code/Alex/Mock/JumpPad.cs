@@ -4,37 +4,50 @@ public class JumpPad : MonoBehaviour
 {
     public float force = 100f;
 
-    bool canJump = true;
+    State currentState;
+
+    bool locked = false;
 
     Collider col;
 
-    void OnEnable()
+
+    public Material  turnedOff, turnedOn;
+    private Renderer renderer;
+
+    private void OnEnable()
     {
         StateManagerMock.OnStateChanged += changeState;
         col = this.gameObject.GetComponent<BoxCollider>();
+        renderer = this.gameObject.GetComponentInParent<MeshRenderer>();
 
-        if (!col) {
+        if (!col || ! renderer) {
             Debug.Log ("Collider missing on JumpPad!");
             this.enabled = false;
         }
     }
 
 
-    void OnDisable()
+    private void OnDisable()
     {
         StateManagerMock.OnStateChanged -= changeState;
     }
 
 
     private void changeState(State newState)
-    { 
-        if (newState == State.Joy) {
-            col.enabled = true;
+    {   if (!locked) {
+
+            if (newState == State.Joy) {
+                col.enabled = true;
+                renderer.material = turnedOn;
+            }
+
+            else {
+                col.enabled = false;
+                renderer.material = turnedOff;
+            }
         }
 
-        else {
-            col.enabled = false;
-        }
+        currentState = newState;
     }
 
     private void OnTriggerEnter (Collider other) {
@@ -45,4 +58,19 @@ public class JumpPad : MonoBehaviour
             Debug.Log("Added force!");
         }
     }
+
+    public void Lock() {
+        Debug.Log("Lock");
+        if (locked) {
+            col.enabled = currentState == State.Joy;
+            renderer.material = (currentState == State.Joy)? turnedOn : turnedOff;
+            locked = false;
+             
+        }
+
+        else {
+            locked = currentState == State.Joy;
+        }
+    }
+
 }

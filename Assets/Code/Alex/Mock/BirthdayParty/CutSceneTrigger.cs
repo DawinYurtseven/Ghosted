@@ -1,0 +1,34 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.Splines;
+
+public class CutSceneTrigger : MonoBehaviour
+{
+    public static event Action<CutSceneName> OnCutSceneTriggered;
+    
+    [SerializeField] CutSceneName cutSceneName;
+
+    [SerializeField] private int repeatTimes;
+    private int currentRepeat = 0;
+    
+    private void OnTriggerEnter(Collider other) {
+        if (other.gameObject.GetComponent<CharacterControllerMockup>()!= null || other.GetComponent<SplineAnimate>() != null) {
+            OnCutSceneTriggered?.Invoke(cutSceneName);
+        }
+        
+        if (currentRepeat++ == repeatTimes)
+            Destroy(gameObject);
+    }
+    
+}
+
+
+public enum CutSceneName
+{
+    Train,
+    TakeDocuments,
+    EnterNextLevel
+}
