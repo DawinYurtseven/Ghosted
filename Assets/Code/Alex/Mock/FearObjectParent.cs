@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class FearObjectParent : MonoBehaviour
 {
-    
-    public GameObject openState;
-
-    public GameObject closedState;
+    public GameObject openState, closedState, shadow;
 
     private State _currentState;
 
@@ -26,19 +23,18 @@ public class FearObjectParent : MonoBehaviour
 
 
     private void ChangeState(State newState)
-
     {   if (!_locked) {
             if (newState == State.Fear) {
                 closedState.SetActive(false);
-                openState.SetActive(true);
+                openState.SetActive(true);   
             }
-
             else {
                 closedState.SetActive(true);
                 openState.SetActive(false);
             }
         }
         _currentState = newState;
+        shadow.SetActive(_currentState == State.Fear);
     }
 
     public void Lock() {

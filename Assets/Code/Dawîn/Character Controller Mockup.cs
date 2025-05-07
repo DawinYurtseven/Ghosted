@@ -120,6 +120,8 @@ public class CharacterControllerMockup : MonoBehaviour
 
     private float xAxisAngle, yAxisAngle;
 
+    [SerializeField] private float minXAngle = -60f, maxXAngle = 65f;
+
     public void Camera_Move(InputAction.CallbackContext context)
     {
         
@@ -140,7 +142,7 @@ public class CharacterControllerMockup : MonoBehaviour
             cameraPivot.transform.LookAt(targetPosition);
             xAxisAngle = cameraPivot.transform.localRotation.eulerAngles.x - 360;
             yAxisAngle = cameraPivot.transform.localRotation.eulerAngles.y - 360;
-            xAxisAngle = Mathf.Clamp(xAxisAngle, -15f, 65f);
+            xAxisAngle = Mathf.Clamp(xAxisAngle, minXAngle, maxXAngle);
             cameraPivot.transform.eulerAngles = new Vector3(
                 xAxisAngle,
                 yAxisAngle,
