@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Splines;
 
 public class LevelManagerMock : MonoBehaviour
@@ -11,7 +12,6 @@ public class LevelManagerMock : MonoBehaviour
     [SerializeField] private GameObject player;
     
     [SerializeField] private GameObject train;
-
     private void OnEnable()
     {
         CutSceneTrigger.OnCutSceneTriggered += ExecuteCutScene;
@@ -32,6 +32,7 @@ public class LevelManagerMock : MonoBehaviour
             case CutSceneName.TakeDocuments:
                 break;
             case CutSceneName.EnterNextLevel:
+                SceneManager.LoadScene("MovingMock");
                 break;
             default: return;
         }

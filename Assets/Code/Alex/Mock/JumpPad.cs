@@ -57,7 +57,7 @@ public class JumpPad : MonoBehaviour
         Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
         Debug.Log("Present!");
         if (rb != null) {
-            rb.AddForce(Vector3.up * force);
+            rb.velocity += (Vector3.up * force);
             Debug.Log("Added force!");
         }
     }
