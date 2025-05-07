@@ -163,7 +163,6 @@ public class CharacterControllerMockup : MonoBehaviour
             xAxisAngle = Mathf.Clamp(xAxisAngle, xAxisMin, xAxisMax);
 
             cameraPivot.transform.localRotation = Quaternion.Euler(xAxisAngle, yAxisAngle, 0f);
-            print($"{cameraPivot.transform.localRotation.eulerAngles}, {xAxisAngle}, {yAxisAngle}");
             lookAtPivot.transform.localRotation = Quaternion.Euler(0f, yAxisAngle, 0f);
         }
     }
