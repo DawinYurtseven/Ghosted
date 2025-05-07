@@ -4,7 +4,7 @@ using UnityEngine;
 [InitializeOnLoad]
 public static class SceneViewStateToggle
 {
-    static GameObject stateJoy;
+static GameObject stateJoy;
     static GameObject stateFear;
     static bool toggleState = false;
 
@@ -13,6 +13,7 @@ public static class SceneViewStateToggle
         // Search for objects named "Joy" and "Fear" when the editor starts or scene view is updated
         FindObjectsInScene();
 
+        // Listen to the SceneView GUI updates
         SceneView.duringSceneGui += OnSceneGUI;
     }
 
@@ -58,8 +59,22 @@ public static class SceneViewStateToggle
 
     private static void FindObjectsInScene()
     {
-        stateJoy = GameObject.Find("Joy");
-        stateFear = GameObject.Find("Fear");
+        // Find both active and inactive objects with the specified name
+        GameObject[] allObjects = GameObject.FindObjectsOfType<GameObject>(true); // True to include inactive objects
+
+        foreach (GameObject obj in allObjects)
+        {
+            if (obj.name == "Joy")
+            {
+                stateJoy = obj;
+            }
+            else if (obj.name == "Fear")
+            {
+                stateFear = obj;
+            }
+
+            if (stateFear && stateJoy) break;
+        }
 
         if (stateJoy == null)
             Debug.LogWarning("No GameObject named 'Joy' found in the scene.");

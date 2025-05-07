@@ -241,7 +241,9 @@ public class CharacterControllerMockup : MonoBehaviour
 
     private bool lockOn;
     private Vector3 targetPosition;
-    [SerializeField] private TalismanTargetMock target;
+
+    //If merge conflict -> change to private, used for Mock for level design
+    [SerializeField] public TalismanTargetMock target;
 
     public void ToggleLockOn(InputAction.CallbackContext context)
     {
