@@ -49,7 +49,7 @@ public class CharacterControllerMockup : MonoBehaviour
     #region Speed
 
     [Header("Movement")] [SerializeField] private Vector2 moveVector;
-    [SerializeField] private float maxSpeed, acceleration, currentSpeed, shotLockLimit, deaccelerationTime;
+    [SerializeField] public float maxSpeed, acceleration, currentSpeed, shotLockLimit, deaccelerationTime;
     [SerializeField] private Transform lookAtTarget;
 
     //TODO: affect Direction change in air

@@ -9,12 +9,25 @@ public struct emotionJumpParameters
     public float jumpStrenght;
     public float fallStrength;
     public float gravity;
+    public float speed;
+    public float acceleration;
+    public float decceleration;
 
-    public emotionJumpParameters(float jumpStrenght,float fallStrength, float gravity)
+    public emotionJumpParameters(float jumpStrenght,float fallStrength, float gravity, float newSpeed, float newAcc, float newDecc)
     {
         this.jumpStrenght = jumpStrenght;
         this.fallStrength = fallStrength;
         this.gravity = gravity;
+        this.speed = 8.5f;
+        this.acceleration = 20;
+        this.decceleration = 1;
+        
+        if (newSpeed > 0f)
+            this.speed = newSpeed;
+        if (newAcc > 0f)
+            this.acceleration = newAcc;
+        if (newDecc > 0f)
+            this.decceleration = newDecc;
     }
 }
 
@@ -62,10 +75,13 @@ public class EmotionMockUp : MonoBehaviour
     [SerializeField] private List<GameObject> triggerToDeactivate;
     private void Start()
     {
-        emotionJumpParameters defaultparams = new emotionJumpParameters(18,70,10);
-        emotionJumpParameters joyParams = new emotionJumpParameters(21, 50, 10);
+        emotionJumpParameters defaultparams = new emotionJumpParameters(18,70,10, 8.5f, -1,-1);
+        emotionJumpParameters joyParams = new emotionJumpParameters(21, 50, 10, 8.5f, -1,-1);
+        emotionJumpParameters fearParams = new emotionJumpParameters(18, 70, 10, 15,100,0.5f);
+        
         emotionParameters.Add("Default", defaultparams);
         emotionParameters.Add("Joy", joyParams);
+        emotionParameters.Add("Fear", fearParams);
     }
 
     #region Subscribe
@@ -107,7 +123,7 @@ public class EmotionMockUp : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Alpha2)) Lonely.Invoke();
             if (Input.GetKeyDown(KeyCode.Alpha3)) LonelyTP.Invoke();
             
-            if (Input.GetKeyDown(KeyCode.Alpha5)) Fear.Invoke();
+            if (Input.GetKeyDown(KeyCode.Alpha4)) Fear.Invoke();
         }
         
         if(Input.GetKeyDown(KeyCode.Q)) Bind.Invoke();
@@ -123,6 +139,9 @@ public class EmotionMockUp : MonoBehaviour
         controller.gravity = paramsToApply.gravity;
         controller.jumpStrength = paramsToApply.jumpStrenght;
         controller.fallStrength = paramsToApply.fallStrength;
+        controller.maxSpeed = paramsToApply.speed;
+        controller.acceleration = paramsToApply.acceleration;
+        controller.deaccelerationTime = paramsToApply.decceleration;
     }
 
     public void OnJoy()
@@ -170,7 +189,7 @@ public class EmotionMockUp : MonoBehaviour
         _roomState = RoomState.Fear;
         
         enableColliders();
-        restoreDefaultConfig();
+        applyConfig(controler, emotionParameters["Fear"]);
     }
 
     private void restoreDefaultConfig()
