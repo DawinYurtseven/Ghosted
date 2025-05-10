@@ -165,7 +165,7 @@ Material:
     - _SrcBlendAlpha: 1
     - _Surface: 0
     - _TextureCoordinateSpace: 1
-    - _TextureSpace: 1
+    - _TextureSpace: 0
     - _TextureSpaceFBM: 1
     - _TextureSpaceVoronoi: 1
     - _UseColourRamp: 1
@@ -175,19 +175,21 @@ Material:
     - _VoronoiRandomness: 1
     - _VoronoiRoughness: 2.2
     - _VoronoiScale: 1.64
-    - _VoronoiSmoothness: 0.56
+    - _VoronoiSmoothness: 0.215
     - _WorkflowMode: 1
     - _ZWrite: 1
     - _kD: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _DarkTint: {r: 1, g: 0.6396227, b: 0.6396227, a: 1}
     - _DarkTone: {r: 0.101960786, g: 0.078431375, b: 0.078431375, a: 1}
-    - _DiffuseColour: {r: 1, g: 1, b: 1, a: 1}
+    - _DiffuseColour: {r: 1, g: 0.53396225, b: 0.53396225, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _EmissiveColour: {r: 0, g: 1.4980394, b: 1.3644456, a: 1}
     - _FbmShift: {r: 8, g: 8, b: 8, a: 8}
     - _Highlight: {r: 0.92941177, g: 0.8615647, b: 0.8615647, a: 1}
+    - _LightTint: {r: 1, g: 0.6903204, b: 0.6094339, a: 1}
     - _LightTone: {r: 0.88235295, g: 0.71205884, b: 0.71205884, a: 1}
     - _MidDarkTone: {r: 0.577, g: 0.481795, b: 0.481795, a: 1}
     - _MidLightTone: {r: 0.88235295, g: 0.7517647, b: 0.7517647, a: 1}
@@ -199,7 +201,7 @@ Material:
     - _RimColour: {r: 1, g: 1, b: 1, a: 1}
     - _Shadow: {r: 0.02, g: 0.02, b: 0.09999997, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _k: {r: 0.5, g: 0.7, b: 0.1, a: 1}
+    - _k: {r: 0.5, g: 1, b: 0.1, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &7972439404755219198
 MonoBehaviour:
