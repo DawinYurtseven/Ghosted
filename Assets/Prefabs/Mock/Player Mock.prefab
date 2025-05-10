@@ -531,6 +531,8 @@ GameObject:
   - component: {fileID: 6886647508386430284}
   - component: {fileID: 6496545617559681279}
   - component: {fileID: 7266318017597648310}
+  - component: {fileID: 6418587032226458732}
+  - component: {fileID: 7904468442654897324}
   m_Layer: 0
   m_Name: Player Mock
   m_TagString: Player
@@ -692,6 +694,10 @@ MonoBehaviour:
   cameraDirection: {x: 0, y: 0}
   cameraSpeed: 25
   strifing: 0
+  xAxisMin: 0
+  xAxisMax: 0
+  xAxisMinLock: 0
+  xAxisMaxLock: 0
   jumpStrength: 35
   fallStrength: 100
   gravity: 10
@@ -705,10 +711,12 @@ MonoBehaviour:
   cameraZoomSpeed: 0.2
   target: {fileID: 0}
   currentTalismanBind: {fileID: 0}
+  previousTargetTalismanObject: {fileID: 0}
   tMode: 0
   talismanEmotion: 0
   talismanModetext: {fileID: 3338305222778658250}
   talismanEmotionText: {fileID: 1508658487375581538}
+  TalismanPrefab: {fileID: 0}
 --- !u!114 &7266318017597648310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -883,6 +891,32 @@ MonoBehaviour:
   m_DefaultActionMap: Character Control
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &6418587032226458732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7186854931979958255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d95f3436aef9db84f9bcd9f9cca92964, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameObjectsList: []
+  maxTalismans: 3
+--- !u!114 &7904468442654897324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7186854931979958255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bad2c8d87987a349b845365bd8b98cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7359274990481609994
 GameObject:
   m_ObjectHideFlags: 0
