@@ -126,7 +126,7 @@ public class CharacterControllerMockup : MonoBehaviour
     [SerializeField] private bool strifing;
 
     private float xAxisAngle, yAxisAngle;
-    
+
     [SerializeField] private float xAxisMin, xAxisMax, xAxisMinLock, xAxisMaxLock;
 
     public void Camera_Move(InputAction.CallbackContext context)
