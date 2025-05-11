@@ -177,11 +177,10 @@ public class CharacterControllerMockup : MonoBehaviour
     [SerializeField] public float fallStrength;
     [SerializeField] public float gravity;
     [SerializeField] private float groundCheckDistance;
-
-
+    [SerializeField] private LayerMask allowJumpOn;
     public void Jump(InputAction.CallbackContext context)
     {
-        if (context.started && Physics.Raycast(transform.position, -transform.up, 1.1f, LayerMask.GetMask("Ground")))
+        if (context.started && Physics.Raycast(transform.position, -transform.up, 1.1f, allowJumpOn))
         {
             var up = transform.up;
             rb.velocity += up * jumpStrength;

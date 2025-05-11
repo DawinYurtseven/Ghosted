@@ -359,13 +359,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damping: {x: 0, y: 0, z: 0}
-  ShoulderOffset: {x: 2, y: 0, z: 0}
+  ShoulderOffset: {x: 0, y: 0, z: 0}
   VerticalArmLength: 2.5
   CameraSide: 1
   CameraDistance: 5
   CameraCollisionFilter:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   IgnoreTag: 
   CameraRadius: 0.2
   DampingIntoCollision: 0
@@ -683,9 +683,9 @@ MonoBehaviour:
     m_RotationOrder: 4
   timer: 0
   moveVector: {x: 0, y: 0}
-  maxSpeed: 20
+  maxSpeed: 8.5
   acceleration: 20
-  currentSpeed: 10
+  currentSpeed: 0
   shotLockLimit: 0
   deaccelerationTime: 1
   lookAtTarget: {fileID: 5780536361594823231}
@@ -693,15 +693,20 @@ MonoBehaviour:
   lookAtPivot: {fileID: 2058017940432768295}
   cameraDirection: {x: 0, y: 0}
   cameraSpeed: 25
+  CameraShoulderOffset: {x: 0, y: 0, z: 0}
+  CameraShoulderLockOnOffset: {x: 2, y: 2, z: 0}
   strifing: 0
-  xAxisMin: -20
-  xAxisMax: 20
+  xAxisMin: -60
+  xAxisMax: 60
   xAxisMinLock: 0
   xAxisMaxLock: 0
   jumpStrength: 35
   fallStrength: 100
   gravity: 10
   groundCheckDistance: 0
+  allowJumpOn:
+    serializedVersion: 2
+    m_Bits: 247
   dashSpeed: 50
   lastInput: {x: 0, y: 0, z: 0}
   dashed: 0
@@ -942,7 +947,7 @@ Transform:
   m_GameObject: {fileID: 7359274990481609994}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2, y: 0, z: 2}
+  m_LocalPosition: {x: 0, y: 0, z: 2}
   m_LocalScale: {x: 0.43, y: 0.43, z: 0.43}
   m_ConstrainProportionsScale: 1
   m_Children: []
