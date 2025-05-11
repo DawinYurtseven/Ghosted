@@ -52,6 +52,14 @@ public class JumpPad : MonoBehaviour
 
     private void OnTriggerEnter (Collider other) {
         Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
+        if(Physics.Raycast(transform.position, other.transform.position - transform.position, out RaycastHit hit)) {
+            
+             var minBoundLocal = col.bounds.min  + new Vector3(0.002f, 0f, 0.002f);
+            var maxBoundLocal = col.bounds.max  - new Vector3(0.002f, 0, 0.002f);
+            if (hit.point.y <= maxBoundLocal.y && hit.point.x >= minBoundLocal.x && hit.point.x <= maxBoundLocal.x && hit.point.z >= minBoundLocal.z && hit.point.z <= maxBoundLocal.z) {
+                Debug.Log("Hit detected!");
+            }
+        }
         Debug.Log("Present!");
         if (rb != null) {
             rb.velocity += (Vector3.up * force);

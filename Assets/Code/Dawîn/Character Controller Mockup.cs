@@ -2,6 +2,7 @@ using System.Collections;
 using Cinemachine;
 using TMPro;
 using UniRx;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -179,7 +180,7 @@ public class CharacterControllerMockup : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (context.started && Physics.Raycast(transform.position, -transform.up, 1.1f))
+        if (context.started && Physics.Raycast(transform.position, -transform.up, 1.1f, LayerMask.GetMask("Ground")))
         {
             var up = transform.up;
             rb.velocity += up * jumpStrength;
