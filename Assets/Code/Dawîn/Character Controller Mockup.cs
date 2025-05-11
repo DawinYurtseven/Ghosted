@@ -123,6 +123,7 @@ public class CharacterControllerMockup : MonoBehaviour
     [SerializeField] private GameObject lookAtPivot;
     [SerializeField] private Vector2 cameraDirection;
     [SerializeField] private float cameraSpeed;
+    [SerializeField] private Vector3 CameraShoulderOffset = new Vector3(2,0,0), CameraShoulderLockOnOffset = new Vector3(2,2,0);
 
     [SerializeField] private bool strifing;
 
@@ -253,7 +254,6 @@ public class CharacterControllerMockup : MonoBehaviour
     public void ToggleLockOn(InputAction.CallbackContext context)
     {
         var fov = 60f;
-        var offset = new Vector3(2, 0, 0);
         var newVal = 2.5f;
         if (context.performed && target != null && !lockOn)
         {
@@ -262,7 +262,6 @@ public class CharacterControllerMockup : MonoBehaviour
             mockTransform.transform.position = lookAtTarget.transform.position;
             camera.m_LookAt = mockTransform.transform;
             fov = 30f;
-            offset = new Vector3(2, 2, 0);
             newVal = 0f;
 
 
@@ -270,14 +269,14 @@ public class CharacterControllerMockup : MonoBehaviour
 
 
             StartCoroutine(LerpTargetPosition());
-            StartCoroutine(LerpActionShotLockInput(fov, offset, newVal));
+            StartCoroutine(LerpActionShotLockInput(fov, CameraShoulderLockOnOffset, newVal));
         }
 
         if (context.canceled && target != null && lockOn && mockTransform != null)
         {
             lockOn = false;
             StartCoroutine(LerpBackFocus());
-            StartCoroutine(LerpActionShotLockInput(fov, offset, newVal));
+            StartCoroutine(LerpActionShotLockInput(fov, CameraShoulderOffset, newVal));
         }
     }
 
