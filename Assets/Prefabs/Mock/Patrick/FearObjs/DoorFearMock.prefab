@@ -69,6 +69,7 @@ MonoBehaviour:
   openState: {fileID: 5413660783961198961}
   closedState: {fileID: 5299107206160509574}
   shadow: {fileID: 7691257025436528048}
+  TargetMock: {fileID: 0}
 --- !u!65 &3822243844126793619
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -754,7 +755,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
@@ -1348,7 +1349,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
