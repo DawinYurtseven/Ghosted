@@ -1,9 +1,6 @@
-using System;
 using System.Collections;
 using TMPro;
 using UniRx;
-using UniRx.Triggers;
-using Unity.VisualScripting;
 using UnityEngine;
 using Image = UnityEngine.UI.Image;
 
