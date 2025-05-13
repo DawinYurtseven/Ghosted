@@ -1,14 +1,16 @@
 using UnityEngine;
 
-public class JumpPad : MonoBehaviour
+public class JumpPad : Lockable
 {
     public float force = 100f;
 
     State currentState;
 
-    bool locked = false;
+    bool _locked = false;
 
     Collider col;
+
+    public GameObject specialEffect;
 
 
     public Material  turnedOff, turnedOn;
@@ -36,7 +38,7 @@ public class JumpPad : MonoBehaviour
 
 
     private void changeState(State newState)
-    {   if (!locked) {
+    {   if (!_locked) {
             if (newState == State.Joy) {
                 col.enabled = true;
                 renderer.material = turnedOn;
@@ -75,18 +77,25 @@ public class JumpPad : MonoBehaviour
         }
     }
 
-    public void Lock() {
+    public override void Lock() {
         Debug.Log("Lock");
-        if (locked) {
-            col.enabled = currentState == State.Joy;
-            renderer.material = (currentState == State.Joy)? turnedOn : turnedOff;
-            locked = false;
-             
+        _locked = currentState == State.Joy;
+        if (specialEffect != null)
+        {
+            specialEffect.SetActive(true);
         }
+    }
 
-        else {
-            locked = currentState == State.Joy;
+    public override void Unlock()
+    {
+        col.enabled = currentState == State.Joy;
+        renderer.material = (currentState == State.Joy)? turnedOn : turnedOff;
+        _locked = false;
+        if (specialEffect != null)
+        {
+            specialEffect.SetActive(false);
         }
+        
     }
 
 }
