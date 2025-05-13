@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -54,18 +53,21 @@ public class BindingMock : MonoBehaviour
         } 
         //Recall talismans
         if (Input.GetKeyDown(KeyCode.R)) {
-             foreach (GameObject go in gameObjectsList)
-             {
-                 go.GetComponent<Lockable>().Unlock();
-             }
-             
-             gameObjectsList.Clear();
-             
-             talismansUsed.text = "Talismans used: " + gameObjectsList.Count + " / " + maxTalismans;
+             resetTalismans();
         }
     }
 
-       
+    public void resetTalismans()
+    {
+        foreach (GameObject go in gameObjectsList)
+        {
+            go.GetComponent<Lockable>().Unlock();
+        }
+             
+        gameObjectsList.Clear();
+             
+        talismansUsed.text = "Talismans used: " + gameObjectsList.Count + " / " + maxTalismans;
+    }
 }
 
     

@@ -52,6 +52,7 @@ public class EmotionMockUp : MonoBehaviour
     [SerializeField] public UnityEvent LonelyTP;
     [SerializeField] public UnityEvent Bind;
     [SerializeField] public UnityEvent Shoot;
+    [SerializeField] public StateManagerMock stateMock;
     
     [Header("Room Materials")] 
     [SerializeField] private Material joyMat;
@@ -119,11 +120,11 @@ public class EmotionMockUp : MonoBehaviour
         //Emotion Change
         if (allowChange)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1)) Joy.Invoke();
+            if (Input.GetKeyDown(KeyCode.Keypad0)) Joy.Invoke();
             if (Input.GetKeyDown(KeyCode.Alpha2)) Lonely.Invoke();
             if (Input.GetKeyDown(KeyCode.Alpha3)) LonelyTP.Invoke();
             
-            if (Input.GetKeyDown(KeyCode.Alpha4)) Fear.Invoke();
+            if (Input.GetKeyDown(KeyCode.Keypad1)) Fear.Invoke();
         }
         
         if(Input.GetKeyDown(KeyCode.Q)) Bind.Invoke();
@@ -131,7 +132,7 @@ public class EmotionMockUp : MonoBehaviour
         {
             Shoot.Invoke();
         }
-        if(Input.GetKeyDown(KeyCode.R)) SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        if(Input.GetKeyDown(KeyCode.B)) SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void applyConfig(CharacterControllerMockup controller, emotionJumpParameters paramsToApply)
@@ -169,6 +170,8 @@ public class EmotionMockUp : MonoBehaviour
         
         Debug.Log("Loading Joy config");
         applyConfig(controler, emotionParameters["Joy"]);
+        //Ducktape
+        stateMock.changeState(State.Joy);
     }
 
     public void OnLonely()
@@ -183,10 +186,14 @@ public class EmotionMockUp : MonoBehaviour
         disableColliders();
     }
 
-    private void OnFear()
+    public void OnFear()
     {
         Debug.Log("Changing to Fear");
         _roomState = RoomState.Fear;
+        
+        // Ducktape
+        addMaterialToRoom(lonelyMat);
+        stateMock.changeState(State.Fear);
         
         enableColliders();
         applyConfig(controler, emotionParameters["Fear"]);

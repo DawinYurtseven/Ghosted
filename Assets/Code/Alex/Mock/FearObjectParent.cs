@@ -22,7 +22,7 @@ public class FearObjectParent : Lockable
     }
 
 
-    private void ChangeState(State newState)
+    protected void ChangeState(State newState)
     {   if (!_locked) {
             if (newState == State.Fear) {
                 closedState.SetActive(false);
@@ -34,10 +34,10 @@ public class FearObjectParent : Lockable
             }
         }
         _currentState = newState;
-        shadow.SetActive(_currentState == State.Fear);
+        shadow.SetActive(_currentState == State.Fear && !_locked);
     }
 
-    public override  void Lock() {
+    public override void Lock() {
             _locked = _currentState == State.Fear;
             if (specialEffect != null)
             {
@@ -45,7 +45,7 @@ public class FearObjectParent : Lockable
             }
     }
 
-    public override  void Unlock()
+    public override void Unlock()
     {
         closedState.SetActive(_currentState == State.Joy);
         openState.SetActive(_currentState != State.Joy);
