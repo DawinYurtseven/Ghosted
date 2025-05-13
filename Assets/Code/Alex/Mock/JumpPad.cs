@@ -49,7 +49,6 @@ public class JumpPad : Lockable
                 parent.layer = LayerMask.NameToLayer("Default");
             }
         }
-
         currentState = newState;
     }
 
@@ -77,7 +76,7 @@ public class JumpPad : Lockable
 
     public override void Lock() {
         Debug.Log("Lock");
-        _locked = currentState == State.Joy;
+        _locked = true;
         if (specialEffect != null)
         {
             specialEffect.SetActive(true);
