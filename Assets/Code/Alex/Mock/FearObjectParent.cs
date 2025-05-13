@@ -6,7 +6,7 @@ public class FearObjectParent : Lockable
 
     private State _currentState;
 
-    private bool _locked = false;
+   
 
     public GameObject specialEffect;
 
@@ -55,4 +55,5 @@ public class FearObjectParent : Lockable
             specialEffect.SetActive(false);
         }
     }
+
 }

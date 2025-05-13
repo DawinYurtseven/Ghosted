@@ -6,8 +6,6 @@ public class JumpPad : Lockable
 
     State currentState;
 
-    bool _locked = false;
-
     Collider col;
 
     public GameObject specialEffect;
