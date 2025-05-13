@@ -4,8 +4,6 @@ public class FearObjectParent : Lockable
 {
     public GameObject openState, closedState, shadow;
 
-    private State _currentState;
-
    
 
     public GameObject specialEffect;
@@ -33,22 +31,24 @@ public class FearObjectParent : Lockable
                 openState.SetActive(false);
             }
         }
-        _currentState = newState;
-        shadow.SetActive(_currentState == State.Fear && !_locked);
+
+        currentState = newState;
+        shadow.SetActive(currentState == State.Fear);
     }
 
     public override void Lock() {
-            _locked = _currentState == State.Fear;
-            if (specialEffect != null)
-            {
-                specialEffect.SetActive(true);
-            }
+        _locked = currentState == State.Fear;
+
+        if (specialEffect != null)
+        {
+            specialEffect.SetActive(true);
+        }
     }
 
     public override void Unlock()
     {
-        closedState.SetActive(_currentState == State.Joy);
-        openState.SetActive(_currentState != State.Joy);
+        closedState.SetActive(currentState == State.Joy);
+        openState.SetActive(currentState != State.Joy);
         _locked = false;
         if (specialEffect != null)
         {

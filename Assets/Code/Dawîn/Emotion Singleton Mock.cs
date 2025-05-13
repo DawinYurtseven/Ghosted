@@ -15,6 +15,7 @@ public class EmotionSingletonMock : MonoBehaviour
 {
     public static EmotionSingletonMock Instance { get; private set; }
 
+    public bool disableAll = false;
     #region Emotions
 
     /*
@@ -61,6 +62,19 @@ public class EmotionSingletonMock : MonoBehaviour
     
     private void CheckTargets()
     {
+        if (disableAll)
+        {
+            foreach (var target in availableTalismanTargetMocks)
+            {
+                if (target != null)
+                {
+                    target.turnOff();
+                }
+            }
+            CurrentTarget.OnNext(null);
+            return;
+        }
+
         if (availableTalismanTargetMocks.Count == 0)
         {
             CurrentTarget.OnNext(null);
