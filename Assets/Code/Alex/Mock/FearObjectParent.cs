@@ -1,12 +1,14 @@
 using UnityEngine;
 
-public class FearObjectParent : MonoBehaviour
+public class FearObjectParent : Lockable
 {
     public GameObject openState, closedState, shadow;
 
     private State _currentState;
 
-    private bool _locked = false;
+   
+
+    public GameObject specialEffect;
 
     private void OnEnable()
     {
@@ -35,15 +37,23 @@ public class FearObjectParent : MonoBehaviour
         shadow.SetActive(_currentState == State.Fear);
     }
 
-    public void Lock() {
-        if (_locked) {
-            closedState.SetActive(_currentState == State.Joy);
-            openState.SetActive(_currentState != State.Joy);
-            _locked = false;
-        }
-
-        else {
+    public override  void Lock() {
             _locked = _currentState == State.Fear;
+            if (specialEffect != null)
+            {
+                specialEffect.SetActive(true);
+            }
+    }
+
+    public override  void Unlock()
+    {
+        closedState.SetActive(_currentState == State.Joy);
+        openState.SetActive(_currentState != State.Joy);
+        _locked = false;
+        if (specialEffect != null)
+        {
+            specialEffect.SetActive(false);
         }
     }
+
 }

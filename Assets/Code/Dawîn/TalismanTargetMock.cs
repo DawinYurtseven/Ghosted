@@ -85,6 +85,17 @@ public class TalismanTargetMock : MonoBehaviour
         lockOnImage.color = Color.white;
     }
 
+    public void turnOff()
+    {
+        interact = false;
+        lockOnImage.enabled = false;
+    }
+    
+    public void turnOn()
+    {
+        lockOnImage.enabled = true;
+    }
+
     #endregion
     
     #region Emotion
