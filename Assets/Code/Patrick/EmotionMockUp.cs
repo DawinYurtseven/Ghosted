@@ -237,6 +237,12 @@ public class EmotionMockUp : MonoBehaviour
 
     private void addMaterialTo(GameObject o, Material m)
     {
+        if (!o)
+        {
+            Debug.LogWarning("Oh Oh, obj to add material " + m + " to is null!");
+            return;
+        }
+        
         Renderer renderer = o.GetComponent<Renderer>();
         if (renderer != null)
         {
