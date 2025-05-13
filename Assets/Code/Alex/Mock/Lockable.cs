@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Lockable : MonoBehaviour
 {
-    
+    protected State currentState;
     protected bool _locked = false;
     // Called to lock the object.
     public abstract void Lock();

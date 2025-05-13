@@ -4,7 +4,7 @@ public class JumpPad : Lockable
 {
     public float force = 100f;
 
-    State currentState;
+    
 
     Collider col;
 

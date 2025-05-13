@@ -20,11 +20,11 @@ public class LevelManagerMock : MonoBehaviour
     [SerializeField] private Transform playerSpawn;
     [Header("Enter Train second time")]
     [SerializeField] private FearObjectParent barier;
-    [SerializeField] private GameObject redLight, greenLight;
     
     private int trainSceneCount = 0;
     private void OnEnable()
     {
+        EmotionSingletonMock.Instance.disableAll = true;
         CutSceneTrigger.OnCutSceneTriggered += ExecuteCutScene;
     }
 
@@ -73,5 +73,6 @@ public class LevelManagerMock : MonoBehaviour
         playerCamera.Priority = 10;
         trainCamera.Priority = 0;
         player.transform.position = playerSpawn.position;
+        player.GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
 } 
