@@ -34,7 +34,20 @@ public class FearObjectParent : Lockable
             }
         }
 
-        if (_locked && currentState == State.Joy)
+        if (_locked && openState.activeSelf)
+        {
+            if (newState == State.Joy)
+            {
+                shadow.SetActive(false);
+            }
+            else
+            {
+                shadow.SetActive(true);
+            }
+            
+        }
+
+        if (_locked && closedState.activeSelf)
         {
             shadow.SetActive(false);
         }
