@@ -128,7 +128,7 @@ public class CharacterControllerMockup : MonoBehaviour
     [SerializeField] private bool strifing;
 
     private float xAxisAngle, yAxisAngle;
-    
+
     [SerializeField] private float xAxisMin, xAxisMax, xAxisMinLock, xAxisMaxLock;
 
     public void Camera_Move(InputAction.CallbackContext context)
@@ -175,7 +175,6 @@ public class CharacterControllerMockup : MonoBehaviour
 
     [Header("Jump")] [SerializeField] public float jumpStrength;
     [SerializeField] public float fallStrength;
-    [SerializeField] public float gravity;
     [SerializeField] private float groundCheckDistance;
     [SerializeField] private LayerMask allowJumpOn;
     public void Jump(InputAction.CallbackContext context)
@@ -190,11 +189,8 @@ public class CharacterControllerMockup : MonoBehaviour
 
     private void RegulateJump()
     {
-        rb.AddForce(-transform.up * gravity, ForceMode.Acceleration);
-        if (rb.velocity.y != 0)
-        {
+        if (!Physics.Raycast(transform.position, -transform.up, 1.1f))
             rb.AddForce(-transform.up * fallStrength, ForceMode.Acceleration);
-        }
     }
 
     #endregion
@@ -499,30 +495,29 @@ public class CharacterControllerMockup : MonoBehaviour
      */
 
     private bool _isOnCurvedGround;
+    [SerializeField] private float maxSlopeAngle = 45f;
 
     public void OnCollisionStay(Collision collisionInfo)
     {
-        if (collisionInfo.gameObject.CompareTag("CurvedGround"))
+        //set the ground which the player should be able to move on to Ground if possible. 
+        if (collisionInfo.gameObject.CompareTag("Ground"))
         {
-            _isOnCurvedGround = true;
-            var transform1 = transform;
-            Ray ray = new Ray(transform1.position, -transform1.up);
-            if (Physics.Raycast(ray, out var hit, ground))
+            //create friction only when not intending to move
+            if (moveVector == Vector2.zero)
             {
-                var rotationRef = Quaternion.Lerp(transform.rotation, Quaternion.FromToRotation(Vector3.up,
-                    hit.normal), animCurve.Evaluate(timer));
-                transform.localRotation = Quaternion.Euler(rotationRef.eulerAngles.x, rotationRef.eulerAngles.y,
-                    rotationRef.eulerAngles.z);
+                RaycastHit hit; //check for ground below the player and get the angle
+                if (Physics.Raycast(transform.position, -transform.up, out hit, ground))
+                {
+                    // Calculate the slope angle
+                    float slopeAngle = Vector3.Angle(hit.normal, transform.up);
+
+                    // Apply friction on a specific angle 
+                    if (slopeAngle >= 0 && slopeAngle <= maxSlopeAngle)
+                    {
+                        rb.velocity = new Vector3(0, rb.velocity.y, 0);
+                    }
+                }
             }
-        }
-        else if (collisionInfo.gameObject.CompareTag("Ground"))
-        {
-            _isOnCurvedGround = false;
-            var transform1 = transform;
-            var reference = Quaternion.Lerp(transform1.rotation, Quaternion.Euler(0, 0, 0),
-                animCurve.Evaluate(timer));
-            transform.localRotation = Quaternion.Euler(reference.eulerAngles.x, reference.eulerAngles.y,
-                reference.eulerAngles.z);
         }
     }
 

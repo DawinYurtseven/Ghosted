@@ -8,27 +8,33 @@ public enum talismanMode
     emotions,
     bind
 }
+
 [RequireComponent(typeof(Collider))]
 public class Talisman : MonoBehaviour
 {
     private talismanMode mode;
     private Emotion emotion;
 
-    [SerializeField] private float speed = 50f;
-    
+    [SerializeField] private float timer = 1f;
+
     public void Initialize(talismanMode mode, Emotion emotion)
     {
         this.mode = mode;
         this.emotion = emotion;
     }
-    
+
     public IEnumerator MoveTowards(TalismanTargetMock target)
     {
-
-        while (Vector3.Distance(transform.position, target.transform.position) > 0.1f)
+        var startPos = transform.position;
+        var clock = 0f;
+        while (clock < timer)
         {
-            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
+            clock += Time.deltaTime;
+            transform.position = Vector3.Lerp(startPos, target.transform.position, clock / timer);
             yield return null;
+        }
+
+        {
         }
         switch (mode)
         {
@@ -39,7 +45,7 @@ public class Talisman : MonoBehaviour
                 target.EvokeEmotion(emotion);
                 break;
         }
-        
+
         Destroy(gameObject);
     }
 }
