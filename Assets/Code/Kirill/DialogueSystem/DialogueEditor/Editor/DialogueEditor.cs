@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditor.Callbacks;
 using System;
+using Codice.Client.Common.TreeGrouper;
 
 namespace Ghosted.Dialogue.Editor{
     public class DialogueEditor : EditorWindow
@@ -12,11 +13,19 @@ namespace Ghosted.Dialogue.Editor{
         [NonSerialized]
         GUIStyle nodeStyle;
         [NonSerialized]
-        DialogueNode draggingNode;
+        GUIStyle textStyle;
+        [NonSerialized]
+        DialogueEditorNode draggingNode;
         [NonSerialized]
         Vector2 draggingOffset = Vector2.zero;
         [NonSerialized]
-        DialogueNode creatingNode = null;
+        DialogueNode creatingDialogueNode = null;
+        [NonSerialized]
+        DialogueNode creatingReplyNode = null;
+        [NonSerialized]
+        ReplyNode creatingReplyNodeChild = null;
+        [NonSerialized]
+        ReplyNode deletingReplyNode = null;
         [NonSerialized]
         DialogueNode toBeDeletedNode = null;
         [NonSerialized]
@@ -66,7 +75,6 @@ namespace Ghosted.Dialogue.Editor{
                 ProcessEvents();
 
                 scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition);
-                Debug.Log("ScrollPosition: " + scrollPosition);
 
                 GUILayoutUtility.GetRect(4000, 4000);
 
@@ -79,15 +87,29 @@ namespace Ghosted.Dialogue.Editor{
 
                 EditorGUILayout.EndScrollView();
 
-                if (creatingNode != null) {
+                if (creatingDialogueNode != null) {
                     Undo.RecordObject(selectedDialogue, "Added Dialogue Node");
-                    selectedDialogue.CreateNode(creatingNode);
-                    creatingNode = null;
+                    selectedDialogue.CreateDialogueNode(creatingDialogueNode);
+                    creatingDialogueNode = null;
+                } else if (creatingReplyNode != null) {
+                    Undo.RecordObject(selectedDialogue, "Added Reply Node");
+                    selectedDialogue.CreateReplyNode(creatingReplyNode);
+                    creatingReplyNode = null;
                 }
                 if (toBeDeletedNode != null) {
                     Undo.RecordObject(selectedDialogue, "Deleted Dialogue Node");
-                    selectedDialogue.DeleteNode(toBeDeletedNode);
+                    selectedDialogue.DeleteDialogueNode(toBeDeletedNode);
                     toBeDeletedNode = null;
+                }
+                if (creatingReplyNodeChild != null) {
+                    Undo.RecordObject(selectedDialogue, "Added New Reply");
+                    selectedDialogue.AddReply(creatingReplyNodeChild);
+                    creatingReplyNodeChild = null;
+                }
+                if (deletingReplyNode != null) {
+                    Undo.RecordObject(selectedDialogue, "Deleted Reply Node");
+                    selectedDialogue.DeleteReplyNode(deletingReplyNode);
+                    creatingReplyNodeChild = null;
                 }
             }
         }
@@ -97,6 +119,7 @@ namespace Ghosted.Dialogue.Editor{
                 case EventType.MouseDown:
                     if (draggingNode == null) {
                         draggingNode = GetNodeAtPoint(Event.current.mousePosition + scrollPosition);
+                        
                         if (draggingNode != null) {
                             draggingOffset = draggingNode.rect.position - Event.current.mousePosition;
                         }
@@ -111,17 +134,39 @@ namespace Ghosted.Dialogue.Editor{
                     if (draggingNode != null) {
                         Undo.RecordObject(selectedDialogue, "Move Dialogue Node");
                         draggingNode.rect.position = Event.current.mousePosition + draggingOffset;
+                        if (draggingNode as ReplyNode != null) {
+                            selectedDialogue.UpdateChildrenPosition((ReplyNode) draggingNode);
+                        }
                         GUI.changed = true;
                     }
                     break;
             }
         }
 
-        private void DrawNode(DialogueNode node) {
-            GUILayout.BeginArea(node.rect, nodeStyle);
+        private void DrawNode(DialogueEditorNode potentialNode) {
+            if (potentialNode is DialogueNode dialogueNode) {
+                if (!((DialogueNode)potentialNode).isReplyNodeChild) {
+                    DrawDialogueNode(dialogueNode);
+                } // Other will be drawn as reply node children
+            } else if (potentialNode is ReplyNode replyNode) {
+                DrawReplyNode(replyNode);
+            }
+        }
+
+        private void DrawDialogueNode(DialogueNode node) {
+            Debug.Log("Draw dialogue Node: " + node);
+
+            textStyle = GUI.skin.textArea; // call only in OnGUI?
+            float width = 160;
+            float height = textStyle.CalcHeight(new GUIContent(node.text), width);
+            Rect newRect = new Rect(node.rect);
+            newRect.height += height;
+
+            GUILayout.BeginArea(newRect, nodeStyle);
             EditorGUI.BeginChangeCheck();
 
-            string newText = EditorGUILayout.TextField(node.text);
+            //float width = EditorGUIUtility.currentViewWidth - 40;
+            string newText = EditorGUILayout.TextArea(node.text, textStyle, GUILayout.Height(height));
 
             if (EditorGUI.EndChangeCheck()) {
                 Undo.RecordObject(selectedDialogue, "Update Dialoge Text");
@@ -130,9 +175,13 @@ namespace Ghosted.Dialogue.Editor{
             }
 
             GUILayout.BeginHorizontal();
-
-            if (GUILayout.Button("+")) {
-                creatingNode = node;
+            if (selectedDialogue.GetChild(node) == null) {
+                if (GUILayout.Button("+D")) {
+                    creatingDialogueNode = node;
+                }
+                if (GUILayout.Button("+R")) {
+                    creatingReplyNode = node;
+                }
             }
             if (linkingParentNode == null) {
                 if(GUILayout.Button("link")) {
@@ -146,17 +195,17 @@ namespace Ghosted.Dialogue.Editor{
                         //creatingNode = node;
                     }
                 } else {
-                    if (linkingParentNode.children.Contains(node.id)) {
+                    if (linkingParentNode.child.Contains(node.id)) {
                         if (GUILayout.Button("unlink")) {
                             Undo.RecordObject(selectedDialogue, "Remove Dialogue Link");
-                            linkingParentNode.children.Remove(node.id);
+                            selectedDialogue.RemoveChild(linkingParentNode);
                             linkingParentNode = null;
                             //creatingNode = node;
                         }
                     } else {
                         if (GUILayout.Button("child")) {
                             Undo.RecordObject(selectedDialogue, "Add Dialogue Link");
-                            linkingParentNode.children.Add(node.id);
+                            selectedDialogue.RemoveChild(linkingParentNode);
                             linkingParentNode = null;
                             //creatingNode = node;
                         }
@@ -169,13 +218,148 @@ namespace Ghosted.Dialogue.Editor{
             }
 
             GUILayout.EndHorizontal();
+            GUILayout.EndArea();
+        }
+
+        private void DrawReplyNode(ReplyNode node) {
+            GUILayout.BeginArea(node.rect, nodeStyle);
+            GUILayout.BeginVertical();
+            foreach (string dialogueNodeId in node.replies) {
+                DialogueNode dialogueNode = selectedDialogue.GetDialogueNode(dialogueNodeId);
+                if (dialogueNode != null) {
+                    DrawReplyFromDialogueNode(dialogueNode);
+                }
+            }
+
+            GUILayout.BeginHorizontal();
+            if (GUILayout.Button("+")) {
+                creatingReplyNodeChild = node;
+            }
+            if (GUILayout.Button("-")) {
+                deletingReplyNode = node;
+            }
+            GUILayout.EndHorizontal();
+
+            GUILayout.EndVertical();
+
+            /*GUILayout.BeginHorizontal();
+            if (selectedDialogue.GetChild(node) == null) {
+                if (GUILayout.Button("+D")) {
+                    creatingDialogueNode = node;
+                }
+                if (GUILayout.Button("+R")) {
+                    creatingReplyNode = node;
+                }
+            }
+            if (linkingParentNode == null) {
+                if(GUILayout.Button("link")) {
+                    linkingParentNode = node;
+                } 
+            }
+            else {
+                if (linkingParentNode.id == node.id) {
+                    if (GUILayout.Button("cancel")) {
+                        linkingParentNode = null;
+                        //creatingNode = node;
+                    }
+                } else {
+                    if (linkingParentNode.child.Contains(node.id)) {
+                        if (GUILayout.Button("unlink")) {
+                            Undo.RecordObject(selectedDialogue, "Remove Dialogue Link");
+                            selectedDialogue.RemoveChild(linkingParentNode);
+                            linkingParentNode = null;
+                            //creatingNode = node;
+                        }
+                    } else {
+                        if (GUILayout.Button("child")) {
+                            Undo.RecordObject(selectedDialogue, "Add Dialogue Link");
+                            selectedDialogue.RemoveChild(linkingParentNode);
+                            linkingParentNode = null;
+                            //creatingNode = node;
+                        }
+                    }
+                }
+            }
+
+            if (GUILayout.Button("-")) {
+                toBeDeletedNode = node;
+            }
+
+            GUILayout.EndHorizontal();*/
 
             GUILayout.EndArea();
         }
 
-        private void DrawConnections(DialogueNode node) {
+        private void DrawReplyFromDialogueNode(DialogueNode node) {
+            EditorGUI.BeginChangeCheck();
+
+            //float width = EditorGUIUtility.currentViewWidth - 40;
+            string newText = EditorGUILayout.TextField(node.text);
+
+            if (EditorGUI.EndChangeCheck()) {
+                Undo.RecordObject(selectedDialogue, "Update Dialogue Text");
+
+                node.text = newText;
+            }
+
+            GUILayout.BeginHorizontal();
+            if (selectedDialogue.GetChild(node) == null) {
+                if (GUILayout.Button("+D")) {
+                    creatingDialogueNode = node;
+                }
+                if (GUILayout.Button("+R")) {
+                    creatingReplyNode = node;
+                }
+            }
+            if (linkingParentNode == null) {
+                if(GUILayout.Button("link")) {
+                    linkingParentNode = node;
+                } 
+            }
+            else {
+                if (linkingParentNode.id == node.id) {
+                    if (GUILayout.Button("cancel")) {
+                        linkingParentNode = null;
+                        //creatingNode = node;
+                    }
+                } else {
+                    if (linkingParentNode.child.Contains(node.id)) {
+                        if (GUILayout.Button("unlink")) {
+                            Undo.RecordObject(selectedDialogue, "Remove Dialogue Link");
+                            selectedDialogue.RemoveChild(linkingParentNode);
+                            linkingParentNode = null;
+                            //creatingNode = node;
+                        }
+                    } else {
+                        if (GUILayout.Button("child")) {
+                            Undo.RecordObject(selectedDialogue, "Add Dialogue Link");
+                            selectedDialogue.RemoveChild(linkingParentNode);
+                            linkingParentNode = null;
+                            //creatingNode = node;
+                        }
+                    }
+                }
+            }
+
+            if (GUILayout.Button("-")) {
+                toBeDeletedNode = node;
+            }
+
+            GUILayout.EndHorizontal();
+        }
+
+        private void DrawConnections(DialogueEditorNode potentialNode) {
+            if (potentialNode is DialogueNode dialogueNode) {
+                DrawDialogueNodeConnections(dialogueNode);
+            } else if (potentialNode is ReplyNode replyNode) {
+                DrawReplyNodeConnections(replyNode);
+            }
+        }
+
+        private void DrawDialogueNodeConnections(DialogueNode node) {
             Vector3 startPosition = new Vector2(node.rect.xMax, node.rect.center.y);
-            foreach(DialogueNode childNode in selectedDialogue.GetAllChildren(node)) {
+            DialogueEditorNode childNode = selectedDialogue.GetChild(node);
+            if (childNode != null) {
                 Vector3 endPosition = new Vector2(childNode.rect.xMin, childNode.rect.center.y);
                 Vector3 controlPointOffset = endPosition - startPosition;
                 controlPointOffset.y = 0;
@@ -187,8 +371,20 @@ namespace Ghosted.Dialogue.Editor{
             }
         }
 
-        private DialogueNode GetNodeAtPoint(Vector2 point)
+        private void DrawReplyNodeConnections(ReplyNode node) {
+            foreach (string dialogueNode in node.replies) {
+                selectedDialogue.GetDialogueNode(dialogueNode);
+            }
+        }
+
+        private DialogueEditorNode GetNodeAtPoint(Vector2 point)
         {
+            DialogueEditorNode node = selectedDialogue.GetSelectedNode(point);
+            if (node as DialogueNode != null) {
+                if (((DialogueNode)node).isReplyNodeChild) {
+                    return selectedDialogue.GetNodeFromId(((DialogueNode)node).replyNodeParentId);
+                }
+            }
             return selectedDialogue.GetSelectedNode(point);
         }
     }

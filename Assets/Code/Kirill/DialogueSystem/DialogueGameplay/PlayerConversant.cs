@@ -11,7 +11,7 @@ namespace Ghosted.Dialogue {
 
         void Awake()
         {
-            currentNode = currentDialogue.GetRootNode();
+            currentNode = (DialogueNode)currentDialogue.GetRootNode();
         }
         public string GetText() {
             return currentNode.text;
@@ -23,11 +23,11 @@ namespace Ghosted.Dialogue {
         }
 
         public void Next() {
-            currentNode = currentDialogue.GetAllChildren(currentNode).First();
+            currentNode = (DialogueNode)currentDialogue.GetChild(currentNode);
         }
 
         public bool HasNext() {
-            return currentDialogue.GetAllChildren(currentNode).Any();
+            return currentDialogue.GetChild(currentNode) != null;
         }
     }
 }
