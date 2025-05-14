@@ -8,16 +8,14 @@ public struct emotionJumpParameters
 {
     public float jumpStrenght;
     public float fallStrength;
-    public float gravity;
     public float speed;
     public float acceleration;
     public float decceleration;
 
-    public emotionJumpParameters(float jumpStrenght,float fallStrength, float gravity, float newSpeed, float newAcc, float newDecc)
+    public emotionJumpParameters(float jumpStrenght,float fallStrength, float newSpeed, float newAcc, float newDecc)
     {
         this.jumpStrenght = jumpStrenght;
         this.fallStrength = fallStrength;
-        this.gravity = gravity;
         this.speed = 8.5f;
         this.acceleration = 20;
         this.decceleration = 1;
@@ -75,9 +73,9 @@ public class EmotionMockUp : MonoBehaviour
     [SerializeField] private List<GameObject> triggerToDeactivate;
     private void Start()
     {
-        emotionJumpParameters defaultparams = new emotionJumpParameters(18,70,10, 8.5f, -1,-1);
-        emotionJumpParameters joyParams = new emotionJumpParameters(21, 50, 10, 8.5f, -1,-1);
-        emotionJumpParameters fearParams = new emotionJumpParameters(18, 70, 10, 15,100,0.5f);
+        emotionJumpParameters defaultparams = new emotionJumpParameters(18,70, 8.5f, -1,-1);
+        emotionJumpParameters joyParams = new emotionJumpParameters(21, 50, 8.5f, -1,-1);
+        emotionJumpParameters fearParams = new emotionJumpParameters(18, 70, 15,100,0.5f);
         
         emotionParameters.Add("Default", defaultparams);
         emotionParameters.Add("Joy", joyParams);
@@ -136,7 +134,6 @@ public class EmotionMockUp : MonoBehaviour
 
     private void applyConfig(CharacterControllerMockup controller, emotionJumpParameters paramsToApply)
     {
-        controller.gravity = paramsToApply.gravity;
         controller.jumpStrength = paramsToApply.jumpStrenght;
         controller.fallStrength = paramsToApply.fallStrength;
         controller.maxSpeed = paramsToApply.speed;
