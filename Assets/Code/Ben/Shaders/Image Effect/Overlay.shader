@@ -49,7 +49,7 @@ Shader "ForgottenColours/ScriptableRenderFeatures/Overlay"
             half4 frag(Varyings i) : SV_Target
             {
                 float4 screenColor = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv);
-                return lerp(screenColor, _OverlayColor, _OverlayColor.a); // Blend manually
+                return lerp(screenColor, _OverlayColor, _OverlayColor.a); // Blend overlay colour and render texture
             }
             ENDHLSL
         }

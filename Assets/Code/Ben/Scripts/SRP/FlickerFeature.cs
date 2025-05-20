@@ -44,13 +44,17 @@ public class FlickerFeature : ScriptableRendererFeature
             int tempRT = Shader.PropertyToID("_TempOverlayRT");
             cmd.GetTemporaryRT(tempRT, descriptor, FilterMode.Bilinear);
 
-            // Blit to temp, then back to main
-            Blit(cmd, cameraColorTarget, tempRT); // No material
+            // Copy the current camera color buffer into a temporary render texture.
+            Blit(cmd, cameraColorTarget, tempRT);
+
+            // Set the overlay color with transparency
             overlayMaterial.SetColor("_OverlayColor", new Color(color.r, color.g, color.b, opacity));
+
+            // Make the original screen content available to the overlay shader via _MainTex.
             cmd.SetGlobalTexture("_MainTex", tempRT); // Let the shader access screen color
 
+            // Composite the overlay on top of the original screen image.
             Blit(cmd, tempRT, cameraColorTarget, overlayMaterial); // Composite overlay
-
 
             cmd.ReleaseTemporaryRT(tempRT);
 
