@@ -7,12 +7,11 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Skin
+  m_Name: Sumi-e
   m_Shader: {fileID: 4800000, guid: 6b008335f0e4d7345bc97ca7fa6aa2a8, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - BACKFACE_LIGHTING
   - USECOLOURRAMP
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -21,13 +20,13 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
-  m_LockedProperties: _Highlight
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
     - _AlbedoTex:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 0.92, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 0}
@@ -58,7 +57,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissiveTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: b850654a6a4e8a742b10a8f5d82c20f0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissiveTexture:
@@ -114,7 +113,7 @@ Material:
     - _AlphaClip: 0
     - _AlphaCutoff: 0.5
     - _AlphaToMask: 0
-    - _BackfaceLighting: 1
+    - _BackfaceLighting: 0
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
@@ -175,26 +174,26 @@ Material:
     - _VoronoiExponent: 0.3
     - _VoronoiRandomness: 1
     - _VoronoiRoughness: 2.2
-    - _VoronoiScale: 1.64
-    - _VoronoiSmoothness: 0.301
+    - _VoronoiScale: 2.62
+    - _VoronoiSmoothness: 0.56
     - _WorkflowMode: 1
     - _ZWrite: 1
     - _kD: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _DarkTint: {r: 0.48900002, g: 0.33007503, b: 0.33007503, a: 1}
-    - _DarkTone: {r: 0.101960786, g: 0.078431375, b: 0.078431375, a: 1}
-    - _DiffuseColour: {r: 1, g: 0.53396225, b: 0.53396225, a: 1}
+    - _DarkTint: {r: 0.335849, g: 0.335849, b: 0.335849, a: 1}
+    - _DarkTone: {r: 0.10065358, g: 0.2, b: 0.05098039, a: 1}
+    - _DiffuseColour: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _EmissiveColour: {r: 0, g: 1.4980394, b: 1.3644456, a: 1}
+    - _EmissiveColour: {r: 2.0000002, g: 1.5302258, b: 0, a: 1}
     - _FbmShift: {r: 8, g: 8, b: 8, a: 8}
-    - _Highlight: {r: 0.92941177, g: 0.8615647, b: 0.8615647, a: 1}
-    - _LightTint: {r: 0.71, g: 0.5819216, b: 0.5485098, a: 1}
-    - _LightTone: {r: 0.88235295, g: 0.71205884, b: 0.71205884, a: 1}
-    - _MidDarkTone: {r: 0.577, g: 0.481795, b: 0.481795, a: 1}
-    - _MidLightTone: {r: 0.88235295, g: 0.7517647, b: 0.7517647, a: 1}
-    - _MiddleTone: {r: 0.7372549, g: 0.598651, b: 0.598651, a: 1}
+    - _Highlight: {r: 1, g: 1, b: 1, a: 1}
+    - _LightTint: {r: 1, g: 1, b: 1, a: 1}
+    - _LightTone: {r: 0.8496732, g: 0.9490196, b: 0.8, a: 1}
+    - _MidDarkTone: {r: 0.16470587, g: 0.29803923, b: 0.09803922, a: 1}
+    - _MidLightTone: {r: 0.63529414, g: 0.9019608, b: 0.5019608, a: 1}
+    - _MiddleTone: {r: 0.39999998, g: 0.69803923, b: 0.25098044, a: 1}
     - _RampColours: {r: 1, g: 1, b: 1, a: 1}
     - _RampPositions: {r: 0, g: 0, b: 0, a: 0}
     - _RampPositions0: {r: 0.02, g: 0.12, b: 0.34, a: 0}
@@ -202,7 +201,7 @@ Material:
     - _RimColour: {r: 1, g: 1, b: 1, a: 1}
     - _Shadow: {r: 0.02, g: 0.02, b: 0.09999997, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _k: {r: 0.5, g: 1, b: 0.1, a: 1}
+    - _k: {r: 0.2, g: 0.7, b: 0.04, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &7972439404755219198
 MonoBehaviour:

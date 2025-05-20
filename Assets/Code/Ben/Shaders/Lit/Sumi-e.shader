@@ -206,11 +206,6 @@ Shader "ForgottenColours/Sumi-E"
                 // Sample albedo texture
                 half4 c = tex2D(_AlbedoTex, input.uv_Albedo);
 
-                if (!frontFace)
-                {
-                    return float4(c.rgb * 0.1, 1.0); // or just float4(0,0,0,1)
-                }
-
                 // Enable alpha clipping
                 #ifdef USETRANSPARENT
                 clip(c.a - _AlphaCutoff);
