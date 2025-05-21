@@ -2,32 +2,166 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 namespace Ghosted.Dialogue {
     public class PlayerConversant : MonoBehaviour
     {
-        [SerializeField] Dialogue currentDialogue;
-        DialogueNode currentNode = null;
+        Dialogue currentDialogue;
+        DialogueEditorNode currentNode = null;
+        KirillCharacterInteractionInput inputManager;
+
+        public readonly UnityEvent<Dialogue> OnStartDialogue = new UnityEvent<Dialogue>();
+        public readonly UnityEvent<Dialogue> OnEndDialogue = new UnityEvent<Dialogue>();
+        public readonly UnityEvent<DialogueEditorNode> OnDialogueNode = new UnityEvent<DialogueEditorNode>();
+
+        private AIConversant currentConversant;
+
+
+        [SerializeField] private float interactDistance = 20f;
 
         void Awake()
         {
-            currentNode = (DialogueNode)currentDialogue.GetRootNode();
-        }
-        public string GetText() {
-            return currentNode.text;
+
         }
 
-        public IEnumerable<string> GetChoices() {
-            yield return "Hello!";
-            yield return "Get prepared to be destroyed!";
+        void Start()
+        {
+            inputManager = GameObject.FindGameObjectWithTag("ScriptHolder")?.GetComponent<KirillCharacterInteractionInput>();
+            inputManager.SubscribeInteract(OnInteract);
         }
 
-        public void Next() {
-            currentNode = (DialogueNode)currentDialogue.GetChild(currentNode);
+        public void StartDialogue(Dialogue dialogue)
+        {
+            inputManager.UnsubscribeInteract(OnInteract);
+            inputManager.SubscribePressedNext(OnNextClick);
+
+            currentDialogue = dialogue;
+            OnStartDialogue.Invoke(currentDialogue);
+
+            Debug.Log(currentDialogue);
+            currentNode = currentDialogue.GetRootNode();
+            OnDialogueNode.Invoke(currentNode);
+            TriggerEnterAction();
         }
 
-        public bool HasNext() {
-            return currentDialogue.GetChild(currentNode) != null;
+        public void EndDialogue()
+        {
+            inputManager.UnsubscribePressedNext(OnNextClick);
+            inputManager.SubscribeInteract(OnInteract);
+
+            OnEndDialogue.Invoke(currentDialogue);
+            currentDialogue = null;
+            currentConversant = null;
+            currentNode = null;
+        }
+
+        public void OnNextClick(InputAction.CallbackContext context)
+        {
+            Debug.Log("I clicked");
+            if (currentNode as ReplyNode != null)
+                return;
+
+            Next();
+        }
+
+        private void OnInteract(InputAction.CallbackContext context)
+        {
+            Debug.Log("I try to interact");
+            if (currentDialogue == null)
+            {
+                //Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue()); // Use mouse position
+                Ray ray = new Ray(transform.position, transform.forward);
+                RaycastHit hit;
+
+                Debug.Log("I shoot ray " + ray);
+
+                if (Physics.Raycast(ray, out hit, interactDistance))
+                {
+                    Debug.Log("I hit smth " + hit);
+                    // Check for the target script
+                    AIConversant aIConversant = hit.collider.GetComponent<AIConversant>();
+                    if (aIConversant != null)
+                    {
+                        aIConversant.Interact(this);
+                        currentConversant = aIConversant;
+                    }
+                }
+            }
+        }
+
+        // Next for DialogeNodes, Select for replies in replyNode
+        public void Next()
+        {
+            TriggerExitAction();
+            currentNode = currentDialogue.GetChild((DialogueNode)currentNode);
+            if (currentNode == null)
+            {
+                EndDialogue();
+            }
+            else
+            {
+                OnDialogueNode.Invoke(currentNode);
+                TriggerEnterAction();
+            }
+        }
+
+        public void Select(Reply reply)
+        {
+            currentNode = currentDialogue.GetNodeFromId(reply.Child);
+            if (currentNode == null)
+            {
+                EndDialogue();
+            }
+            else
+            {
+                OnDialogueNode.Invoke(currentNode);
+                TriggerEnterAction();
+            }
+
+             // Wtf ist this Fehler: 
+        }
+
+        private void TriggerEnterAction()
+        {
+            if (currentNode != null)
+            {
+                foreach (string action in currentNode.onEnterActions)
+                {
+                    TriggerAction(action);
+                }
+            }
+        }
+        private void TriggerExitAction()
+        {
+            if (currentNode != null)
+            {
+                foreach (string action in currentNode.onExitActions)
+                {
+                    TriggerAction(action);
+                }
+            }
+        }
+
+        private void TriggerAction(string action)
+        {
+            if (action == "") return;
+
+            foreach (DialogueTrigger trigger in currentConversant.GetComponents<DialogueTrigger>())
+            {
+                trigger.Trigger(action);
+            }
+        }
+
+        public DialogueNode GetReply(string id)
+        {
+            return currentDialogue.GetDialogueNodeFromId(id);
+        }
+
+        public DialogueEditorNode GetCurrentNode()
+        {
+            return currentNode;
         }
     }
 }

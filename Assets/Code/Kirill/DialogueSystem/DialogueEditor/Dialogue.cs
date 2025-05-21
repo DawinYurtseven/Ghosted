@@ -8,39 +8,55 @@ namespace Ghosted.Dialogue {
     [CreateAssetMenu(fileName = "New Dialogue", menuName = "Dialogue")]
     public class Dialogue : ScriptableObject 
     {
-        [SerializeField] List<DialogueEditorNode> dialogueEditorNodes = new List<DialogueEditorNode>();
+        [SerializeField] List<string> dialogueSpeakers = new List<string>();
+        [SerializeField] List<DialogueNode> dialogueNodes = new List<DialogueNode>();
+        [SerializeField] List<ReplyNode> replyNodes = new List<ReplyNode>();
 
-        Dictionary<string, DialogueEditorNode> nodeLookup = new Dictionary<string, DialogueEditorNode>();
+        Dictionary<string, DialogueNode> dialogueNodeLookup = new Dictionary<string, DialogueNode>();
+        Dictionary<string, ReplyNode> replyNodeLookup = new Dictionary<string, ReplyNode>();
 
 #if UNITY_EDITOR
-        void Awake()
+        void OnEnable()
         {
-            if (dialogueEditorNodes.Count == 0) {
-                DialogueNode rootNode = new DialogueNode();
-                rootNode.id = Guid.NewGuid().ToString();
-                dialogueEditorNodes.Add(rootNode);
+            if (dialogueSpeakers.Count == 0)
+                dialogueSpeakers.Add("Player");
+            if (dialogueNodes.Count == 0)
+            {
+                var node = CreateDialogueNode(null);
+                node.rect.position = new Vector2(0, 0);
             }
             OnValidate();
         }
 #endif
 
-        private void OnValidate() {
-            nodeLookup.Clear();
-            foreach(DialogueEditorNode node in GetAllNodes()) {
-                nodeLookup[node.id] = node;
+        private void OnValidate()
+        {
+            dialogueNodeLookup.Clear();
+            replyNodeLookup.Clear();
+            foreach (DialogueNode node in dialogueNodes)
+            {
+                dialogueNodeLookup[node.Id] = node;
+            }
+            foreach (ReplyNode node in replyNodes)
+            {
+                replyNodeLookup[node.Id] = node;
             }
         }
-        public IEnumerable<DialogueEditorNode> GetAllNodes () {
-            return dialogueEditorNodes;
+        public IEnumerable<DialogueEditorNode> GetAllNodes()
+        {
+            foreach (var dialogueNode in dialogueNodes)
+                yield return dialogueNode;
+            foreach (var replyNode in replyNodes)
+                yield return replyNode;
         }
 
-        public DialogueEditorNode GetRootNode() {
-            return dialogueEditorNodes[0];
+        public DialogueNode GetRootNode() {
+            return dialogueNodes[0];
         }
 
         public DialogueEditorNode GetSelectedNode(Vector2 point) {
             DialogueEditorNode foundNode = null;
-            foreach (var node in dialogueEditorNodes) {
+            foreach (var node in GetAllNodes()) {
                 if (node.rect.Contains(point))
                     foundNode = node;
             }
@@ -49,121 +65,147 @@ namespace Ghosted.Dialogue {
 
         public DialogueEditorNode GetChild(DialogueNode parentNode)
         {
-            if (nodeLookup.ContainsKey(parentNode.child))
-                return nodeLookup[parentNode.child];
+            if (parentNode.Child == null)
+                return null;
+            if (dialogueNodeLookup.ContainsKey(parentNode.Child))
+                return dialogueNodeLookup[parentNode.Child];
+            else if (replyNodeLookup.ContainsKey(parentNode.Child))
+                return replyNodeLookup[parentNode.Child];
             else
                 return null;
-            /*if (parentNode.child != "") {
-                foreach (string child in parentNode.child) {
-                    if (nodeLookup.ContainsKey(child))
-                        yield return nodeLookup[child];
-                }
-            }*/
         }
 
-        public DialogueNode GetDialogueNode(string id) {
-            if (nodeLookup.ContainsKey(id))
-                return (DialogueNode) nodeLookup[id];
+        public DialogueNode GetDialogueNodeFromId(string id) {
+            if (dialogueNodeLookup.ContainsKey(id))
+                return dialogueNodeLookup[id];
             else
                 return null;
         }
 
         public DialogueEditorNode GetNodeFromId(string id) {
-            if (nodeLookup.ContainsKey(id))
-                return nodeLookup[id];
+            //Debug.Log("I search for: "  + id);
+            //Debug.Log(dialogueNodes.Count);
+            foreach (var node in dialogueNodes)
+            {
+              //  Debug.Log(node.Id);
+            }
+            //Debug.Log(replyNodes.Count);
+
+            foreach (var node in replyNodes)
+            {
+              //  Debug.Log(node.Id);
+            }
+            if (dialogueNodeLookup.ContainsKey(id))
+                return dialogueNodeLookup[id];
+            else if (replyNodeLookup.ContainsKey(id))
+                return replyNodeLookup[id];
             else
+            {
+                //Debug.Log("I return null");
                 return null;
+            }
         }
 
-        public void CreateDialogueNode(DialogueNode parent)
+        public DialogueNode CreateDialogueNode(IHasChildren parent)
         {
             DialogueNode node = new DialogueNode();
-            node.id = Guid.NewGuid().ToString();
-            parent.child = node.id;
-            dialogueEditorNodes.Add(node);
-            node.isReplyNodeChild = false;
+            node.Id = Guid.NewGuid().ToString();
+            if (parent != null)
+                parent.Child = node.Id;
+            dialogueNodes.Add(node);
+            if (dialogueSpeakers.Count != 0)
+            {
+                node.speaker = dialogueSpeakers[0];
+            }
+
+            node.rect.position = Event.current.mousePosition;
+
             OnValidate();
+
+            return node;
         }
 
-        public void CreateReplyNode (DialogueNode parent) {
+        public ReplyNode CreateReplyNode(IHasChildren parent)
+        {
             ReplyNode node = new ReplyNode();
-            node.rect.height += 150;
-            node.id = Guid.NewGuid().ToString();
-            parent.child = node.id;
-            dialogueEditorNodes.Add(node);
+            node.Id = Guid.NewGuid().ToString();
+            node.rect.height += 150; // has to be adjusted
+            if (parent != null)
+                parent.Child = node.Id;
+            replyNodes.Add(node);
+
+            node.rect.position = Event.current.mousePosition;
+
             OnValidate();
+
+            return node;
         }
 
         public void DeleteDialogueNode(DialogueNode nodeToDelete)
         {
-            dialogueEditorNodes.Remove(nodeToDelete);
-            if (nodeToDelete.isReplyNodeChild == true) {
-                ReplyNode replyNode = (ReplyNode) nodeLookup[nodeToDelete.replyNodeParentId];
-                RemoveDialogueNodeFromReplyNode(replyNode, nodeToDelete);
-            }
+            dialogueNodes.Remove(nodeToDelete);
             OnValidate();
             CleanDanglingChildren(nodeToDelete);
         }
 
         public void DeleteReplyNode(ReplyNode nodeToDelete) {
-            List<string> replies = new List<string>(nodeToDelete.replies);
-            foreach (string childNodeId in replies) {
-                DeleteDialogueNode((DialogueNode) nodeLookup[childNodeId]);
+            List<Reply> replies = new List<Reply>(nodeToDelete.replies);
+            foreach (Reply reply in replies)
+            {
+                DeleteReply(nodeToDelete, reply);
             }
-            dialogueEditorNodes.Remove(nodeToDelete);
+            replyNodes.Remove(nodeToDelete);
             OnValidate();
             CleanDanglingChildren(nodeToDelete);
         }
 
-        public void UpdateChildrenPosition(ReplyNode replyNode) {
+        public Reply AddReply(ReplyNode replyNode)
+        {
+            Reply reply = new Reply();
+            replyNode.replies.Add(reply);
+            OnValidate();
+            //UpdateChildrenPosition(replyNode);
+
+            return reply;
+        }
+
+        public void DeleteReply(ReplyNode replyNode, Reply reply)
+        {
+            if (replyNodeLookup.ContainsKey(reply.Child) || dialogueNodeLookup.ContainsKey(reply.Child))
+            {
+                RemoveChild(reply);
+            }
+            replyNode.replies.Remove(reply);
+        }
+
+        /*public void UpdateChildrenPosition(ReplyNode replyNode)
+        {
             float curHeight = 0;
-            for (int i = 0; i < replyNode.replies.Count; i++) {
-                DialogueNode dialogueNode = (DialogueNode) nodeLookup[replyNode.replies[i]];
+            for (int i = 0; i < replyNode.replies.Count; i++)
+            {
+                DialogueNode dialogueNode = (DialogueNode)nodeLookup[replyNode.replies[i]];
                 dialogueNode.rect.position = new Vector2(replyNode.rect.position.x, replyNode.rect.position.y + curHeight);
                 curHeight += dialogueNode.rect.height - 40;
             }
-        }
-
-        public void RemoveChild(DialogueNode parentNode) {
-            parentNode.child = null;
-        }
-
-        public void AddReply(ReplyNode replyNode) {
-            DialogueNode node = new DialogueNode();
-            node.id = Guid.NewGuid().ToString();
-            node.isReplyNodeChild = true;
-            AddDialogueNodeToReplyNode(replyNode, node);
-            dialogueEditorNodes.Add(node);
-            OnValidate();
-            UpdateChildrenPosition(replyNode);
-        }
-
-        /*public void DeleteReply(ReplyNode replyNode) {
-            DialogueNode nodeToDelete = (DialogueNode) nodeLookup[replyNode.replies[0]];
-            if (nodeToDelete == null)
-                Debug.LogError("I can't detect the node, that has to be deleted");
-            DeleteDialogueNode(nodeToDelete);
         }*/
+
+        public void RemoveChild(IHasChildren parentNode) {
+            parentNode.Child = "removed";
+        }
+
+        public void AddChild(IHasChildren parentNode, DialogueEditorNode node) {
+            RemoveChild(parentNode);
+            parentNode.Child = node.Id;
+        }
 
         private void CleanDanglingChildren(DialogueEditorNode nodeToDelete)
         {
             foreach (DialogueEditorNode editorNode in GetAllNodes()) // Only DialogueNodes can bind children
             {
                 DialogueNode node = editorNode as DialogueNode;
-                if (node != null && node.child == nodeToDelete.id)
-                    node.child = "null";
+                if (node != null && node.Child == nodeToDelete.Id)
+                    RemoveChild(node);
             }
-        }
-
-        private void AddDialogueNodeToReplyNode(ReplyNode replyNode, DialogueNode dialogueNode) {
-            dialogueNode.replyNodeParentId = replyNode.id;
-            AddRect(replyNode.rect, dialogueNode.rect);
-            replyNode.replies.Add(dialogueNode.id);
-        }
-
-        private void RemoveDialogueNodeFromReplyNode(ReplyNode replyNode, DialogueNode dialogueNode) {
-            SubRect(replyNode.rect, dialogueNode.rect);
-            replyNode.replies.Remove(dialogueNode.id);
         }
 
         private void AddRect (Rect to, Rect from) {
@@ -171,6 +213,12 @@ namespace Ghosted.Dialogue {
         }
         private void SubRect (Rect from, Rect what) {
             from.height -= what.height;
+        }
+
+        public IEnumerable<string> GetSpeakers() {
+            foreach (string speaker in dialogueSpeakers) {
+                yield return speaker;
+            }
         }
     }
 }

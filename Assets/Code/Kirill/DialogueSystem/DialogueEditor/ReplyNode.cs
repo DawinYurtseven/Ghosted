@@ -6,7 +6,7 @@ namespace Ghosted.Dialogue {
     [System.Serializable]
     public class ReplyNode : DialogueEditorNode
     {
-        public List<string> replies = new List<string>();
+        public List<Reply> replies = new List<Reply>();
     }
 }
 

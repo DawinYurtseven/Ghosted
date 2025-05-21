@@ -4,6 +4,7 @@ using UnityEngine;
 using Ghosted.Dialogue;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 namespace Ghosted.UI
 {
@@ -11,36 +12,85 @@ namespace Ghosted.UI
     {
         PlayerConversant playerConversant;
         [SerializeField] TextMeshProUGUI messageText;
-        [SerializeField] Button nextButton;
+        [SerializeField] TextMeshProUGUI speakerText;
+        [SerializeField] Button exitButton;
         [SerializeField] Transform choiceRoot;
         [SerializeField] GameObject choicePrefab;
+        [SerializeField] GameObject replicWindow;
+        [SerializeField] GameObject choiceWindow;
+
         // Start is called before the first frame update
         void Start()
         {
             playerConversant = GameObject.FindGameObjectsWithTag("Player")[0]
                 .GetComponent<PlayerConversant>(); //Can go wrong
-            nextButton.onClick.AddListener(Next);
 
-            UpdateUI();
+            playerConversant.OnStartDialogue.AddListener(StartDialogue);
+            playerConversant.OnEndDialogue.AddListener(EndDialogue);
+            playerConversant.OnDialogueNode.AddListener(DisplayNodeInfo);
+
+            exitButton.onClick.AddListener(OnExitDialogueClick);
+
+            gameObject.SetActive(false);
         }
-        
-        void Next() {
-            playerConversant.Next();
-            UpdateUI();
+
+        public void StartDialogue(Ghosted.Dialogue.Dialogue dialogue)
+        {
+            gameObject.SetActive(true);
+        }
+
+        public void EndDialogue(Ghosted.Dialogue.Dialogue dialogue)
+        {
+            gameObject.SetActive(false);
+        }
+
+        private void OnExitDialogueClick()
+        {
+            playerConversant.EndDialogue();
+        }
+
+        void DisplayNodeInfo(DialogueEditorNode node) {
+            UpdateUI(node);
         }
 
         // Update is called once per frame
-        void UpdateUI()
+        void UpdateUI(DialogueEditorNode node)
         {
-            messageText.text = playerConversant.GetText();
-            nextButton.gameObject.SetActive(playerConversant.HasNext());
-            foreach (Transform child in choiceRoot) {
-                Destroy(child.gameObject);
+            var curNode = node;
+            if (curNode == null)
+            {
+                Debug.LogError("I have null curNode in UI");
             }
-            foreach(string choiceText in playerConversant.GetChoices()) {
-                var choiceGO = Instantiate(choicePrefab);
-                choiceGO.GetComponentInChildren<TextMeshProUGUI>().text = choiceText;
-                choiceGO.transform.parent = choiceRoot;
+            else if (curNode as DialogueNode != null)
+            {
+                DialogueNode dialogueNode = (DialogueNode)curNode;
+
+                replicWindow.SetActive(true);
+                choiceWindow.SetActive(false);
+                messageText.text = dialogueNode.text;
+                speakerText.text = dialogueNode.speaker;
+            }
+            else if (curNode as ReplyNode != null)
+            {
+                ReplyNode replyNode = (ReplyNode)curNode;
+                replicWindow.SetActive(false);
+                choiceWindow.SetActive(true);
+                foreach (Transform child in choiceRoot)
+                {
+                    Destroy(child.gameObject);
+                }
+
+                foreach (Reply reply in replyNode.replies)
+                {
+                    var choiceGO = Instantiate(choicePrefab);
+                    choiceGO.GetComponentInChildren<TextMeshProUGUI>().text = reply.text;
+                    choiceGO.transform.parent = choiceRoot;
+                    Button btn = choiceGO.GetComponentInChildren<Button>();
+                    btn.onClick.AddListener(() =>
+                    {
+                        playerConversant.Select(reply);
+                    });
+                }
             }
         }
     }
