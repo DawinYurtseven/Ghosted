@@ -4,7 +4,6 @@ Shader "ForgottenColours/VFX/SelectionOverlay"
     {
         [HDR]_OverlayColour("Overlay Colour", Color) = (1, 1, 1, 0.5) // Red, semi-transparent
 
-        _AlbedoTex ("Albedo Map", 2D) = "bump"{}
     }
 
     SubShader
@@ -76,7 +75,7 @@ Shader "ForgottenColours/VFX/SelectionOverlay"
                 float3 v = normalize(_WorldSpaceCameraPos - IN.fragWorldPos);
                 half3 n = normalize(IN.fragWorldNormal);
                 float fresnel = pow(1.0 - saturate(dot(v, n)), 5.0);
-                float outlineIntensity = lerp(0.01, 1.0, fresnel);
+                float outlineIntensity = lerp(0.001, 1.0, fresnel);
                 return _OverlayColour * outlineIntensity * c;
             }
 
