@@ -22,13 +22,13 @@ Shader "ForgottenColours/ScriptableRenderFeatures/Overlay"
             #pragma fragment frag
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 
-            struct Attributes
+            struct appdata
             {
                 float4 positionOS : POSITION;
                 float2 uv : TEXCOORD0;
             };
 
-            struct Varyings
+            struct v2f
             {
                 float4 positionHCS : SV_POSITION;
                 float2 uv : TEXCOORD0;
@@ -38,15 +38,15 @@ Shader "ForgottenColours/ScriptableRenderFeatures/Overlay"
             TEXTURE2D(_MainTex);
             SAMPLER(sampler_MainTex);
 
-            Varyings vert(Attributes IN)
+            v2f vert(appdata IN)
             {
-                Varyings OUT;
+                v2f OUT;
                 OUT.positionHCS = TransformObjectToHClip(IN.positionOS.xyz);
                 OUT.uv = IN.uv;
                 return OUT;
             }
 
-            half4 frag(Varyings i) : SV_Target
+            half4 frag(v2f i) : SV_Target
             {
                 float4 screenColor = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv);
                 return lerp(screenColor, _OverlayColor, _OverlayColor.a); // Blend overlay colour and render texture

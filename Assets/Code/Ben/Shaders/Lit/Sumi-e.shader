@@ -1,4 +1,4 @@
-Shader "ForgottenColours/Sumi-E"
+Shader "ForgottenColours/Lit/Sumi-E"
 {
     Properties
     {
