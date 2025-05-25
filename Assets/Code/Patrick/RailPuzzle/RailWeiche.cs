@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.PlayerLoop;
 
 // class to handle element level of rail puzzle
 public class RailWeiche : MonoBehaviour
@@ -9,13 +11,29 @@ public class RailWeiche : MonoBehaviour
     public Material activeMaterial;
     public Material inactiveMaterial;
 
-    private bool isStraight = true;
+    [SerializeField] private bool isStraight = true;
+
+    [SerializeField] private GameObject indicatorStraight;
+    [SerializeField] private GameObject indicatorCurve;
+
+    [SerializeField] private string straightIDsuffix = ".straight";
+    [SerializeField] private string divergeIDsuffix = ".diverge";
+
+    public static UnityEvent<string> onSwitch = new UnityEvent<string>();
     
     // Toggle the switch state
     public void Toggle()
     {
         isStraight = !isStraight;
+        Debug.Log("Set " + switchID + " to isStraight: " + isStraight);
+        
+        UpdateID();
         UpdateMaterials();
+        
+        indicatorCurve.SetActive(!isStraight);
+        indicatorStraight.SetActive(isStraight);
+        
+        onSwitch?.Invoke(switchID);
     }
 
     // Set direct state
@@ -29,7 +47,38 @@ public class RailWeiche : MonoBehaviour
     public string GetNextSwitchID()
     {
         // Example: switchID = "A", outputs named "A1" (straight) and "A2" (diverge)
-        return isStraight ? switchID + ".straight" : switchID + ".diverge";
+        string res = switchID;
+
+        if (isStraight)
+        {
+            res += straightIDsuffix;
+        }
+        else
+        {
+            res += divergeIDsuffix;
+        }
+
+        Debug.Log("Returning id with isStraight: " + isStraight);
+        return res;
+    }
+
+    public void UpdateID()
+    {
+        switchID = switchID.Split('.')[0];
+        
+        if (isStraight)
+        {
+            switchID += straightIDsuffix;
+        }
+        else
+        {
+            switchID += divergeIDsuffix;
+        }
+    }
+    
+    public bool isWeicheStraight()
+    {
+        return isStraight;
     }
 
     private void UpdateMaterials()

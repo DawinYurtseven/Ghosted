@@ -1,43 +1,66 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(MeshRenderer))]
 public class RailElement : MonoBehaviour
 {
-    public string elementID; // e.g. "A1", "A2", etc.
+    [SerializeField] private string elementID; // e.g. "A1", "A2", etc.
     public RailController controller;
-    public string prevWeiche;
+    public string prevWeiche;                   //technically not needed anymore
     public Material activeMaterial;
     public Material inactiveMaterial;
     
     private MeshRenderer meshRenderer;
     [SerializeField] private bool needEnergy = true;
-    
+    [SerializeField] private bool isActive = false;
     private void Start()
     {
         meshRenderer = GetComponent<MeshRenderer>();
         
         if(controller)
-            UpdateMaterial();
+            UpdateMaterial("");
         
         if (!needEnergy)
             meshRenderer.material = activeMaterial;
         else meshRenderer.material = inactiveMaterial;
     }
 
-    // Call this to refresh material based on current switch path
-    public void UpdateMaterial()
+    private void OnEnable()
     {
-        // Determine if this elementID matches the next output of the previous switch
-        RailWeiche prevSwitch = controller.alleWeichen.Find(s => s.switchID.Equals(prevWeiche));
-        if (prevSwitch == null)
-        {
-            Debug.Log("no weiche found with id " + prevWeiche);
-            meshRenderer.material = inactiveMaterial;
-            return;
-        }
+        RailWeiche.onSwitch?.AddListener(UpdateMaterial);
+    }
 
-        Debug.Log("Switch ID: " + prevSwitch.GetNextSwitchID() + ", elementID: " + elementID);
-        bool isActive = prevSwitch.GetNextSwitchID() == elementID;
+    private void OnDisable()
+    {
+        RailWeiche.onSwitch?.RemoveListener(UpdateMaterial);
+    }
+
+    // Call this to refresh material based on current switch path
+    public void UpdateMaterial(string weichenID)
+    {
+        Debug.Log("Gleis mat updating at " + elementID +", for " + weichenID);
+        
+        if(!needEnergy)
+            return;
+        
+        if (elementID.Equals(weichenID))
+            isActive = true;
+        else
+            isActive = false;
+        
         meshRenderer.material = isActive ? activeMaterial : inactiveMaterial;
+        
+        // // Determine if this elementID matches the next output of the previous switch
+        // RailWeiche prevSwitch = controller.alleWeichen.Find(s => s.switchID.Equals(prevWeiche));
+        // if (prevSwitch == null)
+        // {
+        //     Debug.Log("no weiche found with id " + prevWeiche);
+        //     meshRenderer.material = inactiveMaterial;
+        //     return;
+        // }
+
+        // Debug.Log("Updating because Switch: " + prevSwitch.GetNextSwitchID() + " was altered, elementID: " + elementID);
+        // bool isActive = prevSwitch.GetNextSwitchID().Equals(elementID);
+        // meshRenderer.material = isActive ? activeMaterial : inactiveMaterial;
     }
 }

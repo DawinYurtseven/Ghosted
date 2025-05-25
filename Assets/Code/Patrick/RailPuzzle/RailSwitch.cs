@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 public class RailSwitch : MonoBehaviour
 {
-    public UnityEvent switchWeiche;
+    public static UnityEvent<string> switchWeiche = new UnityEvent<string>();
     [SerializeField] private bool up = true;
     [SerializeField] private RailWeiche Weiche;
     [SerializeField] private GameObject hebelUp;
@@ -18,14 +18,14 @@ public class RailSwitch : MonoBehaviour
         switchWeiche.RemoveListener(OnSwitch);
     }
 
-    public void OnSwitch()
+    public void OnSwitch(string id)
     {
         toggle();
     }
 
     public void envokeEvent()
     {
-        switchWeiche?.Invoke();
+        switchWeiche?.Invoke(Weiche.switchID);
     }
     
     private void toggle()

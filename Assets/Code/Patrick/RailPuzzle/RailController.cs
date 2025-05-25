@@ -8,8 +8,8 @@ public class RailController : MonoBehaviour
      * Manages multiple RailSwitch instances and dispatches toggle commands.
      */
     public List<RailWeiche> alleWeichen = new List<RailWeiche>();
-
-    // set and check all needed Objects
+    
+    // set and check all needed Objects (the junction)
     public void Awake()
     {   
         // if list is empty, get all Weichen from the scene
@@ -26,10 +26,20 @@ public class RailController : MonoBehaviour
         if(alleWeichen.Count == 0) Debug.LogWarning("No rail junctions in the controller!");
     }
 
+    public void OnEnable()
+    {
+        RailSwitch.switchWeiche?.AddListener(ToggleSwitch);
+    }
+
+    public void OnDisable()
+    {
+        RailSwitch.switchWeiche?.RemoveListener(ToggleSwitch);
+    }
+
     // Toggle a switch by ID
     public void ToggleSwitch(string id)
     {
-        var sw = alleWeichen.Find(s => s.switchID == id);
+        var sw = alleWeichen.Find(s => s.switchID.Equals(id));
         if (sw != null)
             sw.Toggle();
         else

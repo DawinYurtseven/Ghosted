@@ -16,8 +16,6 @@ public class StateManagerMock : MonoBehaviour
 
     public State currentState = State.Joy;
     
-    
-    
     private void Start()
     {
         if (stateObjects.Length < Enum.GetNames(typeof(State)).Length) {
