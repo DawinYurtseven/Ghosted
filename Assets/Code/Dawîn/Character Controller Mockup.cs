@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Cinemachine;
 using TMPro;
@@ -171,25 +172,72 @@ public class CharacterControllerMockup : MonoBehaviour
 
     #region Jump
 
+    /*
+     * Now each variable explained in order:
+     * jumpStrength: How strong the jump is, how high the player can jump.
+     * FallStrength: How strong the player falls, how fast the player falls. this also dictates how quick he starts to fall from a jump
+     * groundCheckDistance: How far the player checks for ground below him, this is used to check if the player is grounded or not.
+     * coyoteTime: How long the player can jump after leaving the ground, this is used to allow the player to jump after leaving the ground.
+     * the two booleans coyoteJumped and isGrounded are used to check if the player is grounded or not and dictate coyote time.
+     */
     [Header("Jump")] [SerializeField] public float jumpStrength;
-    [SerializeField] public float fallStrength;
+    [SerializeField] public float fallStrength, coyoteFallStrength;
     [SerializeField] private float groundCheckDistance;
-
+    [SerializeField] private float coyoteTime = 0.2f;
+    private bool coyoteJumped, isGrounded = true; 
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (context.started && Physics.Raycast(transform.position, -transform.up, 1.1f))
+        if (context.started && ( Physics.SphereCast(transform.position,0.5f,-transform.up,out var hit, groundCheckDistance) || (!isGrounded && !coyoteJumped )))
         {
             var up = transform.up;
             rb.velocity += up * jumpStrength;
             //rb.AddForce(up * jumpStrength, ForceMode.Force);
+            isGrounded = false;
+            coyoteJumped = true;
         }
+    }
+
+    IEnumerator CoyoteJump()
+    {
+        print("called CoyoteJump");
+        float timer = 0f;
+        while (timer < coyoteTime)
+        {
+            if (Physics.SphereCast(transform.position,0.5f, -transform.up, out var hit,groundCheckDistance))
+            {
+                isGrounded = true;
+                coyoteJumped = false;
+                yield break;
+            }
+            rb.AddForce(-transform.up * coyoteFallStrength, ForceMode.Acceleration);
+            timer += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+        isGrounded = false;
+        coyoteJumped = true;
     }
 
     private void RegulateJump()
     {
-        if (!Physics.Raycast(transform.position, -transform.up, 1.1f))
-            rb.AddForce(-transform.up * fallStrength, ForceMode.Acceleration);
+        if (!Physics.SphereCast(transform.position,0.5f, -transform.up, out var hit,groundCheckDistance))
+        {
+            if (isGrounded)
+            {
+                print("entered isGrounded if statement");
+                isGrounded = false;
+                coyoteJumped = false;
+                StartCoroutine(CoyoteJump());
+            }
+            else if (coyoteJumped)
+            {
+                print("now!");
+                rb.AddForce(-transform.up * fallStrength, ForceMode.Acceleration);
+            }
+        }
+        else if (coyoteJumped)
+            isGrounded = true;
+        
     }
 
     #endregion
