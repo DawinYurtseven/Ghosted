@@ -250,7 +250,7 @@ Shader "ForgottenColours/Lit/Sumi-E"
                 // Generate 3D Voronoi noise with smooth blending and distortion options
                 float dist;
                 float3 col, pos;
-                VoronoiSmoothF1_3D(mixed * _VoronoiScale, _VoronoiSmoothness, _VoronoiExponent, _VoronoiRandomness, _DistanceMetric, dist, col, pos);
+                VoronoiSmoothF1_3D(noiseCoord * _VoronoiScale, _VoronoiSmoothness, _VoronoiExponent, _VoronoiRandomness, _DistanceMetric, dist, col, pos);
 
                 // Compute Blinn-Phong lighting with shadows and attenuation from main light
                 half3 lighting = BlinnPhong(pos, v, mainLight, c) * mainLight.shadowAttenuation * mainLight.distanceAttenuation;
