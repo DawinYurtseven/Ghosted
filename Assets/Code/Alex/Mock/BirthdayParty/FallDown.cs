@@ -17,6 +17,8 @@ public class FallDown : MonoBehaviour
             foreach (GameObject objectHidden in disabledObjects  ) {
                 objectHidden.SetActive(true);
             }
+            
+            EmotionSingletonMock.Instance.disableAll = false;
         }
         Destroy(gameObject);
     }

@@ -1,9 +1,6 @@
-using System;
 using System.Collections;
 using TMPro;
 using UniRx;
-using UniRx.Triggers;
-using Unity.VisualScripting;
 using UnityEngine;
 using Image = UnityEngine.UI.Image;
 
@@ -34,7 +31,7 @@ public class TalismanTargetMock : MonoBehaviour
             {
                 if (!locked) currentEmotion = emotion;
                 surroundEmotion = emotion;
-                EmotionalBehaivour();
+                EmotionalBehaviour();
             });
     }
 
@@ -87,6 +84,17 @@ public class TalismanTargetMock : MonoBehaviour
         lockOnImage.color = Color.white;
     }
 
+    public void turnOff()
+    {
+        interact = false;
+        lockOnImage.enabled = false;
+    }
+    
+    public void turnOn()
+    {
+        lockOnImage.enabled = true;
+    }
+
     #endregion
     
     #region Emotion
@@ -111,7 +119,7 @@ public class TalismanTargetMock : MonoBehaviour
     public void ResetObject()
     {
         currentEmotion = surroundEmotion;
-        EmotionalBehaivour();
+        EmotionalBehaviour();
     }
     
     protected virtual void EmotionalBehaivour()
@@ -128,6 +136,9 @@ public class TalismanTargetMock : MonoBehaviour
             case Emotion.Joy:
                 gameObject.AddComponent<Joy>();
                 emotionText.text = "Joy";
+                break;
+            case Emotion.Fear:
+                emotionText.text = "Fear";
                 break;
             default:
                 emotionText.text = "";

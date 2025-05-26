@@ -16,10 +16,6 @@ public class StateManagerMock : MonoBehaviour
 
     public State currentState = State.Joy;
     
-    
-
-  
-
     private void Start()
     {
         if (stateObjects.Length < Enum.GetNames(typeof(State)).Length) {
@@ -51,7 +47,7 @@ public class StateManagerMock : MonoBehaviour
     }
 
 
-    private void changeState (State newState ) {
+    public void changeState (State newState ) {
         stateObjects[(int) currentState]?.SetActive(false);
         stateObjects[(int) newState]?.SetActive(true);
 
@@ -63,7 +59,8 @@ public class StateManagerMock : MonoBehaviour
     
 }
 
+[Serializable]
 public enum State {
         Joy,
         Fear
-    }
+}

@@ -15,6 +15,7 @@ public class EmotionSingletonMock : MonoBehaviour
 {
     public static EmotionSingletonMock Instance { get; private set; }
 
+    public bool disableAll = false;
     #region Emotions
 
     /*
@@ -46,7 +47,7 @@ public class EmotionSingletonMock : MonoBehaviour
 
     public readonly Subject<TalismanTargetMock> CurrentTarget = new Subject<TalismanTargetMock>();
     [SerializeField] private TalismanTargetMock currentTarget;
-    
+    [SerializeField] private float range = 15.0f;
     [SerializeField] private List<TalismanTargetMock> availableTalismanTargetMocks;
     private Camera mainCamera;
 
@@ -55,32 +56,61 @@ public class EmotionSingletonMock : MonoBehaviour
 
         availableTalismanTargetMocks.Add(target);
     }
+
+
     
     
     private void CheckTargets()
     {
+        if (disableAll)
+        {
+            foreach (var target in availableTalismanTargetMocks)
+            {
+                if (target != null)
+                {
+                    target.turnOff();
+                }
+            }
+            CurrentTarget.OnNext(null);
+            return;
+        }
+
         if (availableTalismanTargetMocks.Count == 0)
         {
             CurrentTarget.OnNext(null);
             return;
         }
-
-        TalismanTargetMock closestTarget = availableTalismanTargetMocks[0];
-        Vector3 closestTargetScreenPoint = mainCamera.WorldToScreenPoint(closestTarget.transform.position) -
-                                           new Vector3((Screen.width - 1) / 2, (Screen.height-1) / 2, 0);
+        
+        TalismanTargetMock closestTarget = null;
+        Vector3 closestTargetScreenPoint = Vector3.zero;
+        float closestDistance = float.MaxValue;
+  
         foreach (var target in availableTalismanTargetMocks)
         {
             if (target == null) continue;
+            float distanceToCamera = Vector3.Distance(mainCamera.transform.position, target.transform.position);
+            if (distanceToCamera > range)
+            {
+                target.turnOff();
+                continue;
+            }
+            target.turnOn();
             var screenPoint = (mainCamera.WorldToScreenPoint(target.transform.position) -
                               new Vector3((Screen.width - 1) / 2, (Screen.height-1) / 2, 0));
             screenPoint.z = 0;
-            if (screenPoint.magnitude < closestTargetScreenPoint.magnitude)
+            float screenDistance = screenPoint.magnitude;
+            if (screenDistance < closestDistance)
             {
                 closestTarget = target;
                 closestTargetScreenPoint = screenPoint;
+                closestDistance = screenDistance;
             }
         }
-        
+        if (!closestTarget)
+        {
+            CurrentTarget.OnNext(null);
+            return;
+        }
         closestTarget.Highlight();
         var temp = currentTarget;
         currentTarget = closestTarget;
