@@ -1,5 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class BindingMock : MonoBehaviour
@@ -10,7 +10,8 @@ public class BindingMock : MonoBehaviour
      public List<GameObject> gameObjectsList = new List<GameObject>();
 
      public int maxTalismans = 3;
-
+     [SerializeField] TextMeshProUGUI talismansUsed;
+    
     private void Awake()
     {
         _controller = this.GetComponent<CharacterControllerMockup>();
@@ -28,42 +29,46 @@ public class BindingMock : MonoBehaviour
 
             Debug.Log("Got key");
 
-           
-
             if (_controller.target != null) {
 
                 GameObject lockObject = _controller.target.gameObject;
 
 
-                if (lockObject.GetComponent<JumpPad>() != null) {
+                if (lockObject.GetComponent<Lockable>() != null) {
                     if (gameObjectsList.Contains(lockObject)) {
                         gameObjectsList.Remove(lockObject);
+                        lockObject.GetComponent<Lockable>().Unlock();
                     }
                     else {
                          if (gameObjectsList.Count == maxTalismans) {
                             Debug.Log("All talismans used!");
-                            return;
-                        }
-                        gameObjectsList.Add(lockObject);
+                            return; } 
+                         gameObjectsList.Add(lockObject); 
+                         lockObject.GetComponent<Lockable>().Lock();
                     }
-                    lockObject.GetComponent<JumpPad>().Lock();
-                }
-                else if (lockObject.GetComponent<FearObjectParent>() != null){
-                    if (gameObjectsList.Contains(lockObject)) {
-                        gameObjectsList.Remove(lockObject);
-                    }
-                    else {
-                         if (gameObjectsList.Count == maxTalismans) {
-                            Debug.Log("All talismans used!");
-                            return;
-                        }
-                        gameObjectsList.Add(lockObject);
-                    }
-                    lockObject.GetComponent<FearObjectParent>().Lock();
                 }
             }
+            talismansUsed.text = "Talismans used: " + gameObjectsList.Count + " / " + maxTalismans;
+                
+        } 
+        //Recall talismans
+        if (Input.GetKeyDown(KeyCode.R)) {
+             resetTalismans();
         }
     }
 
-    
+    public void resetTalismans()
+    {
+        foreach (GameObject go in gameObjectsList)
+        {
+            go.GetComponent<Lockable>().Unlock();
+        }
+             
+        gameObjectsList.Clear();
+             
+        talismansUsed.text = "Talismans used: " + gameObjectsList.Count + " / " + maxTalismans;
+    }
 }
+
+    
+

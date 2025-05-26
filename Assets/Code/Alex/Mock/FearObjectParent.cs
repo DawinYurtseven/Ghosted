@@ -1,14 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class FearObjectParent : MonoBehaviour
+public class FearObjectParent : Lockable
 {
     public GameObject openState, closedState, shadow;
 
-    private State _currentState;
+   
 
-    private bool _locked = false;
+    public GameObject specialEffect;
 
     private void OnEnable()
     {
@@ -22,30 +20,60 @@ public class FearObjectParent : MonoBehaviour
     }
 
 
-    private void ChangeState(State newState)
+    protected void ChangeState(State newState)
     {   if (!_locked) {
             if (newState == State.Fear) {
                 closedState.SetActive(false);
                 openState.SetActive(true);   
+                shadow.SetActive(true);
             }
             else {
                 closedState.SetActive(true);
                 openState.SetActive(false);
+                shadow.SetActive(false);
             }
         }
-        _currentState = newState;
-        shadow.SetActive(_currentState == State.Fear);
-    }
 
-    public void Lock() {
-        if (_locked) {
-            closedState.SetActive(_currentState == State.Joy);
-            openState.SetActive(_currentState != State.Joy);
-            _locked = false;
+        if (_locked && openState.activeSelf)
+        {
+            if (newState == State.Joy)
+            {
+                shadow.SetActive(false);
+            }
+            else
+            {
+                shadow.SetActive(true);
+            }
+            
         }
 
-        else {
-            _locked = _currentState == State.Fear;
+        if (_locked && closedState.activeSelf)
+        {
+            shadow.SetActive(false);
+        }
+        
+        currentState = newState;
+        
+    }
+    
+    public override void Lock() {
+        _locked = true;
+        if (specialEffect != null)
+        {
+            specialEffect.SetActive(true);
         }
     }
+
+    public override void Unlock()
+    {
+        closedState.SetActive(currentState == State.Joy);
+        openState.SetActive(currentState != State.Joy);
+        shadow.SetActive(currentState == State.Fear);
+        _locked = false;
+        if (specialEffect != null)
+        {
+            specialEffect.SetActive(false);
+        }
+    }
+
 }
