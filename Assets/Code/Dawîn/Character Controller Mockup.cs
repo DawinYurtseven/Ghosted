@@ -233,7 +233,7 @@ public class CharacterControllerMockup : MonoBehaviour
             }
             else if (coyoteJumped)
             {
-                print("now!");
+                // print("now!");
                 rb.AddForce(-transform.up * fallStrength, ForceMode.Acceleration);
             }
         }
