@@ -17,9 +17,14 @@ public class TalismanTargetMock : MonoBehaviour
     Collider objCollider;
     Image lockOnImageComponent;
 
-    void Start()
+    // void Start()
+    
+    private void OnEnable()
     {
-        cam = Camera.main;
+        lockOnImage = lockOnImage.GetComponent<Image>();
+        emotionText.text = currentEmotion.ToString();
+        
+        //copied from start but test first cam = Camera.main;
         objCollider =  GetComponent<Collider>();
         StartCoroutine(CheckAvailability());
         
@@ -31,12 +36,6 @@ public class TalismanTargetMock : MonoBehaviour
                 surroundEmotion = emotion;
                 EmotionalBehaivour();
             });
-    }
-    
-    private void OnEnable()
-    {
-        lockOnImage = lockOnImage.GetComponent<Image>();
-        emotionText.text = currentEmotion.ToString();
     }
 
 
@@ -97,13 +96,15 @@ public class TalismanTargetMock : MonoBehaviour
      * the emotion itself will be declared in the singleton
      * 
      */
-    private Emotion currentEmotion, surroundEmotion;
-    private bool locked;
+    protected Emotion currentEmotion;
+    protected Emotion surroundEmotion;
+    protected bool locked;
     [SerializeField] private TextMeshProUGUI emotionText;
 
     private void ResetEmotion()
     {
-        Physics.IgnoreCollision(GameObject.FindWithTag("Player").GetComponent<Collider>(), GetComponent<Collider>(), false);
+        //work on fear properly with ignore tags maybe? or just cheat like now if objects other than player should fall through
+        //Physics.IgnoreCollision(GameObject.FindWithTag("Player").GetComponent<Collider>(), GetComponent<Collider>(), false);
         locked = false;
     }
 
@@ -113,26 +114,28 @@ public class TalismanTargetMock : MonoBehaviour
         EmotionalBehaivour();
     }
     
-    private void EmotionalBehaivour()
+    protected virtual void EmotionalBehaivour()
     {
         ResetEmotion();
-        switch (currentEmotion)
+        /*switch (currentEmotion)
         {
-            case Emotion.Lonely:
+            case Emotion.Fear:
+                gameObject.AddComponent<Fear>();
                 Physics.IgnoreCollision(GameObject.FindWithTag("Player").GetComponent<Collider>(), GetComponent<Collider>(), true );
                 emotionText.text = "Lonely";
                 //copy code for seethrough material
                 break;
             case Emotion.Joy:
+                gameObject.AddComponent<Joy>();
                 emotionText.text = "Joy";
                 break;
             default:
                 emotionText.text = "";
                 break;
-        }
+        }*/
     }
 
-    public void Bind()
+    public virtual void Bind()
     {
         print("bind");
         if (locked)
@@ -144,12 +147,6 @@ public class TalismanTargetMock : MonoBehaviour
         {
             locked = true;
         }
-    }
-
-    public void EvokeEmotion(Emotion emotion)
-    {
-        currentEmotion = emotion;
-        EmotionalBehaivour();
     }
 
     #endregion

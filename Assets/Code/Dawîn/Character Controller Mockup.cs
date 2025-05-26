@@ -424,34 +424,7 @@ public class CharacterControllerMockup : MonoBehaviour
     [SerializeField] private Emotion talismanEmotion;
 
     [SerializeField] private TextMeshProUGUI talismanModetext, talismanEmotionText;
-
-    public void ChangeTalismanMode(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            tMode = tMode == talismanMode.bind ? talismanMode.emotions : talismanMode.bind;
-            if (tMode == talismanMode.bind)
-            {
-                talismanModetext.text = "Bind";
-                talismanEmotionText.enabled = false;
-            }
-            else
-            {
-                talismanEmotionText.enabled = true;
-                talismanModetext.text = "Emotions";
-                talismanEmotionText.text = talismanEmotion.ToString();
-            }
-        }
-    }
-
-    public void ChangeEmotionTalisman(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            talismanEmotion = talismanEmotion == Emotion.Joy ? Emotion.Lonely : Emotion.Joy;
-            talismanEmotionText.text = talismanEmotion.ToString();
-        }
-    }
+    
 
     [SerializeField] private GameObject TalismanPrefab;
 
@@ -518,15 +491,7 @@ public class CharacterControllerMockup : MonoBehaviour
             }
 
             if (previousTargetTalismanObject != null) previousTargetTalismanObject.ResetObject();
-            switch (tMode)
-            {
-                case talismanMode.bind:
-                    tempTar.Bind();
-                    break;
-                case talismanMode.emotions:
-                    tempTar.EvokeEmotion(talismanEmotion);
-                    break;
-            }
+            tempTar.Bind();
 
             previousTargetTalismanObject = tempTar;
             print(previousTargetTalismanObject);
