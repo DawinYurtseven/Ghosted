@@ -20,6 +20,8 @@ public class RailWeiche : MonoBehaviour
     [SerializeField] private string divergeIDsuffix = ".diverge";
 
     public static UnityEvent<string> onSwitch = new UnityEvent<string>();
+
+    [SerializeField] private HebelAnim animIndicator;
     
     // Toggle the switch state
     public void Toggle()
@@ -30,8 +32,13 @@ public class RailWeiche : MonoBehaviour
         UpdateID();
         UpdateMaterials();
         
-        indicatorCurve.SetActive(!isStraight);
-        indicatorStraight.SetActive(isStraight);
+        if(animIndicator)
+            animIndicator.Toggle(isStraight);
+        else
+        {
+            indicatorCurve.SetActive(!isStraight);
+            indicatorStraight.SetActive(isStraight);
+        }
         
         onSwitch?.Invoke(switchID);
     }

@@ -8,6 +8,7 @@ public class RailSwitch : MonoBehaviour
     [SerializeField] private RailWeiche Weiche;
     [SerializeField] private GameObject hebelUp;
     [SerializeField] private GameObject hebelDown;
+    
     private void OnEnable()
     {
         switchWeiche.AddListener(OnSwitch);
