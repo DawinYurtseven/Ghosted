@@ -30,7 +30,7 @@ public class HebelAnim : MonoBehaviour
         // Animate rotation
         float targetAngle = isOn ? rotationAngle : initialRotation.eulerAngles.z;
         Vector3 v = Axis * rotationAngle; 
-        transform.DOLocalRotate(v, durgit ation).SetEase(easing);
+        transform.DOLocalRotate(v, duration).SetEase(easing);
 
         // Animate position if enabled
         if (moveOnToggle)
