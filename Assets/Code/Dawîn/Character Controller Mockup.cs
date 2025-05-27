@@ -202,7 +202,7 @@ public class CharacterControllerMockup : MonoBehaviour
 
     IEnumerator CoyoteJump()
     {
-        print("called CoyoteJump");
+        //print("called CoyoteJump");
         float timer = 0f;
         while (timer < coyoteTime)
         {
@@ -226,7 +226,7 @@ public class CharacterControllerMockup : MonoBehaviour
         {
             if (isGrounded)
             {
-                print("entered isGrounded if statement");
+                //print("entered isGrounded if statement");
                 isGrounded = false;
                 coyoteJumped = false;
                 StartCoroutine(CoyoteJump());
