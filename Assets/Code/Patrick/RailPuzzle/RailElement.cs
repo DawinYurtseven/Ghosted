@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(MeshRenderer))]
 public class RailElement : MonoBehaviour
@@ -13,6 +14,9 @@ public class RailElement : MonoBehaviour
     private MeshRenderer meshRenderer;
     [SerializeField] private bool needEnergy = true;
     [SerializeField] private bool isActive = false;
+
+    public UnityEvent onConnection;
+    public UnityEvent onDissconnect;
     private void Start()
     {
         meshRenderer = GetComponent<MeshRenderer>();
@@ -50,6 +54,9 @@ public class RailElement : MonoBehaviour
         
         meshRenderer.material = isActive ? activeMaterial : inactiveMaterial;
         
+        if(isActive) onConnection?.Invoke();
+        else onDissconnect?.Invoke();
+        
         // // Determine if this elementID matches the next output of the previous switch
         // RailWeiche prevSwitch = controller.alleWeichen.Find(s => s.switchID.Equals(prevWeiche));
         // if (prevSwitch == null)
@@ -62,5 +69,11 @@ public class RailElement : MonoBehaviour
         // Debug.Log("Updating because Switch: " + prevSwitch.GetNextSwitchID() + " was altered, elementID: " + elementID);
         // bool isActive = prevSwitch.GetNextSwitchID().Equals(elementID);
         // meshRenderer.material = isActive ? activeMaterial : inactiveMaterial;
+    }
+
+    public bool isConnected()
+    {
+        if (!needEnergy) return true;
+        return meshRenderer.material == activeMaterial;
     }
 }

@@ -30,7 +30,10 @@ public class RailSignalControler : MonoBehaviour
 
     public void OnSolved()
     {
-        
+        switchIndicator(true);
+        switchLights(true);
+
+        green = lightGreen = true;
     }
     
 }
