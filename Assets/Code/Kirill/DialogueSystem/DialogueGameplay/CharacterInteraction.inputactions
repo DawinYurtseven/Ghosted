@@ -1,0 +1,54 @@
+{
+    "name": "CharacterInteraction",
+    "maps": [
+        {
+            "name": "Dialogue",
+            "id": "98dd2cc5-ab40-4eb8-b3d9-c25a0cd519bf",
+            "actions": [
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "69ba4b02-941c-424b-8a33-aff25bf1fab9",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "DialogueNext",
+                    "type": "Button",
+                    "id": "15bbc593-fe60-4ff0-aff3-400d9726ef53",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "3ff57756-1dc1-4ed6-a620-93ec7b62def3",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a06bdfa8-b33f-4f5c-95b1-359d40ca59ea",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DialogueNext",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
