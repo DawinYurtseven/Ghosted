@@ -703,11 +703,9 @@ MonoBehaviour:
   xAxisMaxLock: 0
   jumpStrength: 35
   fallStrength: 100
-  gravity: 10
-  groundCheckDistance: 0
-  allowJumpOn:
-    serializedVersion: 2
-    m_Bits: 3319
+  coyoteFallStrength: 50
+  groundCheckDistance: 1.1
+  coyoteTime: 0.2
   dashSpeed: 50
   lastInput: {x: 0, y: 0, z: 0}
   dashed: 0
@@ -723,6 +721,7 @@ MonoBehaviour:
   talismanModetext: {fileID: 3338305222778658250}
   talismanEmotionText: {fileID: 1508658487375581538}
   TalismanPrefab: {fileID: 7056454499061255236, guid: 3860e4fd9a395ea479a9b8f9c798551e, type: 3}
+  maxSlopeAngle: 45
 --- !u!114 &7266318017597648310
 MonoBehaviour:
   m_ObjectHideFlags: 0
