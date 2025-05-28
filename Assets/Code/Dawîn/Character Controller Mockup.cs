@@ -88,7 +88,7 @@ public class CharacterControllerMockup : MonoBehaviour
             currentSpeed = Mathf.Lerp(currentSpeed, 0, timer / deaccelerationTime);
             rb.velocity = Vector3.Lerp(velocity, new Vector3(0, 0, 0) + lookAtTarget.up * velocity.y, timer / 0.5f);
             timer += Time.fixedDeltaTime;
-            yield return null;
+            yield return new WaitForFixedUpdate();
         }
     }
 
@@ -241,6 +241,9 @@ public class CharacterControllerMockup : MonoBehaviour
             isGrounded = true;
         
     }
+    
+    //TODO: Ledge Forgiveness
+    //TODO: 
 
     #endregion
 
@@ -289,6 +292,8 @@ public class CharacterControllerMockup : MonoBehaviour
     [SerializeField] private new CinemachineVirtualCamera camera;
     [SerializeField] private float cameraZoomSpeed;
 
+    
+    //TODO: Lock on raus und mehr am ui arbeiten
     private bool lockOn;
     private Vector3 targetPosition;
 
