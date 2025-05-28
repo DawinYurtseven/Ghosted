@@ -1,0 +1,102 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0128aa92babf3fd4e9cf4beb0d51198e, type: 3}
+  m_Name: strawberryDialogue 1
+  m_EditorClassIdentifier: 
+  dialogueSpeakers:
+  - Player
+  - Ghost
+  dialogueNodes:
+  - rect:
+      serializedVersion: 2
+      x: 256
+      y: 232
+      width: 200
+      height: 80
+    onEnterActions:
+    - enter
+    onExitActions: []
+    text: Why did you take my strawberry?
+    speaker: Ghost
+  - rect:
+      serializedVersion: 2
+      x: 522
+      y: 268
+      width: 200
+      height: 80
+    onEnterActions: []
+    onExitActions: []
+    text: Don't you feel anything?
+    speaker: Player
+  - rect:
+      serializedVersion: 2
+      x: 301
+      y: 459
+      width: 200
+      height: 80
+    onEnterActions: []
+    onExitActions: []
+    text: Yes, I feel angry! I invite you to my party, and you take my strawberry!
+    speaker: Ghost
+  - rect:
+      serializedVersion: 2
+      x: 642
+      y: 439
+      width: 200
+      height: 80
+    onEnterActions: []
+    onExitActions: []
+    text: Hmmm.. Cannot you remember anything else?
+    speaker: Player
+  - rect:
+      serializedVersion: 2
+      x: 610
+      y: 598
+      width: 200
+      height: 80
+    onEnterActions: []
+    onExitActions: []
+    text: What are you talking about? Hmmm... not really
+    speaker: Ghost
+  - rect:
+      serializedVersion: 2
+      x: 132
+      y: 742
+      width: 200
+      height: 80
+    onEnterActions: []
+    onExitActions: []
+    text: Anything about your parents?
+    speaker: Player
+  - rect:
+      serializedVersion: 2
+      x: 352
+      y: 861
+      width: 200
+      height: 80
+    onEnterActions: []
+    onExitActions: []
+    text: Just normal parents. Caring, loving, sometimes fighting. Nothing in particular
+    speaker: Ghost
+  - rect:
+      serializedVersion: 2
+      x: 358
+      y: 1096
+      width: 200
+      height: 80
+    onEnterActions: []
+    onExitActions:
+    - exit
+    text: You reminded me, I want to introduce you to my father! He is probably in
+      his study again
+    speaker: Ghost
+  replyNodes: []

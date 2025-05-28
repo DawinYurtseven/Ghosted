@@ -50,7 +50,7 @@ public partial class @CharacterInteraction: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""3ff57756-1dc1-4ed6-a620-93ec7b62def3"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Keyboard>/h"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -61,7 +61,7 @@ public partial class @CharacterInteraction: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""a06bdfa8-b33f-4f5c-95b1-359d40ca59ea"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""path"": ""<Keyboard>/tab"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

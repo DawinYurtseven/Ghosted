@@ -72,20 +72,24 @@ namespace Ghosted.Dialogue {
             if (currentDialogue == null)
             {
                 //Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue()); // Use mouse position
-                Ray ray = new Ray(transform.position, transform.forward);
+                // Ray ray = new Ray(transform.position, transform.forward);
+                
+                Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
                 RaycastHit hit;
 
                 Debug.Log("I shoot ray " + ray);
 
                 if (Physics.Raycast(ray, out hit, interactDistance))
                 {
-                    Debug.Log("I hit smth " + hit);
+                    Debug.Log("I hit smth " + hit.collider.gameObject.name);
                     // Check for the target script
                     AIConversant aIConversant = hit.collider.GetComponent<AIConversant>();
                     if (aIConversant != null)
                     {
-                        aIConversant.Interact(this);
+                        Debug.Log("It's a conversant!");
                         currentConversant = aIConversant;
+                        aIConversant.Interact(this);
+                        
                     }
                 }
             }
@@ -148,6 +152,11 @@ namespace Ghosted.Dialogue {
         {
             if (action == "") return;
 
+            if (currentConversant == null)
+            {
+                Debug.Log("No conversant!");
+                return;
+            }
             foreach (DialogueTrigger trigger in currentConversant.GetComponents<DialogueTrigger>())
             {
                 trigger.Trigger(action);

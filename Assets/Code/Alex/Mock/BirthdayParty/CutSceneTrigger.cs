@@ -8,8 +8,8 @@ using UnityEngine.Splines;
 
 public class CutSceneTrigger : MonoBehaviour
 {
-    public static event Action<CutSceneName> OnCutSceneTriggered;
-
+    public static event Action<CutSceneName> OnCutScenePlayerTriggered;
+    public static event Action<CutSceneName> OnCutSceneTrainTriggered;
     [SerializeField] CutSceneName cutSceneName;
     //-1 -> no limit
     [SerializeField] private int repeatTimes = -1;
@@ -21,10 +21,16 @@ public class CutSceneTrigger : MonoBehaviour
     {
 
         Debug.Log("Entered CutScene trigger");
-        if (other.gameObject.GetComponent<CharacterControllerMockup>() != null ||
-            other.gameObject.GetComponent<SplineAnimate>() != null)
+        if (other.gameObject.GetComponent<CharacterControllerMockup>() != null)
         {
-            OnCutSceneTriggered?.Invoke(cutSceneName);
+            OnCutScenePlayerTriggered?.Invoke(cutSceneName);
+            if (repeatTimes != -1 && currentRepeat++ >= repeatTimes)
+                Destroy(gameObject);
+        }
+        
+        else if ( other.gameObject.GetComponent<SplineAnimate>() != null)
+        {
+            OnCutSceneTrainTriggered?.Invoke(cutSceneName);
             if (repeatTimes != -1 && currentRepeat++ >= repeatTimes)
                 Destroy(gameObject);
         }
@@ -37,5 +43,6 @@ public enum CutSceneName
     Train,
     TakeDocuments,
     EnterNextLevel,
-    ChangeTrain
+    ChangeTrain,
+    CuckooClock
 }

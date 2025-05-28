@@ -35,10 +35,12 @@ namespace Ghosted.Dialogue {
             replyNodeLookup.Clear();
             foreach (DialogueNode node in dialogueNodes)
             {
+                if (node == null) continue;
                 dialogueNodeLookup[node.Id] = node;
             }
             foreach (ReplyNode node in replyNodes)
             {
+                if (node == null) continue;
                 replyNodeLookup[node.Id] = node;
             }
         }
