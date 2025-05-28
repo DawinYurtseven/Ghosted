@@ -36,11 +36,14 @@ namespace Ghosted.Dialogue {
             foreach (DialogueNode node in dialogueNodes)
             {
                 if (node == null) continue;
+
+                if (node.Id == null) continue;
                 dialogueNodeLookup[node.Id] = node;
             }
             foreach (ReplyNode node in replyNodes)
             {
                 if (node == null) continue;
+                if (node.Id == null) continue;
                 replyNodeLookup[node.Id] = node;
             }
         }

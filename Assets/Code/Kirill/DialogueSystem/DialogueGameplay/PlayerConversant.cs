@@ -21,6 +21,7 @@ namespace Ghosted.Dialogue {
 
         [SerializeField] private float interactDistance = 20f;
 
+        private int playerLayer, layerMask;
         void Awake()
         {
 
@@ -28,6 +29,8 @@ namespace Ghosted.Dialogue {
 
         void Start()
         {
+            playerLayer = LayerMask.NameToLayer("Player");
+            layerMask = ~(1 << playerLayer);
             inputManager = GameObject.FindGameObjectWithTag("ScriptHolder")?.GetComponent<KirillCharacterInteractionInput>();
             inputManager.SubscribeInteract(OnInteract);
         }
@@ -79,7 +82,7 @@ namespace Ghosted.Dialogue {
 
                 Debug.Log("I shoot ray " + ray);
 
-                if (Physics.Raycast(ray, out hit, interactDistance))
+                if (Physics.Raycast(ray, out hit, interactDistance, layerMask))
                 {
                     Debug.Log("I hit smth " + hit.collider.gameObject.name);
                     // Check for the target script

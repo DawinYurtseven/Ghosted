@@ -36,7 +36,7 @@ public class LevelManagerMock : MonoBehaviour
     public GameObject[] objectsToActivate;
     private void OnEnable()
     {
-        EmotionSingletonMock.Instance.disableAll = true;
+        EmotionSingletonMock.Instance.disableAll = false;
         CutSceneTrigger.OnCutScenePlayerTriggered += ExecuteCutScenePlayer;
         CutSceneTrigger.OnCutSceneTrainTriggered += ExecuteCutSceneTrain;
     }
