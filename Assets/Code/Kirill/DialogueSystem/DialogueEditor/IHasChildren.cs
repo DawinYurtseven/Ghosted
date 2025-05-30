@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Ghosted.Dialogue
 {
-    public interface IHasChildren : IDialogueEditorInstance
+    public interface IHasChildren
     {
         public string Child { get; set; }
     }

@@ -497,7 +497,6 @@ GameObject:
   - component: {fileID: 576240907}
   - component: {fileID: 576240906}
   - component: {fileID: 576240905}
-  - component: {fileID: 576240911}
   - component: {fileID: 576240910}
   m_Layer: 0
   m_Name: Cube
@@ -518,7 +517,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e37ac6ac75374f40b427b84cb5bd054, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue: {fileID: 11400000, guid: c6880d356d72368448855444e7a78d15, type: 2}
+  dialogue: {fileID: 11400000, guid: 74a344a59ab053a4d997405ac0340c45, type: 2}
 --- !u!65 &576240906
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -606,22 +605,6 @@ Transform:
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &576240910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 576240904}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c00f7e671c43994f8c59c79eb2af5bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  action: efgfafdbn
-  onTrigger:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &576240911
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1245,7 +1228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ec74bc4997d59d44b2b913feacaf866, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactDistance: 15
+  interactDistance: 13.2
 --- !u!1 &1613934978
 GameObject:
   m_ObjectHideFlags: 3

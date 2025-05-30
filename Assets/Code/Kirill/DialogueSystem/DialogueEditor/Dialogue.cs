@@ -2,11 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using UnityEditor;
 using UnityEngine;
 
 namespace Ghosted.Dialogue {
     [CreateAssetMenu(fileName = "New Dialogue", menuName = "Dialogue")]
-    public class Dialogue : ScriptableObject 
+    public class Dialogue : ScriptableObject, ISerializationCallbackReceiver
     {
         [SerializeField] List<string> dialogueSpeakers = new List<string>();
         [SerializeField] List<DialogueNode> dialogueNodes = new List<DialogueNode>();
@@ -16,18 +17,19 @@ namespace Ghosted.Dialogue {
         Dictionary<string, ReplyNode> replyNodeLookup = new Dictionary<string, ReplyNode>();
 
 #if UNITY_EDITOR
-        void OnEnable()
+        void Awake()
         {
-            if (dialogueSpeakers.Count == 0)
-                dialogueSpeakers.Add("Player");
-            if (dialogueNodes.Count == 0)
-            {
-                var node = CreateDialogueNode(null);
-                node.rect.position = new Vector2(0, 0);
-            }
-            OnValidate();
+            //OnValidate();
         }
 #endif
+        private void OnEnable()
+        {
+
+            if (dialogueNodes == null)
+                dialogueNodes = new List<DialogueNode>();
+            if (replyNodes == null)
+                replyNodes = new List<ReplyNode>();
+        }
 
         private void OnValidate()
         {
@@ -35,11 +37,11 @@ namespace Ghosted.Dialogue {
             replyNodeLookup.Clear();
             foreach (DialogueNode node in dialogueNodes)
             {
-                dialogueNodeLookup[node.Id] = node;
+                dialogueNodeLookup[node.name] = node;
             }
             foreach (ReplyNode node in replyNodes)
             {
-                replyNodeLookup[node.Id] = node;
+                replyNodeLookup[node.name] = node;
             }
         }
         public IEnumerable<DialogueEditorNode> GetAllNodes()
@@ -108,17 +110,19 @@ namespace Ghosted.Dialogue {
 
         public DialogueNode CreateDialogueNode(IHasChildren parent)
         {
-            DialogueNode node = new DialogueNode();
-            node.Id = Guid.NewGuid().ToString();
+            DialogueNode node = CreateInstance<DialogueNode>();
+            node.name = Guid.NewGuid().ToString();
+            Undo.RegisterCreatedObjectUndo(node, "Created Dialogue Node");
             if (parent != null)
-                parent.Child = node.Id;
+                parent.Child = node.name;
             dialogueNodes.Add(node);
             if (dialogueSpeakers.Count != 0)
             {
                 node.speaker = dialogueSpeakers[0];
             }
 
-            node.rect.position = Event.current.mousePosition;
+            if (Event.current != null)
+                node.rect.position = Event.current.mousePosition;
 
             OnValidate();
 
@@ -127,11 +131,12 @@ namespace Ghosted.Dialogue {
 
         public ReplyNode CreateReplyNode(IHasChildren parent)
         {
-            ReplyNode node = new ReplyNode();
-            node.Id = Guid.NewGuid().ToString();
+            ReplyNode node = CreateInstance<ReplyNode>();
+            node.name = Guid.NewGuid().ToString();
+            Undo.RegisterCreatedObjectUndo(node, "Created Reply Node");
             node.rect.height += 150; // has to be adjusted
             if (parent != null)
-                parent.Child = node.Id;
+                parent.Child = node.name;
             replyNodes.Add(node);
 
             node.rect.position = Event.current.mousePosition;
@@ -146,9 +151,11 @@ namespace Ghosted.Dialogue {
             dialogueNodes.Remove(nodeToDelete);
             OnValidate();
             CleanDanglingChildren(nodeToDelete);
+            Undo.DestroyObjectImmediate(nodeToDelete);
         }
 
-        public void DeleteReplyNode(ReplyNode nodeToDelete) {
+        public void DeleteReplyNode(ReplyNode nodeToDelete)
+        {
             List<Reply> replies = new List<Reply>(nodeToDelete.replies);
             foreach (Reply reply in replies)
             {
@@ -157,11 +164,14 @@ namespace Ghosted.Dialogue {
             replyNodes.Remove(nodeToDelete);
             OnValidate();
             CleanDanglingChildren(nodeToDelete);
+            Undo.DestroyObjectImmediate(nodeToDelete);
         }
 
-        public Reply AddReply(ReplyNode replyNode)
+        public Reply CreateReply(ReplyNode replyNode)
         {
-            Reply reply = new Reply();
+            Reply reply = CreateInstance<Reply>();
+            reply.name = Guid.NewGuid().ToString();
+            Undo.RegisterCreatedObjectUndo(reply, "Created Reply");
             replyNode.replies.Add(reply);
             OnValidate();
             //UpdateChildrenPosition(replyNode);
@@ -176,6 +186,7 @@ namespace Ghosted.Dialogue {
                 RemoveChild(reply);
             }
             replyNode.replies.Remove(reply);
+            Undo.DestroyObjectImmediate(reply);
         }
 
         /*public void UpdateChildrenPosition(ReplyNode replyNode)
@@ -195,7 +206,7 @@ namespace Ghosted.Dialogue {
 
         public void AddChild(IHasChildren parentNode, DialogueEditorNode node) {
             RemoveChild(parentNode);
-            parentNode.Child = node.Id;
+            parentNode.Child = node.name;
         }
 
         private void CleanDanglingChildren(DialogueEditorNode nodeToDelete)
@@ -203,7 +214,7 @@ namespace Ghosted.Dialogue {
             foreach (DialogueEditorNode editorNode in GetAllNodes()) // Only DialogueNodes can bind children
             {
                 DialogueNode node = editorNode as DialogueNode;
-                if (node != null && node.Child == nodeToDelete.Id)
+                if (node != null && node.Child == nodeToDelete.name)
                     RemoveChild(node);
             }
         }
@@ -219,6 +230,51 @@ namespace Ghosted.Dialogue {
             foreach (string speaker in dialogueSpeakers) {
                 yield return speaker;
             }
+        }
+
+        public void OnBeforeSerialize()
+        {
+            if (dialogueSpeakers.Count == 0)
+                dialogueSpeakers.Add("Player");
+            if (dialogueNodes.Count == 0)
+            {
+                var node = CreateDialogueNode(null);
+                node.rect.position = new Vector2(0, 0);
+            }
+            if (AssetDatabase.GetAssetPath(this) != "")
+            {
+                foreach (DialogueNode dialogueNode in dialogueNodes)
+                {
+                    if (AssetDatabase.GetAssetPath(dialogueNode) == "")
+                    {
+                        AssetDatabase.AddObjectToAsset(dialogueNode, this);
+                    }
+                }
+
+                foreach (ReplyNode replyNode in replyNodes)
+                {
+                    if (AssetDatabase.GetAssetPath(replyNode) == "")
+                    {
+                        AssetDatabase.AddObjectToAsset(replyNode, this);
+                    }
+                }
+
+                foreach (ReplyNode replyNode in replyNodes)
+                {
+                    foreach (Reply reply in replyNode.replies)
+                    {
+                        if (AssetDatabase.GetAssetPath(reply) == "")
+                        {
+                            AssetDatabase.AddObjectToAsset(reply, replyNode);
+                        }
+                    }
+                }
+            }
+        }
+
+        public void OnAfterDeserialize()
+        {
+
         }
     }
 }
