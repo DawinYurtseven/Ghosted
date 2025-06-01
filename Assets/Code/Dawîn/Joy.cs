@@ -35,9 +35,9 @@ public class Joy : EmotionAbstract
     
     // or maybe just get me a coffee... (-_- )
     
-    protected override void EmotionalBehaivour()
+    protected override void EmotionalBehaviour()
     {
-        base.EmotionalBehaivour();
+        base.EmotionalBehaviour();
         if (!locked) {
             if (currentEmotion == Emotion.Joy) {
                 _col.enabled = true;
