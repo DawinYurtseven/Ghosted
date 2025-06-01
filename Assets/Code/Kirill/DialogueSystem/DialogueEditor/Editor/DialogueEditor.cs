@@ -34,6 +34,10 @@ namespace Ghosted.Dialogue.Editor{
         [NonSerialized]
         IHasChildren linkingParentNode = null;
         Vector2 scrollPosition;
+        [NonSerialized]
+        bool draggingCanvas = false;
+        [NonSerialized]
+        Vector2 draggingCanvasOffseet;
 
         [MenuItem("Window/Dialogue Editor")]
         public static void ShowEditorWindow() {
@@ -60,12 +64,9 @@ namespace Ghosted.Dialogue.Editor{
             nodeStyle.border = new RectOffset(12, 12, 12, 12);
         }
         private void OnSelectionChanged() {
-            Debug.Log("OnSelectionChangedCalled");
             var dialogue = Selection.activeObject as Dialogue;
             if (dialogue == null) {
-                Debug.Log("It is not a dialog, I am sorry :(");
             } else {
-                Debug.Log("It is indeed a dialog, good job!");
                 selectedDialogue = dialogue;
                 Repaint();
             }
@@ -116,7 +117,7 @@ namespace Ghosted.Dialogue.Editor{
                 if (creatingReplyNodeChild != null)
                 {
                     Undo.RecordObject(selectedDialogue, "Added New Reply");
-                    selectedDialogue.AddReply(creatingReplyNodeChild);
+                    selectedDialogue.CreateReply(creatingReplyNodeChild);
                     creatingReplyNodeChild = null;
                 }
                 if (toBeDeletedReplyNode != null)
@@ -138,11 +139,20 @@ namespace Ghosted.Dialogue.Editor{
         private void ProcessEvents() {
             switch (Event.current.type) {
                 case EventType.MouseDown:
-                    if (draggingNode == null) {
+                    if (draggingNode == null)
+                    {
                         draggingNode = GetNodeAtPoint(Event.current.mousePosition + scrollPosition);
-                        
-                        if (draggingNode != null) {
+
+                        if (draggingNode != null)
+                        {
                             draggingOffset = draggingNode.rect.position - Event.current.mousePosition;
+                            Selection.activeObject = draggingNode;
+                        }
+                        else
+                        {
+                            draggingCanvas = true;
+                            draggingCanvasOffseet = Event.current.mousePosition + scrollPosition;
+                            Selection.activeObject = selectedDialogue;
                         }
                     }
                     break;
@@ -150,11 +160,20 @@ namespace Ghosted.Dialogue.Editor{
                     if (draggingNode != null) {
                         draggingNode = null;
                     }
+                    if (draggingCanvas)
+                    {
+                        draggingCanvas = false;
+                    }
                     break;
                 case EventType.MouseDrag:
                     if (draggingNode != null) {
                         Undo.RecordObject(selectedDialogue, "Move Dialogue Node");
                         draggingNode.rect.position = Event.current.mousePosition + draggingOffset;
+                        GUI.changed = true;
+                    }
+                    if (draggingCanvas)
+                    {
+                        scrollPosition = draggingCanvasOffseet - Event.current.mousePosition;
                         GUI.changed = true;
                     }
                     break;
@@ -207,13 +226,13 @@ namespace Ghosted.Dialogue.Editor{
                 } 
             }
             else {
-                if (linkingParentNode.Id == node.Id) {
+                if (((DialogueEditorInstance)linkingParentNode).name == node.name) {
                     if (GUILayout.Button("cancel")) {
                         linkingParentNode = null;
                         //creatingNode = node;
                     }
                 } else {
-                    if (linkingParentNode.Child == node.Id) {
+                    if (linkingParentNode.Child == node.name) {
                         if (GUILayout.Button("unchild")) {
                             Undo.RecordObject(selectedDialogue, "Remove Dialogue Link");
                             selectedDialogue.RemoveChild(linkingParentNode);
@@ -267,7 +286,7 @@ namespace Ghosted.Dialogue.Editor{
                 toBeDeletedReplyNode = node;
             }
             if (linkingParentNode != null) {
-                if (linkingParentNode.Child == node.Id) {
+                if (linkingParentNode.Child == node.name) {
                     if (GUILayout.Button("unchild")) {
                         Undo.RecordObject(selectedDialogue, "Remove Dialogue Link");
                         selectedDialogue.RemoveChild(linkingParentNode);
@@ -325,7 +344,7 @@ namespace Ghosted.Dialogue.Editor{
             }
             else
             {
-                if (linkingParentNode.Id == reply.Id)
+                if (((ScriptableObject)linkingParentNode).name == reply.name)
                 {
                     if (GUILayout.Button("cancel"))
                     {
@@ -379,7 +398,7 @@ namespace Ghosted.Dialogue.Editor{
             }
             else
             {
-                if (linkingParentNode.Id == node.Id)
+                if (((ScriptableObject)linkingParentNode).name == node.name)
                 {
                     if (GUILayout.Button("cancel"))
                     {

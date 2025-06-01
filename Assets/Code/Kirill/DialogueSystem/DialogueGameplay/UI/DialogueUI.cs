@@ -84,7 +84,7 @@ namespace Ghosted.UI
                 {
                     var choiceGO = Instantiate(choicePrefab);
                     choiceGO.GetComponentInChildren<TextMeshProUGUI>().text = reply.text;
-                    choiceGO.transform.parent = choiceRoot;
+                    choiceGO.transform.SetParent(choiceRoot);
                     Button btn = choiceGO.GetComponentInChildren<Button>();
                     btn.onClick.AddListener(() =>
                     {

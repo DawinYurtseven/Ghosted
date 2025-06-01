@@ -5,17 +5,14 @@ using UnityEngine;
 
 namespace Ghosted.Dialogue
 {
-    public class AIConversant : MonoBehaviour
+    public class AIConversant : Conversant
     {
-        [SerializeField] Dialogue dialogue;
-        private Dialogue curDialogue;
-        void Awake()
-        {
-            curDialogue = dialogue;
-        }
+
+        // Press e to interact, TODO: Combine with overall interact system
         public void Interact(PlayerConversant playerConversant)
         {
-            playerConversant.StartDialogue(curDialogue);
+            if (curDialogue != null)
+                playerConversant.StartDialogue(curDialogue);
         }
     }
 }
