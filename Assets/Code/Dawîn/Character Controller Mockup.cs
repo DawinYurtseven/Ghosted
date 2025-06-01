@@ -53,6 +53,9 @@ public class CharacterControllerMockup : MonoBehaviour
 
         //jumpControl
         RegulateJump();
+        
+        //check for slope
+        Slope();     
     }
 
     #region Speed
@@ -190,59 +193,57 @@ public class CharacterControllerMockup : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (context.started && ( Physics.SphereCast(transform.position,0.5f,-transform.up,out var hit, groundCheckDistance) || (!isGrounded && !coyoteJumped )))
+        print(coyoteJumped);
+        if (context.started && ( Physics.SphereCast(transform.position,0.5f,-transform.up,out var hit, groundCheckDistance, ground) || !coyoteJumped))
         {
             var up = transform.up;
             rb.velocity += up * jumpStrength;
             //rb.AddForce(up * jumpStrength, ForceMode.Force);
-            isGrounded = false;
             coyoteJumped = true;
         }
     }
 
+    public void SetInAir()
+    {
+        coyoteJumped = true;
+        isGrounded = false;
+    }
+
     IEnumerator CoyoteJump()
     {
-        print("called CoyoteJump");
         float timer = 0f;
         while (timer < coyoteTime)
         {
-            if (Physics.SphereCast(transform.position,0.5f, -transform.up, out var hit,groundCheckDistance))
+            if (Physics.SphereCast(transform.position,0.5f, -transform.up, out var hit,groundCheckDistance, ground))
             {
                 isGrounded = true;
                 coyoteJumped = false;
                 yield break;
             }
-            rb.AddForce(-transform.up * coyoteFallStrength, ForceMode.Acceleration);
             timer += Time.fixedDeltaTime;
             yield return new WaitForFixedUpdate();
         }
-        isGrounded = false;
         coyoteJumped = true;
     }
 
     private void RegulateJump()
     {
-        if (!Physics.SphereCast(transform.position,0.5f, -transform.up, out var hit,groundCheckDistance))
+        if (!Physics.SphereCast(transform.position,0.5f, -transform.up, out var hit,groundCheckDistance, ground))
         {
             if (isGrounded)
             {
-                print("entered isGrounded if statement");
                 isGrounded = false;
                 coyoteJumped = false;
                 StartCoroutine(CoyoteJump());
             }
-            else if (coyoteJumped)
-            {
-                print("now!");
-                rb.AddForce(-transform.up * fallStrength, ForceMode.Acceleration);
-            }
         }
         else if (coyoteJumped)
             isGrounded = true;
+        rb.AddForce(-transform.up * fallStrength, ForceMode.Acceleration);
         
     }
     
-    //TODO: Ledge Forgiveness
+    //TODO: sliding problem 
     //TODO: 
 
     #endregion
@@ -516,25 +517,21 @@ public class CharacterControllerMockup : MonoBehaviour
     private bool _isOnCurvedGround;
     [SerializeField] private float maxSlopeAngle = 45f;
 
-    public void OnCollisionStay(Collision collisionInfo)
+    private void Slope()
     {
-        //set the ground which the player should be able to move on to Ground if possible. 
-        if (collisionInfo.gameObject.CompareTag("Ground"))
+        //create friction only when not intending to move
+        if (moveVector == Vector2.zero)
         {
-            //create friction only when not intending to move
-            if (moveVector == Vector2.zero)
+            RaycastHit hit; //check for ground below the player and get the angle
+            if (Physics.SphereCast(transform.position,0.5f, -transform.up, out hit, groundCheckDistance,ground))
             {
-                RaycastHit hit; //check for ground below the player and get the angle
-                if (Physics.Raycast(transform.position, -transform.up, out hit, ground))
+                // Calculate the slope angle
+                float slopeAngle = Vector3.Angle(hit.normal, transform.up);
+                print(slopeAngle);
+                // Apply friction on a specific angle 
+                if (slopeAngle >= 0 && slopeAngle <= maxSlopeAngle)
                 {
-                    // Calculate the slope angle
-                    float slopeAngle = Vector3.Angle(hit.normal, transform.up);
-
-                    // Apply friction on a specific angle 
-                    if (slopeAngle >= 0 && slopeAngle <= maxSlopeAngle)
-                    {
-                        rb.velocity = new Vector3(0, rb.velocity.y, 0);
-                    }
+                    rb.velocity = new Vector3(0, rb.velocity.y, 0);
                 }
             }
         }
