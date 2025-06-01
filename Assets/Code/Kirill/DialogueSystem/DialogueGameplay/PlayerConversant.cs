@@ -16,7 +16,7 @@ namespace Ghosted.Dialogue {
         public readonly UnityEvent<Dialogue> OnEndDialogue = new UnityEvent<Dialogue>();
         public readonly UnityEvent<DialogueEditorNode> OnDialogueNode = new UnityEvent<DialogueEditorNode>();
 
-        private AIConversant currentConversant;
+        private Conversant currentConversant;
 
 
         [SerializeField] private float interactDistance = 20f;
@@ -66,6 +66,7 @@ namespace Ghosted.Dialogue {
             Next();
         }
 
+        // This is a moch function that has to be replaces with uniform interaction system
         private void OnInteract(InputAction.CallbackContext context)
         {
             Debug.Log("I try to interact");
@@ -84,11 +85,16 @@ namespace Ghosted.Dialogue {
                     AIConversant aIConversant = hit.collider.GetComponent<AIConversant>();
                     if (aIConversant != null)
                     {
-                        aIConversant.Interact(this);
                         currentConversant = aIConversant;
+                        aIConversant.Interact(this);
                     }
                 }
             }
+        }
+
+        public void EnteredConversantArea(AreaConversant areaConversant)
+        {
+            currentConversant = areaConversant;
         }
 
         // Next for DialogeNodes, Select for replies in replyNode
@@ -119,8 +125,6 @@ namespace Ghosted.Dialogue {
                 OnDialogueNode.Invoke(currentNode);
                 TriggerEnterAction();
             }
-
-             // Wtf ist this Fehler: 
         }
 
         private void TriggerEnterAction()
