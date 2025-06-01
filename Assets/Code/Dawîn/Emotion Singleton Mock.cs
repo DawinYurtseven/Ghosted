@@ -132,8 +132,8 @@ public class EmotionSingletonMock : MonoBehaviour
 
     #endregion
 
-
-    private void OnEnable()
+    
+    private void Awake()
     {
         if (Instance != null && Instance != this)
         {

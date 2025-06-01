@@ -14,15 +14,39 @@ public class TalismanTargetMock : MonoBehaviour
     Collider objCollider;
     Image lockOnImageComponent;
 
-    // void Start()
-    
-    private void OnEnable()
+    void Start()
     {
-        lockOnImage = lockOnImage.GetComponent<Image>();
-        emotionText.text = currentEmotion.ToString();
+        cam = Camera.main;
+        if (cam == null)
+        {
+            Debug.LogError("No main camera found. Please assign a camera with the tag 'MainCamera'.");
+            return;
+        }
         
         //copied from start but test first cam = Camera.main;
         objCollider =  GetComponent<Collider>();
+        
+    }
+    
+    private void Start()
+    {
+        cam = Camera.main;
+        if (!cam)
+        {
+            Debug.LogError("No main camera found. Please assign a camera with the 'MainCamera' tag.");
+            return;
+        }
+        
+        objCollider = GetComponent<Collider>();
+        if (!objCollider)
+        {
+            Debug.LogError("No collider found on the TalismanTargetMock object.");
+            return;
+        }
+
+        lockOnImageComponent = lockOnImage.GetComponent<Image>();
+        
+        // Start checking visibility
         StartCoroutine(CheckAvailability());
         
         //Emotion subscribe
@@ -31,8 +55,17 @@ public class TalismanTargetMock : MonoBehaviour
             {
                 if (!locked) currentEmotion = emotion;
                 surroundEmotion = emotion;
-                EmotionalBehaviour();
+                EmotionalBehaivour();
             });
+    }
+    
+    private void OnEnable()
+    {
+        lockOnImage = lockOnImage.GetComponent<Image>();
+        emotionText.text = currentEmotion.ToString();
+        
+        //copied from start but test first cam = Camera.main;
+        objCollider =  GetComponent<Collider>();
     }
 
 
@@ -119,10 +152,10 @@ public class TalismanTargetMock : MonoBehaviour
     public void ResetObject()
     {
         currentEmotion = surroundEmotion;
-        EmotionalBehaviour();
+        EmotionalBehaivour();
     }
     
-    protected virtual void EmotionalBehaivour()
+    protected virtual void EmotionalBehaviour()
     {
         ResetEmotion();
         /*switch (currentEmotion)

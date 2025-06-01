@@ -22,6 +22,21 @@ public class Joy : EmotionAbstract
     }
     
     private void OnTriggerEnter (Collider other) {
+        if(other.gameObject.TryGetComponent(typeof(CharacterControllerMockup), out var it)) {
+            Debug.Log("Player entered the Joy trigger!");
+            var controller = (CharacterControllerMockup)it;
+            controller.SetInAir();
+        }
+        
+        // to check if object is properly on the jump pad
+        if(Physics.Raycast(transform.position, other.transform.position - transform.position, out RaycastHit hit)) {
+            
+            var minBoundLocal = _col.bounds.min  + new Vector3(0.002f, 0f, 0.002f);
+            var maxBoundLocal = _col.bounds.max  - new Vector3(0.002f, 0, 0.002f);
+            if (hit.point.y <= maxBoundLocal.y && hit.point.x >= minBoundLocal.x && hit.point.x <= maxBoundLocal.x && hit.point.z >= minBoundLocal.z && hit.point.z <= maxBoundLocal.z) {
+                Debug.Log("Hit detected!");
+            }
+        }
         Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
         Debug.Log("Present!");
         if (rb != null) {
@@ -35,9 +50,9 @@ public class Joy : EmotionAbstract
     
     // or maybe just get me a coffee... (-_- )
     
-    protected override void EmotionalBehaivour()
+    protected override void EmotionalBehaviour()
     {
-        base.EmotionalBehaivour();
+        base.EmotionalBehaviour();
         if (!locked) {
             if (currentEmotion == Emotion.Joy) {
                 _col.enabled = true;
