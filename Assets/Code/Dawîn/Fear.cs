@@ -6,9 +6,9 @@ public class Fear : EmotionAbstract
 {
     [SerializeField] private GameObject openState, closedState, shadow;
 
-    protected override void EmotionalBehaivour()
+    protected override void EmotionalBehaviour()
     {
-        base.EmotionalBehaivour();
+        base.EmotionalBehaviour();
         if (!locked) {
             if (currentEmotion == Emotion.Fear) {
                 closedState.SetActive(false);
