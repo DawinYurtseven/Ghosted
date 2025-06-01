@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Pupil
+  m_Shader: {fileID: 4800000, guid: 6b008335f0e4d7345bc97ca7fa6aa2a8, type: 3}
+  m_Parent: {fileID: 2100000, guid: 6efb1fed0f7e81b499839e5d9ed52588, type: 2}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - BACKFACE_LIGHTING
+  - USECOLOURRAMP
+  - USEEMISSIVE
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: _Highlight
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - _Emissive: 1
+    - _FbmScale: 10
+    - _FbmSmoothness: 0.5
+    - _TextureSpace: 1
+    - _VoronoiScale: 1.64
+    - _VoronoiSmoothness: 0.56
+    m_Colors:
+    - _DarkTint: {r: 1, g: 1, b: 1, a: 1}
+    - _DarkTone: {r: 0.101960786, g: 0.078431375, b: 0.078431375, a: 1}
+    - _EmissiveColour: {r: 68.0758, g: 47.7392, b: 23.505415, a: 1}
+    - _LightTint: {r: 1, g: 1, b: 1, a: 1}
+    - _LightTone: {r: 0.94509804, g: 0.9254902, b: 0.9254902, a: 1}
+    - _MidDarkTone: {r: 0.5372549, g: 0.4509804, b: 0.4509804, a: 1}
+    - _MidLightTone: {r: 0.88235295, g: 0.8392157, b: 0.8392157, a: 1}
+    - _MiddleTone: {r: 0.7372549, g: 0.6745098, b: 0.6745098, a: 1}
+    - _k: {r: 0.2, g: 0.7, b: 0.04, a: 1}
+  m_BuildTextureStacks: []
+--- !u!114 &7972439404755219198
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 7

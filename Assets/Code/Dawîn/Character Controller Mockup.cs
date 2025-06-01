@@ -56,7 +56,7 @@ public class CharacterControllerMockup : MonoBehaviour
     #region Speed
 
     [Header("Movement")] [SerializeField] private Vector2 moveVector;
-    [SerializeField] private float maxSpeed, acceleration, currentSpeed, shotLockLimit, deaccelerationTime;
+    [SerializeField] public float maxSpeed, acceleration, currentSpeed, shotLockLimit, deaccelerationTime;
     [SerializeField] private Transform lookAtTarget;
 
     //TODO: affect Direction change in air
@@ -126,6 +126,8 @@ public class CharacterControllerMockup : MonoBehaviour
     [SerializeField] private bool strifing;
 
     private float xAxisAngle, yAxisAngle;
+    
+    [SerializeField] private float xAxisMin, xAxisMax, xAxisMinLock, xAxisMaxLock;
 
     public void Camera_Move(InputAction.CallbackContext context)
     {
@@ -146,7 +148,7 @@ public class CharacterControllerMockup : MonoBehaviour
             cameraPivot.transform.LookAt(targetPosition);
             xAxisAngle = cameraPivot.transform.localRotation.eulerAngles.x - 360;
             yAxisAngle = cameraPivot.transform.localRotation.eulerAngles.y - 360;
-            xAxisAngle = Mathf.Clamp(xAxisAngle, -15f, 65f);
+            xAxisAngle = Mathf.Clamp(xAxisAngle, xAxisMinLock, xAxisMaxLock);
             cameraPivot.transform.eulerAngles = new Vector3(
                 xAxisAngle,
                 yAxisAngle,
@@ -158,8 +160,7 @@ public class CharacterControllerMockup : MonoBehaviour
         {
             xAxisAngle += -cameraDirection.y * cameraSpeed * Time.fixedDeltaTime;
             yAxisAngle += cameraDirection.x * cameraSpeed * Time.fixedDeltaTime;
-            xAxisAngle = Mathf.Clamp(xAxisAngle, -15f, 65f);
-
+            xAxisAngle = Mathf.Clamp(xAxisAngle, xAxisMin, xAxisMax);
 
             cameraPivot.transform.localRotation = Quaternion.Euler(xAxisAngle, yAxisAngle, 0f);
             lookAtPivot.transform.localRotation = Quaternion.Euler(0f, yAxisAngle, 0f);
@@ -170,9 +171,9 @@ public class CharacterControllerMockup : MonoBehaviour
 
     #region Jump
 
-    [Header("Jump")] [SerializeField] private float jumpStrength;
-    [SerializeField] private float fallStrength;
-    [SerializeField] private float gravity;
+    [Header("Jump")] [SerializeField] public float jumpStrength;
+    [SerializeField] public float fallStrength;
+    [SerializeField] public float gravity;
     [SerializeField] private float groundCheckDistance;
 
 
@@ -244,7 +245,9 @@ public class CharacterControllerMockup : MonoBehaviour
 
     private bool lockOn;
     private Vector3 targetPosition;
-    [SerializeField] private TalismanTargetMock target;
+
+    //If merge conflict -> change to private, used for Mock for level design
+    [SerializeField] public TalismanTargetMock target;
 
     public void ToggleLockOn(InputAction.CallbackContext context)
     {
@@ -372,18 +375,11 @@ public class CharacterControllerMockup : MonoBehaviour
 
     #region Talismans
 
-    private enum talismanMode
-    {
-        emotions,
-        bind
-    }
-
-
-    [SerializeField] private TalismanTargetMock currentTalismanBind;
+    [SerializeField] private TalismanTargetMock currentTalismanBind, previousTargetTalismanObject;
     [SerializeField] private talismanMode tMode;
     [SerializeField] private Emotion talismanEmotion;
-    
-    [SerializeField] private TextMeshProUGUI talismanModetext,talismanEmotionText;
+
+    [SerializeField] private TextMeshProUGUI talismanModetext, talismanEmotionText;
 
     public void ChangeTalismanMode(InputAction.CallbackContext context)
     {
@@ -403,7 +399,7 @@ public class CharacterControllerMockup : MonoBehaviour
             }
         }
     }
-    
+
     public void ChangeEmotionTalisman(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -412,21 +408,23 @@ public class CharacterControllerMockup : MonoBehaviour
             talismanEmotionText.text = talismanEmotion.ToString();
         }
     }
-    
+
+    [SerializeField] private GameObject TalismanPrefab;
+
+    private GameObject thrownTalisman;
+
     public void ThrowTalisman(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            switch (tMode)
-            {
-                case talismanMode.bind:
-                    target.Bind();
-                    break;
-                case talismanMode.emotions:
-                    target.EvokeEmotion(talismanEmotion, gameObject);
-                    break;
-            }
-            print(target.name);
+            if (target == null || thrownTalisman != null) return;
+            if (previousTargetTalismanObject != null) previousTargetTalismanObject.ResetObject();
+
+            thrownTalisman = Instantiate(TalismanPrefab, gameObject.transform.position,
+                Quaternion.LookRotation((target.transform.position - transform.position).normalized));
+            thrownTalisman.GetComponent<Talisman>().Initialize(tMode, talismanEmotion);
+            StartCoroutine(thrownTalisman.GetComponent<Talisman>().MoveTowards(target));
+            previousTargetTalismanObject = target;
         }
     }
 
@@ -442,7 +440,7 @@ public class CharacterControllerMockup : MonoBehaviour
                 tempTar = (TalismanTargetMock)tar;
                 tempTar.HighlightInteract();
             }
-            else if(hit.collider.gameObject.TryGetComponent(typeof(AltarMock), out var altar))
+            else if (hit.collider.gameObject.TryGetComponent(typeof(AltarMock), out var altar))
             {
                 print("altar");
                 tempAltar = (AltarMock)altar;
@@ -474,15 +472,20 @@ public class CharacterControllerMockup : MonoBehaviour
                 tempAltar.ChangeEmotion(talismanEmotion);
                 return;
             }
+
+            if (previousTargetTalismanObject != null) previousTargetTalismanObject.ResetObject();
             switch (tMode)
             {
                 case talismanMode.bind:
                     tempTar.Bind();
                     break;
                 case talismanMode.emotions:
-                    tempTar.EvokeEmotion(talismanEmotion, gameObject);
+                    tempTar.EvokeEmotion(talismanEmotion);
                     break;
             }
+
+            previousTargetTalismanObject = tempTar;
+            print(previousTargetTalismanObject);
         }
     }
 
