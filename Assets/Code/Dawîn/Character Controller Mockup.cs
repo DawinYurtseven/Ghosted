@@ -189,7 +189,7 @@ public class CharacterControllerMockup : MonoBehaviour
     [SerializeField] public float fallStrength, coyoteFallStrength;
     [SerializeField] private float groundCheckDistance;
     [SerializeField] private float coyoteTime = 0.2f;
-    private bool coyoteJumped, isGrounded = true; 
+    [SerializeField] private bool coyoteJumped, isGrounded = true; 
 
     public void Jump(InputAction.CallbackContext context)
     {
