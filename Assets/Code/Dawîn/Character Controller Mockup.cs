@@ -527,7 +527,7 @@ public class CharacterControllerMockup : MonoBehaviour
             {
                 // Calculate the slope angle
                 float slopeAngle = Vector3.Angle(hit.normal, transform.up);
-                print(slopeAngle);
+                //print(slopeAngle);
                 // Apply friction on a specific angle 
                 if (slopeAngle >= 0 && slopeAngle <= maxSlopeAngle)
                 {
