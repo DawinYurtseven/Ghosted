@@ -14,19 +14,19 @@ public class TalismanTargetMock : MonoBehaviour
     Collider objCollider;
     Image lockOnImageComponent;
 
-    void Start()
-    {
-        cam = Camera.main;
-        if (cam == null)
-        {
-            Debug.LogError("No main camera found. Please assign a camera with the tag 'MainCamera'.");
-            return;
-        }
-        
-        //copied from start but test first cam = Camera.main;
-        objCollider =  GetComponent<Collider>();
-        
-    }
+    // void Start()
+    // {
+    //     cam = Camera.main;
+    //     if (cam == null)
+    //     {
+    //         Debug.LogError("No main camera found. Please assign a camera with the tag 'MainCamera'.");
+    //         return;
+    //     }
+    //     
+    //     //copied from start but test first cam = Camera.main;
+    //     objCollider =  GetComponent<Collider>();
+    //     
+    // }
     
     private void Start()
     {
@@ -55,8 +55,9 @@ public class TalismanTargetMock : MonoBehaviour
             {
                 if (!locked) currentEmotion = emotion;
                 surroundEmotion = emotion;
-                EmotionalBehaivour();
+                EmotionalBehaviour();
             });
+        EmotionalBehaviour();
     }
     
     private void OnEnable()
@@ -141,7 +142,11 @@ public class TalismanTargetMock : MonoBehaviour
     protected Emotion surroundEmotion;
     protected bool locked;
     [SerializeField] private TextMeshProUGUI emotionText;
-
+    
+    public bool GetLocked()
+    {
+        return locked;
+    }
     private void ResetEmotion()
     {
         //work on fear properly with ignore tags maybe? or just cheat like now if objects other than player should fall through
@@ -152,12 +157,12 @@ public class TalismanTargetMock : MonoBehaviour
     public void ResetObject()
     {
         currentEmotion = surroundEmotion;
-        EmotionalBehaivour();
+        EmotionalBehaviour();
     }
     
     protected virtual void EmotionalBehaviour()
     {
-        ResetEmotion();
+        //ResetEmotion();
         /*switch (currentEmotion)
         {
             case Emotion.Fear:

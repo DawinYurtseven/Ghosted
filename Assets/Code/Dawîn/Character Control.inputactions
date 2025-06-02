@@ -85,6 +85,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "RecallTalismans",
+                    "type": "Button",
+                    "id": "07a540c0-ebfc-429a-bf58-0f234e414c53",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -470,6 +479,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "ChangeEmotion",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "12d2fa30-225a-4734-a26a-770f80c694e8",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";MK",
+                    "action": "RecallTalismans",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

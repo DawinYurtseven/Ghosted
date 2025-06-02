@@ -23,16 +23,17 @@ public class LevelManagerMock : MonoBehaviour
     [SerializeField] private SplineContainer thirdSpline;
     [SerializeField] private Transform playerSpawn2;
     [Header("Enter Train second time")]
-    [SerializeField] private FearObjectParent barier;
+    [SerializeField] private Fear barier;
     
     [Header("Enter Train third time")]
-    [SerializeField] private FearObjectParent barier2;
+    [SerializeField] private Fear barier2;
     
     private int trainSceneCount = 0;
     
     [Header("CuckooClock")]
     [SerializeField] private Animator clockAnimator;
 
+    [SerializeField] private ghostOrb ghost;
     public GameObject[] objectsToActivate;
     private void OnEnable()
     {
@@ -83,7 +84,7 @@ public class LevelManagerMock : MonoBehaviour
         {
             obj.SetActive(true);
         }
-        
+        ghost.MoveToNextWaypoint();
         EmotionSingletonMock.Instance.disableAll = false;
     }
 
@@ -95,12 +96,14 @@ public class LevelManagerMock : MonoBehaviour
             trainCamera.Priority = 10;
             train.GetComponent<SplineAnimate>()?.Play();
             trainSceneCount++;
+           // ghost.FollowObject(train.transform);
         }
     }
 
 
     void TrainChangeScene()
     {
+        ghost.MoveToNextWaypoint();
         if (roadPart == 0)
         {
             train.GetComponent<SplineAnimate>().Container = secondSpline;
