@@ -1,0 +1,15 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace Ghosted.Dialogue {
+    public class Reply : DialogueEditorInstance, IHasChildren
+    {
+        public string text = "";
+        public string Child { get => child; set => child = value; }
+        [SerializeField, HideInInspector]
+        private string child = "";
+
+    }
+}

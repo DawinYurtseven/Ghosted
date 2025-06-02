@@ -34,17 +34,7 @@ public class Talisman : MonoBehaviour
             yield return null;
         }
 
-        {
-        }
-        switch (mode)
-        {
-            case talismanMode.bind:
-                target.Bind();
-                break;
-            case talismanMode.emotions:
-                target.EvokeEmotion(emotion);
-                break;
-        }
+        target.Bind();
 
         Destroy(gameObject);
     }

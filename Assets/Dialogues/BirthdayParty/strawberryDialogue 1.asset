@@ -1,0 +1,200 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0128aa92babf3fd4e9cf4beb0d51198e, type: 3}
+  m_Name: strawberryDialogue 1
+  m_EditorClassIdentifier: 
+  dialogueSpeakers:
+  - Player
+  - Ghost
+  dialogueNodes:
+  - rect:
+      serializedVersion: 2
+      x: 256
+      y: 232
+      width: 200
+      height: 80
+    onEnterActions:
+    - enter
+    onExitActions: []
+    text: Why did you take my strawberry?
+    speaker: Ghost
+  - rect:
+      serializedVersion: 2
+      x: 526
+      y: 216.66667
+      width: 200
+      height: 80
+    onEnterActions: []
+    onExitActions: []
+    text: Don't you feel anything?
+    speaker: Player
+  - rect:
+      serializedVersion: 2
+      x: 301
+      y: 459
+      width: 200
+      height: 80
+    onEnterActions: []
+    onExitActions: []
+    text: Yes, I feel angry! I invite you to my party, and you take my strawberry!
+    speaker: Ghost
+  - rect:
+      serializedVersion: 2
+      x: 642
+      y: 439
+      width: 200
+      height: 80
+    onEnterActions: []
+    onExitActions: []
+    text: Hmmm.. Cannot you remember anything else?
+    speaker: Player
+  - rect:
+      serializedVersion: 2
+      x: 610
+      y: 598
+      width: 200
+      height: 80
+    onEnterActions: []
+    onExitActions: []
+    text: What are you talking about? Hmmm... not really
+    speaker: Ghost
+  - rect:
+      serializedVersion: 2
+      x: 132
+      y: 742
+      width: 200
+      height: 80
+    onEnterActions: []
+    onExitActions: []
+    text: Anything about your parents?
+    speaker: Player
+  - rect:
+      serializedVersion: 2
+      x: 420
+      y: 747.6667
+      width: 200
+      height: 80
+    onEnterActions: []
+    onExitActions: []
+    text: Just normal parents. Caring, loving, sometimes fighting. Nothing in particular
+    speaker: Ghost
+  - rect:
+      serializedVersion: 2
+      x: 766.6667
+      y: 525.3334
+      width: 200
+      height: 80
+    onEnterActions: []
+    onExitActions: []
+    text: 
+    speaker: Player
+  - rect:
+      serializedVersion: 2
+      x: 798.00006
+      y: 467.33334
+      width: 200
+      height: 80
+    onEnterActions: []
+    onExitActions: []
+    text: 
+    speaker: Player
+  - rect:
+      serializedVersion: 2
+      x: 799.3334
+      y: 466
+      width: 200
+      height: 80
+    onEnterActions: []
+    onExitActions: []
+    text: 
+    speaker: Player
+  - rect:
+      serializedVersion: 2
+      x: 865.3334
+      y: 514.6667
+      width: 200
+      height: 80
+    onEnterActions: []
+    onExitActions: []
+    text: 
+    speaker: Player
+  - rect:
+      serializedVersion: 2
+      x: 866.6667
+      y: 516.6667
+      width: 200
+      height: 80
+    onEnterActions: []
+    onExitActions: []
+    text: 
+    speaker: Player
+  - rect:
+      serializedVersion: 2
+      x: 880.6667
+      y: 536.6667
+      width: 200
+      height: 80
+    onEnterActions: []
+    onExitActions: []
+    text: 
+    speaker: Player
+  - rect:
+      serializedVersion: 2
+      x: 888.6667
+      y: 548.6667
+      width: 200
+      height: 80
+    onEnterActions: []
+    onExitActions: []
+    text: 
+    speaker: Player
+  - rect:
+      serializedVersion: 2
+      x: 888.6667
+      y: 548.6667
+      width: 200
+      height: 80
+    onEnterActions: []
+    onExitActions: []
+    text: 
+    speaker: Player
+  - rect:
+      serializedVersion: 2
+      x: 888.6667
+      y: 552.00006
+      width: 200
+      height: 80
+    onEnterActions: []
+    onExitActions: []
+    text: 
+    speaker: Player
+  - rect:
+      serializedVersion: 2
+      x: 731.3334
+      y: 702.00006
+      width: 200
+      height: 80
+    onEnterActions: []
+    onExitActions: []
+    text: 
+    speaker: Player
+  - rect:
+      serializedVersion: 2
+      x: 600.6667
+      y: 795.3334
+      width: 200
+      height: 80
+    onEnterActions: []
+    onExitActions: []
+    text: 
+    speaker: Player
+  replyNodes: []

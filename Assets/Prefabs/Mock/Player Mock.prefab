@@ -57,7 +57,7 @@ Transform:
   m_GameObject: {fileID: 2284378683206641990}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -703,11 +703,9 @@ MonoBehaviour:
   xAxisMaxLock: 0
   jumpStrength: 35
   fallStrength: 100
-  gravity: 10
+  coyoteFallStrength: 0
   groundCheckDistance: 0
-  allowJumpOn:
-    serializedVersion: 2
-    m_Bits: 3319
+  coyoteTime: 0.2
   dashSpeed: 50
   lastInput: {x: 0, y: 0, z: 0}
   dashed: 0
@@ -723,6 +721,7 @@ MonoBehaviour:
   talismanModetext: {fileID: 3338305222778658250}
   talismanEmotionText: {fileID: 1508658487375581538}
   TalismanPrefab: {fileID: 7056454499061255236, guid: 3860e4fd9a395ea479a9b8f9c798551e, type: 3}
+  maxSlopeAngle: 45
 --- !u!114 &7266318017597648310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1117,8 +1116,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8085985945609945402}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.132968, y: -0.1873658, z: 0.025607299, w: 0.9729121}
-  m_LocalPosition: {x: 8.505159, y: 6.940251, z: -24.69}
+  m_LocalRotation: {x: 0.06850393, y: 0, z: 0, w: 0.99765086}
+  m_LocalPosition: {x: -7.1399336, y: 19.740007, z: -63.27154}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1287,7 +1286,7 @@ Transform:
   m_GameObject: {fileID: 8732294338570935560}
   serializedVersion: 2
   m_LocalRotation: {x: 0.1053508, y: 0, z: 0, w: 0.99443513}
-  m_LocalPosition: {x: 2, y: 1.4999999, z: -5}
+  m_LocalPosition: {x: 0, y: 1.4999999, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
