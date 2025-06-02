@@ -19,6 +19,10 @@ public class JumpPuzzleElement : MonoBehaviour
     [SerializeField] private bool useColorAnim = false;
     [SerializeField] private GameObject indicator;
     
+    [Header("Feedback")] 
+    [SerializeField] private AudioSource effect;
+    
+    
     private Vector3 originalPos;
     private Renderer rend;
     private Color defaultColor;
@@ -52,9 +56,13 @@ public class JumpPuzzleElement : MonoBehaviour
             manager.registerStep(objectID);
             
             //Animation
-            if(!manager.WasSolved() || manager.isRepeatable)
+            if (!manager.WasSolved() || manager.isRepeatable)
+            {
                 animate(manager.isSolved(), manager.isSolution());
-
+                
+                //Audio
+                effect.PlayOneShot(effect.clip);
+            }
         }
     }
 

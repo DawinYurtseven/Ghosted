@@ -193,7 +193,7 @@ public class CharacterControllerMockup : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-        print(coyoteJumped);
+        //print(coyoteJumped);
         if (context.started && ( Physics.SphereCast(transform.position,0.5f,-transform.up,out var hit, groundCheckDistance, ground) || !coyoteJumped))
         {
             var up = transform.up;
