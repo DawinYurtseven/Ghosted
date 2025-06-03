@@ -7,7 +7,8 @@ public class HebelAnim : MonoBehaviour
     [SerializeField] private float rotationAngle = -45f;
     [SerializeField] private float duration = 0.3f;
     [SerializeField] private Ease easing = Ease.OutBack;
-
+    [SerializeField] private Vector3 Axis;
+    
     [Header("Optional Position Change")]
     [SerializeField] private bool moveOnToggle = false;
     [SerializeField] private Vector3 onPositionOffset = Vector3.zero;
@@ -28,7 +29,8 @@ public class HebelAnim : MonoBehaviour
 
         // Animate rotation
         float targetAngle = isOn ? rotationAngle : initialRotation.eulerAngles.z;
-        transform.DOLocalRotate(new Vector3(0f, 0f, targetAngle), duration).SetEase(easing);
+        Vector3 v = Axis * rotationAngle; 
+        transform.DOLocalRotate(v, duration).SetEase(easing);
 
         // Animate position if enabled
         if (moveOnToggle)

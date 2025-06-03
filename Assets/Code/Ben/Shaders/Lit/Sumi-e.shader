@@ -1,10 +1,13 @@
-Shader "ForgottenColours/Sumi-E"
+Shader "ForgottenColours/Lit/Sumi-E"
 {
     Properties
     {
         // === BASE MATERIAL SETTINGS ===
-        [Header(Base Colour)][Space(10)]
-        _DiffuseColour("Diffuse Colour", Color) = (1,1,1,1)
+        [Header(Base Colours)][Space(10)]
+        _LightTint("Light Tint", Color) = (1,1,1,1)
+        _DarkTint("Dark Tint", Color) = (1,1,1,1)
+
+        [Header(Textures)][Space(10)]
         _AlbedoTex ("Albedo Texture", 2D) = "white"{}
 
         [Space(10)]
@@ -25,27 +28,19 @@ Shader "ForgottenColours/Sumi-E"
 
         // === BLINN-PHONG LIGHTING ===
         [Header(Blinn Phong Lighting)][Space(10)]
-        [Toggle(SPECULAR)] _Specular("Enable Specular Highlight", Float) = 1
+        [Toggle(SPECULAR)] _Specular("Enable Specular Highlight", Float) = 0
         _k ("k Coefficients (Ambient, Diffuse, Specular)", Vector) = (0.5, 0.5, 0.8)
         _SpecularExponent("Specular Exponent", Float) = 80
-
-        // === COLOUR RAMP ===
-        [Header(Colour Ramp Tones)][Space(10)]
-        [Toggle(USECOLOURRAMP)] _UseColourRamp("Use Colour Ramp", Float) = 1
-        _DarkTone ("Dark Tone", Color) = (0.05, 0.05, 0.2, 1)
-        _MidDarkTone ("Mid Dark Tone", Color) = (0.1, 0.1, 0.3, 1)
-        _MiddleTone ("Middle Tone", Color) = (0.25, 0.3, 0.7, 1)
-        _MidLightTone ("Mid Light Tone", Color) = (0.5, 0.6, 0.9, 1)
-        _LightTone ("Light Tone", Color) = (0.8, 0.85, 0.95, 1)
-        _Highlight ("Highlight", Color) = (1.0, 1.0, 1.0, 1)
-
-        [Header(Colour Ramp Positions)][Space(10)]
-        _RampPositions0 ("Positions p0–p2 (xyz)", Vector) = (0.2, 0.4, 0.6)
-        _RampPositions1 ("Positions p3–p5 (xyz)", Vector) = (0.8, 0.9, 1.0)
 
         // === NOISE SETTINGS ===
         [Header(Texture Coordinates)][Space(10)]
         [Enum(Generated, 0, Normal, 1, UV, 2, Object, 3)] _TextureSpace("Texture Space", Float) = 1
+
+        [Header(FBM Noise Settings)][Space(10)]
+        _FbmScale("FBM Noise Scale", Float) = 10
+        _FbmDetail("FBM Noise Detail", Range(1,15)) = 15
+        _FbmSmoothness("FBM Roughness", Range(0,1))= 0.5
+        _FbmLacunarity("FBM Lacunarity", Float) = 2
 
         [Header(Voronoi Noise Settings)][Space(10)]
         [Enum(Euclidean, 1, Manhattan, 2, Chebyshev, 3, Minkowski, 4)]
@@ -54,6 +49,8 @@ Shader "ForgottenColours/Sumi-E"
         _VoronoiExponent ("Voronoi Exponent", Float) = 1.0
         _VoronoiSmoothness ("Voronoi Smoothness", Range(0,1)) = 0.5
         _VoronoiRandomness ("Voronoi Randomness", Range(0,1)) = 1.0
+
+
     }
 
     SubShader
@@ -113,7 +110,9 @@ Shader "ForgottenColours/Sumi-E"
             // ============================
             // BASE MATERIAL UNIFORMS
             // ============================
-            float4 _DiffuseColour;
+            float4 _LightTint;
+            float4 _DarkTint;
+
             sampler2D _AlbedoTex;
             half4 _AlbedoTex_ST;
 
@@ -136,26 +135,20 @@ Shader "ForgottenColours/Sumi-E"
             float _Specular; // Only if [Toggle(SPECULAR)] is active
             #endif
 
-
-            // ============================
-            // COLOUR RAMP UNIFORMS
-            // ============================
-            half3 _DarkTone;
-            half3 _MidDarkTone;
-            half3 _MiddleTone;
-            half3 _MidLightTone;
-            half3 _LightTone;
-            half3 _Highlight;
-
-            half4 _RampPositions0; // (p0, p1, p2)
-            half4 _RampPositions1; // (p3, p4, p5)
-
             // ============================
             // TEXTURE COORDINATES SETTINGS
             // ============================
             int _TextureSpace;
             float _MixAmount;
 
+            // ============================
+            // NOISE: FBM
+            // ============================
+            float _FbmScale;
+            float _FbmDetail;
+            float _FbmSmoothness;
+            float _FbmRandomness;
+            float _FbmLacunarity;
             // ============================
             // NOISE: VORONOI
             // ============================
@@ -165,13 +158,6 @@ Shader "ForgottenColours/Sumi-E"
             float _VoronoiRandomness;
             int _DistanceMetric;
 
-            // ============================
-            // NOISE: FBM
-            // ============================
-            float _FbmScale;
-            float _FbmRoughness;
-            float _FbmLacunarity;
-            int _FbmDetail;
 
             // Function Prototypes
             half3 ProcessNormals(v2f input);
@@ -182,7 +168,8 @@ Shader "ForgottenColours/Sumi-E"
             #include "Assets/Code/Ben/Shaders/ShaderLibrary/Lighting/BlinnPhong.hlsl"
             #include "Assets/Code/Ben/Shaders/ShaderLibrary/Maths/Voronoi.hlsl"
             #include "Assets/Code/Ben/Shaders/ShaderLibrary/Maths/TextureCoordinate.hlsl"
-            #include "Assets/Code/Ben/Shaders/ShaderLibrary/Colour/ColourRamp.hlsl"
+            #include "Assets/Code/Ben/Shaders/ShaderLibrary/Maths/FbmNoise.hlsl"
+            #include "Assets/Code/Ben/Shaders/ShaderLibrary/Maths/LinearLight.hlsl"
 
             // Vertex shader: transforms vertex data and prepares inputs for the fragment shader
             v2f vert(appdata input)
@@ -211,20 +198,13 @@ Shader "ForgottenColours/Sumi-E"
                 return output;
             }
 
-
-
             half4 frag(v2f input, bool frontFace : SV_IsFrontFace) : SV_Target
             {
                 // Sampling shadow coords in fragment shader to avoid cascading seams.
                 float4 shadowCoords = TransformWorldToShadowCoord(input.fragWorldPos);
 
-                // Sample albedo texture and apply diffuse colour tint
-                half4 c = tex2D(_AlbedoTex, input.uv_Albedo) * _DiffuseColour;
-
-                if (!frontFace)
-                {
-                    return float4(c.rgb * 0.1, 1.0); // or just float4(0,0,0,1)
-                }
+                // Sample albedo texture
+                half4 c = tex2D(_AlbedoTex, input.uv_Albedo);
 
                 // Enable alpha clipping
                 #ifdef USETRANSPARENT
@@ -254,11 +234,18 @@ Shader "ForgottenColours/Sumi-E"
                 }
                 #endif
 
+                // FBM Noise Section
+                half3 noiseCoord = GetTextureSpace(_TextureSpace, n, input.fragLocalPos, input.uv_Albedo);
+                float fbmNoise = 1-FbmNoise(noiseCoord, _FbmScale, _FbmDetail, 1-_FbmSmoothness,_FbmSmoothness);
+                float3 fbmNoise3D = float3(fbmNoise,fbmNoise,fbmNoise);
+
+                // Mix fbm noise and mesh normals
+                float3 mixed = LinearLight(n, fbmNoise3D,0.5);
+
                 // Calculate view direction (camera to fragment)
                 float3 v = normalize(_WorldSpaceCameraPos - input.fragWorldPos);
 
                 // Select coordinate system for Voronoi noise based on material settings
-                half3 noiseCoord = GetTextureSpace(_TextureSpace, n, input.fragLocalPos, input.uv_Albedo);
 
                 // Generate 3D Voronoi noise with smooth blending and distortion options
                 float dist;
@@ -279,15 +266,8 @@ Shader "ForgottenColours/Sumi-E"
                 }
                 #endif
 
-                // Optionally remap lighting result using a stylised colour ramp
-                half3 finalColour =
-                    #ifdef USECOLOURRAMP
-                ColourRamp(lighting);
-                    #else
-                    lighting;
-                #endif
-
-                return half4(finalColour + emissive, 1.0);
+                return half4(lighting+ emissive, 1.0);
+                return half4(mixed,1.0);
             }
 
             // Samples and transforms the normal map into world space
