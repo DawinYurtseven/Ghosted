@@ -41,7 +41,7 @@ public class TalismanTargetMock : MonoBehaviour
             {
                 if (!locked) currentEmotion = emotion;
                 surroundEmotion = emotion;
-                EmotionalBehaivour();
+                EmotionalBehaviour();
             });
     }
     
@@ -138,7 +138,7 @@ public class TalismanTargetMock : MonoBehaviour
     public void ResetObject()
     {
         currentEmotion = surroundEmotion;
-        EmotionalBehaivour();
+        EmotionalBehaviour();
     }
 
     private void EmotionalBehaivour()

@@ -25,7 +25,16 @@ public class CharacterControllerMockup : MonoBehaviour
 
     private void Start()
     {
-        EmotionSingletonMock.Instance.CurrentTarget.Subscribe(talisman => { target = talisman; });
+        EmotionSingletonMock.Instance.CurrentTarget.Subscribe(talisman =>
+        {
+            if (talisman == null && target != null && lockOn && mockTransform != null)
+            {
+                lockOn = false;
+                StartCoroutine(LerpBackFocus());
+                StartCoroutine(LerpActionShotLockInput(60f, CameraShoulderOffset, 2.5f));
+            }
+            target = talisman;
+        });
         talismanModetext.text = tMode.ToString();
         if (tMode == talismanMode.bind)
         {
@@ -196,6 +205,10 @@ public class CharacterControllerMockup : MonoBehaviour
         //print(coyoteJumped);
         if (context.started && ( Physics.SphereCast(transform.position,0.5f,-transform.up,out var hit, groundCheckDistance, ground) || !coyoteJumped))
         {
+            float angle = Vector3.Angle(hit.normal, transform.up);
+            print(angle);
+            if (Vector3.Angle(hit.normal, transform.up) > 45f)
+                return;
             var up = transform.up;
             rb.velocity += up * jumpStrength;
             //rb.AddForce(up * jumpStrength, ForceMode.Force);
@@ -230,7 +243,7 @@ public class CharacterControllerMockup : MonoBehaviour
     {
         if (!Physics.SphereCast(transform.position,0.5f, -transform.up, out var hit,groundCheckDistance, ground))
         {
-            if (isGrounded)
+            if (isGrounded && !coyoteJumped)
             {
                 isGrounded = false;
                 coyoteJumped = false;
