@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
@@ -11,11 +10,13 @@ public class ghostOrb : MonoBehaviour
     [SerializeField] private float moveDuration = 1.5f;
     [SerializeField] private Ease moveEase = Ease.InOutSine;
 
-    private int currentIndex = 0;
+    [SerializeField] private int currentIndex = 0;
     private Tween currentTween;
 
     public void MoveToNextPoint()
     {
+        Debug.Log("Ghost moved");
+        
         if (waypoints == null || waypoints.Count == 0) return;
 
         currentIndex = (currentIndex + 1) % waypoints.Count; 
