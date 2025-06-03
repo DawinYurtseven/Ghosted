@@ -24,6 +24,7 @@ public class Fear : EmotionAbstract
 
     public override void Bind()
     {
+        print("Object binded");
         if (locked) {
             currentEmotion = surroundEmotion;
             closedState.SetActive(currentEmotion != Emotion.Fear);

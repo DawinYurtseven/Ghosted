@@ -1,9 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.Splines;
 
 public class CutSceneTrigger : MonoBehaviour
@@ -20,9 +16,12 @@ public class CutSceneTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-        Debug.Log("Entered CutScene trigger");
+        Debug.Log("Entered CutScene trigger of " + cutSceneName);
+        
         if (other.gameObject.GetComponent<CharacterControllerMockup>() != null)
         {
+            Debug.Log("Detected Player");
+            
             OnCutScenePlayerTriggered?.Invoke(cutSceneName);
             if (repeatTimes != -1 && currentRepeat++ >= repeatTimes)
                 Destroy(gameObject);
@@ -30,6 +29,8 @@ public class CutSceneTrigger : MonoBehaviour
         
         else if ( other.gameObject.GetComponent<SplineAnimate>() != null)
         {
+            Debug.Log("Detected Train");
+            
             OnCutSceneTrainTriggered?.Invoke(cutSceneName);
             if (repeatTimes != -1 && currentRepeat++ >= repeatTimes)
                 Destroy(gameObject);
@@ -44,5 +45,9 @@ public enum CutSceneName
     TakeDocuments,
     EnterNextLevel,
     ChangeTrain,
-    CuckooClock
+    CuckooClock,
+    
+    //Patrick:
+    Train2Station,
+    Exit2Station,
 }

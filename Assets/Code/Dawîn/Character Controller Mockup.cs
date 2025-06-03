@@ -497,6 +497,7 @@ public class CharacterControllerMockup : MonoBehaviour
                     Quaternion.LookRotation((target.transform.position - transform.position).normalized));
                 thrownTalisman.GetComponent<Talisman>().Initialize(tMode, talismanEmotion);
                 StartCoroutine(thrownTalisman.GetComponent<Talisman>().MoveTowards(target));
+                
             }
             
             

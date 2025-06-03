@@ -177,7 +177,7 @@ public class TalismanTargetMock : MonoBehaviour
 
     public virtual void Bind()
     {
-        print("bind");
+        print("Target bind");
         if (locked)
         {
             currentEmotion = surroundEmotion;
