@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -21,7 +22,12 @@ public class RailWeiche : MonoBehaviour
     public static UnityEvent<string> onSwitch = new UnityEvent<string>();
 
     [SerializeField] private HebelAnim animIndicator;
-    
+
+    private void Start()
+    {
+        UpdateMaterials();
+    }
+
     // Toggle the switch state
     public void Toggle()
     {

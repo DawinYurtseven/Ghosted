@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
@@ -33,6 +32,8 @@ public class ghostOrb : MonoBehaviour
     //  Move to next waypoint
     public void MoveToNextWaypoint()
     {
+        Debug.Log("Ghost moved");
+        
         if (waypoints == null || waypoints.Count == 0) return;
 
         currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Count;

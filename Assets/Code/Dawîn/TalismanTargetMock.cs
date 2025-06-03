@@ -13,20 +13,6 @@ public class TalismanTargetMock : MonoBehaviour
     Camera cam;
     Collider objCollider;
     Image lockOnImageComponent;
-
-    // void Start()
-    // {
-    //     cam = Camera.main;
-    //     if (cam == null)
-    //     {
-    //         Debug.LogError("No main camera found. Please assign a camera with the tag 'MainCamera'.");
-    //         return;
-    //     }
-    //     
-    //     //copied from start but test first cam = Camera.main;
-    //     objCollider =  GetComponent<Collider>();
-    //     
-    // }
     
     private void Start()
     {
@@ -159,7 +145,12 @@ public class TalismanTargetMock : MonoBehaviour
         currentEmotion = surroundEmotion;
         EmotionalBehaviour();
     }
-    
+
+    private void EmotionalBehaivour()
+    {
+        Debug.Log("Doing smth?");
+    }
+
     protected virtual void EmotionalBehaviour()
     {
         //ResetEmotion();
