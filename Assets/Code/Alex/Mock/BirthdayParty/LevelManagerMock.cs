@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 using UnityEngine.Splines;
 
 public class LevelManagerMock : MonoBehaviour
