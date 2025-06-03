@@ -50,7 +50,7 @@ public class BoundVFXController : MonoBehaviour
         vfx.SetVector4("BaseColour", GetEmotionColour(emotion));
         vfx.SetGradient("PulseFGGradient", GetEmotionFgGradient(emotion));
         vfx.SetGradient("PulseBGGradient", GetEmotionBgGradient(emotion));
-        vfx.SetTexture("CharacterTexture", joyTex2D);
+        vfx.SetTexture("CharacterTexture", GetEmotionTex2D(emotion));
         vfx.SetVector3("VFXMeshScale", parent.transform.lossyScale);
 
         transform.SetParent(parent);
