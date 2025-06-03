@@ -43,6 +43,7 @@ public class TalismanTargetMock : MonoBehaviour
                 surroundEmotion = emotion;
                 EmotionalBehaviour();
             });
+        EmotionalBehaviour();
     }
     
     private void OnEnable()
@@ -127,7 +128,11 @@ public class TalismanTargetMock : MonoBehaviour
     protected Emotion surroundEmotion;
     protected bool locked;
     [SerializeField] private TextMeshProUGUI emotionText;
-
+    
+    public bool GetLocked()
+    {
+        return locked;
+    }
     private void ResetEmotion()
     {
         //work on fear properly with ignore tags maybe? or just cheat like now if objects other than player should fall through
@@ -148,7 +153,7 @@ public class TalismanTargetMock : MonoBehaviour
 
     protected virtual void EmotionalBehaviour()
     {
-        ResetEmotion();
+        //ResetEmotion();
         /*switch (currentEmotion)
         {
             case Emotion.Fear:

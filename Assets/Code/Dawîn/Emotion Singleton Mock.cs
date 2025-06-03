@@ -23,12 +23,27 @@ public class EmotionSingletonMock : MonoBehaviour
      */
     
     public Subject<Emotion> EmotionSubject = new Subject<Emotion>();
-    [SerializeField] private Emotion currentEmotion;
-    
+    [SerializeField] private Emotion currentEmotion = Emotion.Fear;
+
+
+    [SerializeField] private GameObject joyGameObject, fearGameObject;
+
     public void ChangeEmotion(Emotion emotion)
     {
-        currentEmotion = emotion;
         print("triggered");
+        if (currentEmotion == Emotion.Fear)
+        {
+            joyGameObject.SetActive(true);
+            fearGameObject.SetActive(false);
+            currentEmotion = Emotion.Joy;
+        }
+
+        else
+        {
+            joyGameObject.SetActive(false);
+            fearGameObject.SetActive(true);
+            currentEmotion = Emotion.Fear;
+        }
         EmotionSubject.OnNext(currentEmotion);
     }
     
@@ -56,9 +71,6 @@ public class EmotionSingletonMock : MonoBehaviour
 
         availableTalismanTargetMocks.Add(target);
     }
-
-
-    
     
     private void CheckTargets()
     {
@@ -145,6 +157,7 @@ public class EmotionSingletonMock : MonoBehaviour
         }
 
         mainCamera = Camera.main;
+        ChangeEmotion(Emotion.Joy);
     }
 
     // Update is called once per frame
