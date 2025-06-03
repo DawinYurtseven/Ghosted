@@ -36,6 +36,7 @@ public class Talisman : MonoBehaviour
         }
         
         target.Bind();
+        
         Destroy(gameObject);
     }
     
