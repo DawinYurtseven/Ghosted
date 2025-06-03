@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 
-public class VFXController : MonoBehaviour
+public class BoundVFXController : MonoBehaviour
 {
     private VisualEffect vfx;
     [Header("Base Colours")][ Space(10)]
@@ -31,6 +31,7 @@ public class VFXController : MonoBehaviour
     public Texture2D lonelinessTex2D;
     public Texture2D loveTex2D;
 
+    [Header("Fade In & Out Settings")] [Space(10)]
     [Range(0, 1)] public float clipAmount = 0.4f;
     public float clipSpeed = 1f;
     float clip = 1;
@@ -41,7 +42,7 @@ public class VFXController : MonoBehaviour
         clip = 1;
     }
 
-    public void PlayAt(Transform parent, Emotion emotion)
+    public void PlayVFXAt(Transform parent, Emotion emotion)
     {
         transform.position = parent.position;
         transform.rotation = parent.rotation;
@@ -55,6 +56,11 @@ public class VFXController : MonoBehaviour
         transform.SetParent(parent);
         vfx.SendEvent("OnPlay");
         clip = 1;
+    }
+
+    public void StopVFX()
+    {
+        throw new NotImplementedException();
     }
 
     private Color GetEmotionColour(Emotion emotion)

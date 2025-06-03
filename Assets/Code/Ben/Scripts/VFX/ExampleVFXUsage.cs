@@ -20,8 +20,8 @@ public class ExampleVFXUsage : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            var vfx = Instantiate(vfxPrefab).GetComponent<VFXController>();
-            vfx.PlayAt(target, emotions);
+            var vfx = Instantiate(vfxPrefab).GetComponent<BoundVFXController>();
+            vfx.PlayVFXAt(target, emotions);
         }
 
     }
