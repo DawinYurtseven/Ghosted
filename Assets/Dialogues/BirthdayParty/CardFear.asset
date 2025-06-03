@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0128aa92babf3fd4e9cf4beb0d51198e, type: 3}
+  m_Name: CardFear
+  m_EditorClassIdentifier: 
+  dialogueSpeakers:
+  - Miyu
+  dialogueNodes:
+  - {fileID: 5301176526788786239}
+  replyNodes: []
+--- !u!114 &5301176526788786239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 77c58cac-ff45-4912-959f-49e4d15aa9d7
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 91
+    y: 79
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions: []
+  text: "\u201CYour parents love you very much.\u201D It felt like such a lie. My
+    parents were going to file for a divorce. I was terrified of what was to come
+    after my birthday."
+  child: 
+  speaker: Miyu

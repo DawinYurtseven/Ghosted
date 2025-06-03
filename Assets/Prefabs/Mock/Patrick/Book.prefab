@@ -4025,9 +4025,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7391699756742049183}
-  - component: {fileID: 437633218538068289}
-  - component: {fileID: 3906831623898613365}
   - component: {fileID: 3708566289597086490}
+  - component: {fileID: 546374847159974724}
   m_Layer: 0
   m_Name: Book
   m_TagString: Untagged
@@ -4055,38 +4054,6 @@ Transform:
   - {fileID: 1796854580156476427}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!114 &437633218538068289
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4650261330572769083}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ced79fa0dad14b4abdf43548acf06a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvas: {fileID: 412513782160387383}
-  lockOnImage: {fileID: 6446243361051841245}
-  emotionText: {fileID: 915919218754079474}
---- !u!114 &3906831623898613365
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4650261330572769083}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d69c45cf0de2e2d4483cc072f0893ce8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  openState: {fileID: 3820825502290098871}
-  closedState: {fileID: 982426240815478007}
-  shadow: {fileID: 7745627843486902824}
-  specialEffect: {fileID: 0}
-  TargetMock: {fileID: 0}
 --- !u!65 &3708566289597086490
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4102,12 +4069,31 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 4, y: 2, z: 5}
   m_Center: {x: 2, y: 0.125, z: -1.5}
+--- !u!114 &546374847159974724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4650261330572769083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad39a9962f2d62f45bd57291c23a461a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 412513782160387383}
+  lockOnImage: {fileID: 6446243361051841245}
+  emotionText: {fileID: 915919218754079474}
+  specialEffect: {fileID: 0}
+  openState: {fileID: 3820825502290098871}
+  closedState: {fileID: 982426240815478007}
+  shadow: {fileID: 7745627843486902824}
 --- !u!1 &4866337303715390968
 GameObject:
   m_ObjectHideFlags: 0

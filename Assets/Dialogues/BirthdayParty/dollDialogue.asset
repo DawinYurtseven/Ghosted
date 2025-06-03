@@ -22,7 +22,9 @@ MonoBehaviour:
   - enter
   onExitActions:
   - exit
-  text: something
+  text: "I remember seeing it at the shops and I \rasked Mama if I could get it,
+    but she\r simply said no! Of course, she had been\r planning to get it for my
+    birthday all\r along! I kept that doll for years. Her\r name was Kana."
   child: 
   speaker: Player
 --- !u!114 &11400000
@@ -38,7 +40,7 @@ MonoBehaviour:
   m_Name: dollDialogue
   m_EditorClassIdentifier: 
   dialogueSpeakers:
-  - Player
+  - Miyu
   dialogueNodes:
   - {fileID: -6337795610277208645}
   replyNodes: []

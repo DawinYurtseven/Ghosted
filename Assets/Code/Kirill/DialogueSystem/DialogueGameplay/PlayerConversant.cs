@@ -104,6 +104,11 @@ namespace Ghosted.Dialogue {
             currentConversant = areaConversant;
         }
 
+        public void SetGlobalConversant(GlobalConversant globalConversant)
+        {
+            currentConversant = globalConversant;
+        }
+
         // Next for DialogeNodes, Select for replies in replyNode
         public void Next()
         {

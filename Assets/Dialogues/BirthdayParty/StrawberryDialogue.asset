@@ -1,5 +1,29 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7622079919556554546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 4770804b-2a17-4440-a908-d9d53bb775d2
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 1618
+    y: 280
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions: []
+  text: Of course they were happy! We were all very happy! Well, sometimes Mama and
+    Papa fought. Just sometimes! About little things.
+  child: removed
+  speaker: Miyu
 --- !u!114 &-4945651689356140758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14,17 +38,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: 0
-    y: 0
+    x: 35
+    y: 71
     width: 200
     height: 80
   onEnterActions:
   - enter
   onExitActions:
   - exit
-  text: Something
-  child: 
-  speaker: Player
+  text: "Oh no, you\u2019ve ruined my cake. "
+  child: 99b4130e-c19b-4ba3-a90b-a0ac2121e2ba
+  speaker: Miyu
+--- !u!114 &-1664594304524645523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 99b4130e-c19b-4ba3-a90b-a0ac2121e2ba
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 285
+    y: 129
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions: []
+  text: "Sorry, I didn\u2019t mean to ... "
+  child: d0041e7c-ea89-483a-9e18-4c32395e3f98
+  speaker: Ghost Binder
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35,10 +82,109 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0128aa92babf3fd4e9cf4beb0d51198e, type: 3}
-  m_Name: strawberryDialogue
+  m_Name: StrawberryDialogue
   m_EditorClassIdentifier: 
   dialogueSpeakers:
-  - Player
+  - Ghost Binder
+  - Miyu
   dialogueNodes:
   - {fileID: -4945651689356140758}
+  - {fileID: -1664594304524645523}
+  - {fileID: 8765786417630132549}
+  - {fileID: 4726882852025898238}
+  - {fileID: 3831529043056310464}
+  - {fileID: 5175999411578837060}
+  - {fileID: -7622079919556554546}
   replyNodes: []
+--- !u!114 &3831529043056310464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: e68d4a3a-e823-478f-b36a-86e9c5cf7c3e
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 1041
+    y: 269
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions: []
+  text: 'It was the perfect party. '
+  child: ff512de0-c27d-47f6-a5d1-53c67202e91d
+  speaker: Miyu
+--- !u!114 &4726882852025898238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 4df92e44-2ddb-4f4a-b9f2-efe0ab808363
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 749
+    y: 235
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions: []
+  text: What else do you remember from the party, Miyu?
+  child: e68d4a3a-e823-478f-b36a-86e9c5cf7c3e
+  speaker: Ghost Binder
+--- !u!114 &5175999411578837060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: ff512de0-c27d-47f6-a5d1-53c67202e91d
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 1331
+    y: 274
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions: []
+  text: 'Was your family happy? '
+  child: 4770804b-2a17-4440-a908-d9d53bb775d2
+  speaker: Ghost Binder
+--- !u!114 &8765786417630132549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: d0041e7c-ea89-483a-9e18-4c32395e3f98
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 520
+    y: 170
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions: []
+  text: "But that\u2019s okay! Come on, let\u2019s play!"
+  child: 4df92e44-2ddb-4f4a-b9f2-efe0ab808363
+  speaker: Miyu
