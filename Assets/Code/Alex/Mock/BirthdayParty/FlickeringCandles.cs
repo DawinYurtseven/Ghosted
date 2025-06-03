@@ -4,6 +4,8 @@ using UnityEngine;
 using DG.Tweening;
 public class FlickeringCandles : MonoBehaviour
 {
+    
+    //DEPRECATED
     [Header("Flicker Settings")]
     public float minIntensity = 0.8f;
     public float maxIntensity = 1.2f;

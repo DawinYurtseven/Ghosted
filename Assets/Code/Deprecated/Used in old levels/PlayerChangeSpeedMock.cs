@@ -7,7 +7,9 @@ public class PlayerChangeSpeedMock : MonoBehaviour
 {
     // Start is called before the first frame update
     
-    
+    /// <summary>
+    /// DEPRECATED, no need for that anymore!!!
+    /// </summary>
     
     void OnEnable()
     {

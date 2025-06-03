@@ -44,7 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b3abb840ae31204ea04c8fb5dfaf8d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentEmotion: 0
+  disableAll: 0
+  currentEmotion: 1
+  joyGameObject: {fileID: 0}
+  fearGameObject: {fileID: 0}
   currentTarget: {fileID: 0}
   range: 30
   availableTalismanTargetMocks: []

@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class FallDown : MonoBehaviour
 {
+    
+    /// <summary>
+    /// DEPRECATED, USED in LEVELMANAGER & DIALOGUES instead 
+    /// </summary>
     public GameObject[] activeObjects;
     public GameObject[] disabledObjects;
     

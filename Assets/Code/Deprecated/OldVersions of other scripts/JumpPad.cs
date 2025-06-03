@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class JumpPad : Lockable
 {
+    
+    /// <summary>
+    /// DEPRECATD< use Dawin -> Joy INSTEAD!!!
+    /// </summary>
     public float force = 100f;
 
     

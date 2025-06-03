@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class BarriereScript : FearObjectParent
 {
+    /// <summary>
+    /// DEPRECATED
+    /// </summary>
     public override  void Lock() {
         _locked = currentState == State.Fear;
         if (specialEffect != null)

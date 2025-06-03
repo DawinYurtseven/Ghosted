@@ -10,7 +10,7 @@ public class Fear : EmotionAbstract
     {
         base.EmotionalBehaviour();
         if (!locked) {
-            if (currentEmotion == Emotion.Fear) {
+            if (surroundEmotion == Emotion.Fear) {
                 closedState.SetActive(false);
                 openState.SetActive(true);   
             }
@@ -19,20 +19,30 @@ public class Fear : EmotionAbstract
                 openState.SetActive(false);
             }
         }
-        shadow.SetActive(currentEmotion == Emotion.Fear);
+        shadow.SetActive(surroundEmotion == Emotion.Fear);
     }
 
     public override void Bind()
     {
+        print("Object binded");
         if (locked) {
             currentEmotion = surroundEmotion;
-            closedState.SetActive(currentEmotion == Emotion.Joy);
-            openState.SetActive(currentEmotion != Emotion.Joy);
+            closedState.SetActive(currentEmotion != Emotion.Fear);
+            openState.SetActive(currentEmotion == Emotion.Fear);
+            shadow.SetActive(currentEmotion == Emotion.Fear);
             locked = false;
+            if (specialEffect)
+            {
+                specialEffect.SetActive(false);
+            }
         }
 
         else {
-            locked = currentEmotion != Emotion.Joy;
+            //Same as with joy, could be locked in any other state as well (just doesn't make a lot of sense)
+            locked = true;
+            if (specialEffect) {
+                specialEffect.SetActive(true);
+            }
         }
     }
 }

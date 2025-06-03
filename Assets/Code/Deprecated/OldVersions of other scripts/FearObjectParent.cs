@@ -1,5 +1,11 @@
 using UnityEngine;
 
+
+
+/// <summary>
+/// DEPRECATED, USE Dawin -> Fear INSTEAD!!!!
+/// </summary>
+
 public class FearObjectParent : Lockable
 {
     public GameObject openState, closedState, shadow;
