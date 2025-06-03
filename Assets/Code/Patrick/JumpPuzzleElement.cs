@@ -21,7 +21,7 @@ public class JumpPuzzleElement : MonoBehaviour
     
     [Header("Feedback")] 
     [SerializeField] private AudioSource effect;
-    
+    [SerializeField] private AudioSource solvedSFX;
     
     private Vector3 originalPos;
     private Renderer rend;
@@ -70,6 +70,9 @@ public class JumpPuzzleElement : MonoBehaviour
     {
         if(useColorAnim)
             animate(true,true);
+        
+        //Audio
+        effect.PlayOneShot(solvedSFX.clip);
     }
     
     private void animate(bool correct, bool timeToShowColor)
