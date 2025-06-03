@@ -97,6 +97,11 @@ namespace Ghosted.Dialogue {
             currentConversant = areaConversant;
         }
 
+        public void SetGlobalConversant(GlobalConversant globalConversant)
+        {
+            currentConversant = globalConversant;
+        }
+
         // Next for DialogeNodes, Select for replies in replyNode
         public void Next()
         {
@@ -151,7 +156,7 @@ namespace Ghosted.Dialogue {
         private void TriggerAction(string action)
         {
             if (action == "") return;
-
+            
             foreach (DialogueTrigger trigger in currentConversant.GetComponents<DialogueTrigger>())
             {
                 trigger.Trigger(action);
