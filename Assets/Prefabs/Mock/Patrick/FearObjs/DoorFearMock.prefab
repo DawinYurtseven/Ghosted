@@ -9,9 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3231768875876850481}
-  - component: {fileID: 6531679789642157036}
-  - component: {fileID: 3769423141446599333}
   - component: {fileID: 3822243844126793619}
+  - component: {fileID: 4647583194974872763}
   m_Layer: 0
   m_Name: DoorFearMock
   m_TagString: Untagged
@@ -39,38 +38,6 @@ Transform:
   - {fileID: 394936616934521596}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6531679789642157036
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 750512663660386294}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ced79fa0dad14b4abdf43548acf06a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvas: {fileID: 7981936530555139766}
-  lockOnImage: {fileID: 6625505592369680747}
-  emotionText: {fileID: 4669303610611260579}
---- !u!114 &3769423141446599333
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 750512663660386294}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d69c45cf0de2e2d4483cc072f0893ce8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  openState: {fileID: 5413660783961198961}
-  closedState: {fileID: 5299107206160509574}
-  shadow: {fileID: 7691257025436528048}
-  specialEffect: {fileID: 0}
-  TargetMock: {fileID: 6531679789642157036}
 --- !u!65 &3822243844126793619
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -86,12 +53,31 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 4.75, y: 4.5, z: 1.25}
   m_Center: {x: 0.5, y: 1.5, z: -1.75}
+--- !u!114 &4647583194974872763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 750512663660386294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad39a9962f2d62f45bd57291c23a461a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 7981936530555139766}
+  lockOnImage: {fileID: 6625505592369680747}
+  emotionText: {fileID: 4669303610611260579}
+  specialEffect: {fileID: 0}
+  openState: {fileID: 5413660783961198961}
+  closedState: {fileID: 5299107206160509574}
+  shadow: {fileID: 7691257025436528048}
 --- !u!1 &3281083118739571025
 GameObject:
   m_ObjectHideFlags: 0

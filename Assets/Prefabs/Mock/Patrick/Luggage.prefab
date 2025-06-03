@@ -6590,9 +6590,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 256719548400849936}
-  - component: {fileID: 5709247028945050452}
-  - component: {fileID: 342896065233651451}
   - component: {fileID: 468393339820841277}
+  - component: {fileID: 5402986795106503395}
   m_Layer: 0
   m_Name: Luggage
   m_TagString: Untagged
@@ -6625,36 +6624,6 @@ Transform:
   - {fileID: 614615923488270375}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5709247028945050452
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7422814356536191238}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ced79fa0dad14b4abdf43548acf06a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvas: {fileID: 370501284843876597}
-  lockOnImage: {fileID: 5340714155964342276}
-  emotionText: {fileID: 2736983398602058705}
---- !u!114 &342896065233651451
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7422814356536191238}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d69c45cf0de2e2d4483cc072f0893ce8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  openState: {fileID: 6829846762434412045}
-  closedState: {fileID: 7496472147234890238}
-  shadow: {fileID: 9210395692619098410}
 --- !u!65 &468393339820841277
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6670,12 +6639,31 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 4, y: 2, z: 5}
   m_Center: {x: 2, y: 0.125, z: -1.5}
+--- !u!114 &5402986795106503395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7422814356536191238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad39a9962f2d62f45bd57291c23a461a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 370501284843876597}
+  lockOnImage: {fileID: 5340714155964342276}
+  emotionText: {fileID: 2736983398602058705}
+  specialEffect: {fileID: 0}
+  openState: {fileID: 6829846762434412045}
+  closedState: {fileID: 7496472147234890238}
+  shadow: {fileID: 9210395692619098410}
 --- !u!1 &7496472147234890238
 GameObject:
   m_ObjectHideFlags: 0

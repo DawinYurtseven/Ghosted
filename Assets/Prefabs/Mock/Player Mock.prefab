@@ -532,7 +532,7 @@ GameObject:
   - component: {fileID: 6886647508386430284}
   - component: {fileID: 6496545617559681279}
   - component: {fileID: 7266318017597648310}
-  - component: {fileID: 6418587032226458732}
+  - component: {fileID: 4397721216973351522}
   m_Layer: 8
   m_Name: Player Mock
   m_TagString: Player
@@ -676,13 +676,8 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 247
-  animCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  timer: 0
+  animator: {fileID: 0}
+  characterObject: {fileID: 0}
   moveVector: {x: 0, y: 0}
   maxSpeed: 8.5
   acceleration: 20
@@ -907,21 +902,19 @@ MonoBehaviour:
   m_DefaultActionMap: Character Control
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &6418587032226458732
+--- !u!114 &4397721216973351522
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7186854931979958255}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d95f3436aef9db84f9bcd9f9cca92964, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ec74bc4997d59d44b2b913feacaf866, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameObjectsList: []
-  maxTalismans: 3
-  talismansUsed: {fileID: 4342936615223942910}
+  interactDistance: 15
 --- !u!1 &7359274990481609994
 GameObject:
   m_ObjectHideFlags: 0
