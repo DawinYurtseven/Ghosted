@@ -24,6 +24,7 @@ public class CharacterControllerMockup : MonoBehaviour
 
     private void Start()
     {
+        animator.SetBool("grounded", true);
         EmotionSingletonMock.Instance.CurrentTarget.Subscribe(talisman =>
         {
             if (talisman == null && target != null && lockOn && mockTransform != null)
@@ -108,7 +109,10 @@ public class CharacterControllerMockup : MonoBehaviour
     {
         if (!dashedCooldown && moveVector != Vector2.zero)
         {
-            characterObject.transform.rotation = lookAtPivot.transform.rotation;
+            characterObject.transform.localRotation = lookAtPivot.transform.localRotation;
+            //rotate with direction
+            characterObject.transform.localRotation *= Quaternion.LookRotation(new Vector3(moveVector.x, 0 , moveVector.y)); ; 
+            
             var right = lookAtTarget.right;
             var forward = lookAtTarget.forward;
             lastInput = right * moveVector.x + forward * moveVector.y;
@@ -208,16 +212,23 @@ public class CharacterControllerMockup : MonoBehaviour
         if (context.started && ( Physics.SphereCast(transform.position,0.5f,-transform.up,out var hit, groundCheckDistance, ground) || !coyoteJumped))
         {
             float angle = Vector3.Angle(hit.normal, transform.up);
-            print(angle);
             if (Vector3.Angle(hit.normal, transform.up) > 45f)
                 return;
-            var up = transform.up;
+            /*var up = transform.up;
             rb.velocity += up * jumpStrength;
             //rb.AddForce(up * jumpStrength, ForceMode.Force);
-            coyoteJumped = true;
+            coyoteJumped = true;*/
             animator.SetTrigger("jump");
-            animator.SetBool("grounded", false);
         }
+    }
+
+    public void Jump()
+    {
+        animator.SetBool("grounded", false);
+        var up = transform.up;
+        rb.velocity += up * jumpStrength;
+        //rb.AddForce(up * jumpStrength, ForceMode.Force);
+        coyoteJumped = true;
     }
 
     public void SetInAir()
@@ -474,7 +485,7 @@ public class CharacterControllerMockup : MonoBehaviour
             if (target == null || thrownTalisman != null) return;
             if (curTalsimans == maxTalismans) return;
             
-            animator.SetTrigger("Throw Talisman");
+            
             
             //If the object is already bounded, recall talisman
             if (lockedObjects.Contains(target))
@@ -491,12 +502,14 @@ public class CharacterControllerMockup : MonoBehaviour
             //Throw talisman
             else
             {
-                curTalsimans++;
-                lockedObjects.Add(target);
+                //curTalsimans++;
+                animator.SetTrigger("Throw Talisman");
+                characterObject.transform.LookAt(target.transform);
+                /*lockedObjects.Add(target);
                 thrownTalisman = Instantiate(TalismanPrefab, gameObject.transform.position,
                     Quaternion.LookRotation((target.transform.position - transform.position).normalized));
                 thrownTalisman.GetComponent<Talisman>().Initialize(tMode, talismanEmotion);
-                StartCoroutine(thrownTalisman.GetComponent<Talisman>().MoveTowards(target));
+                StartCoroutine(thrownTalisman.GetComponent<Talisman>().MoveTowards(target));*/
                 
             }
             
@@ -504,6 +517,16 @@ public class CharacterControllerMockup : MonoBehaviour
             talismansUsed.text = "Talismans used: " + curTalsimans + " / " + maxTalismans;
             //previousTargetTalismanObject = target;
         }
+    }
+
+    public void ThrowTalismanAnim()
+    {
+        curTalsimans++;
+        lockedObjects.Add(target);
+        thrownTalisman = Instantiate(TalismanPrefab, gameObject.transform.position,
+            Quaternion.LookRotation((target.transform.position - transform.position).normalized));
+        thrownTalisman.GetComponent<Talisman>().Initialize(tMode, talismanEmotion);
+        StartCoroutine(thrownTalisman.GetComponent<Talisman>().MoveTowards(target));
     }
 
   
