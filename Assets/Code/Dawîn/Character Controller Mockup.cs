@@ -536,6 +536,11 @@ public class CharacterControllerMockup : MonoBehaviour
     private int interactionRange = 20;
     private void CheckForInteractables()
     {
+        if (tempAltar != null)
+        {
+            tempAltar.turnOffHintAltar();
+        }
+        //ok, problem is that when the pivot is in object 
         if (Physics.SphereCast(transform.position, 1f, lookAtPivot.transform.forward, out var hit, interactionRange))
         {
             if (hit.collider.gameObject.TryGetComponent(typeof(TalismanTargetMock), out var tar))
@@ -547,6 +552,7 @@ public class CharacterControllerMockup : MonoBehaviour
             {
                 //print("altar");
                 tempAltar = (AltarMock)altar;
+                tempAltar.turnOnHintAltar();
             }
             else
             {
@@ -562,6 +568,8 @@ public class CharacterControllerMockup : MonoBehaviour
                 tempTar = null;
             }
         }
+        
+        
     }
 
     public void PlaceTalisman(InputAction.CallbackContext context)
