@@ -1,0 +1,172 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7376980065780665160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 73c47adb-1077-4bb7-922b-05e44b9db9aa
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 464
+    y: 43
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions:
+  - Next
+  text: "Uh-oh... the clock\u2019s all wrong. Looks like its stuck."
+  child: d609d121-02d9-4e07-8c2a-083eda0622a7
+  speaker: Miyu
+--- !u!114 &-6050197565073734896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 84affef1-b242-42f0-8e86-ca89d8631128
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 895
+    y: 74
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions:
+  - Next
+  text: And the train wont come until the clock shows the right time...
+  child: 9f4592cc-580a-446b-8a17-1c6203af8b96
+  speaker: You
+--- !u!114 &-1379377018664269314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: e223a39b-d265-4de4-93c8-d5d4e628cf5a
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 244
+    y: 13
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions: []
+  text: 'The books smell funny, like old paper and new beginnings.
+
+    This stop?
+    This was my favorite. I used to count the trains! One... two... three... until
+    my ride came.'
+  child: 73c47adb-1077-4bb7-922b-05e44b9db9aa
+  speaker: Miyu
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0128aa92babf3fd4e9cf4beb0d51198e, type: 3}
+  m_Name: GhostIntro
+  m_EditorClassIdentifier: 
+  dialogueSpeakers:
+  - You
+  - Miyu
+  dialogueNodes:
+  - {fileID: 1272631402270421841}
+  - {fileID: -1379377018664269314}
+  - {fileID: -7376980065780665160}
+  - {fileID: 4415455155347473422}
+  - {fileID: -6050197565073734896}
+  - {fileID: 291792935727581971}
+  replyNodes: []
+--- !u!114 &291792935727581971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 9f4592cc-580a-446b-8a17-1c6203af8b96
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 23
+    y: 242
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions: []
+  text: "We\u2019ve gotta catch the train to the Central Station! That\u2019s where
+    the airport is.\r\nThat\u2019s where I left... well... nevermind!"
+  child: removed
+  speaker: You
+--- !u!114 &1272631402270421841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: ac9ea053-4400-48c5-af34-659d2180941c
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions: []
+  text: "Oh! Hello! You\u2019re not from around here, are you? This place is weird,
+    huh?\r\nI like it, though. I remember the bookstore and its books..."
+  child: e223a39b-d265-4de4-93c8-d5d4e628cf5a
+  speaker: Miyu
+--- !u!114 &4415455155347473422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: d609d121-02d9-4e07-8c2a-083eda0622a7
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 686
+    y: 47
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions:
+  - Next
+  text: "Can you fix it? I can\u2019t reach it\u2014no hands, see?"
+  child: 84affef1-b242-42f0-8e86-ca89d8631128
+  speaker: Miyu

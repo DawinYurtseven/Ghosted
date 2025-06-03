@@ -1,0 +1,118 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-4903907323869916118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: b4b31094-15db-4a74-8d77-ee05e3d0992e
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 270
+    y: 53
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions: []
+  text: "But something whispered\u2014Did you forget something?"
+  child: e293ada3-9c49-4a3f-8c17-5149cd628154
+  speaker: You
+--- !u!114 &-1931730218797881327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: f819aade-5704-4a58-a827-86eda76a501c
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 799
+    y: 144
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions:
+  - Next
+  text: These Suitcases and Bags seem to lead to that... That feeling.
+  child: 
+  speaker: You
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0128aa92babf3fd4e9cf4beb0d51198e, type: 3}
+  m_Name: GhostFearStart
+  m_EditorClassIdentifier: 
+  dialogueSpeakers:
+  - You
+  - Miyu
+  dialogueNodes:
+  - {fileID: 1272631402270421841}
+  - {fileID: -4903907323869916118}
+  - {fileID: 6340362333957527185}
+  - {fileID: -1931730218797881327}
+  replyNodes: []
+--- !u!114 &1272631402270421841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: ac9ea053-4400-48c5-af34-659d2180941c
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions: []
+  text: He, you now what? That day, I was ready. Like realy ready. My suitcase was
+    bursting.
+  child: b4b31094-15db-4a74-8d77-ee05e3d0992e
+  speaker: Miyu
+--- !u!114 &6340362333957527185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: e293ada3-9c49-4a3f-8c17-5149cd628154
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 533
+    y: 86
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions: []
+  text: "And do you know this feeling? Like you forgot something? Like you want to
+    search you bag and luggage, and want to go back to check?\r"
+  child: f819aade-5704-4a58-a827-86eda76a501c
+  speaker: You
