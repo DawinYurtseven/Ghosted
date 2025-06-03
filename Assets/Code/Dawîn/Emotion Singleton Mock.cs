@@ -30,8 +30,7 @@ public class EmotionSingletonMock : MonoBehaviour
 
     public void ChangeEmotion(Emotion emotion)
     {
-        print("Triggered emotion change to " + emotion);
-    if (currentEmotion == Emotion.Fear)
+        if (currentEmotion == Emotion.Fear)
         {
             joyGameObject.SetActive(true);
             fearGameObject.SetActive(false);
