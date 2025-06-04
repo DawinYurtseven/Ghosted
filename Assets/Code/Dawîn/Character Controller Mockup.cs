@@ -209,7 +209,7 @@ public class CharacterControllerMockup : MonoBehaviour
     [SerializeField] public float fallStrength, coyoteFallStrength;
     [SerializeField] private float groundCheckDistance;
     [SerializeField] private float coyoteTime = 0.2f;
-    [SerializeField] private bool coyoteJumped, isGrounded = true;
+    [SerializeField] private bool coyoteJumped, isGrounded = true, jumpPressed = false;
 
     public void Jump(InputAction.CallbackContext context)
     {
@@ -226,6 +226,7 @@ public class CharacterControllerMockup : MonoBehaviour
             //rb.AddForce(up * jumpStrength, ForceMode.Force);
             coyoteJumped = true;*/
             animator.SetTrigger("jump");
+            coyoteJumped = true;
         }
     }
 
@@ -235,7 +236,6 @@ public class CharacterControllerMockup : MonoBehaviour
         var up = transform.up;
         rb.velocity += up * jumpStrength;
         //rb.AddForce(up * jumpStrength, ForceMode.Force);
-        coyoteJumped = true;
     }
 
     public void SetInAir()
@@ -281,6 +281,7 @@ public class CharacterControllerMockup : MonoBehaviour
             isGrounded = true;
             coyoteJumped = false;
             animator.SetBool("grounded", true);
+            animator.ResetTrigger("jump");
         }
 
         rb.AddForce(-transform.up * fallStrength, ForceMode.Acceleration);
