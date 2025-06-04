@@ -206,7 +206,7 @@ public class CharacterControllerMockup : MonoBehaviour
      * the two booleans coyoteJumped and isGrounded are used to check if the player is grounded or not and dictate coyote time.
      */
     [Header("Jump")] [SerializeField] public float jumpStrength;
-    [SerializeField] public float fallStrength, coyoteFallStrength;
+    [SerializeField] public float fallStrength, slopeFallStrenghtMultiplier = 1f;
     [SerializeField] private float groundCheckDistance;
     [SerializeField] private float coyoteTime = 0.2f;
     [SerializeField] private bool coyoteJumped, isGrounded = true, jumpPressed = false;
@@ -215,7 +215,7 @@ public class CharacterControllerMockup : MonoBehaviour
     {
         //print(coyoteJumped);
         if (context.started &&
-            (Physics.SphereCast(transform.position, 0.5f, -transform.up, out var hit, groundCheckDistance, ground) ||
+            (Physics.SphereCast(transform.position, 0.3f, -transform.up, out var hit, groundCheckDistance, ground) ||
              !coyoteJumped))
         {
             float angle = Vector3.Angle(hit.normal, transform.up);
@@ -249,7 +249,7 @@ public class CharacterControllerMockup : MonoBehaviour
         float timer = 0f;
         while (timer < coyoteTime)
         {
-            if (Physics.SphereCast(transform.position, 0.5f, -transform.up, out var hit, groundCheckDistance, ground))
+            if (Physics.SphereCast(transform.position, 0.3f, -transform.up, out var hit, groundCheckDistance, ground))
             {
                 isGrounded = true;
                 coyoteJumped = false;
@@ -266,7 +266,7 @@ public class CharacterControllerMockup : MonoBehaviour
 
     private void RegulateJump()
     {
-        if (!Physics.SphereCast(transform.position, 0.5f, -transform.up, out var hit, groundCheckDistance, ground))
+        if (!Physics.SphereCast(transform.position, 0.3f, -transform.up, out var hit, groundCheckDistance, ground))
         {
             if (isGrounded && !coyoteJumped)
             {
@@ -284,7 +284,7 @@ public class CharacterControllerMockup : MonoBehaviour
             animator.ResetTrigger("jump");
         }
 
-        rb.AddForce(-transform.up * fallStrength, ForceMode.Acceleration);
+        rb.AddForce(-transform.up * fallStrength * slopeFallStrenghtMultiplier, ForceMode.Acceleration);
     }
 
     //TODO: sliding problem 
@@ -635,7 +635,7 @@ public class CharacterControllerMockup : MonoBehaviour
      */
 
     private bool _isOnCurvedGround;
-    [SerializeField] private float maxSlopeAngle = 45f;
+    [SerializeField] private float maxSlopeAngle = 45f, slopeAdjustment = 1.2f;
 
     private void Slope()
     {
@@ -643,15 +643,20 @@ public class CharacterControllerMockup : MonoBehaviour
         if (moveVector == Vector2.zero)
         {
             RaycastHit hit; //check for ground below the player and get the angle
-            if (Physics.SphereCast(transform.position, 0.5f, -transform.up, out hit, groundCheckDistance, ground))
+            if (Physics.SphereCast(transform.position, 0.3f, -transform.up, out hit, groundCheckDistance, ground))
             {
                 // Calculate the slope angle
                 float slopeAngle = Vector3.Angle(hit.normal, transform.up);
                 //print(slopeAngle);
                 // Apply friction on a specific angle 
-                if (slopeAngle >= 0 && slopeAngle <= maxSlopeAngle)
+                if (slopeAngle > 0 && slopeAngle <= maxSlopeAngle)
                 {
                     rb.velocity = new Vector3(0, rb.velocity.y, 0);
+                    slopeFallStrenghtMultiplier = 0.3f;
+                }
+                else
+                {
+                    slopeFallStrenghtMultiplier = 1f;
                 }
             }
         }
