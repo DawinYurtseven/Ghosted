@@ -34,6 +34,7 @@ public class CharacterControllerMockup : MonoBehaviour
                 StartCoroutine(LerpBackFocus());
                 StartCoroutine(LerpActionShotLockInput(60f, CameraShoulderOffset, 2.5f));
             }
+
             target = talisman;
         });
         talismanModetext.text = tMode.ToString();
@@ -63,9 +64,9 @@ public class CharacterControllerMockup : MonoBehaviour
 
         //jumpControl
         RegulateJump();
-        
+
         //check for slope
-        Slope();     
+        Slope();
     }
 
     #region Speed
@@ -79,7 +80,6 @@ public class CharacterControllerMockup : MonoBehaviour
     {
         if (context.performed)
         {
-            
             var lastMoveVector = moveVector;
             moveVector = context.ReadValue<Vector2>();
             currentSpeed -= ((lastMoveVector - moveVector).magnitude * currentSpeed / 2) * 0.5f;
@@ -112,8 +112,9 @@ public class CharacterControllerMockup : MonoBehaviour
         {
             characterObject.transform.localRotation = lookAtPivot.transform.localRotation;
             //rotate with direction
-            characterObject.transform.localRotation *= Quaternion.LookRotation(new Vector3(moveVector.x, 0 , moveVector.y)); ; 
-            
+            characterObject.transform.localRotation *=
+                Quaternion.LookRotation(new Vector3(moveVector.x, 0, moveVector.y));
+
             var right = lookAtTarget.right;
             var forward = lookAtTarget.forward;
             lastInput = right * moveVector.x + forward * moveVector.y;
@@ -132,6 +133,7 @@ public class CharacterControllerMockup : MonoBehaviour
                                    + lookAtTarget.up * localVelocity.y;
             rb.velocity = relativeMove;
         }
+
         animator.SetFloat("Speed", currentSpeed / maxSpeed);
     }
 
@@ -143,7 +145,9 @@ public class CharacterControllerMockup : MonoBehaviour
     [SerializeField] private GameObject lookAtPivot;
     [SerializeField] private Vector2 cameraDirection;
     [SerializeField] private float cameraSpeed;
-    [SerializeField] private Vector3 CameraShoulderOffset = new Vector3(2,0,0), CameraShoulderLockOnOffset = new Vector3(2,2,0);
+
+    [SerializeField] private Vector3 CameraShoulderOffset = new Vector3(2, 0, 0),
+        CameraShoulderLockOnOffset = new Vector3(2, 2, 0);
 
     [SerializeField] private bool strifing;
 
@@ -205,12 +209,14 @@ public class CharacterControllerMockup : MonoBehaviour
     [SerializeField] public float fallStrength, coyoteFallStrength;
     [SerializeField] private float groundCheckDistance;
     [SerializeField] private float coyoteTime = 0.2f;
-    [SerializeField] private bool coyoteJumped, isGrounded = true; 
+    [SerializeField] private bool coyoteJumped, isGrounded = true;
 
     public void Jump(InputAction.CallbackContext context)
     {
         //print(coyoteJumped);
-        if (context.started && ( Physics.SphereCast(transform.position,0.5f,-transform.up,out var hit, groundCheckDistance, ground) || !coyoteJumped))
+        if (context.started &&
+            (Physics.SphereCast(transform.position, 0.5f, -transform.up, out var hit, groundCheckDistance, ground) ||
+             !coyoteJumped))
         {
             float angle = Vector3.Angle(hit.normal, transform.up);
             if (Vector3.Angle(hit.normal, transform.up) > 45f)
@@ -243,22 +249,24 @@ public class CharacterControllerMockup : MonoBehaviour
         float timer = 0f;
         while (timer < coyoteTime)
         {
-            if (Physics.SphereCast(transform.position,0.5f, -transform.up, out var hit,groundCheckDistance, ground))
+            if (Physics.SphereCast(transform.position, 0.5f, -transform.up, out var hit, groundCheckDistance, ground))
             {
                 isGrounded = true;
                 coyoteJumped = false;
                 animator.SetBool("grounded", true);
                 yield break;
             }
+
             timer += Time.fixedDeltaTime;
             yield return new WaitForFixedUpdate();
         }
+
         coyoteJumped = true;
     }
 
     private void RegulateJump()
     {
-        if (!Physics.SphereCast(transform.position,0.5f, -transform.up, out var hit,groundCheckDistance, ground))
+        if (!Physics.SphereCast(transform.position, 0.5f, -transform.up, out var hit, groundCheckDistance, ground))
         {
             if (isGrounded && !coyoteJumped)
             {
@@ -276,9 +284,8 @@ public class CharacterControllerMockup : MonoBehaviour
         }
 
         rb.AddForce(-transform.up * fallStrength, ForceMode.Acceleration);
-        
     }
-    
+
     //TODO: sliding problem 
     //TODO: 
 
@@ -329,7 +336,7 @@ public class CharacterControllerMockup : MonoBehaviour
     [SerializeField] private new CinemachineVirtualCamera camera;
     [SerializeField] private float cameraZoomSpeed;
 
-    
+
     //TODO: Lock on raus und mehr am ui arbeiten
     private bool lockOn;
     private Vector3 targetPosition;
@@ -466,18 +473,18 @@ public class CharacterControllerMockup : MonoBehaviour
     [SerializeField] private Emotion talismanEmotion;
 
     [SerializeField] private TextMeshProUGUI talismanModetext, talismanEmotionText;
-    
+
 
     [SerializeField] private GameObject TalismanPrefab;
 
     private GameObject thrownTalisman;
-    
-    
+
+
     //Check this 
     public int maxTalismans = 3;
     private int curTalsimans = 0;
     [SerializeField] TextMeshProUGUI talismansUsed;
-    [SerializeField] private  List<TalismanTargetMock> lockedObjects= new List<TalismanTargetMock>();
+    [SerializeField] private List<TalismanTargetMock> lockedObjects = new List<TalismanTargetMock>();
 
     public void ThrowTalisman(InputAction.CallbackContext context)
     {
@@ -487,7 +494,8 @@ public class CharacterControllerMockup : MonoBehaviour
             
             //If the object is already bounded, recall talisman
             if (lockedObjects.Contains(target))
-            {  lockedObjects.Remove(target);
+            {
+                lockedObjects.Remove(target);
                 curTalsimans--;
                 target.Bind();
                 thrownTalisman = Instantiate(TalismanPrefab, target.gameObject.transform.position,
@@ -496,7 +504,7 @@ public class CharacterControllerMockup : MonoBehaviour
                 StartCoroutine(thrownTalisman.GetComponent<Talisman>().MoveTowardsPlayer(this));
                 talismansUsed.text = "Talismans used: " + curTalsimans + " / " + maxTalismans;
             }
-            
+
             //Throw talisman
             else
             {
@@ -509,7 +517,6 @@ public class CharacterControllerMockup : MonoBehaviour
                     Quaternion.LookRotation((target.transform.position - transform.position).normalized));
                 thrownTalisman.GetComponent<Talisman>().Initialize(tMode, talismanEmotion);
                 StartCoroutine(thrownTalisman.GetComponent<Talisman>().MoveTowards(target));*/
-                
             }
             
             
@@ -529,14 +536,14 @@ public class CharacterControllerMockup : MonoBehaviour
         talismansUsed.text = "Talismans used: " + curTalsimans + " / " + maxTalismans;
     }
 
-  
 
     private TalismanTargetMock tempTar;
     public AltarMock tempAltar;
     public static event Action firstUsageAltar;
     public  bool usedAltar = false;
-    [SerializeField]
-    private int interactionRange = 20;
+
+    [SerializeField] private int interactionRange = 20;
+
     private void CheckForInteractables()
     {
         if (tempAltar != null)
@@ -579,7 +586,7 @@ public class CharacterControllerMockup : MonoBehaviour
     {
         if (context.performed)
         {
-           // print("F performed");
+            // print("F performed");
             // if (tempTar == null && tempAltar == null) return;
             if (tempAltar != null)
             {
@@ -600,7 +607,7 @@ public class CharacterControllerMockup : MonoBehaviour
             // print(previousTargetTalismanObject);
         }
     }
-    
+
     public void RecallTalismans(InputAction.CallbackContext context)
     {
         if (tempAltar != null)
@@ -609,7 +616,7 @@ public class CharacterControllerMockup : MonoBehaviour
             {
                 lockedObject.Bind();
             }
-             
+
             lockedObjects.Clear();
             curTalsimans = 0;
             talismansUsed.text = "Talismans used: " + curTalsimans + " / " + maxTalismans;
@@ -635,7 +642,7 @@ public class CharacterControllerMockup : MonoBehaviour
         if (moveVector == Vector2.zero)
         {
             RaycastHit hit; //check for ground below the player and get the angle
-            if (Physics.SphereCast(transform.position,0.5f, -transform.up, out hit, groundCheckDistance,ground))
+            if (Physics.SphereCast(transform.position, 0.5f, -transform.up, out hit, groundCheckDistance, ground))
             {
                 // Calculate the slope angle
                 float slopeAngle = Vector3.Angle(hit.normal, transform.up);
@@ -673,9 +680,6 @@ public class CharacterControllerMockup : MonoBehaviour
             yield return null;
         }
     }*/
-    
-    
-    
 
     #endregion
 }
