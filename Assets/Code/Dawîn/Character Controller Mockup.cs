@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using TMPro;
 using UniRx;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -481,9 +484,6 @@ public class CharacterControllerMockup : MonoBehaviour
         if (context.performed)
         {
             if (target == null || thrownTalisman != null) return;
-            if (curTalsimans == maxTalismans) return;
-            
-            
             
             //If the object is already bounded, recall talisman
             if (lockedObjects.Contains(target))
@@ -494,12 +494,13 @@ public class CharacterControllerMockup : MonoBehaviour
                     Quaternion.LookRotation((transform.position - gameObject.transform.position).normalized));
                 //thrownTalisman.GetComponent<Talisman>().Initialize(tMode, talismanEmotion);
                 StartCoroutine(thrownTalisman.GetComponent<Talisman>().MoveTowardsPlayer(this));
-                
+                talismansUsed.text = "Talismans used: " + curTalsimans + " / " + maxTalismans;
             }
             
             //Throw talisman
             else
             {
+                if (curTalsimans == maxTalismans) return;
                 //curTalsimans++;
                 animator.SetTrigger("Throw Talisman");
                 characterObject.transform.LookAt(target.transform);
@@ -512,7 +513,7 @@ public class CharacterControllerMockup : MonoBehaviour
             }
             
             
-            talismansUsed.text = "Talismans used: " + curTalsimans + " / " + maxTalismans;
+            
             //previousTargetTalismanObject = target;
         }
     }
@@ -525,13 +526,15 @@ public class CharacterControllerMockup : MonoBehaviour
             Quaternion.LookRotation((target.transform.position - transform.position).normalized));
         thrownTalisman.GetComponent<Talisman>().Initialize(tMode, talismanEmotion);
         StartCoroutine(thrownTalisman.GetComponent<Talisman>().MoveTowards(target));
+        talismansUsed.text = "Talismans used: " + curTalsimans + " / " + maxTalismans;
     }
 
   
 
     private TalismanTargetMock tempTar;
     public AltarMock tempAltar;
-
+    public static event Action firstUsageAltar;
+    public  bool usedAltar = false;
     [SerializeField]
     private int interactionRange = 20;
     private void CheckForInteractables()
@@ -580,6 +583,11 @@ public class CharacterControllerMockup : MonoBehaviour
             // if (tempTar == null && tempAltar == null) return;
             if (tempAltar != null)
             {
+                if (!usedAltar)
+                {
+                    usedAltar = true;
+                    firstUsageAltar?.Invoke();
+                }
                 print("sup");
                 tempAltar.ChangeEmotion(talismanEmotion);
                 return;

@@ -1,0 +1,145 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-1566878805869836316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 68e811b5-8a24-4597-ba87-d635f86e68cd
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 528
+    y: 455
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions:
+  - exit
+  text: Oh, I have to introduce you to them. Let's go to the study!
+  child: 
+  speaker: Miyu
+--- !u!114 &-1498181809219626133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 4b7e3ac7-d32f-48da-aa9e-ffd8277a6ba3
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 200
+    height: 80
+  onEnterActions:
+  - enter
+  - miyu
+  onExitActions: []
+  text: "Oh, my candle\u2026 Isn\u2019t she lovely? I told you I made it with my
+    mom. I miss them, the way they used to be..."
+  child: 55de919d-0ec6-4ac5-a821-0a08f61fc0b0
+  speaker: Miyu
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0128aa92babf3fd4e9cf4beb0d51198e, type: 3}
+  m_Name: candleDialogue 1
+  m_EditorClassIdentifier: 
+  dialogueSpeakers:
+  - Player
+  - Miyu
+  dialogueNodes:
+  - {fileID: -1498181809219626133}
+  - {fileID: 9104091565543397349}
+  - {fileID: 4658048797770967006}
+  - {fileID: 7754807279540558429}
+  - {fileID: -1566878805869836316}
+  replyNodes: []
+--- !u!114 &4658048797770967006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: b174e885-e799-4181-9350-7ca5683e5c83
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 281
+    y: 301
+    width: 200
+    height: 80
+  onEnterActions:
+  - miyu
+  onExitActions: []
+  text: 'Of course they were happy! We were all very happy! '
+  child: 8c528eed-d5f3-42ce-a675-d2b362e06f2b
+  speaker: Miyu
+--- !u!114 &7754807279540558429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 8c528eed-d5f3-42ce-a675-d2b362e06f2b
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 293
+    y: 461
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions: []
+  text: Well, sometimes Mama and Papa fought. Just sometimes! About little things.
+  child: 68e811b5-8a24-4597-ba87-d635f86e68cd
+  speaker: Miyu
+--- !u!114 &9104091565543397349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 55de919d-0ec6-4ac5-a821-0a08f61fc0b0
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 283
+    y: 100
+    width: 200
+    height: 80
+  onEnterActions:
+  - face
+  onExitActions: []
+  text: 'Was your family happy? '
+  child: b174e885-e799-4181-9350-7ca5683e5c83
+  speaker: Player

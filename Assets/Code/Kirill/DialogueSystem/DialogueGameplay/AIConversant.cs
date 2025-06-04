@@ -19,12 +19,20 @@ namespace Ghosted.Dialogue
 
         public void turnOnHint()
         {
-            uiHint?.SetActive(true);
+            if (uiHint != null)
+            {
+                uiHint.SetActive(true);
+            }
+
         }
         
         public void turnOffHint()
         {
-            uiHint?.SetActive(false);
+            if (uiHint != null)
+            {
+                uiHint.SetActive(false);
+            }
+           
         }
     }
 }

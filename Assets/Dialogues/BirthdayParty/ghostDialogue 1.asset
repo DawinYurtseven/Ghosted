@@ -18,7 +18,8 @@ MonoBehaviour:
     y: 264
     width: 200
     height: 80
-  onEnterActions: []
+  onEnterActions:
+  - miyu
   onExitActions: []
   text: "I\u2019ve never had such a perfect day in all my life! Mama and Papa said
     8 is a big number. Look at all the presents! And lemon sponge cake, my absolute
@@ -46,10 +47,31 @@ MonoBehaviour:
   onEnterActions: []
   onExitActions:
   - goToCandles
-  text: "My favorite is the red candle in the middle! It\u2019s a very special candle.
-    Mama said it\u2019s the one that grants all of my wishes. I wish for this party
-    to last forever!!"
-  child: removed
+  text: 'You know, I helped too! '
+  child: a6936814-038a-442d-8b00-79cc70bb3d5c
+  speaker: Miyu
+--- !u!114 &-1874085267654747075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: a6936814-038a-442d-8b00-79cc70bb3d5c
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 1664
+    y: 398
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions: []
+  text: " I put the candles into the cake. One by one. Don\u2019t they look great?"
+  child: 6ace1b13-2992-430d-bba4-d791c545221c
   speaker: Miyu
 --- !u!114 &-570502738386804078
 MonoBehaviour:
@@ -69,11 +91,36 @@ MonoBehaviour:
     y: 423
     width: 200
     height: 80
-  onEnterActions: []
+  onEnterActions:
+  - miyu
   onExitActions: []
-  text: "Of course you do; everyone does! You know, I helped too! I put the candles
-    into the cake. One by one. Don\u2019t they look great?"
+  text: Of course you do; everyone does!
   child: 3bb61bd9-9dd2-4e21-a988-49c4227ea2d2
+  speaker: Miyu
+--- !u!114 &-106118655868583179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 4b6a95ad-c3fb-4beb-9b0c-8333452c7344
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 1921
+    y: 220
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions:
+  - exit
+  text: "Mama said it\u2019s the one that grants all of my wishes. I wish for this
+    party to last forever!!"
+  child: 
   speaker: Miyu
 --- !u!114 &-5217236755950789
 MonoBehaviour:
@@ -89,14 +136,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: 245
-    y: 107
+    x: 233
+    y: 45
     width: 200
     height: 80
   onEnterActions: []
   onExitActions:
   - animateGhost
-  text: "Welcome to my birthday party, isn\u2019t it just wonderful?"
+  text: "Welcome to my birthday party, isn\u2019t it\r                                                               
+    just wonderful?"
   child: 390e1a60-0535-4dff-9c26-de4103c02930
   speaker: Miyu
 --- !u!114 &11400000
@@ -112,7 +160,7 @@ MonoBehaviour:
   m_Name: ghostDialogue 1
   m_EditorClassIdentifier: 
   dialogueSpeakers:
-  - Ghost Binder
+  - Player
   - Ghost
   - Miyu
   dialogueNodes:
@@ -123,7 +171,33 @@ MonoBehaviour:
   - {fileID: 7292402543560610907}
   - {fileID: -570502738386804078}
   - {fileID: -5458546470215557258}
+  - {fileID: -1874085267654747075}
+  - {fileID: 1857311466115774367}
+  - {fileID: -106118655868583179}
   replyNodes: []
+--- !u!114 &1857311466115774367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 6ace1b13-2992-430d-bba4-d791c545221c
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 1873
+    y: 433
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions: []
+  text: "My favorite is the red candle in the middle! It\u2019s a very special candle. "
+  child: 4b6a95ad-c3fb-4beb-9b0c-8333452c7344
+  speaker: Miyu
 --- !u!114 &2413610986719448867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,8 +218,8 @@ MonoBehaviour:
     height: 80
   onEnterActions:
   - enter
-  onExitActions:
-  - exit
+  - miyu
+  onExitActions: []
   text: "I\u2019m Miyu.\r\n"
   child: 507f2408-5eb1-4786-9e10-a1b214b755a3
   speaker: Ghost
@@ -164,14 +238,18 @@ MonoBehaviour:
   rect:
     serializedVersion: 2
     x: 509
-    y: 147
+    y: 145
     width: 200
     height: 80
-  onEnterActions: []
+  onEnterActions:
+  - player
   onExitActions: []
-  text: 'Hi, Miyu. I am (NAME). Thank you for inviting me to your wonderful party. '
+  text: 'Hi, Miyu. I am (NAME).
+
+    Thank you for inviting me to your wonderful
+    party.'
   child: 1328ff7c-6c9f-454d-9785-2e5ecd7cb254
-  speaker: Ghost Binder
+  speaker: Player
 --- !u!114 &7292402543560610907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,8 +268,9 @@ MonoBehaviour:
     y: 340
     width: 200
     height: 80
-  onEnterActions: []
+  onEnterActions:
+  - player
   onExitActions: []
-  text: Um... Yes, I do.
+  text: Um. Yes, I do.
   child: 5e4ca0ec-03b8-41bb-94f8-206d9d2219e2
-  speaker: Ghost Binder
+  speaker: Player
