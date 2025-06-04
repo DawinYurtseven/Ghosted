@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0128aa92babf3fd4e9cf4beb0d51198e, type: 3}
+  m_Name: CardJoy
+  m_EditorClassIdentifier: 
+  dialogueSpeakers:
+  - Miyu
+  dialogueNodes:
+  - {fileID: 8935675927277435603}
+  replyNodes: []
+--- !u!114 &8935675927277435603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: f3ebf901-1bfc-484b-a24e-99576d3caa29
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions: []
+  text: Mama painted the flowers on the card. They are so pretty. She always helped
+    me with my painting; she told me I was going to be a great painter one day. I
+    never became one, but I did teach art to children. Thanks to Mama.
+  child: 
+  speaker: Miyu
