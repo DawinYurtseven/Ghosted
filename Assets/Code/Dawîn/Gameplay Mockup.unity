@@ -1185,7 +1185,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0.9817419
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 422391204481980013, guid: a0d0df5c6dcec6d488dfefaeb5d2b2a4, type: 3}
     m_RemovedGameObjects:
     - {fileID: 375387022444167873, guid: a0d0df5c6dcec6d488dfefaeb5d2b2a4, type: 3}
     m_AddedGameObjects: []
@@ -1226,6 +1227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d02187302ab41de47ab0c5e932c8e2cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiHint: {fileID: 0}
 --- !u!65 &306078414
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2031,13 +2033,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1095658355}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
+  m_LocalRotation: {x: 0.22335353, y: 0.6709048, z: -0.22335353, w: 0.6709048}
   m_LocalPosition: {x: -8.79, y: 1.51, z: -22.17}
   m_LocalScale: {x: 4.2383, y: 1, z: 2.1356}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 36.827, y: 90, z: 0}
 --- !u!114 &1241817067 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8104099331024968956, guid: a0d0df5c6dcec6d488dfefaeb5d2b2a4, type: 3}
