@@ -1,5 +1,7 @@
 using Cinemachine;
+using Ghosted.Dialogue;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.Splines;
 
@@ -32,17 +34,27 @@ public class LevelManagerMock : MonoBehaviour
 
     [SerializeField] private ghostOrb ghost;
     public GameObject[] objectsToActivate;
+
+   
+    private GlobalConversant dialogue;
+
+    void Start()
+    {
+        dialogue = this.GetComponent<GlobalConversant>();
+    }
     private void OnEnable()
     {
         EmotionSingletonMock.Instance.disableAll = false;
         CutSceneTrigger.OnCutScenePlayerTriggered += ExecuteCutScenePlayer;
         CutSceneTrigger.OnCutSceneTrainTriggered += ExecuteCutSceneTrain;
+        CharacterControllerMockup.firstUsageAltar += DialogueAfterAltar;
     }
 
     private void OnDisable()
     {
         CutSceneTrigger.OnCutScenePlayerTriggered -= ExecuteCutScenePlayer;
         CutSceneTrigger.OnCutSceneTrainTriggered -= ExecuteCutSceneTrain;
+        CharacterControllerMockup.firstUsageAltar -= DialogueAfterAltar;
     }
     
     private void ExecuteCutScenePlayer(CutSceneName cutScene)
@@ -74,14 +86,19 @@ public class LevelManagerMock : MonoBehaviour
     }
 
 
+    private void DialogueAfterAltar()
+    {
+        dialogue.StartGlobalDialogue(player.GetComponent<PlayerConversant>());
+    }
     void CuckooClockCutScene()
     {
-        clockAnimator.SetTrigger("cuckoo");
+        //clockAnimator.SetTrigger("cuckoo");
         foreach (GameObject obj in objectsToActivate )
         {
             obj.SetActive(true);
         }
-        ghost.MoveToNextWaypoint();
+        //dialogue.StartGlobalDialogue(player.GetComponent<PlayerConversant>());
+        //ghost.MoveToNextWaypoint();
         EmotionSingletonMock.Instance.disableAll = false;
     }
 
