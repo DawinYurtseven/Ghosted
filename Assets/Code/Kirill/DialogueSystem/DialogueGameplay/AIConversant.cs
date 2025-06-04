@@ -1,11 +1,9 @@
 using System.Linq;
-using UnityEngine;
 
 namespace Ghosted.Dialogue
 {
     public class AIConversant : Conversant
     {
-
         // Press e to interact, TODO: Combine with overall interact system
         public void Interact(PlayerConversant playerConversant)
         {
