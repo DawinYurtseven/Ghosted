@@ -206,7 +206,7 @@ public class CharacterControllerMockup : MonoBehaviour
      * the two booleans coyoteJumped and isGrounded are used to check if the player is grounded or not and dictate coyote time.
      */
     [Header("Jump")] [SerializeField] public float jumpStrength;
-    [SerializeField] public float fallStrength, slopeFallStrenghtMultiplier = 1f;
+    [SerializeField] public float fallStrength;
     [SerializeField] private float groundCheckDistance;
     [SerializeField] private float coyoteTime = 0.2f;
     [SerializeField] private bool coyoteJumped, isGrounded = true, jumpPressed = false;
@@ -284,7 +284,7 @@ public class CharacterControllerMockup : MonoBehaviour
             animator.ResetTrigger("jump");
         }
 
-        rb.AddForce(-transform.up * fallStrength * slopeFallStrenghtMultiplier, ForceMode.Acceleration);
+        rb.AddForce(-transform.up * fallStrength, ForceMode.Acceleration);
     }
 
     //TODO: sliding problem 
@@ -647,17 +647,18 @@ public class CharacterControllerMockup : MonoBehaviour
             {
                 // Calculate the slope angle
                 float slopeAngle = Vector3.Angle(hit.normal, transform.up);
-                //print(slopeAngle);
                 // Apply friction on a specific angle 
                 if (slopeAngle > 0 && slopeAngle <= maxSlopeAngle)
                 {
                     rb.velocity = new Vector3(0, rb.velocity.y, 0);
-                    slopeFallStrenghtMultiplier = 0.3f;
+                    rb.AddForce(transform.up * fallStrength, ForceMode.Acceleration);
+                    print(rb.velocity);
+                    //slopeFallStrenghtMultiplier = 0.3f;
                 }
-                else
+                /*else
                 {
                     slopeFallStrenghtMultiplier = 1f;
-                }
+                }*/
             }
         }
     }
