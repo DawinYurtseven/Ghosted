@@ -227,6 +227,9 @@ public class CharacterControllerMockup : MonoBehaviour
             coyoteJumped = true;*/
             animator.SetTrigger("jump");
             coyoteJumped = true;
+            animator.SetBool("grounded", false);
+            var up = transform.up; 
+            rb.velocity += up * jumpStrength;
         }
     }
 
@@ -492,7 +495,7 @@ public class CharacterControllerMockup : MonoBehaviour
         if (context.performed)
         {
             if (target == null || thrownTalisman != null) return;
-            
+
             //If the object is already bounded, recall talisman
             if (lockedObjects.Contains(target))
             {
@@ -519,9 +522,8 @@ public class CharacterControllerMockup : MonoBehaviour
                 thrownTalisman.GetComponent<Talisman>().Initialize(tMode, talismanEmotion);
                 StartCoroutine(thrownTalisman.GetComponent<Talisman>().MoveTowards(target));*/
             }
-            
-            
-            
+
+
             //previousTargetTalismanObject = target;
         }
     }
@@ -541,7 +543,7 @@ public class CharacterControllerMockup : MonoBehaviour
     private TalismanTargetMock tempTar;
     public AltarMock tempAltar;
     public static event Action firstUsageAltar;
-    public  bool usedAltar = false;
+    public bool usedAltar = false;
 
     [SerializeField] private int interactionRange = 20;
 
@@ -551,6 +553,7 @@ public class CharacterControllerMockup : MonoBehaviour
         {
             tempAltar.turnOffHintAltar();
         }
+
         //ok, problem is that when the pivot is in object 
         if (Physics.SphereCast(transform.position, 1f, lookAtPivot.transform.forward, out var hit, interactionRange))
         {
@@ -579,8 +582,6 @@ public class CharacterControllerMockup : MonoBehaviour
                 tempTar = null;
             }
         }
-        
-        
     }
 
     public void PlaceTalisman(InputAction.CallbackContext context)
@@ -596,6 +597,7 @@ public class CharacterControllerMockup : MonoBehaviour
                     usedAltar = true;
                     firstUsageAltar?.Invoke();
                 }
+
                 print("sup");
                 tempAltar.ChangeEmotion(talismanEmotion);
                 return;
