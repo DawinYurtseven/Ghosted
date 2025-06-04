@@ -47,7 +47,7 @@ MonoBehaviour:
   - Next
   text: And the train wont come until the clock shows the right time...
   child: 9f4592cc-580a-446b-8a17-1c6203af8b96
-  speaker: You
+  speaker: Miyu
 --- !u!114 &-1379377018664269314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,11 +117,12 @@ MonoBehaviour:
     width: 200
     height: 80
   onEnterActions: []
-  onExitActions: []
+  onExitActions:
+  - delete
   text: "We\u2019ve gotta catch the train to the Central Station! That\u2019s where
     the airport is.\r\nThat\u2019s where I left... well... nevermind!"
   child: removed
-  speaker: You
+  speaker: Miyu
 --- !u!114 &1272631402270421841
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Ghosted.Dialogue;
+using System.Linq;
 using UnityEngine;
 
 namespace Ghosted.Dialogue
@@ -13,6 +11,19 @@ namespace Ghosted.Dialogue
         {
             if (curDialogue != null)
                 playerConversant.StartDialogue(curDialogue);
+        }
+
+        public void deleteLastDialogue()
+        {
+            var list = this.dialogues.ToList();
+            list.Remove(curDialogue);
+            this.dialogues = list.ToArray();
+            
+            this.ChooseDialogueByID(this.dialogueId);
+
+            
+            // Debug.Log("Now: " + this.dialogues);
+            // Debug.Log("Current Dialogue");
         }
     }
 }

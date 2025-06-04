@@ -19,7 +19,9 @@ MonoBehaviour:
     width: 200
     height: 80
   onEnterActions: []
-  onExitActions: []
+  onExitActions:
+  - delete
+  - Next
   text: A photo, maybe. Or a feeling.
   child: 
   speaker: You

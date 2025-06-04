@@ -22,7 +22,7 @@ MonoBehaviour:
   onExitActions: []
   text: "Even if I miss it, even if I doubt\u2014\r\nThat girl with the cake?"
   child: 7b99b68d-ef2f-446c-b89f-9905e5b2dec4
-  speaker: You
+  speaker: Miyu
 --- !u!114 &-2666537047944515308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42,10 +42,11 @@ MonoBehaviour:
     width: 200
     height: 80
   onEnterActions: []
-  onExitActions: []
+  onExitActions:
+  - Next
   text: "She\u2019d want me to go."
   child: 
-  speaker: You
+  speaker: Miyu
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
