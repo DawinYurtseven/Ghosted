@@ -12,8 +12,21 @@ public class WeatherController : MonoBehaviour
     [SerializeField] private AudioSource rainBGM;
     [SerializeField] private GameObject rainLight;
     [SerializeField] private Skybox rainSkybox;
-    [SerializeField] private GameObject rainPP;
-
+    [SerializeField] private GameObject rainPP; 
+    private bool isRaining = false;
+    private bool isInside = false;
+    
+    // Adjust the rain particles whether player is inside or not
+    public bool IsInside
+    {
+        get => isInside;
+        set
+        {
+            isInside = value;
+            OnInside(isInside);
+        }
+    }
+    
     private EmotionSingletonMock emotionSing;
 
     #region Event Subscription
@@ -41,6 +54,8 @@ public class WeatherController : MonoBehaviour
     
     public void setRain(bool raining)
     {
+        isRaining = raining;
+        
         if (raining)
         {
             rainGameObject.SetActive(true);
@@ -61,6 +76,12 @@ public class WeatherController : MonoBehaviour
         }
     }
 
+    private void OnInside(bool inside)
+    {  
+        //Rain particles are only active when the player is outside
+        rainGameObject.SetActive(isRaining && !isInside);
+    }
+    
     public void changeWeather(Emotion emotion)
     {
         Debug.Log("Changing Weather for: " + emotion);
