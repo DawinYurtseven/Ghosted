@@ -1,29 +1,96 @@
 # Bound VFX Usage Guide
 
-### Where to find the prefab?
+## Where to Find the Prefab
 
-After you pull the changes from `shader` branch, you can find it in `Assets > Prefabs > Bound VFX`.
+After pulling the latest changes from the `shader` branch, you can find the prefab here:
 
-### How to use it?
+```
+Assets > Prefabs > Bound VFX
+```
 
-The prefab comes with a `BoundVFXController` script already attached. You can use its main function like this:
+---
+
+## How to Use It
+
+The prefab comes with the `BoundVFXController` script already attached. This script provides two main functions:
 
 ```csharp
-public void PlayAt(Transform parent, Emotion emotion)
+public void PlayVFXAt(Transform parent, Emotion emotion)
+```  
+This starts and attaches the VFX to the given transform. The effect uses the specified emotion to control its visual appearance (colour, gradients, texture, etc.).
+
+**Parameters**:
+
+- `Transform parent`: The transform where the VFX should appear and attach to
+- An `Emotion emotion` enum value (already set up in the project)
+
+```csharp
+public void StopVFX()
+```  
+Fades out the VFX and removes it from the scene when finished.
+
+**The visual style will automatically match the selected emotion.**
+
+---
+## Example Usage
+
+This is a code snippet from `Assets > Code > Ben > Scripts > VFX > "ExampleVFXUsage.cs"`. 
+
+The example scene can be found in `Assets > Prefabs > "Bound VFX Example"`. 
+
+```csharp
+public class ExampleVFXUsage : MonoBehaviour
+{
+    // Reference to the VFX prefab (found in Assets > Prefabs > Bound VFX)
+    public GameObject vfxPrefab;
+
+    // The target transform where the VFX should appear and attach
+    public Transform target;
+
+    // The emotion to be used when playing the VFX (defines visual style)
+    public Emotion emotions;
+
+    // Holds the current active VFX instance
+    private BoundVFXController vfxInstance;
+
+    private void Update()
+    {
+        // Play the VFX when SPACE is pressed
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            // If a VFX is already playing, destroy the previous one
+            if (vfxInstance != null)
+                Destroy(vfxInstance.gameObject);
+
+            // Instantiate a new VFX prefab
+            var go = Instantiate(vfxPrefab);
+            go.SetActive(true); // Ensure it's active in case the prefab was disabled
+
+            // Get the BoundVFXController component and start the effect
+            vfxInstance = go.GetComponent<BoundVFXController>();
+            vfxInstance.PlayVFXAt(target, emotions);
+        }
+
+        // Stop the VFX when R is pressed
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            // Only stop if a VFX is currently active
+            if (vfxInstance != null)
+                vfxInstance.StopVFX();
+        }
+    }
+}
 ``` 
 
-Just call this function to spawn the VFX and attach it to whatever object you want (pass in the transform). The `emotion` is an enum that one of ya'll already set up — use it to pick the emotion you want, and the colour will automatically match.
+---
 
-You can tweak the look in the Inspector. The script lets you set things like:
+## Customising the Look
 
-- `Base Colours`
+You can tweak how each emotion looks by editing the prefab in the Inspector. The following properties are available for each emotion:
 
-- `Pulse Foreground Gradient`
+- **Base Colours**
+- **Pulse Foreground Gradients**
+- **Pulse Background Gradients**
+- **Character Textures**
 
-- `Pulse Background Gradient`
-
-- `Character textures`
-
-So if you want to change how the VFX looks for different emotions, just adjust those in the prefab.
-
-
+Adjust these to define how each emotion appears visually in the effect.

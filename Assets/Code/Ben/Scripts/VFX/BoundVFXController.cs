@@ -35,7 +35,9 @@ public class BoundVFXController : MonoBehaviour
     [Range(0, 1)] public float clipAmount = 0.4f;
     public float clipSpeed = 1f;
     float clip = 1;
+    private Coroutine fadeCoroutine;
 
+    private bool isPlaying = false;
     private void OnEnable()
     {
         vfx = GetComponent<VisualEffect>();
@@ -55,12 +57,48 @@ public class BoundVFXController : MonoBehaviour
 
         transform.SetParent(parent);
         vfx.SendEvent("OnPlay");
+
+        isPlaying = true;
+
+        if (fadeCoroutine != null) StopCoroutine(fadeCoroutine);
+        fadeCoroutine = StartCoroutine(FadeIn(clipAmount));
         clip = 1;
     }
 
     public void StopVFX()
     {
-        throw new NotImplementedException();
+        if (!isPlaying || vfx == null) return;
+
+        isPlaying = false;
+        if (fadeCoroutine != null) StopCoroutine(fadeCoroutine);
+        fadeCoroutine = StartCoroutine(FadeOutAndDestroy(1f));
+    }
+
+    private IEnumerator FadeIn(float target)
+    {
+        while (!Mathf.Approximately(clip, target))
+        {
+            clip = Mathf.MoveTowards(clip, target, Time.deltaTime * clipSpeed);
+            vfx.SetFloat("Clip", clip);
+            yield return null;
+        }
+    }
+
+    private IEnumerator FadeOutAndDestroy(float target)
+    {
+        vfx.SendEvent("OnStop");
+
+        while (!Mathf.Approximately(clip, target))
+        {
+            clip = Mathf.MoveTowards(clip, target, Time.deltaTime * clipSpeed);
+            vfx.SetFloat("Clip", clip);
+            yield return null;
+        }
+
+        yield return null;
+
+        // Remove from scene hierarchy
+        Destroy(gameObject);
     }
 
     private Color GetEmotionColour(Emotion emotion)
@@ -130,10 +168,6 @@ public class BoundVFXController : MonoBehaviour
                 return joyTex2D;
         }
     }
-    private void Update()
-    {
-        clip = Mathf.MoveTowards(clip, clipAmount, Time.deltaTime * clipSpeed);
-        vfx.SetFloat("Clip", clip);
-    }
+
 
 }

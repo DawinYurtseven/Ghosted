@@ -8,21 +8,31 @@ public class ExampleVFXUsage : MonoBehaviour
 {
     public GameObject vfxPrefab;
     public Transform target;
-
     public Emotion emotions;
-    // Update is called once per frame
-    void Start()
-    {
 
-    }
+    private BoundVFXController vfxInstance;
 
     private void Update()
     {
+        // Start VFX when SPACE is pressed
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            var vfx = Instantiate(vfxPrefab).GetComponent<BoundVFXController>();
-            vfx.PlayVFXAt(target, emotions);
+            if (vfxInstance != null)
+                Destroy(vfxInstance.gameObject); // Clean up previous
+
+            var go = Instantiate(vfxPrefab);
+            go.SetActive(true); // In case it's inactive in prefab
+
+            vfxInstance = go.GetComponent<BoundVFXController>();
+            vfxInstance.PlayVFXAt(target, emotions);
         }
 
+        // End VFX when R is pressed
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            if (vfxInstance != null)
+                vfxInstance.StopVFX();
+        }
     }
+
 }
