@@ -85,6 +85,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "RecallTalismans",
+                    "type": "Button",
+                    "id": "07a540c0-ebfc-429a-bf58-0f234e414c53",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -146,7 +155,7 @@
                 {
                     "name": "Controller",
                     "id": "70988bd2-a078-4f7b-a656-2aec75e3785a",
-                    "path": "2DVector",
+                    "path": "2DVector(mode=2)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -246,17 +255,6 @@
                     "name": "",
                     "id": "df3f42cb-77c0-4dd2-91af-60aafd2eafdf",
                     "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Bind(Not Fix)",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "04828c7f-5490-4090-a3f8-c26a202fd192",
-                    "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -470,6 +468,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "ChangeEmotion",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "50b7d45c-d27d-4181-a800-6110cb3fa1b9",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Controller",
+                    "action": "RecallTalismans",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "12d2fa30-225a-4734-a26a-770f80c694e8",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";MK",
+                    "action": "RecallTalismans",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

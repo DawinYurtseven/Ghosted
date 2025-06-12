@@ -1,0 +1,192 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-2906217645163519970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 9618fd51-4209-4f73-96b4-c7233d13c534
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 558
+    y: 155
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions: []
+  text: ...I guess so.
+  child: 754d5024-e952-4943-9e57-b00231afbd8d
+  speaker: Miyu
+--- !u!114 &-2695430335982704713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: c7457ae6-29f1-4f38-82e1-b8d2952ad6f4
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 1755
+    y: 388
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions:
+  - exit
+  text: "You\u2019ll understand once you see it.\r"
+  child: 
+  speaker: Ghost Binder
+--- !u!114 &-1218873031638777603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: bbfd4bae-6e4c-4252-b93a-ff7aca2713e3
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 311
+    y: 95
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions: []
+  text: What do you think? Should we go on with it?
+  child: 9618fd51-4209-4f73-96b4-c7233d13c534
+  speaker: Ghost Binder
+--- !u!114 &-1136851469993964585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 3b54ef93-a612-4607-af57-d0d07205f744
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 1437
+    y: 367
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions: []
+  text: "I\u2019m not sure I get it."
+  child: c7457ae6-29f1-4f38-82e1-b8d2952ad6f4
+  speaker: Miyu
+--- !u!114 &-184749028420118121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 754d5024-e952-4943-9e57-b00231afbd8d
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 799
+    y: 218
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions: []
+  text: But how will we get into the train?
+  child: c69f66b8-5d52-449b-9568-d7b49dc58e56
+  speaker: Miyu
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0128aa92babf3fd4e9cf4beb0d51198e, type: 3}
+  m_Name: TrainDialogue
+  m_EditorClassIdentifier: 
+  dialogueSpeakers:
+  - Ghost Binder
+  - Miyu
+  dialogueNodes:
+  - {fileID: 5357615108362744399}
+  - {fileID: -1218873031638777603}
+  - {fileID: -2906217645163519970}
+  - {fileID: -184749028420118121}
+  - {fileID: 3729557253263164330}
+  - {fileID: -1136851469993964585}
+  - {fileID: -2695430335982704713}
+  replyNodes: []
+--- !u!114 &3729557253263164330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: c69f66b8-5d52-449b-9568-d7b49dc58e56
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 1058
+    y: 303
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions: []
+  text: "I can also use the talismans to bind objects to a specific emotion. That
+    means when I throw a talisman onto an object and then change the emotion at the
+    shrine, that object won\u2019t be affected by the emotion change. It\u2019ll
+    stay the same until I remove the talisman."
+  child: 3b54ef93-a612-4607-af57-d0d07205f744
+  speaker: Ghost Binder
+--- !u!114 &5357615108362744399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: a2e1522c-cccd-470e-a652-db82315ff4bd
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 38
+    y: 41
+    width: 200
+    height: 80
+  onEnterActions:
+  - enter
+  onExitActions: []
+  text: Trains bring back a lot of memories... Some are really hard to remember.
+  child: bbfd4bae-6e4c-4252-b93a-ff7aca2713e3
+  speaker: Miyu

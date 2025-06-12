@@ -1,47 +1,144 @@
-using System.Collections;
-using System.Collections.Generic;
 using Cinemachine;
+using Ghosted.Dialogue;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.Splines;
 
 public class LevelManagerMock : MonoBehaviour
 {
-    [SerializeField] private CinemachineVirtualCamera playerCamera;
-    [SerializeField] private CinemachineVirtualCamera trainCamera;
-    [SerializeField] private GameObject player;
     
+    [Header("Player")]
+    [SerializeField] private GameObject player;
+    [SerializeField] private CinemachineVirtualCamera playerCamera;
+    [Header("Train")]
     [SerializeField] private GameObject train;
+    [SerializeField] private CinemachineVirtualCamera trainCamera;
+    [SerializeField] private int roadPart = 0;
+    [Header("Train stop 1")]
+    [SerializeField] private SplineContainer secondSpline;
+    [SerializeField] private Transform playerSpawn1;
+    [Header("Train stop 2")]
+    [SerializeField] private SplineContainer thirdSpline;
+    [SerializeField] private Transform playerSpawn2;
+    [Header("Enter Train second time")]
+    [SerializeField] private Fear barier;
+    
+    [Header("Enter Train third time")]
+    [SerializeField] private Fear barier2;
+    
+    private int trainSceneCount = 0;
+    
+    [Header("CuckooClock")]
+    [SerializeField] private Animator clockAnimator;
+
+    [SerializeField] private ghostOrb ghost;
+    public GameObject[] objectsToActivate;
+
+   
+    private GlobalConversant dialogue;
+
+    void Start()
+    {
+        dialogue = this.GetComponent<GlobalConversant>();
+    }
     private void OnEnable()
     {
-        CutSceneTrigger.OnCutSceneTriggered += ExecuteCutScene;
+        EmotionSingletonMock.Instance.disableAll = false;
+        CutSceneTrigger.OnCutScenePlayerTriggered += ExecuteCutScenePlayer;
+        CutSceneTrigger.OnCutSceneTrainTriggered += ExecuteCutSceneTrain;
+        CharacterControllerMockup.firstUsageAltar += DialogueAfterAltar;
     }
 
     private void OnDisable()
     {
-        CutSceneTrigger.OnCutSceneTriggered -= ExecuteCutScene;
+        CutSceneTrigger.OnCutScenePlayerTriggered -= ExecuteCutScenePlayer;
+        CutSceneTrigger.OnCutSceneTrainTriggered -= ExecuteCutSceneTrain;
+        CharacterControllerMockup.firstUsageAltar -= DialogueAfterAltar;
     }
     
-    private void ExecuteCutScene(CutSceneName cutScene)
+    private void ExecuteCutScenePlayer(CutSceneName cutScene)
     {
         switch (cutScene)
         {
             case CutSceneName.Train:
-                TrainCutScne();
+                TrainCutScene();
                 break;
-            case CutSceneName.TakeDocuments:
+            case CutSceneName.CuckooClock:
+                CuckooClockCutScene();
                 break;
+            default: return;
+        }
+    }
+    
+    private void ExecuteCutSceneTrain(CutSceneName cutScene)
+    {
+        switch (cutScene)
+        {
             case CutSceneName.EnterNextLevel:
                 SceneManager.LoadScene("MovingMock");
+                break;
+            case CutSceneName.ChangeTrain:
+                TrainChangeScene();
                 break;
             default: return;
         }
     }
 
-    void TrainCutScne()
+
+    private void DialogueAfterAltar()
     {
-        playerCamera.Priority = 0;
-        trainCamera.Priority = 20;
-        train.GetComponent<SplineAnimate>()?.Play();
+        dialogue.StartGlobalDialogue(player.GetComponent<PlayerConversant>());
+    }
+    void CuckooClockCutScene()
+    {
+        //clockAnimator.SetTrigger("cuckoo");
+        foreach (GameObject obj in objectsToActivate )
+        {
+            obj.SetActive(true);
+        }
+        //dialogue.StartGlobalDialogue(player.GetComponent<PlayerConversant>());
+        //ghost.MoveToNextWaypoint();
+        EmotionSingletonMock.Instance.disableAll = false;
+    }
+
+    void TrainCutScene()
+    {
+        if (trainSceneCount == 0 || trainSceneCount == 1 && barier.GetLocked() || trainSceneCount == 2 && barier2.GetLocked())
+        {
+            playerCamera.Priority = 0;
+            trainCamera.Priority = 10;
+            train.GetComponent<SplineAnimate>()?.Play();
+            trainSceneCount++;
+           // ghost.FollowObject(train.transform);
+        }
+    }
+
+
+    void TrainChangeScene()
+    {
+        ghost.MoveToNextWaypoint();
+        if (roadPart == 0)
+        {
+            train.GetComponent<SplineAnimate>().Container = secondSpline;
+            //train.GetComponent<SplineAnimate>().Pause();
+            train.GetComponent<SplineAnimate>()?.Restart(false);
+            playerCamera.Priority = 10;
+            trainCamera.Priority = 0;
+            player.transform.position = playerSpawn1.position;
+            player.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            roadPart++;
+        }
+        
+        else if (roadPart == 1)
+        {
+            train.GetComponent<SplineAnimate>().Container = thirdSpline;
+            //train.GetComponent<SplineAnimate>().Pause();
+            train.GetComponent<SplineAnimate>()?.Restart(false);
+            playerCamera.Priority = 10;
+            trainCamera.Priority = 0;
+            player.transform.position = playerSpawn2.position;
+            player.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        }
     }
 } 

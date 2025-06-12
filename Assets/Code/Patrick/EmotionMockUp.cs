@@ -8,16 +8,14 @@ public struct emotionJumpParameters
 {
     public float jumpStrenght;
     public float fallStrength;
-    public float gravity;
     public float speed;
     public float acceleration;
     public float decceleration;
 
-    public emotionJumpParameters(float jumpStrenght,float fallStrength, float gravity, float newSpeed, float newAcc, float newDecc)
+    public emotionJumpParameters(float jumpStrenght,float fallStrength, float newSpeed, float newAcc, float newDecc)
     {
         this.jumpStrenght = jumpStrenght;
         this.fallStrength = fallStrength;
-        this.gravity = gravity;
         this.speed = 8.5f;
         this.acceleration = 20;
         this.decceleration = 1;
@@ -52,6 +50,7 @@ public class EmotionMockUp : MonoBehaviour
     [SerializeField] public UnityEvent LonelyTP;
     [SerializeField] public UnityEvent Bind;
     [SerializeField] public UnityEvent Shoot;
+    [SerializeField] public StateManagerMock stateMock;
     
     [Header("Room Materials")] 
     [SerializeField] private Material joyMat;
@@ -75,9 +74,9 @@ public class EmotionMockUp : MonoBehaviour
     [SerializeField] private List<GameObject> triggerToDeactivate;
     private void Start()
     {
-        emotionJumpParameters defaultparams = new emotionJumpParameters(18,70,10, 8.5f, -1,-1);
-        emotionJumpParameters joyParams = new emotionJumpParameters(21, 50, 10, 8.5f, -1,-1);
-        emotionJumpParameters fearParams = new emotionJumpParameters(18, 70, 10, 15,100,0.5f);
+        emotionJumpParameters defaultparams = new emotionJumpParameters(18,70, 8.5f, -1,-1);
+        emotionJumpParameters joyParams = new emotionJumpParameters(21, 50, 8.5f, -1,-1);
+        emotionJumpParameters fearParams = new emotionJumpParameters(18, 70, 15,100,0.5f);
         
         emotionParameters.Add("Default", defaultparams);
         emotionParameters.Add("Joy", joyParams);
@@ -119,11 +118,11 @@ public class EmotionMockUp : MonoBehaviour
         //Emotion Change
         if (allowChange)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1)) Joy.Invoke();
+            if (Input.GetKeyDown(KeyCode.Keypad0)) Joy.Invoke();
             if (Input.GetKeyDown(KeyCode.Alpha2)) Lonely.Invoke();
             if (Input.GetKeyDown(KeyCode.Alpha3)) LonelyTP.Invoke();
             
-            if (Input.GetKeyDown(KeyCode.Alpha4)) Fear.Invoke();
+            if (Input.GetKeyDown(KeyCode.Keypad1)) Fear.Invoke();
         }
         
         if(Input.GetKeyDown(KeyCode.Q)) Bind.Invoke();
@@ -131,12 +130,11 @@ public class EmotionMockUp : MonoBehaviour
         {
             Shoot.Invoke();
         }
-        if(Input.GetKeyDown(KeyCode.R)) SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        if(Input.GetKeyDown(KeyCode.B)) SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void applyConfig(CharacterControllerMockup controller, emotionJumpParameters paramsToApply)
     {
-        controller.gravity = paramsToApply.gravity;
         controller.jumpStrength = paramsToApply.jumpStrenght;
         controller.fallStrength = paramsToApply.fallStrength;
         controller.maxSpeed = paramsToApply.speed;
@@ -169,6 +167,8 @@ public class EmotionMockUp : MonoBehaviour
         
         Debug.Log("Loading Joy config");
         applyConfig(controler, emotionParameters["Joy"]);
+        //Ducktape
+        stateMock.changeState(State.Joy);
     }
 
     public void OnLonely()
@@ -183,10 +183,14 @@ public class EmotionMockUp : MonoBehaviour
         disableColliders();
     }
 
-    private void OnFear()
+    public void OnFear()
     {
         Debug.Log("Changing to Fear");
         _roomState = RoomState.Fear;
+        
+        // Ducktape
+        addMaterialToRoom(lonelyMat);
+        stateMock.changeState(State.Fear);
         
         enableColliders();
         applyConfig(controler, emotionParameters["Fear"]);
@@ -230,6 +234,12 @@ public class EmotionMockUp : MonoBehaviour
 
     private void addMaterialTo(GameObject o, Material m)
     {
+        if (!o)
+        {
+            Debug.LogWarning("Oh Oh, obj to add material " + m + " to is null!");
+            return;
+        }
+        
         Renderer renderer = o.GetComponent<Renderer>();
         if (renderer != null)
         {
