@@ -4,43 +4,32 @@ using DG.Tweening;
 
 public class CameraZoom : MonoBehaviour
 {
-    public CinemachineFreeLook freeLookCam;
+    public CinemachineVirtualCamera virtualCam;
+    public float zoomInDistance = 2f;
+    public float zoomOutDistance = 6f;
     public float zoomDuration = 0.5f;
 
-    private CinemachineFreeLook.Orbit[] originalOrbits;
-
+    private Cinemachine3rdPersonFollow follow;
+    private float defaultDistance;
+    
     void Start()
     {
-        originalOrbits = freeLookCam.m_Orbits;
+        follow = virtualCam.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
+        defaultDistance = follow.CameraDistance;
     }
 
-    public void ZoomIn(float zoomAmount)
+    public void ZoomIn()
     {
-        for (int i = 0; i < freeLookCam.m_Orbits.Length; i++)
-        {
-            float newHeight = originalOrbits[i].m_Height - zoomAmount;
-            float newRadius = originalOrbits[i].m_Radius - zoomAmount;
-            DOTween.To(() => freeLookCam.m_Orbits[i].m_Height,
-                x => freeLookCam.m_Orbits[i].m_Height = x,
-                newHeight, zoomDuration);
-            DOTween.To(() => freeLookCam.m_Orbits[i].m_Radius,
-                x => freeLookCam.m_Orbits[i].m_Radius = x,
-                newRadius, zoomDuration);
-        }
+        DOTween.To(() => follow.CameraDistance, x => follow.CameraDistance = x, zoomInDistance, zoomDuration);
     }
 
-    public void ZoomOut(float zoomAmount)
+    public void ZoomOut()
     {
-        for (int i = 0; i < freeLookCam.m_Orbits.Length; i++)
-        {
-            float newHeight = originalOrbits[i].m_Height;
-            float newRadius = originalOrbits[i].m_Radius;
-            DOTween.To(() => freeLookCam.m_Orbits[i].m_Height,
-                x => freeLookCam.m_Orbits[i].m_Height = x,
-                newHeight, zoomDuration);
-            DOTween.To(() => freeLookCam.m_Orbits[i].m_Radius,
-                x => freeLookCam.m_Orbits[i].m_Radius = x,
-                newRadius, zoomDuration);
-        }
+        DOTween.To(() => follow.CameraDistance, x => follow.CameraDistance = x, zoomOutDistance, zoomDuration);
+    }
+    
+    public void ResetZoom()
+    {
+        DOTween.To(() => follow.CameraDistance, x => follow.CameraDistance = x, defaultDistance, zoomDuration);
     }
 }
