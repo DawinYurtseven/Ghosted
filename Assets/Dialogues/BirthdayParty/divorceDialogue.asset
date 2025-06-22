@@ -21,11 +21,10 @@ MonoBehaviour:
   onEnterActions:
   - face
   onExitActions: []
-  text: "What you are fealing, is fear. The fear of losing them, the fear of everything
-    changing. But don\u2019t lose the joy you felt during your 12th birthday. The
-    joy of being with your family. Those two emotions can coexist. Joy and Fear."
+  text: 'What you are feeling, is fear. The fear of losing them, the fear of everything
+    changing. '
   child: aa565bf7-a425-4b7f-a727-7c5709a2b133
-  speaker: Player
+  speaker: Ghost Binder
 --- !u!114 &-8583396139392639622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,16 +108,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: 1164
-    y: 1350
+    x: 721
+    y: 1280
     width: 200
     height: 80
-  onEnterActions:
-  - wide
+  onEnterActions: []
   onExitActions: []
-  text: 'If you help me, I can help you. '
+  text: "But don\u2019t lose the joy you felt during your 8th birthday. The joy of
+    being with your family. Those two emotions can coexist. Joy and Fear."
   child: 01310669-9b7e-4074-b2ff-a19956a74a66
-  speaker: Player
+  speaker: Ghost Binder
 --- !u!114 &-7279868297669876929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,8 +138,34 @@ MonoBehaviour:
     height: 80
   onEnterActions: []
   onExitActions: []
-  text: 'I was looking for my father ... I found the divorce papers on his sudy desk. '
+  text: 'I was looking for matches to light the candles and ... I found the divorce
+    papers in one of the office drawers. '
   child: d2001da7-f91f-44fc-9ea3-db6a95dfd0b1
+  speaker: Miyu
+--- !u!114 &-6597837033568542277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 787d2954-77b6-4838-a823-d5d8033f1159
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 1502
+    y: 1853
+    width: 200
+    height: 80
+  onEnterActions:
+  - share
+  onExitActions:
+  - exit
+  text: Okay.
+  child: 
   speaker: Miyu
 --- !u!114 &-6512797254299122011
 MonoBehaviour:
@@ -163,7 +188,7 @@ MonoBehaviour:
   onEnterActions:
   - miyu
   onExitActions: []
-  text: No, no, no, no ...
+  text: Oh no! No! No.
   child: 524b3a2f-f01c-4869-9439-4638cee3a9a4
   speaker: Miyu
 --- !u!114 &-6363616387741531879
@@ -227,15 +252,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: 1446
+    x: 1445
     y: 1671
     width: 200
     height: 80
   onEnterActions: []
   onExitActions: []
-  text: May I use your emotions to retrieve what was lost?
+  text: "Yes. If you help me find the other emotions you\u2019ve forgotten."
   child: ec524a80-4560-40b1-898d-072f845ba19b
-  speaker: Player
+  speaker: Ghost Binder
 --- !u!114 &-3515103887367577918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,7 +299,7 @@ MonoBehaviour:
   rect:
     serializedVersion: 2
     x: 505
-    y: 547
+    y: 546
     width: 200
     height: 80
   onEnterActions:
@@ -282,7 +307,7 @@ MonoBehaviour:
   onExitActions: []
   text: I am sorry to hear that, Miyu.
   child: 3174a5a9-5dcc-4607-abd0-b1d7dced5cd9
-  speaker: Player
+  speaker: Ghost Binder
 --- !u!114 &-1590474649337185875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -304,7 +329,7 @@ MonoBehaviour:
   onEnterActions:
   - enter
   onExitActions: []
-  text: "Don\u2019t look at that boring stuff!"
+  text: "No, don\u2019t look at that. That\u2019s boring stuff!"
   child: f536a47a-cad9-44e6-8221-4b6d1e9586af
   speaker: Miyu
 --- !u!114 &-615474128951554898
@@ -321,15 +346,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: 1180
-    y: 1668
+    x: 1169
+    y: 1671
     width: 200
     height: 80
   onEnterActions: []
   onExitActions: []
-  text: "Yes. If you help me find the other emotions you\u2019ve forgotten."
+  text: 'Really? '
   child: babd6fbd-0e20-48ee-b798-b60a5905000a
-  speaker: Player
+  speaker: Miyu
 --- !u!114 &-544251701836987098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -366,7 +391,7 @@ MonoBehaviour:
   m_Name: divorceDialogue
   m_EditorClassIdentifier: 
   dialogueSpeakers:
-  - Player
+  - Ghost Binder
   - Miyu
   - Divorce Paper
   dialogueNodes:
@@ -378,7 +403,6 @@ MonoBehaviour:
   - {fileID: -2927293811903491067}
   - {fileID: 8669273194289206928}
   - {fileID: 6856737445245152461}
-  - {fileID: 8729220478711264236}
   - {fileID: 3570951185976205636}
   - {fileID: 8303755707737489144}
   - {fileID: -9016361461540225428}
@@ -389,6 +413,7 @@ MonoBehaviour:
   - {fileID: -615474128951554898}
   - {fileID: -3771419577753921087}
   - {fileID: 4613133267686048442}
+  - {fileID: -6597837033568542277}
   replyNodes: []
 --- !u!114 &347104624824338369
 MonoBehaviour:
@@ -504,11 +529,12 @@ MonoBehaviour:
     y: 1366
     width: 200
     height: 80
-  onEnterActions: []
+  onEnterActions:
+  - wide
   onExitActions: []
-  text: 'Nobody can help me. '
+  text: 'So, if you help me, I can help you. '
   child: 60f72e6d-fb82-4a77-9696-41ba88eda7a7
-  speaker: Miyu
+  speaker: Ghost Binder
 --- !u!114 &2977847253299832723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -531,8 +557,8 @@ MonoBehaviour:
   - divorce
   onExitActions:
   - divorceTake
-  text: 'Divorce Agreement.  Petitioner: Hinako Tanaka.  Respondent: Makoto Tanaka.  
-    Children: Miyu Tanaka, Matsuhito Tanaka.'
+  text: "Divorce Agreement. \r\nPetitioner: Hinako Tanaka. \r\nRespondent: Makoto
+    Tanaka. \r\nChildren: Miyu Tanaka, Matsuhito Tanaka.\r\n"
   child: 81befeb1-d406-4604-b1aa-3c71f946c8e9
   speaker: Divorce Paper
 --- !u!114 &3419938349654655233
@@ -555,9 +581,9 @@ MonoBehaviour:
     height: 80
   onEnterActions: []
   onExitActions: []
-  text: 'You can reunite with your family. '
+  text: 'No, nobody can help me. '
   child: bed2f799-d831-44b9-8c25-93dbea341d1a
-  speaker: Player
+  speaker: Miyu
 --- !u!114 &3570951185976205636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -579,10 +605,10 @@ MonoBehaviour:
   onEnterActions:
   - face
   onExitActions: []
-  text: "You didn\u2019t lose them. They loved you so much that they did their best
-    to make your Birthday special. "
+  text: "Hey, you didn\u2019t lose them. They wanted to make your Birthday special,
+    despite everything. "
   child: 146b34a8-7238-4a57-8922-aeee8f5a5c17
-  speaker: Player
+  speaker: Ghost Binder
 --- !u!114 &4263523895386252179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -620,17 +646,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: 1163
-    y: 1823
+    x: 1184
+    y: 1824
     width: 200
     height: 80
-  onEnterActions:
-  - share
-  onExitActions:
-  - exit
-  text: Okay.
-  child: removed
-  speaker: Miyu
+  onEnterActions: []
+  onExitActions: []
+  text: So, may I use your emotions to retrieve what you lost?
+  child: 787d2954-77b6-4838-a823-d5d8033f1159
+  speaker: Ghost Binder
 --- !u!114 &4981031851086031457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -674,9 +698,9 @@ MonoBehaviour:
     height: 80
   onEnterActions: []
   onExitActions: []
-  text: 'Really? '
+  text: 'You can reunite with your family. '
   child: ae5decfe-8abd-4074-b34c-bb1c83878a39
-  speaker: Miyu
+  speaker: Ghost Binder
 --- !u!114 &6260549048371653639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -742,12 +766,11 @@ MonoBehaviour:
     y: 713
     width: 200
     height: 80
-  onEnterActions:
-  - face
+  onEnterActions: []
   onExitActions: []
-  text: "Didn\u2019t they try to throw you the most wonderful birthday party?"
-  child: a0ebc66d-4d88-4bac-9a65-5e7c8d8ab4a9
-  speaker: Player
+  text: 'Everything was ruined. And I was so scared to lose everything. '
+  child: f30d4dba-8b81-4b58-b487-3b12ef528997
+  speaker: Miyu
 --- !u!114 &7291252235786293546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -794,7 +817,7 @@ MonoBehaviour:
   onEnterActions: []
   onExitActions: []
   text: "I wasn\u2019t supposed to see them. I was so scared. Everything changed
-    after that. The party was ruined."
+    after that. And the party was ruined."
   child: 7f5b4c58-a422-45e7-8655-bee804a7a022
   speaker: Miyu
 --- !u!114 &8303755707737489144
@@ -811,8 +834,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: 1173
-    y: 949
+    x: 1170
+    y: 950
     width: 200
     height: 80
   onEnterActions:
@@ -858,39 +881,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: 469
-    y: 680
+    x: 549
+    y: 696
     width: 200
     height: 80
   onEnterActions:
   - miyu
   onExitActions: []
   text: "I blew out the candle and wished for them to get back together. But they
-    didn\u2019t. Everything was ruined."
+    didn\u2019t. "
   child: fe1d43ce-fc58-4b37-a0d2-6922d1f74b3c
-  speaker: Miyu
---- !u!114 &8729220478711264236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
-  m_Name: a0ebc66d-4d88-4bac-9a65-5e7c8d8ab4a9
-  m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 630
-    y: 891
-    width: 200
-    height: 80
-  onEnterActions:
-  - miyu
-  onExitActions: []
-  text: 'They hated being together. They hated being a family. I was so scared to
-    lose everything. '
-  child: f30d4dba-8b81-4b58-b487-3b12ef528997
   speaker: Miyu

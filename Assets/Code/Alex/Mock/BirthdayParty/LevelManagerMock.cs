@@ -44,7 +44,6 @@ public class LevelManagerMock : MonoBehaviour
     }
     private void OnEnable()
     {
-        EmotionSingletonMock.Instance.disableAll = false;
         CutSceneTrigger.OnCutScenePlayerTriggered += ExecuteCutScenePlayer;
         CutSceneTrigger.OnCutSceneTrainTriggered += ExecuteCutSceneTrain;
         CharacterControllerMockup.firstUsageAltar += DialogueAfterAltar;
@@ -92,14 +91,10 @@ public class LevelManagerMock : MonoBehaviour
     }
     void CuckooClockCutScene()
     {
-        //clockAnimator.SetTrigger("cuckoo");
         foreach (GameObject obj in objectsToActivate )
         {
             obj.SetActive(true);
         }
-        //dialogue.StartGlobalDialogue(player.GetComponent<PlayerConversant>());
-        //ghost.MoveToNextWaypoint();
-        EmotionSingletonMock.Instance.disableAll = false;
     }
 
     void TrainCutScene()
@@ -117,9 +112,10 @@ public class LevelManagerMock : MonoBehaviour
 
     void TrainChangeScene()
     {
-        ghost.MoveToNextWaypoint();
+        
         if (roadPart == 0)
         {
+            ghost.MoveToNextWaypoint();
             train.GetComponent<SplineAnimate>().Container = secondSpline;
             //train.GetComponent<SplineAnimate>().Pause();
             train.GetComponent<SplineAnimate>()?.Restart(false);
@@ -132,6 +128,7 @@ public class LevelManagerMock : MonoBehaviour
         
         else if (roadPart == 1)
         {
+            ghost.MoveToNextWaypoint();
             train.GetComponent<SplineAnimate>().Container = thirdSpline;
             //train.GetComponent<SplineAnimate>().Pause();
             train.GetComponent<SplineAnimate>()?.Restart(false);
@@ -139,6 +136,7 @@ public class LevelManagerMock : MonoBehaviour
             trainCamera.Priority = 0;
             player.transform.position = playerSpawn2.position;
             player.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            UIHintShow.Instance.showHintMessage("Use R/Right Shoulder to recall all talismans at once");
         }
     }
 } 

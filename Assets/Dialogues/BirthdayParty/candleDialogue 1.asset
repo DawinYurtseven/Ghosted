@@ -1,5 +1,53 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8667969085544363341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 356813cd-937b-44f0-b42b-6eb8ae7c226d
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 1379
+    y: 706
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions:
+  - exit
+  text: Well, sometimes Mama and Papa fought. Just sometimes! About little things.
+  child: 
+  speaker: Miyu
+--- !u!114 &-8371764843600512152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 4fbfa745-9f52-4e07-b6ca-28c11231e417
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 1066
+    y: 454
+    width: 200
+    height: 80
+  onEnterActions:
+  - miyu
+  onExitActions: []
+  text: It was the perfect party
+  child: ba89ad3d-6aae-4184-9f59-9fa1ac3670db
+  speaker: Miyu
 --- !u!114 &-1566878805869836316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14,42 +62,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: 528
-    y: 455
-    width: 200
-    height: 80
-  onEnterActions: []
-  onExitActions:
-  - exit
-  text: Oh, I have to introduce you to them. Let's go to the study!
-  child: 
-  speaker: Miyu
---- !u!114 &-1498181809219626133
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
-  m_Name: 4b7e3ac7-d32f-48da-aa9e-ffd8277a6ba3
-  m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 0
-    y: 0
+    x: 767
+    y: 452
     width: 200
     height: 80
   onEnterActions:
-  - enter
-  - miyu
+  - face
   onExitActions: []
-  text: "Oh, my candle\u2026 Isn\u2019t she lovely? I told you I made it with my
-    mom. I miss them, the way they used to be..."
-  child: 55de919d-0ec6-4ac5-a821-0a08f61fc0b0
-  speaker: Miyu
+  text: Wait, what else do you remember from the party, Miyu?
+  child: 4fbfa745-9f52-4e07-b6ca-28c11231e417
+  speaker: Ghost Binder
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,14 +85,17 @@ MonoBehaviour:
   m_Name: candleDialogue 1
   m_EditorClassIdentifier: 
   dialogueSpeakers:
-  - Player
+  - Ghost Binder
   - Miyu
   dialogueNodes:
-  - {fileID: -1498181809219626133}
   - {fileID: 9104091565543397349}
   - {fileID: 4658048797770967006}
   - {fileID: 7754807279540558429}
   - {fileID: -1566878805869836316}
+  - {fileID: -8371764843600512152}
+  - {fileID: 5234811681678754525}
+  - {fileID: 5482821267232400864}
+  - {fileID: -8667969085544363341}
   replyNodes: []
 --- !u!114 &4658048797770967006
 MonoBehaviour:
@@ -86,15 +111,63 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: 281
-    y: 301
+    x: 336
+    y: 296
+    width: 200
+    height: 80
+  onEnterActions:
+  - face
+  onExitActions: []
+  text: "Sorry, I didn\u2019t mean to ... "
+  child: 8c528eed-d5f3-42ce-a675-d2b362e06f2b
+  speaker: Ghost Binder
+--- !u!114 &5234811681678754525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: ba89ad3d-6aae-4184-9f59-9fa1ac3670db
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 1330
+    y: 378
+    width: 200
+    height: 80
+  onEnterActions:
+  - face
+  onExitActions: []
+  text: 'Was your family happy? '
+  child: 8ec406c9-e436-40d0-97c2-7d019d8e97de
+  speaker: Ghost Binder
+--- !u!114 &5482821267232400864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 8ec406c9-e436-40d0-97c2-7d019d8e97de
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 1346
+    y: 541
     width: 200
     height: 80
   onEnterActions:
   - miyu
   onExitActions: []
   text: 'Of course they were happy! We were all very happy! '
-  child: 8c528eed-d5f3-42ce-a675-d2b362e06f2b
+  child: 356813cd-937b-44f0-b42b-6eb8ae7c226d
   speaker: Miyu
 --- !u!114 &7754807279540558429
 MonoBehaviour:
@@ -110,13 +183,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: 293
-    y: 461
+    x: 579
+    y: 278
     width: 200
     height: 80
-  onEnterActions: []
+  onEnterActions:
+  - miyu
   onExitActions: []
-  text: Well, sometimes Mama and Papa fought. Just sometimes! About little things.
+  text: "But that\u2019s okay! Come on, let\u2019s play!"
   child: 68e811b5-8a24-4597-ba87-d635f86e68cd
   speaker: Miyu
 --- !u!114 &9104091565543397349
@@ -133,13 +207,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: 283
-    y: 100
+    x: 75
+    y: 146
     width: 200
     height: 80
   onEnterActions:
-  - face
+  - enter
+  - miyu
   onExitActions: []
-  text: 'Was your family happy? '
+  text: "Oh no, you\u2019ve ruined my cake. "
   child: b174e885-e799-4181-9350-7ca5683e5c83
-  speaker: Player
+  speaker: Miyu

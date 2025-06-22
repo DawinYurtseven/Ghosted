@@ -20,9 +20,9 @@ MonoBehaviour:
     height: 80
   onEnterActions: []
   onExitActions: []
-  text: "This makes me scared. I don\u2019t like it."
+  text: "This scares me. I don\u2019t like this."
   child: 2ba9b52b-12eb-4cac-807f-c5d981ca87f3
-  speaker: Player
+  speaker: Miyu
 --- !u!114 &-652340921611688492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,7 +70,7 @@ MonoBehaviour:
   text: See, Miyu? When I place the matching talisman in the shrine, I can change
     the emotion in the room.
   child: 78358887-ca48-40a3-9b23-e84d79efc4a0
-  speaker: Player
+  speaker: Ghost Binder
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,7 +84,7 @@ MonoBehaviour:
   m_Name: clockDialogue
   m_EditorClassIdentifier: 
   dialogueSpeakers:
-  - Player
+  - Ghost Binder
   - Miyu
   dialogueNodes:
   - {fileID: -466212918882477014}
@@ -129,12 +129,12 @@ MonoBehaviour:
   rect:
     serializedVersion: 2
     x: 535
-    y: 197
+    y: 198
     width: 200
     height: 80
   onEnterActions: []
   onExitActions:
   - exit
-  text: "Just hold on a little longer. It\u2019s supposed to help you."
+  text: Just hold on a bit. This is so you can meet your family.
   child: 
-  speaker: Player
+  speaker: Ghost Binder

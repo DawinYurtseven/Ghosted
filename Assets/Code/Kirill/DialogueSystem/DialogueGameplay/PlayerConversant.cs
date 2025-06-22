@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -8,6 +9,7 @@ using UnityEngine.InputSystem;
 namespace Ghosted.Dialogue {
     public class PlayerConversant : MonoBehaviour
     {
+        [SerializeField] Transform checkForDialoguefrom;
         Dialogue currentDialogue;
         DialogueEditorNode currentNode = null;
         KirillCharacterInteractionInput inputManager;
@@ -110,7 +112,7 @@ namespace Ghosted.Dialogue {
             {
                 dialogueAIConversant.turnOffHint();
             }
-            Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+            Ray ray = new Ray(checkForDialoguefrom.position, checkForDialoguefrom.transform.forward);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, interactDistance, layerMask))
             {
