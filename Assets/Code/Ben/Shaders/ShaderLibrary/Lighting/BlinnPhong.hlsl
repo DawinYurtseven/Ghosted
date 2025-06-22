@@ -27,20 +27,29 @@ half3 GenerateGradient(half brightness, half3 albedoTexture)
 half3 BlinnPhong(half3 n, half3 v, Light mainLight, half3 albedoTexture)
 {
     half3 l = mainLight.direction;
+    half3 h = normalize(l + v);
     half NdotL = max(dot(n, l), 0);
 
     half Ia = _k.x;
+    Ia = smoothstep(0.05,0.3,Ia);
     half Id = _k.y * NdotL;
+    Id = smoothstep(0.05,0.3,Id);
+    half Is = 0;
 
-    half brightness = Ia * SampleSH(n) + Id * mainLight.color;
+    #ifdef SPECULAR
+    Is = _k.z * pow(saturate(dot(h, n)), _SpecularExponent * _SpecularExponent);
+    Is = smoothstep(0.05,0.3,Is);
+    #endif
+
+    half brightness = Ia * SampleSH(n) + Id * mainLight.color + Is * mainLight.color;
 
     half3 stylised = GenerateGradient(brightness, albedoTexture);
 
-    half3 ambient = Ia * stylised * SampleSH(n);
+    half3 ambient = Ia * stylised;
     half3 diffuse = Id * stylised * mainLight.color;
+    half3 specular = Is * stylised* mainLight.color;
 
-
-    return ambient + diffuse;
+    return ambient + diffuse + specular;
 }
 
 #endif // BLINN_PHONG_INCLUDED

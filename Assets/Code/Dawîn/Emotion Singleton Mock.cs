@@ -15,6 +15,7 @@ public class EmotionSingletonMock : MonoBehaviour
 {
     public static EmotionSingletonMock Instance { get; private set; }
 
+    public GameObject talismanCounter;
     public bool disableAll = false;
     #region Emotions
 
@@ -65,6 +66,12 @@ public class EmotionSingletonMock : MonoBehaviour
     [SerializeField] private List<TalismanTargetMock> availableTalismanTargetMocks;
     private Camera mainCamera;
 
+    public void enableTargets()
+    {
+        disableAll = false;
+        talismanCounter.SetActive(true);
+    }
+    
     public void AddTarget(TalismanTargetMock target)
     {
 
@@ -156,6 +163,7 @@ public class EmotionSingletonMock : MonoBehaviour
         }
 
         mainCamera = Camera.main;
+        if (disableAll) talismanCounter.SetActive(false);
         ChangeEmotion(Emotion.Joy);
     }
 
