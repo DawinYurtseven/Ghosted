@@ -92,10 +92,20 @@ public class Joy : EmotionAbstract
         else {
             //basically it can be locked in the other state as well
             //locked = currentEmotion == Emotion.Joy;
+            
             locked = true;
             if (specialEffect)
             {
                 specialEffect.SetActive(true);
+                if (surroundEmotion == Emotion.Joy) {
+                    joyVFX.SetActive(true);
+                    fearVFX.SetActive(false);
+                }
+                else {
+                    joyVFX.SetActive(false);
+                    fearVFX.SetActive(true);
+                }
+                StartCoroutine(PlayAudioSequentially());
             }
         }
     }

@@ -41,6 +41,15 @@ public class Fear : EmotionAbstract
             locked = true;
             if (specialEffect) {
                 specialEffect.SetActive(true);
+                if (surroundEmotion == Emotion.Joy) {
+                    joyVFX.SetActive(true);
+                    fearVFX.SetActive(false);
+                }
+                else {
+                    joyVFX.SetActive(false);
+                    fearVFX.SetActive(true);
+                }
+                StartCoroutine(PlayAudioSequentially());
             }
         }
     }
