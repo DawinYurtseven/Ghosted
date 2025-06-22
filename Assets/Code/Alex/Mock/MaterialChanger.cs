@@ -11,6 +11,7 @@ public class MaterialChanger : MonoBehaviour
     void Start()
     {
         _renderer = gameObject.GetComponent<MeshRenderer>();
+        _renderer.material = joyMaterial;
         if (!_renderer) return;
         EmotionSingletonMock.Instance.EmotionSubject
             .Subscribe(emotion =>
