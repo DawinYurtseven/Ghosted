@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: 0
-    y: 0
+    x: 50
+    y: 102
     width: 200
     height: 80
-  onEnterActions: []
+  onEnterActions:
+  - enter
   onExitActions: []
   text: How can you use these talismans to help me?
   child: ac29ce5e-07d2-47dd-8261-331206e3c334
@@ -37,12 +38,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: 591
+    x: 593
     y: 159
     width: 200
     height: 80
   onEnterActions: []
-  onExitActions: []
+  onExitActions:
+  - exit
   text: I think I can help you with that!
   child: 
   speaker: Miyu

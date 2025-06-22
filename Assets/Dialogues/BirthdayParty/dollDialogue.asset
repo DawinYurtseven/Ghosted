@@ -14,19 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: 0
-    y: -1
+    x: 60
+    y: 97
     width: 200
     height: 80
   onEnterActions:
   - enter
-  onExitActions:
-  - exit
-  text: "I remember seeing it at the shops and I \rasked Mama if I could get it,
-    but she\r simply said no! Of course, she had been\r planning to get it for my
-    birthday all\r along! I kept that doll for years. Her\r name was Kana."
-  child: 
-  speaker: Player
+  onExitActions: []
+  text: I remember seeing it at the shops and I asked Mama if I could get it, but
+    she simply said no!
+  child: a8b82e5c-c5f0-42e2-b32a-5f6a7ab9b938
+  speaker: Miyu
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43,4 +41,30 @@ MonoBehaviour:
   - Miyu
   dialogueNodes:
   - {fileID: -6337795610277208645}
+  - {fileID: 532528759518099577}
   replyNodes: []
+--- !u!114 &532528759518099577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: a8b82e5c-c5f0-42e2-b32a-5f6a7ab9b938
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 480
+    y: 117
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions:
+  - exit
+  text: Of course, she had been planning to get it for my birthday all along! I kept
+    that doll for years. Her name was Kana.
+  child: removed
+  speaker: Miyu

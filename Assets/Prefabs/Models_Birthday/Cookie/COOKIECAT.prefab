@@ -93,6 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2980079697592261120}
   - component: {fileID: 1238159822683400741}
+  - component: {fileID: 2659031936076794670}
   m_Layer: 0
   m_Name: COOKIECAT
   m_TagString: Untagged
@@ -140,6 +141,27 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!65 &2659031936076794670
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4642671229642835610}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5.330672, y: 0.7894715, z: 3.9461367}
+  m_Center: {x: -0.09552685, y: -0.28480434, z: 0.017063929}
 --- !u!1 &5826833009161012396
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,7 +223,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -2310514774154243031, guid: 54a1a4516bd4b2b4c83835b9d5490920, type: 3}
+  - {fileID: 2100000, guid: 52377ab79c8f67749af45afcf505c32d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

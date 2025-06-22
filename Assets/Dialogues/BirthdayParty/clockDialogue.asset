@@ -1,5 +1,28 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7821415198680692684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 78358887-ca48-40a3-9b23-e84d79efc4a0
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 279
+    y: 77
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions: []
+  text: "This makes me scared. I don\u2019t like it."
+  child: 2ba9b52b-12eb-4cac-807f-c5d981ca87f3
+  speaker: Player
 --- !u!114 &-652340921611688492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37,17 +60,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: 23
-    y: 47
+    x: -1
+    y: 0
     width: 200
     height: 80
-  onEnterActions: []
-  onExitActions:
-  - exit
+  onEnterActions:
+  - enter
+  onExitActions: []
   text: See, Miyu? When I place the matching talisman in the shrine, I can change
     the emotion in the room.
-  child: 0d12fbb5-24e7-4738-aebf-1b81b45a61ad
-  speaker: Ghost Binder
+  child: 78358887-ca48-40a3-9b23-e84d79efc4a0
+  speaker: Player
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,12 +84,12 @@ MonoBehaviour:
   m_Name: clockDialogue
   m_EditorClassIdentifier: 
   dialogueSpeakers:
-  - Ghost Binder
+  - Player
   - Miyu
   dialogueNodes:
   - {fileID: -466212918882477014}
-  - {fileID: 3583418485933859821}
-  - {fileID: -652340921611688492}
+  - {fileID: -7821415198680692684}
+  - {fileID: 4276200084862688949}
   replyNodes: []
 --- !u!114 &3583418485933859821
 MonoBehaviour:
@@ -91,3 +114,27 @@ MonoBehaviour:
   text: "This makes me scared. I don\u2019t like it."
   child: 9e3de92b-367d-4331-a480-a5cf34172880
   speaker: Miyu
+--- !u!114 &4276200084862688949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 2ba9b52b-12eb-4cac-807f-c5d981ca87f3
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 535
+    y: 197
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions:
+  - exit
+  text: "Just hold on a little longer. It\u2019s supposed to help you."
+  child: 
+  speaker: Player
