@@ -163,7 +163,10 @@ VisualEffect:
     m_Float:
       m_Array: []
     m_Vector2f:
-      m_Array: []
+      m_Array:
+      - m_Value: {x: 8, y: 10}
+        m_Name: lifeTime
+        m_Overridden: 1
     m_Vector3f:
       m_Array: []
     m_Vector4f:
@@ -171,7 +174,16 @@ VisualEffect:
     m_Uint:
       m_Array: []
     m_Int:
-      m_Array: []
+      m_Array:
+      - m_Value: 1
+        m_Name: beam
+        m_Overridden: 1
+      - m_Value: 10
+        m_Name: resolution
+        m_Overridden: 1
+      - m_Value: 7
+        m_Name: rate
+        m_Overridden: 1
     m_Matrix4x4f:
       m_Array: []
     m_AnimationCurve:
@@ -276,9 +288,9 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 189
-  DopplerLevel: 1
-  MinDistance: 5
-  MaxDistance: 15
+  DopplerLevel: 0
+  MinDistance: 10
+  MaxDistance: 20
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0

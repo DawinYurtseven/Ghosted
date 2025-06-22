@@ -1,31 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8855058502469249673
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
-  m_Name: 1328ff7c-6c9f-454d-9785-2e5ecd7cb254
-  m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 712
-    y: 264
-    width: 200
-    height: 80
-  onEnterActions:
-  - miyu
-  onExitActions: []
-  text: "I\u2019ve never had such a perfect day in all my life! Mama and Papa said
-    8 is a big number. Look at all the presents! And lemon sponge cake, my absolute
-    favorite! Do you like lemon cake?? "
-  child: a8d25763-bf9d-4c04-b3e9-e9f4dcc4b04e
-  speaker: Miyu
 --- !u!114 &-5458546470215557258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,6 +47,31 @@ MonoBehaviour:
   text: " I put the candles into the cake. One by one. Don\u2019t they look great?"
   child: 6ace1b13-2992-430d-bba4-d791c545221c
   speaker: Miyu
+--- !u!114 &-991590488093057194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 642bf6a5-f89e-41eb-ac7a-b383c7a133f4
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 763
+    y: 366
+    width: 200
+    height: 80
+  onEnterActions:
+  - miyu
+  onExitActions: []
+  text: 'Look at all the presents! And lemon sponge cake, my absolute favourite!
+    Do you like lemon cake?? '
+  child: a8d25763-bf9d-4c04-b3e9-e9f4dcc4b04e
+  speaker: Miyu
 --- !u!114 &-570502738386804078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,8 +110,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: 1921
-    y: 220
+    x: 2083
+    y: 208
     width: 200
     height: 80
   onEnterActions: []
@@ -141,10 +140,8 @@ MonoBehaviour:
     width: 200
     height: 80
   onEnterActions: []
-  onExitActions:
-  - animateGhost
-  text: "Welcome to my birthday party, isn\u2019t it\r                                                               
-    just wonderful?"
+  onExitActions: []
+  text: "Welcome to my birthday party, isn\u2019t it just wonderful?\r                                                            "
   child: 390e1a60-0535-4dff-9c26-de4103c02930
   speaker: Miyu
 --- !u!114 &11400000
@@ -160,20 +157,22 @@ MonoBehaviour:
   m_Name: ghostDialogue 1
   m_EditorClassIdentifier: 
   dialogueSpeakers:
-  - Player
+  - Ghost Binder
   - Ghost
   - Miyu
   dialogueNodes:
   - {fileID: 2413610986719448867}
   - {fileID: 2796613847369970685}
   - {fileID: -5217236755950789}
-  - {fileID: -8855058502469249673}
   - {fileID: 7292402543560610907}
   - {fileID: -570502738386804078}
   - {fileID: -5458546470215557258}
   - {fileID: -1874085267654747075}
   - {fileID: 1857311466115774367}
   - {fileID: -106118655868583179}
+  - {fileID: -106118655868583179}
+  - {fileID: 7298746847479475356}
+  - {fileID: -991590488093057194}
   replyNodes: []
 --- !u!114 &1857311466115774367
 MonoBehaviour:
@@ -193,7 +192,8 @@ MonoBehaviour:
     y: 433
     width: 200
     height: 80
-  onEnterActions: []
+  onEnterActions:
+  - miyu
   onExitActions: []
   text: "My favorite is the red candle in the middle! It\u2019s a very special candle. "
   child: 4b6a95ad-c3fb-4beb-9b0c-8333452c7344
@@ -213,7 +213,7 @@ MonoBehaviour:
   rect:
     serializedVersion: 2
     x: 21
-    y: 70
+    y: 69
     width: 200
     height: 80
   onEnterActions:
@@ -244,12 +244,9 @@ MonoBehaviour:
   onEnterActions:
   - player
   onExitActions: []
-  text: 'Hi, Miyu. I am (NAME).
-
-    Thank you for inviting me to your wonderful
-    party.'
-  child: 1328ff7c-6c9f-454d-9785-2e5ecd7cb254
-  speaker: Player
+  text: 'Hi, Miyu. Thank you for inviting me to your wonderful party. '
+  child: e2e6e76e-38c7-4cc0-9e1b-e0e71789679e
+  speaker: Ghost Binder
 --- !u!114 &7292402543560610907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,8 +261,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: 948
-    y: 340
+    x: 1072
+    y: 204
     width: 200
     height: 80
   onEnterActions:
@@ -273,4 +270,29 @@ MonoBehaviour:
   onExitActions: []
   text: Um. Yes, I do.
   child: 5e4ca0ec-03b8-41bb-94f8-206d9d2219e2
-  speaker: Player
+  speaker: Ghost Binder
+--- !u!114 &7298746847479475356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: e2e6e76e-38c7-4cc0-9e1b-e0e71789679e
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 753
+    y: 162
+    width: 200
+    height: 80
+  onEnterActions:
+  - miyu
+  onExitActions: []
+  text: "I\u2019ve never had such a perfect day in all my life! Mama and Papa said
+    8 is a big number."
+  child: 642bf6a5-f89e-41eb-ac7a-b383c7a133f4
+  speaker: Ghost Binder

@@ -494,6 +494,7 @@ public class CharacterControllerMockup : MonoBehaviour
     {
         if (context.performed)
         {
+            if (EmotionSingletonMock.Instance.disableAll) return;
             if (target == null || thrownTalisman != null) return;
 
             //If the object is already bounded, recall talisman
@@ -545,24 +546,29 @@ public class CharacterControllerMockup : MonoBehaviour
     public static event Action firstUsageAltar;
     public bool usedAltar = false;
 
-    [SerializeField] private int interactionRange = 20;
+    [SerializeField] private int interactionRange = 10;
 
+    public float interactDistanceAltar = 3f;
+    public Transform checkFrom;
     private void CheckForInteractables()
     {
         if (tempAltar != null)
         {
             tempAltar.turnOffHintAltar();
         }
-
-        //ok, problem is that when the pivot is in object 
-        if (Physics.SphereCast(transform.position, 1f, lookAtPivot.transform.forward, out var hit, interactionRange))
-        {
-            if (hit.collider.gameObject.TryGetComponent(typeof(TalismanTargetMock), out var tar))
+        
+        //Same as for dialogues 
+        Ray ray = new Ray(checkFrom.position, checkFrom.forward);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, interactDistanceAltar)) {
+            TalismanTargetMock tar = hit.collider.GetComponent<TalismanTargetMock>();
+            AltarMock altar = hit.collider.GetComponentInParent<AltarMock>();
+            if (tar)
             {
                 tempTar = (TalismanTargetMock)tar;
                 tempTar.HighlightInteract();
             }
-            else if (hit.collider.gameObject.TryGetComponent(typeof(AltarMock), out var altar))
+            else if (altar && hit.collider.CompareTag("Altar"))
             {
                 //print("altar");
                 tempAltar = (AltarMock)altar;
