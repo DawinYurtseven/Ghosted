@@ -93,68 +93,67 @@ public class EmoTP : MonoBehaviour
         }
     }
     
-    // a method to visualize the raycast cast and hit in play mode
-    private void OnDrawGizmosSelected()
-    {
-        if (emotionSingleton != null)
-        {
-            Vector3 startPosition = transform.position + Vector3.up * tpRaycastThresh;
-            Color rayColor = Color.green; // Default color for Joy
-            Vector3 direction = Vector3.down; // Default direction for Joy
-            
-            switch (emotionSingleton.getCurrentEmotion())
-            {
-                case Emotion.Joy:
-                    rayColor = Color.green; // Joy
-                    direction = Vector3.down; // Joy raycast direction
-                    break;
-                case Emotion.Fear:
-                    rayColor = Color.red; // Fear
-                    direction = Vector3.up; // Fear raycast direction
-                    break;
-                case Emotion.Lonely:
-                case Emotion.Love:
-                    rayColor = Color.blue; // Other emotions
-                    break;
-            }
-            
-            Gizmos.color = rayColor;
-            Gizmos.DrawLine(startPosition, startPosition + direction * 20f); // Draw the raycast line
-        }
-    }
-    
-    private void OnDrawGizmos()
-    {
-        // Draw the raycast direction in the editor for debugging, one color for Joy and another for Fear
-        if (emotionSingleton != null)
-        {
-            Vector3 startPosition = transform.position + Vector3.up * tpRaycastThresh;
-            Color rayColor = Color.green; // Default color for Joy
-            Vector3 direction = Vector3.down; // Default direction for Joy
-            
-            switch (emotionSingleton.getCurrentEmotion())
-            {
-                case Emotion.Joy:
-                    rayColor = Color.green; // Joy
-                    direction = Vector3.down; // Joy raycast direction
-                    break;
-                case Emotion.Fear:
-                    rayColor = Color.red; // Fear
-                    direction = Vector3.up; // Fear raycast direction
-                    break;
-                case Emotion.Lonely:
-                case Emotion.Love:
-                    rayColor = Color.blue; // Other emotions
-                    break;
-            }
-            
-            Gizmos.color = rayColor;
-            Gizmos.DrawLine(startPosition, startPosition + direction * 20f); // Draw the raycast line
-        }
-        else
-        {
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawLine(transform.position, transform.position + Vector3.up * 20f); // Default raycast line if no EmotionSingletonMock found
-        }
-    }
+    // private void OnDrawGizmosSelected()
+    // {
+    //     if (emotionSingleton != null)
+    //     {
+    //         Vector3 startPosition = transform.position + Vector3.up * tpRaycastThresh;
+    //         Color rayColor = Color.green; // Default color for Joy
+    //         Vector3 direction = Vector3.down; // Default direction for Joy
+    //         
+    //         switch (emotionSingleton.getCurrentEmotion())
+    //         {
+    //             case Emotion.Joy:
+    //                 rayColor = Color.green; // Joy
+    //                 direction = Vector3.down; // Joy raycast direction
+    //                 break;
+    //             case Emotion.Fear:
+    //                 rayColor = Color.red; // Fear
+    //                 direction = Vector3.up; // Fear raycast direction
+    //                 break;
+    //             case Emotion.Lonely:
+    //             case Emotion.Love:
+    //                 rayColor = Color.blue; // Other emotions
+    //                 break;
+    //         }
+    //         
+    //         Gizmos.color = rayColor;
+    //         Gizmos.DrawLine(startPosition, startPosition + direction * 20f); // Draw the raycast line
+    //     }
+    // }
+    //
+    // private void OnDrawGizmos()
+    // {
+    //     // Draw the raycast direction in the editor for debugging, one color for Joy and another for Fear
+    //     if (emotionSingleton != null)
+    //     {
+    //         Vector3 startPosition = transform.position + Vector3.up * tpRaycastThresh;
+    //         Color rayColor = Color.green; // Default color for Joy
+    //         Vector3 direction = Vector3.down; // Default direction for Joy
+    //         
+    //         switch (emotionSingleton.getCurrentEmotion())
+    //         {
+    //             case Emotion.Joy:
+    //                 rayColor = Color.green; // Joy
+    //                 direction = Vector3.down; // Joy raycast direction
+    //                 break;
+    //             case Emotion.Fear:
+    //                 rayColor = Color.red; // Fear
+    //                 direction = Vector3.up; // Fear raycast direction
+    //                 break;
+    //             case Emotion.Lonely:
+    //             case Emotion.Love:
+    //                 rayColor = Color.blue; // Other emotions
+    //                 break;
+    //         }
+    //         
+    //         Gizmos.color = rayColor;
+    //         Gizmos.DrawLine(startPosition, startPosition + direction * 20f); // Draw the raycast line
+    //     }
+    //     else
+    //     {
+    //         Gizmos.color = Color.yellow;
+    //         Gizmos.DrawLine(transform.position, transform.position + Vector3.up * 20f); // Default raycast line if no EmotionSingletonMock found
+    //     }
+    // }
 }
