@@ -51,7 +51,7 @@ public class LevelManager_Introduction : MonoBehaviour
             playerInputDisabler.EnableInput();
         }
 
-        mainCanvasGroup.DOFade(0f, fadeDuration).OnComplete(() => UIHintShow.Instance.ShowHint("Use WASD/Left Joystick to move", 8f));
+        mainCanvasGroup.DOFade(0f, fadeDuration).OnComplete(() => UIHintShow.Instance.ShowHint("Use WASD/Right Joystick to move", 8f));
     }
 
     // Update is called once per frame
@@ -71,7 +71,7 @@ public class LevelManager_Introduction : MonoBehaviour
         }
         fadeImage.DOFade(1f, fadeDuration_final).OnComplete(() =>
         {
-            SceneManager.LoadScene("HomeLevel");
+            SceneManager.LoadScene("Birthday_ThirdPlayable");
         });
     }
 }
