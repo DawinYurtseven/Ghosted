@@ -23999,6 +23999,10 @@ PrefabInstance:
       propertyPath: maxSpeed
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 8952618095901280478, guid: 372cb627a682cc945b92e479580dd565, type: 3}
+      propertyPath: cameraSpeed
+      value: 90
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -28058,8 +28062,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f02a80553b46f64409e202017cc0deba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  joyOverlay: {fileID: 243329041}
-  fearOverlay: {fileID: 1992738625}
+  joyObject: {fileID: 0}
+  fearObject: {fileID: 0}
 --- !u!114 &1660337095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32513,8 +32517,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f02a80553b46f64409e202017cc0deba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  joyOverlay: {fileID: 0}
-  fearOverlay: {fileID: 0}
+  joyObject: {fileID: 0}
+  fearObject: {fileID: 0}
 --- !u!114 &1949361329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34976,7 +34980,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '"This is my text for cutscene. I will try to write something goos here"'
+  m_text: '"This is work in progress"'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4a1e9197526b3ea40a267e381c53929d, type: 2}
   m_sharedMaterial: {fileID: -2771663548881308174, guid: 4a1e9197526b3ea40a267e381c53929d, type: 2}
