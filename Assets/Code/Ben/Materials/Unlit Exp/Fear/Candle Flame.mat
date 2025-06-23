@@ -27,6 +27,7 @@ Material:
   m_ValidKeywords:
   - BACKFACE_LIGHTING
   - USEEMISSIVE
+  - USETRANSPARENT
   m_InvalidKeywords:
   - _ALPHATEST_ON
   - _SURFACE_TYPE_TRANSPARENT
@@ -43,7 +44,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _AlbedoTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: b850654a6a4e8a742b10a8f5d82c20f0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -154,7 +155,7 @@ Material:
     - _SrcBlendAlpha: 1
     - _Surface: 1
     - _TextureSpace: 0
-    - _UseTransparent: 0
+    - _UseTransparent: 1
     - _VoronoiExponent: 1
     - _VoronoiRandomness: 1
     - _VoronoiScale: 0.42
