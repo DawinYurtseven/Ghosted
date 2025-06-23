@@ -326,7 +326,6 @@ GameObject:
   - component: {fileID: 5962773677597666401}
   - component: {fileID: 3802192909641305255}
   - component: {fileID: 2344041610303939641}
-  - component: {fileID: 4974763704585117565}
   m_Layer: 9
   m_Name: Present
   m_TagString: Untagged
@@ -670,20 +669,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
---- !u!114 &4974763704585117565
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6099695524299739981}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fcacceb754f6a14882b9a57267900a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  joyMaterial: {fileID: 2100000, guid: 6feed94fac6007f4c81cd3dc4ccf1cbe, type: 2}
-  fearMaterial: {fileID: 2100000, guid: 81e9be15e38a23e4dbfa2a317ee00730, type: 2}
 --- !u!1 &7995875825528243288
 GameObject:
   m_ObjectHideFlags: 0
@@ -3167,8 +3152,8 @@ MonoBehaviour:
   bindingSFX: {fileID: 3874699580538319721}
   boundSFX: {fileID: 218714083329299942}
   force: 40
-  turnedOff: {fileID: 2100000, guid: 9b0e83a3d6c1e7746ae557c693426784, type: 2}
-  turnedOn: {fileID: 2100000, guid: a73347f4d8be1774fa5c8a0eddff6652, type: 2}
+  turnedOff: {fileID: 2100000, guid: 81e9be15e38a23e4dbfa2a317ee00730, type: 2}
+  turnedOn: {fileID: 2100000, guid: 6feed94fac6007f4c81cd3dc4ccf1cbe, type: 2}
 --- !u!1001 &9221108361868697638
 PrefabInstance:
   m_ObjectHideFlags: 0
