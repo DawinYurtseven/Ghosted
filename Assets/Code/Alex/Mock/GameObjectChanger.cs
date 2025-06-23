@@ -3,9 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using UniRx;
+using UnityEngine.Serialization;
+
 public class GameObjectChanger : MonoBehaviour
 {
-    [SerializeField] private GameObject joyOverlay, fearOverlay;
+    [SerializeField] private GameObject joyObject;
+
+    [SerializeField] private GameObject fearObject;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,13 +19,29 @@ public class GameObjectChanger : MonoBehaviour
             {
                 switch (emotion)
                 {
-                    case Emotion.Joy: 
-                        joyOverlay.SetActive(true);
-                        fearOverlay.SetActive(false);
+                    case Emotion.Joy:
+                        
+                        if (joyObject)
+                        {
+                            joyObject.SetActive(true);
+                        }
+
+                        if (fearObject)
+                        {
+                            fearObject.SetActive(false);
+                        }
+                        
                         break;
                     case Emotion.Fear:
-                        joyOverlay.SetActive(false);
-                        fearOverlay.SetActive(true);
+                        if (joyObject)
+                        {
+                            joyObject.SetActive(false);
+                        }
+
+                        if (fearObject)
+                        {
+                            fearObject.SetActive(true);
+                        }
                         break;
                     default:
                         break;
