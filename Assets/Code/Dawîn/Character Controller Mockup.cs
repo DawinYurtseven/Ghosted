@@ -209,7 +209,7 @@ public class CharacterControllerMockup : MonoBehaviour
     [SerializeField] public float fallStrength;
     [SerializeField] private float groundCheckDistance;
     [SerializeField] private float coyoteTime = 0.2f;
-    [SerializeField] private bool coyoteJumped, isGrounded = true, jumpPressed = false;
+    [SerializeField] private bool coyoteJumped, isGrounded = true;
 
     public void Jump(InputAction.CallbackContext context)
     {
@@ -219,7 +219,7 @@ public class CharacterControllerMockup : MonoBehaviour
              !coyoteJumped))
         {
             float angle = Vector3.Angle(hit.normal, transform.up);
-            if (Vector3.Angle(hit.normal, transform.up) > 45f)
+            if (angle > 45f)
                 return;
             /*var up = transform.up;
             rb.velocity += up * jumpStrength;
@@ -269,8 +269,10 @@ public class CharacterControllerMockup : MonoBehaviour
 
     private void RegulateJump()
     {
+        Debug.DrawLine(transform.position, transform.position - transform.up * groundCheckDistance, Color.red, 0.5f);
         if (!Physics.SphereCast(transform.position, 0.3f, -transform.up, out var hit, groundCheckDistance, ground))
         {
+            print("in air");
             if (isGrounded && !coyoteJumped)
             {
                 isGrounded = false;
@@ -278,13 +280,6 @@ public class CharacterControllerMockup : MonoBehaviour
                 animator.SetBool("grounded", false);
                 StartCoroutine(CoyoteJump());
             }
-        }
-        else if (coyoteJumped)
-        {
-            isGrounded = true;
-            coyoteJumped = false;
-            animator.SetBool("grounded", true);
-            animator.ResetTrigger("jump");
         }
 
         rb.AddForce(-transform.up * fallStrength, ForceMode.Acceleration);
@@ -677,6 +672,17 @@ public class CharacterControllerMockup : MonoBehaviour
         {
             _isOnCurvedGround = false;
             //StartCoroutine(ReturnRotation());
+        }
+    }
+    
+    public void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true;
+            coyoteJumped = false;
+            animator.SetBool("grounded", true);
+            animator.ResetTrigger("jump");
         }
     }
 
