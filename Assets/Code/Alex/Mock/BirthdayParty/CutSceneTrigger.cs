@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Splines;
+//using UnityEngine.Splines;
 
 public class CutSceneTrigger : MonoBehaviour
 {
@@ -15,7 +15,7 @@ public class CutSceneTrigger : MonoBehaviour
     [SerializeField] private int repeatTimes;
     private int currentRepeat = 0;
     
-    private void OnTriggerEnter(Collider other) {
+    /*private void OnTriggerEnter(Collider other) {
 
         Debug.Log("Entered CutScene trigger");
         if (other.gameObject.GetComponent<CharacterControllerMockup>()!= null || other.gameObject.GetComponent<SplineAnimate>() != null) {
@@ -25,7 +25,7 @@ public class CutSceneTrigger : MonoBehaviour
         }
         
         
-    }
+    }*/
     
 }
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Splines;
+//using UnityEngine.Splines;
 
 public class LevelManagerMock : MonoBehaviour
 {
@@ -27,7 +27,7 @@ public class LevelManagerMock : MonoBehaviour
         switch (cutScene)
         {
             case CutSceneName.Train:
-                TrainCutScne();
+                //TrainCutScne();
                 break;
             case CutSceneName.TakeDocuments:
                 break;
@@ -38,10 +38,10 @@ public class LevelManagerMock : MonoBehaviour
         }
     }
 
-    void TrainCutScne()
+    /*void TrainCutScne()
     {
         playerCamera.Priority = 0;
         trainCamera.Priority = 20;
         train.GetComponent<SplineAnimate>()?.Play();
-    }
+    }*/
 } 
