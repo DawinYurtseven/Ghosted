@@ -228,7 +228,7 @@ public class CharacterControllerMockup : MonoBehaviour
             animator.SetTrigger("jump");
             coyoteJumped = true;
             animator.SetBool("grounded", false);
-            var up = transform.up; 
+            var up = transform.up;
             rb.velocity += up * jumpStrength;
         }
     }
@@ -545,17 +545,19 @@ public class CharacterControllerMockup : MonoBehaviour
 
     public float interactDistanceAltar = 3f;
     public Transform checkFrom;
+
     private void CheckForInteractables()
     {
         if (tempAltar != null)
         {
             tempAltar.turnOffHintAltar();
         }
-        
+
         //Same as for dialogues 
         Ray ray = new Ray(checkFrom.position, checkFrom.forward);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, interactDistanceAltar)) {
+        if (Physics.Raycast(ray, out hit, interactDistanceAltar))
+        {
             TalismanTargetMock tar = hit.collider.GetComponent<TalismanTargetMock>();
             AltarMock altar = hit.collider.GetComponentInParent<AltarMock>();
             if (tar)
@@ -642,26 +644,18 @@ public class CharacterControllerMockup : MonoBehaviour
 
     private void Slope()
     {
-        //create friction only when not intending to move
-        if (moveVector == Vector2.zero)
+        if (Physics.SphereCast(transform.position, 0.3f, -transform.up, out var hit, groundCheckDistance, ground))
         {
-            RaycastHit hit; //check for ground below the player and get the angle
-            if (Physics.SphereCast(transform.position, 0.3f, -transform.up, out hit, groundCheckDistance, ground))
+            float slopeAngle = Vector3.Angle(hit.normal, transform.up);
+            if (moveVector == Vector2.zero && slopeAngle >= 0 && slopeAngle <= maxSlopeAngle && !coyoteJumped)
             {
-                // Calculate the slope angle
-                float slopeAngle = Vector3.Angle(hit.normal, transform.up);
-                // Apply friction on a specific angle 
-                if (slopeAngle > 0 && slopeAngle <= maxSlopeAngle)
-                {
-                    rb.velocity = new Vector3(0, rb.velocity.y, 0);
-                    rb.AddForce(transform.up * fallStrength, ForceMode.Acceleration);
-                    print(rb.velocity);
-                    //slopeFallStrenghtMultiplier = 0.3f;
-                }
-                /*else
-                {
-                    slopeFallStrenghtMultiplier = 1f;
-                }*/
+                rb.velocity = new Vector3(0, 0, 0);
+                rb.AddForce(transform.up * fallStrength, ForceMode.Acceleration);
+            }
+            else if(moveVector != Vector2.zero && slopeAngle > maxSlopeAngle)
+            {
+                // If the slope is too steep, apply a force to keep falling, no matter how hard the player tries to move
+                rb.velocity = new Vector3(rb.velocity.x, -10, rb.velocity.z);
             }
         }
     }
@@ -674,15 +668,20 @@ public class CharacterControllerMockup : MonoBehaviour
             //StartCoroutine(ReturnRotation());
         }
     }
-    
+
     public void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Ground"))
         {
-            isGrounded = true;
-            coyoteJumped = false;
-            animator.SetBool("grounded", true);
-            animator.ResetTrigger("jump");
+            float slopeAngle = Vector3.Angle(other.contacts[0].normal, transform.up);
+            // Apply friction on a specific angle 
+            if (slopeAngle >= 0 && slopeAngle <= maxSlopeAngle)
+            {
+                isGrounded = true;
+                coyoteJumped = false;
+                animator.SetBool("grounded", true);
+                animator.ResetTrigger("jump");
+            }
         }
     }
 
