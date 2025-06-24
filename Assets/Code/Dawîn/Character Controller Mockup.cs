@@ -227,7 +227,6 @@ public class CharacterControllerMockup : MonoBehaviour
             coyoteJumped = true;*/
             animator.SetTrigger("jump");
             coyoteJumped = true;
-            animator.SetBool("grounded", false);
             var up = transform.up;
             rb.velocity += up * jumpStrength;
         }
@@ -239,12 +238,6 @@ public class CharacterControllerMockup : MonoBehaviour
         var up = transform.up;
         rb.velocity += up * jumpStrength;
         //rb.AddForce(up * jumpStrength, ForceMode.Force);
-    }
-
-    public void SetInAir()
-    {
-        coyoteJumped = true;
-        isGrounded = false;
     }
 
     IEnumerator CoyoteJump()
@@ -272,12 +265,11 @@ public class CharacterControllerMockup : MonoBehaviour
         Debug.DrawLine(transform.position, transform.position - transform.up * groundCheckDistance, Color.red, 0.5f);
         if (!Physics.SphereCast(transform.position, 0.3f, -transform.up, out var hit, groundCheckDistance, ground))
         {
-            print("in air");
+            animator.SetBool("grounded", false);
             if (isGrounded && !coyoteJumped)
             {
                 isGrounded = false;
                 coyoteJumped = false;
-                animator.SetBool("grounded", false);
                 StartCoroutine(CoyoteJump());
             }
         }
