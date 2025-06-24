@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Ghosted.Dialogue;
 using UnityEngine;
+using System.Linq;
 
 namespace Ghosted.Dialogue
 {
@@ -33,6 +34,19 @@ namespace Ghosted.Dialogue
                 uiHint.SetActive(false);
             }
            
+        }
+
+        public void deleteLastDialogue()
+        {
+            var list = this.dialogues.ToList();
+            list.Remove(curDialogue);
+            this.dialogues = list.ToArray();
+            
+            this.ChooseDialogueByID(this.dialogueId);
+
+            
+            // Debug.Log("Now: " + this.dialogues);
+            // Debug.Log("Current Dialogue");
         }
     }
 }

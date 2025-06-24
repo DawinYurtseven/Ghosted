@@ -564,7 +564,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1219
+  m_VersionIndex: 2218
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -617,7 +617,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a73347f4d8be1774fa5c8a0eddff6652, type: 2}
+  - {fileID: 2100000, guid: 6feed94fac6007f4c81cd3dc4ccf1cbe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -683,6 +683,7 @@ GameObject:
   - component: {fileID: 8962856942978518575}
   - component: {fileID: 3208914217137186922}
   - component: {fileID: 8400093631339698605}
+  - component: {fileID: 6138002040209698793}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -2957,7 +2958,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1446
+  m_VersionIndex: 1409
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -3062,6 +3063,20 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &6138002040209698793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7995875825528243288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fcacceb754f6a14882b9a57267900a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joyMaterial: {fileID: 2100000, guid: d105971d117eafc43bde000a33a75f2a, type: 2}
+  fearMaterial: {fileID: 2100000, guid: ae163f47ea0f1d24d95828038c725719, type: 2}
 --- !u!1 &8423072715559200462
 GameObject:
   m_ObjectHideFlags: 0
@@ -3137,8 +3152,8 @@ MonoBehaviour:
   bindingSFX: {fileID: 3874699580538319721}
   boundSFX: {fileID: 218714083329299942}
   force: 40
-  turnedOff: {fileID: 2100000, guid: 9b0e83a3d6c1e7746ae557c693426784, type: 2}
-  turnedOn: {fileID: 2100000, guid: a73347f4d8be1774fa5c8a0eddff6652, type: 2}
+  turnedOff: {fileID: 2100000, guid: 81e9be15e38a23e4dbfa2a317ee00730, type: 2}
+  turnedOn: {fileID: 2100000, guid: 6feed94fac6007f4c81cd3dc4ccf1cbe, type: 2}
 --- !u!1001 &9221108361868697638
 PrefabInstance:
   m_ObjectHideFlags: 0

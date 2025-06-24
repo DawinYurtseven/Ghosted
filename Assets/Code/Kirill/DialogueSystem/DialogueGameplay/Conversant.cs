@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Ghosted.Dialogue
 {
     public class Conversant : MonoBehaviour
     {
-        [SerializeField] Dialogue[] dialogues;
+        [SerializeField] protected Dialogue[] dialogues;
         protected Dialogue curDialogue;
         protected int dialogueId = -1;
         void Awake()
@@ -50,6 +48,14 @@ namespace Ghosted.Dialogue
                 }
             }
             Debug.LogError("I dont have this dialogue in my array of dialogues. Please add this dialogue in to the array");
+        }
+
+        public void ChooseDialogueByID(int id)
+        {
+            if(id < 0 || id > this.dialogues.Length)
+                return;
+
+            ChooseDialogue(dialogues[id]);
         }
     }
 }

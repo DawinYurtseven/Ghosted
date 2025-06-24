@@ -296,6 +296,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8706292296386007023}
   - component: {fileID: 5599524240329635455}
+  - component: {fileID: 5013740804688190466}
   m_Layer: 0
   m_Name: BlackPineTree_B
   m_TagString: Untagged
@@ -348,6 +349,27 @@ LODGroup:
     renderers:
     - renderer: {fileID: 4649288897779238733}
   m_Enabled: 1
+--- !u!65 &5013740804688190466
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7087245949609137404}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.3374908, y: 6.078918, z: 1.853067}
+  m_Center: {x: -0.6687454, y: 2.539459, z: 0.42653352}
 --- !u!21 &21057200752956992
 Material:
   serializedVersion: 8
