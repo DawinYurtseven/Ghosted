@@ -1,0 +1,32 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UniRx;
+public class MaterialChanger : MonoBehaviour
+{
+    // Start is called before the first frame update
+    [SerializeField] private Material joyMaterial, fearMaterial;
+    private Renderer _renderer;
+    
+    void Start()
+    {
+        _renderer = gameObject.GetComponent<MeshRenderer>();
+        _renderer.material = joyMaterial;
+        if (!_renderer) return;
+        EmotionSingletonMock.Instance.EmotionSubject
+            .Subscribe(emotion =>
+            {
+                switch (emotion)
+                {
+                    case Emotion.Joy: 
+                        _renderer.material = joyMaterial;
+                        break;
+                    case Emotion.Fear:
+                        _renderer.material = fearMaterial;
+                        break;
+                    default:
+                        break;
+                }
+            });
+    }
+}

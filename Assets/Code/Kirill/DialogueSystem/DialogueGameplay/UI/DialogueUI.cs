@@ -25,6 +25,11 @@ namespace Ghosted.UI
             playerConversant = GameObject.FindGameObjectsWithTag("Player")[0]
                 .GetComponent<PlayerConversant>(); //Can go wrong
 
+            if (playerConversant == null)
+            {
+                Debug.Log("Missing Player Conversant");
+                return;
+            }
             playerConversant.OnStartDialogue.AddListener(StartDialogue);
             playerConversant.OnEndDialogue.AddListener(EndDialogue);
             playerConversant.OnDialogueNode.AddListener(DisplayNodeInfo);

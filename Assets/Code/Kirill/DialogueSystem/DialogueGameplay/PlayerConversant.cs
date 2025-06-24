@@ -1,3 +1,7 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -5,6 +9,7 @@ using UnityEngine.InputSystem;
 namespace Ghosted.Dialogue {
     public class PlayerConversant : MonoBehaviour
     {
+        [SerializeField] Transform checkForDialoguefrom;
         Dialogue currentDialogue;
         DialogueEditorNode currentNode = null;
         KirillCharacterInteractionInput inputManager;
@@ -19,10 +24,7 @@ namespace Ghosted.Dialogue {
         [SerializeField] private float interactDistance = 20f;
 
         private int playerLayer, layerMask;
-        void Awake()
-        {
-
-        }
+        private AIConversant dialogueAIConversant;
 
         void Start()
         {
@@ -70,28 +72,55 @@ namespace Ghosted.Dialogue {
         private void OnInteract(InputAction.CallbackContext context)
         {
             Debug.Log("I try to interact");
-            if (currentDialogue == null)
+            // if (currentDialogue == null)
+            // {
+            //     //Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue()); // Use mouse position
+            //     // Ray ray = new Ray(transform.position, transform.forward);
+            //     
+            //     Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+            //     RaycastHit hit;
+            //
+            //     Debug.Log("I shoot ray " + ray);
+            //
+            //     if (Physics.Raycast(ray, out hit, interactDistance, layerMask))
+            //     {
+            //         Debug.Log("I hit smth " + hit.collider.gameObject.name);
+            //         // Check for the target script
+            //         AIConversant aIConversant = hit.collider.GetComponent<AIConversant>();
+            //         if (aIConversant != null)
+            //         {
+            //             Debug.Log("It's a conversant!");
+            //             currentConversant = aIConversant;
+            //             aIConversant.Interact(this);
+            //             
+            //         }
+            //     }
+            // }
+            
+            if (currentDialogue == null &&  dialogueAIConversant != null)
             {
-                //Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue()); // Use mouse position
-                // Ray ray = new Ray(transform.position, transform.forward);
-                
-                Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
-                RaycastHit hit;
-
-                Debug.Log("I shoot ray " + ray);
-
-                if (Physics.Raycast(ray, out hit, interactDistance, layerMask))
-                {
-                    Debug.Log("I hit smth " + hit.collider.gameObject.name);
-                    // Check for the target script
-                    AIConversant aIConversant = hit.collider.GetComponent<AIConversant>();
-                    if (aIConversant != null)
-                    {
-                        Debug.Log("It's a conversant!");
-                        currentConversant = aIConversant;
-                        aIConversant.Interact(this);
+                Debug.Log("It's a conversant!");
+                currentConversant = dialogueAIConversant;
+                dialogueAIConversant.Interact(this);
                         
-                    }
+            }
+        }
+
+        void Update()
+        {
+            if (dialogueAIConversant != null)
+            {
+                dialogueAIConversant.turnOffHint();
+            }
+            Ray ray = new Ray(checkForDialoguefrom.position, checkForDialoguefrom.transform.forward);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, interactDistance, layerMask))
+            {
+                AIConversant aIConversant = hit.collider.GetComponent<AIConversant>();
+                if (aIConversant)
+                {
+                    dialogueAIConversant = aIConversant;
+                    dialogueAIConversant.turnOnHint();
                 }
             }
         }

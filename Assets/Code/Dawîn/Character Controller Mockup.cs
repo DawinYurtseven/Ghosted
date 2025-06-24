@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using TMPro;
 using UniRx;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -203,16 +206,16 @@ public class CharacterControllerMockup : MonoBehaviour
      * the two booleans coyoteJumped and isGrounded are used to check if the player is grounded or not and dictate coyote time.
      */
     [Header("Jump")] [SerializeField] public float jumpStrength;
-    [SerializeField] public float fallStrength, coyoteFallStrength;
+    [SerializeField] public float fallStrength;
     [SerializeField] private float groundCheckDistance;
     [SerializeField] private float coyoteTime = 0.2f;
-    [SerializeField] private bool coyoteJumped, isGrounded = true;
+    [SerializeField] private bool coyoteJumped, isGrounded = true, jumpPressed = false;
 
     public void Jump(InputAction.CallbackContext context)
     {
         //print(coyoteJumped);
         if (context.started &&
-            (Physics.SphereCast(transform.position, 0.5f, -transform.up, out var hit, groundCheckDistance, ground) ||
+            (Physics.SphereCast(transform.position, 0.3f, -transform.up, out var hit, groundCheckDistance, ground) ||
              !coyoteJumped))
         {
             float angle = Vector3.Angle(hit.normal, transform.up);
@@ -223,6 +226,10 @@ public class CharacterControllerMockup : MonoBehaviour
             //rb.AddForce(up * jumpStrength, ForceMode.Force);
             coyoteJumped = true;*/
             animator.SetTrigger("jump");
+            coyoteJumped = true;
+            animator.SetBool("grounded", false);
+            var up = transform.up; 
+            rb.velocity += up * jumpStrength;
         }
     }
 
@@ -232,7 +239,6 @@ public class CharacterControllerMockup : MonoBehaviour
         var up = transform.up;
         rb.velocity += up * jumpStrength;
         //rb.AddForce(up * jumpStrength, ForceMode.Force);
-        coyoteJumped = true;
     }
 
     public void SetInAir()
@@ -246,7 +252,7 @@ public class CharacterControllerMockup : MonoBehaviour
         float timer = 0f;
         while (timer < coyoteTime)
         {
-            if (Physics.SphereCast(transform.position, 0.5f, -transform.up, out var hit, groundCheckDistance, ground))
+            if (Physics.SphereCast(transform.position, 0.3f, -transform.up, out var hit, groundCheckDistance, ground))
             {
                 isGrounded = true;
                 coyoteJumped = false;
@@ -263,7 +269,7 @@ public class CharacterControllerMockup : MonoBehaviour
 
     private void RegulateJump()
     {
-        if (!Physics.SphereCast(transform.position, 0.5f, -transform.up, out var hit, groundCheckDistance, ground))
+        if (!Physics.SphereCast(transform.position, 0.3f, -transform.up, out var hit, groundCheckDistance, ground))
         {
             if (isGrounded && !coyoteJumped)
             {
@@ -278,6 +284,7 @@ public class CharacterControllerMockup : MonoBehaviour
             isGrounded = true;
             coyoteJumped = false;
             animator.SetBool("grounded", true);
+            animator.ResetTrigger("jump");
         }
 
         rb.AddForce(-transform.up * fallStrength, ForceMode.Acceleration);
@@ -487,9 +494,8 @@ public class CharacterControllerMockup : MonoBehaviour
     {
         if (context.performed)
         {
+            if (EmotionSingletonMock.Instance.disableAll) return;
             if (target == null || thrownTalisman != null) return;
-            if (curTalsimans == maxTalismans) return;
-
 
             //If the object is already bounded, recall talisman
             if (lockedObjects.Contains(target))
@@ -501,11 +507,13 @@ public class CharacterControllerMockup : MonoBehaviour
                     Quaternion.LookRotation((transform.position - gameObject.transform.position).normalized));
                 //thrownTalisman.GetComponent<Talisman>().Initialize(tMode, talismanEmotion);
                 StartCoroutine(thrownTalisman.GetComponent<Talisman>().MoveTowardsPlayer(this));
+                talismansUsed.text = "Talismans used: " + curTalsimans + " / " + maxTalismans;
             }
 
             //Throw talisman
             else
             {
+                if (curTalsimans == maxTalismans) return;
                 //curTalsimans++;
                 animator.SetTrigger("Throw Talisman");
                 characterObject.transform.LookAt(target.transform);
@@ -517,7 +525,6 @@ public class CharacterControllerMockup : MonoBehaviour
             }
 
 
-            talismansUsed.text = "Talismans used: " + curTalsimans + " / " + maxTalismans;
             //previousTargetTalismanObject = target;
         }
     }
@@ -530,27 +537,42 @@ public class CharacterControllerMockup : MonoBehaviour
             Quaternion.LookRotation((target.transform.position - transform.position).normalized));
         thrownTalisman.GetComponent<Talisman>().Initialize(tMode, talismanEmotion);
         StartCoroutine(thrownTalisman.GetComponent<Talisman>().MoveTowards(target));
+        talismansUsed.text = "Talismans used: " + curTalsimans + " / " + maxTalismans;
     }
 
 
     private TalismanTargetMock tempTar;
     public AltarMock tempAltar;
+    public static event Action firstUsageAltar;
+    public bool usedAltar = false;
 
-    [SerializeField] private int interactionRange = 20;
+    [SerializeField] private int interactionRange = 10;
 
+    public float interactDistanceAltar = 3f;
+    public Transform checkFrom;
     private void CheckForInteractables()
     {
-        if (Physics.SphereCast(transform.position, 1f, lookAtPivot.transform.forward, out var hit, interactionRange))
+        if (tempAltar != null)
         {
-            if (hit.collider.gameObject.TryGetComponent(typeof(TalismanTargetMock), out var tar))
+            tempAltar.turnOffHintAltar();
+        }
+        
+        //Same as for dialogues 
+        Ray ray = new Ray(checkFrom.position, checkFrom.forward);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, interactDistanceAltar)) {
+            TalismanTargetMock tar = hit.collider.GetComponent<TalismanTargetMock>();
+            AltarMock altar = hit.collider.GetComponentInParent<AltarMock>();
+            if (tar)
             {
                 tempTar = (TalismanTargetMock)tar;
                 tempTar.HighlightInteract();
             }
-            else if (hit.collider.gameObject.TryGetComponent(typeof(AltarMock), out var altar))
+            else if (altar && hit.collider.CompareTag("Altar"))
             {
                 //print("altar");
                 tempAltar = (AltarMock)altar;
+                tempAltar.turnOnHintAltar();
             }
             else
             {
@@ -576,6 +598,12 @@ public class CharacterControllerMockup : MonoBehaviour
             // if (tempTar == null && tempAltar == null) return;
             if (tempAltar != null)
             {
+                if (!usedAltar)
+                {
+                    usedAltar = true;
+                    firstUsageAltar?.Invoke();
+                }
+
                 print("sup");
                 tempAltar.ChangeEmotion(talismanEmotion);
                 return;
@@ -615,7 +643,7 @@ public class CharacterControllerMockup : MonoBehaviour
      */
 
     private bool _isOnCurvedGround;
-    [SerializeField] private float maxSlopeAngle = 45f;
+    [SerializeField] private float maxSlopeAngle = 45f, slopeAdjustment = 1.2f;
 
     private void Slope()
     {
@@ -623,16 +651,22 @@ public class CharacterControllerMockup : MonoBehaviour
         if (moveVector == Vector2.zero)
         {
             RaycastHit hit; //check for ground below the player and get the angle
-            if (Physics.SphereCast(transform.position, 0.5f, -transform.up, out hit, groundCheckDistance, ground))
+            if (Physics.SphereCast(transform.position, 0.3f, -transform.up, out hit, groundCheckDistance, ground))
             {
                 // Calculate the slope angle
                 float slopeAngle = Vector3.Angle(hit.normal, transform.up);
-                //print(slopeAngle);
                 // Apply friction on a specific angle 
-                if (slopeAngle >= 0 && slopeAngle <= maxSlopeAngle)
+                if (slopeAngle > 0 && slopeAngle <= maxSlopeAngle)
                 {
                     rb.velocity = new Vector3(0, rb.velocity.y, 0);
+                    rb.AddForce(transform.up * fallStrength, ForceMode.Acceleration);
+                    print(rb.velocity);
+                    //slopeFallStrenghtMultiplier = 0.3f;
                 }
+                /*else
+                {
+                    slopeFallStrenghtMultiplier = 1f;
+                }*/
             }
         }
     }

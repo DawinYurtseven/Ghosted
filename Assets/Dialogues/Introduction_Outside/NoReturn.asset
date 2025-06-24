@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-4828814623020771375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: ff4a7212-c148-467b-9f44-94361e362f68
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: -10
+    y: 14
+    width: 200
+    height: 80
+  onEnterActions:
+  - enter
+  onExitActions: []
+  text: 'It''s too early to go back. '
+  child: 794ce04f-696a-4278-92b3-54c465b6afa8
+  speaker: Ghost Binder
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0128aa92babf3fd4e9cf4beb0d51198e, type: 3}
+  m_Name: NoReturn
+  m_EditorClassIdentifier: 
+  dialogueSpeakers:
+  - Ghost Binder
+  dialogueNodes:
+  - {fileID: -4828814623020771375}
+  - {fileID: 3785049495082963715}
+  replyNodes: []
+--- !u!114 &3785049495082963715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 794ce04f-696a-4278-92b3-54c465b6afa8
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 266
+    y: 40
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions:
+  - exit
+  text: I have work to do.
+  child: 
+  speaker: Ghost Binder

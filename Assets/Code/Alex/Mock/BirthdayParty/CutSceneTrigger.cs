@@ -12,27 +12,30 @@ public class CutSceneTrigger : MonoBehaviour
     
     
     private int currentRepeat = 0;
+    
+    public bool enabledByPlayer = true;
+    public bool enabledByTrain = true;
 
     private void OnTriggerEnter(Collider other)
     {
 
         Debug.Log("Entered CutScene trigger of " + cutSceneName);
         
-        if (other.gameObject.GetComponent<CharacterControllerMockup>() != null)
+        if (enabledByPlayer && other.gameObject.GetComponent<CharacterControllerMockup>() != null)
         {
             Debug.Log("Detected Player");
             
             OnCutScenePlayerTriggered?.Invoke(cutSceneName);
-            if (repeatTimes != -1 && currentRepeat++ >= repeatTimes)
+            if (repeatTimes != -1 && ++currentRepeat >= repeatTimes)
                 Destroy(gameObject);
         }
         
-        else if ( other.gameObject.GetComponent<SplineAnimate>() != null)
+        else if (enabledByTrain && other.gameObject.GetComponent<SplineAnimate>() != null)
         {
             Debug.Log("Detected Train");
             
             OnCutSceneTrainTriggered?.Invoke(cutSceneName);
-            if (repeatTimes != -1 && currentRepeat++ >= repeatTimes)
+            if (repeatTimes != -1 && ++currentRepeat >= repeatTimes)
                 Destroy(gameObject);
         }
     }

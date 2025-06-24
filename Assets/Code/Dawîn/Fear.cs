@@ -6,6 +6,8 @@ public class Fear : EmotionAbstract
 {
     [SerializeField] private GameObject openState, closedState, shadow;
 
+
+    public bool lockedInFear = false;
     protected override void EmotionalBehaviour()
     {
         base.EmotionalBehaviour();
@@ -30,6 +32,7 @@ public class Fear : EmotionAbstract
             openState.SetActive(currentEmotion == Emotion.Fear);
             shadow.SetActive(currentEmotion == Emotion.Fear);
             locked = false;
+            lockedInFear = false;
             if (specialEffect)
             {
                 specialEffect.SetActive(false);
@@ -41,6 +44,16 @@ public class Fear : EmotionAbstract
             locked = true;
             if (specialEffect) {
                 specialEffect.SetActive(true);
+                if (surroundEmotion == Emotion.Joy) {
+                    joyVFX.SetActive(true);
+                    fearVFX.SetActive(false);
+                }
+                else {
+                    joyVFX.SetActive(false);
+                    fearVFX.SetActive(true);
+                    lockedInFear = true;
+                }
+                StartCoroutine(PlayAudioSequentially());
             }
         }
     }
