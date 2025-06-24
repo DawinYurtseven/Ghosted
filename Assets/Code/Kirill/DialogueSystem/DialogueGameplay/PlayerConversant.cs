@@ -36,8 +36,8 @@ namespace Ghosted.Dialogue {
 
         public void StartDialogue(Dialogue dialogue)
         {
-            inputManager.UnsubscribeInteract(OnInteract);
-            inputManager.SubscribePressedNext(OnNextClick);
+            //inputManager.UnsubscribeInteract(OnInteract);
+            //inputManager.SubscribePressedNext(OnNextClick);
 
             currentDialogue = dialogue;
             OnStartDialogue.Invoke(currentDialogue);
@@ -50,8 +50,8 @@ namespace Ghosted.Dialogue {
 
         public void EndDialogue()
         {
-            inputManager.UnsubscribePressedNext(OnNextClick);
-            inputManager.SubscribeInteract(OnInteract);
+            //inputManager.UnsubscribePressedNext(OnNextClick);
+            //inputManager.SubscribeInteract(OnInteract);
 
             OnEndDialogue.Invoke(currentDialogue);
             currentDialogue = null;
@@ -122,6 +122,10 @@ namespace Ghosted.Dialogue {
                     dialogueAIConversant = aIConversant;
                     dialogueAIConversant.turnOnHint();
                 }
+            }
+            else
+            {
+                OnNextClick(context);
             }
         }
 
