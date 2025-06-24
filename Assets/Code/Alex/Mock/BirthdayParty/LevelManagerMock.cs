@@ -99,7 +99,7 @@ public class LevelManagerMock : MonoBehaviour
 
     void TrainCutScene()
     {
-        if (trainSceneCount == 0 || trainSceneCount == 1 && barier.GetLocked() || trainSceneCount == 2 && barier2.GetLocked())
+        if (trainSceneCount == 0 || trainSceneCount == 1 && barier.lockedInFear || trainSceneCount == 2 && barier.lockedInFear)
         {
             playerCamera.Priority = 0;
             trainCamera.Priority = 10;
