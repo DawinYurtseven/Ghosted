@@ -660,7 +660,7 @@ public class CharacterControllerMockup : MonoBehaviour
                 {
                     rb.velocity = new Vector3(0, rb.velocity.y, 0);
                     rb.AddForce(transform.up * fallStrength, ForceMode.Acceleration);
-                    print(rb.velocity);
+                   // print(rb.velocity);
                     //slopeFallStrenghtMultiplier = 0.3f;
                 }
                 /*else

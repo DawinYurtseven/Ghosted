@@ -15,6 +15,10 @@ public class WeatherController : MonoBehaviour
     [SerializeField] private GameObject rainPP; 
     private bool isRaining = false;
     private bool isInside = false;
+
+    [Header("Emotions")] 
+    [SerializeField] private Material joyBox;
+    [SerializeField] private Material fearBox;
     
     // Adjust the rain particles whether player is inside or not
     public bool IsInside
@@ -43,11 +47,13 @@ public class WeatherController : MonoBehaviour
     private void OnEnable()
     {
         emotionSing.emotionChanged.AddListener(changeWeather);
+        emotionSing.emotionChanged.AddListener(changeSkybox);
     }
 
     private void OnDisable()
     {
         emotionSing.emotionChanged.RemoveListener(changeWeather);
+        emotionSing.emotionChanged.RemoveListener(changeSkybox);
     }
     
     #endregion Event Subscription
@@ -101,4 +107,38 @@ public class WeatherController : MonoBehaviour
         }
     }
     
+    public void changeSkybox(Emotion emotion)
+    {
+        Debug.Log("Changing Skybox for: " + emotion);
+        
+        switch (emotion)
+        {
+            case Emotion.Joy:
+                if(joyBox)
+                    _changeSkybox(joyBox);
+                _changeSkybox(_skybox.material);
+                break;
+            case Emotion.Fear:
+                if(fearBox)
+                    _changeSkybox(fearBox);
+                _changeSkybox(rainSkybox.material);
+                break;
+            
+            default:
+                _changeSkybox(_skybox.material);
+                break;
+        }
+    }
+    
+    private void _changeSkybox(Material skybox)
+    {
+        if (skybox != null)
+        {
+            _skybox.material = skybox;
+        }
+        else
+        {
+            Debug.LogWarning("Skybox is null, cannot change skybox.");
+        }
+    }
 }
