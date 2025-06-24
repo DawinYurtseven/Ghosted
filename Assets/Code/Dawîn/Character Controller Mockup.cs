@@ -663,7 +663,7 @@ public class CharacterControllerMockup : MonoBehaviour
 
     public void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Ground"))
+        if (((1 << other.gameObject.layer) & ground) != 0)
         {
             float slopeAngle = Vector3.Angle(other.contacts[0].normal, transform.up);
             // Apply friction on a specific angle 

@@ -125,7 +125,7 @@ namespace Ghosted.Dialogue {
             }
             else
             {
-                OnNextClick(context);
+                //  OnNextClick(context);
             }
         }
 
