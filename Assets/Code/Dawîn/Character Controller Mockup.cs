@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
+using Ghosted.Dialogue;
 using TMPro;
 using UniRx;
 using Unity.VisualScripting;
@@ -17,10 +18,13 @@ public class CharacterControllerMockup : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject characterObject;
 
+    [SerializeField] private PlayerConversant conversant;
+
     public void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
         rb = GetComponent<Rigidbody>();
+        conversant = GetComponent<PlayerConversant>();
     }
 
     private void Start()
@@ -473,7 +477,7 @@ public class CharacterControllerMockup : MonoBehaviour
 
     //Check this 
     public int maxTalismans = 3;
-    private int curTalsimans = 0;
+    private int curTalismans = 0;
     [SerializeField] TextMeshProUGUI talismansUsed;
     [SerializeField] private List<TalismanTargetMock> lockedObjects = new List<TalismanTargetMock>();
 
@@ -488,22 +492,23 @@ public class CharacterControllerMockup : MonoBehaviour
             if (lockedObjects.Contains(target))
             {
                 lockedObjects.Remove(target);
-                curTalsimans--;
+                curTalismans--;
                 target.Bind();
                 thrownTalisman = Instantiate(TalismanPrefab, target.gameObject.transform.position,
                     Quaternion.LookRotation((transform.position - gameObject.transform.position).normalized));
                 //thrownTalisman.GetComponent<Talisman>().Initialize(tMode, talismanEmotion);
                 StartCoroutine(thrownTalisman.GetComponent<Talisman>().MoveTowardsPlayer(this));
-                talismansUsed.text = "Talismans used: " + curTalsimans + " / " + maxTalismans;
+                talismansUsed.text = "Talismans used: " + curTalismans + " / " + maxTalismans;
             }
 
             //Throw talisman
             else
             {
-                if (curTalsimans == maxTalismans) return;
+                if (curTalismans == maxTalismans) return;
                 //curTalsimans++;
                 animator.SetTrigger("Throw Talisman");
-                characterObject.transform.LookAt(target.transform);
+                Vector3 lookPosition = new Vector3 (target.transform.position.x, characterObject.transform.position.y, target.transform.position.z);
+                characterObject.transform.LookAt(lookPosition);
                 /*lockedObjects.Add(target);
                 thrownTalisman = Instantiate(TalismanPrefab, gameObject.transform.position,
                     Quaternion.LookRotation((target.transform.position - transform.position).normalized));
@@ -518,18 +523,24 @@ public class CharacterControllerMockup : MonoBehaviour
 
     public void ThrowTalismanAnim()
     {
-        curTalsimans++;
+        curTalismans++;
         lockedObjects.Add(target);
         thrownTalisman = Instantiate(TalismanPrefab, gameObject.transform.position,
             Quaternion.LookRotation((target.transform.position - transform.position).normalized));
         thrownTalisman.GetComponent<Talisman>().Initialize(tMode, talismanEmotion);
         StartCoroutine(thrownTalisman.GetComponent<Talisman>().MoveTowards(target));
-        talismansUsed.text = "Talismans used: " + curTalsimans + " / " + maxTalismans;
+        talismansUsed.text = "Talismans used: " + curTalismans + " / " + maxTalismans;
     }
+    
+    
+    #endregion
 
-
+    #region Interactions
+    
     private TalismanTargetMock tempTar;
     public AltarMock tempAltar;
+    
+    // For Cutscene
     public static event Action firstUsageAltar;
     public bool usedAltar = false;
 
@@ -579,23 +590,26 @@ public class CharacterControllerMockup : MonoBehaviour
         }
     }
 
-    public void PlaceTalisman(InputAction.CallbackContext context)
+    public void Interact(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            // print("F performed");
+            Debug.Log("E performed");
             // if (tempTar == null && tempAltar == null) return;
             if (tempAltar != null)
             {
+                Debug.Log("Altar found");
                 if (!usedAltar)
                 {
                     usedAltar = true;
                     firstUsageAltar?.Invoke();
                 }
-
-                print("sup");
+                
                 tempAltar.ChangeEmotion(talismanEmotion);
-                return;
+            }
+            else
+            {
+                conversant.InteractDialogue();
             }
 
             // if (previousTargetTalismanObject != null) previousTargetTalismanObject.ResetObject();
@@ -616,8 +630,8 @@ public class CharacterControllerMockup : MonoBehaviour
             }
 
             lockedObjects.Clear();
-            curTalsimans = 0;
-            talismansUsed.text = "Talismans used: " + curTalsimans + " / " + maxTalismans;
+            curTalismans = 0;
+            talismansUsed.text = "Talismans used: " + curTalismans + " / " + maxTalismans;
         }
     }
 
