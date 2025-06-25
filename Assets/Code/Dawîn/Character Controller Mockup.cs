@@ -4,9 +4,7 @@ using System.Collections.Generic;
 using Cinemachine;
 using TMPro;
 using UniRx;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody))]

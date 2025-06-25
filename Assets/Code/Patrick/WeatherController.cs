@@ -4,7 +4,7 @@ public class WeatherController : MonoBehaviour
 {
     [Header("Default")] 
     [SerializeField] private GameObject dirLight;
-    [SerializeField] private Skybox _skybox;
+    [SerializeField] private Material _skybox;
     [SerializeField] private GameObject defaultPP;
     
     [Header("Rain")]
@@ -116,16 +116,17 @@ public class WeatherController : MonoBehaviour
             case Emotion.Joy:
                 if(joyBox)
                     _changeSkybox(joyBox);
-                _changeSkybox(_skybox.material);
+                _changeSkybox(_skybox);
                 break;
             case Emotion.Fear:
                 if(fearBox)
                     _changeSkybox(fearBox);
-                _changeSkybox(rainSkybox.material);
+                if(rainSkybox) 
+                    _changeSkybox(rainSkybox.material);
                 break;
             
             default:
-                _changeSkybox(_skybox.material);
+                _changeSkybox(_skybox);
                 break;
         }
     }
@@ -134,11 +135,15 @@ public class WeatherController : MonoBehaviour
     {
         if (skybox != null)
         {
-            _skybox.material = skybox;
+            RenderSettings.skybox = skybox;
+            if (Camera.main != null)
+            {
+                Camera.main.clearFlags = CameraClearFlags.Skybox;
+            }
         }
         else
         {
-            Debug.LogWarning("Skybox is null, cannot change skybox.");
+            Debug.LogWarning("Skybox material is null, cannot change skybox.");
         }
     }
 }
