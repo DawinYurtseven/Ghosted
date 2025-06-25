@@ -554,6 +554,7 @@ public class CharacterControllerMockup : MonoBehaviour
         if (tempAltar != null)
         {
             tempAltar.turnOffHintAltar();
+            tempAltar = null;
         }
 
         //Same as for dialogues 
@@ -561,31 +562,22 @@ public class CharacterControllerMockup : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, interactDistanceAltar))
         {
-            TalismanTargetMock tar = hit.collider.GetComponent<TalismanTargetMock>();
+            //TalismanTargetMock tar = hit.collider.GetComponent<TalismanTargetMock>();
             AltarMock altar = hit.collider.GetComponentInParent<AltarMock>();
-            if (tar)
+            if (altar && hit.collider.CompareTag("Altar") && altar != tempAltar)
             {
-                tempTar = (TalismanTargetMock)tar;
-                tempTar.HighlightInteract();
-            }
-            else if (altar && hit.collider.CompareTag("Altar"))
-            {
+                if (tempAltar != null)
+                {
+                    tempAltar.turnOffHintAltar();
+                }
                 //print("altar");
                 tempAltar = (AltarMock)altar;
                 tempAltar.turnOnHintAltar();
             }
-            else
+            else if (tempAltar != null)
             {
-                tempTar = null;
+                tempAltar.turnOffHintAltar();
                 tempAltar = null;
-            }
-        }
-        else
-        {
-            if (tempTar != null)
-            {
-                tempTar.UnHighlight();
-                tempTar = null;
             }
         }
     }

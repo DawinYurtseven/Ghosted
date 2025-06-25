@@ -27,9 +27,15 @@ namespace Ghosted.Dialogue {
         private int playerLayer, layerMask;
         private AIConversant dialogueAIConversant;
 
-        void Start()
+        void Awake()
         {
             playerInput = GetComponent<PlayerInput>();
+            playerInput.actions.FindActionMap("Dialogue").Disable();
+        }
+        
+        void Start()
+        {
+            
             playerLayer = LayerMask.NameToLayer("Player");
             layerMask = ~(1 << playerLayer);
         }
@@ -45,7 +51,10 @@ namespace Ghosted.Dialogue {
             currentNode = currentDialogue.GetRootNode();
             OnDialogueNode.Invoke(currentNode);
             dialogueStartTime = Time.time;
+            
+            playerInput.actions.FindActionMap("Dialogue").Enable();
             playerInput.SwitchCurrentActionMap("Dialogue");
+            playerInput.actions.FindActionMap("Character Control").Disable();
             TriggerEnterAction();
             //Somehow is still laggy for the first dialogue in the scene
             //StartCoroutine(SwitchInputMapNextFrame("Dialogue"));
@@ -58,7 +67,10 @@ namespace Ghosted.Dialogue {
             currentDialogue = null;
             currentConversant = null;
             currentNode = null;
-            StartCoroutine(SwitchInputMapNextFrame("Character Control"));
+            
+            
+            StartCoroutine(SwitchInputMapDelayed("Character Control"));
+            playerInput.actions.FindActionMap("Dialogue").Disable();
         }
         
         //called from Input asset 
@@ -113,21 +125,34 @@ namespace Ghosted.Dialogue {
 
         void Update()
         {
-            if (dialogueAIConversant != null)
-            {
-                dialogueAIConversant.turnOffHint();
-                dialogueAIConversant = null;
-            }
+            
             Ray ray = new Ray(checkForDialoguefrom.position, checkForDialoguefrom.transform.forward);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, interactDistance, layerMask))
             {
                 AIConversant aIConversant = hit.collider.GetComponent<AIConversant>();
-                if (aIConversant)
+                if (aIConversant )
                 {
-                    dialogueAIConversant = aIConversant;
-                    dialogueAIConversant.turnOnHint();
+                    if (aIConversant != dialogueAIConversant)
+                    {
+                        Debug.Log("Found new dialogue!");
+                        if (dialogueAIConversant != null)
+                        {
+                            dialogueAIConversant.turnOffHint();
+                        }
+                        dialogueAIConversant = aIConversant;
+                        dialogueAIConversant.turnOnHint();
+                    }
+
+                    return;
                 }
+            }
+            
+            if (dialogueAIConversant != null) 
+            {
+                dialogueAIConversant.turnOffHint();
+                
+                 dialogueAIConversant = null;
             }
         }
 
@@ -146,6 +171,7 @@ namespace Ghosted.Dialogue {
         {
             if (context.performed)
             {
+                if (!currentDialogue) return;
                 //delay so that the start dialogue e is not confused with the next line
                 if (Time.time - dialogueStartTime < dialogueInputDelay) return;
 
@@ -224,12 +250,12 @@ namespace Ghosted.Dialogue {
             return currentNode;
         }
 
-        private float delay = 0.1f;
         //change in next frame to avoid confusion
-        private IEnumerator SwitchInputMapNextFrame(string mapName)
+        private IEnumerator SwitchInputMapDelayed(string mapName, float delay = 0.5f)
         {
-            yield return new WaitForSeconds(delay); 
+            yield return new WaitForSeconds(delay);
             playerInput.SwitchCurrentActionMap(mapName);
+            playerInput.actions.FindActionMap(mapName).Enable();
         }
     }
 }

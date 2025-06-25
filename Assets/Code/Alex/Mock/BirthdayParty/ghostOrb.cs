@@ -20,6 +20,14 @@ public class ghostOrb : MonoBehaviour
     private bool isFollowing = false;
     
     
+    [SerializeField] private AudioClip[] laughing; // Assign this in the Inspector
+    private AudioSource audioSource;
+
+
+    void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
  private void Update()
     {
         // follow the target if set
@@ -74,7 +82,7 @@ public class ghostOrb : MonoBehaviour
     }
 
     // Movement logic
-    private void MoveToPosition(Vector3 targetPos, bool smoothFollow = false)
+    public void MoveToPosition(Vector3 targetPos, bool smoothFollow = false)
     {
         if (!smoothFollow && currentTween != null && currentTween.IsActive())
         {
@@ -118,4 +126,12 @@ public class ghostOrb : MonoBehaviour
             .SetLoops(-1, LoopType.Restart);
     }
 
+
+    public void Laugh()
+    {
+        if (laughing.Length == 0) return;
+
+        int index = Random.Range(0, laughing.Length);
+        audioSource.PlayOneShot(laughing[index]);
+    }
 }
