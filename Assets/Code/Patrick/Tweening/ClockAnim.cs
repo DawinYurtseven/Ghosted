@@ -1,6 +1,13 @@
 using UnityEngine;
 using DG.Tweening;
 
+public enum ClockHand
+{
+    Hour,
+    Minute,
+    Second
+}
+
 public class ClockAnim : MonoBehaviour
 {
     [Header("Clock Hands")]
@@ -13,6 +20,8 @@ public class ClockAnim : MonoBehaviour
     public float minuteHandSpeed = 10f; // degrees per second
     public float hourHandSpeed = 2f; // degrees per second
     public float secondHandSpeed = 15f; // degrees per second (if you want to add a second hand later)
+    
+    public bool isClockRunning = true; // Flag to control clock running state
     
     void Start()
     {
@@ -36,6 +45,7 @@ public class ClockAnim : MonoBehaviour
         AnimateZeiger(hourHand, hourHandSpeed);
         AnimateZeiger(minuteHand, minuteHandSpeed);
         AnimateZeiger(secondHand, secondHandSpeed);
+        isClockRunning = true; 
     }
     
     public void stopAnimation()
@@ -44,9 +54,10 @@ public class ClockAnim : MonoBehaviour
         hourHand.DOKill();
         minuteHand.DOKill();
         secondHand.DOKill();
+        isClockRunning = false; 
     }
     
-    public void setTime(float hour, float minute)
+    public void setTime(int hour, int minute, int second = 0)
     {
         // Set the clock hands to a specific time
         float hourRotation = (hour % 12) * 30f + (minute / 60f) * 30f; // 30 degrees per hour
@@ -54,10 +65,59 @@ public class ClockAnim : MonoBehaviour
 
         hourHand.rotation = Quaternion.Euler(rotationAxis * hourRotation);
         minuteHand.rotation = Quaternion.Euler(rotationAxis * minuteRotation);
-        secondHand.rotation = Quaternion.Euler(rotationAxis * 0f); 
+        secondHand.rotation = Quaternion.Euler(rotationAxis * (second * 6f)); // again, 6 degrees per second
     }
-
-    public void AnimateSolution(bool solved, float hour, float minute)
+    
+    public void stopHand(ClockHand hand)
+    {
+        // Stop the animation of a specific clock hand
+        switch (hand)
+        {
+            case ClockHand.Hour:
+                hourHand.DOKill();
+                break;
+            case ClockHand.Minute:
+                minuteHand.DOKill();
+                break;
+            case ClockHand.Second:
+                secondHand.DOKill();
+                break;
+        }
+    }
+    
+    public void startHand(ClockHand hand)
+    {
+        // Start the animation of a specific clock hand
+        switch (hand)
+        {
+            case ClockHand.Hour:
+                AnimateZeiger(hourHand, hourHandSpeed);
+                break;
+            case ClockHand.Minute:
+                AnimateZeiger(minuteHand, minuteHandSpeed);
+                break;
+            case ClockHand.Second:
+                AnimateZeiger(secondHand, secondHandSpeed);
+                break;
+        }
+    }
+    
+    public int[] getCurrentTime()
+    {
+        // Get the current time from the clock hands
+        int hour = Mathf.RoundToInt(hourHand.localEulerAngles.z / 30f) % 12;    // 30 degrees per hour
+        int minute = Mathf.RoundToInt(minuteHand.localEulerAngles.z / 6f);      // 6 degrees per minute
+        int second = Mathf.RoundToInt(secondHand.localEulerAngles.z / 6f);      // 6 degrees per second
+        // Ensure hour is in the range [1, 12]
+        if (hour == 0) hour = 12;       // Convert 0 to 12 for clock representation
+        if (minute < 0) minute += 60;   // Ensure minute is in the range [0, 59]
+        if (second < 0) second += 60;   // Ensure second is in the range [0, 59]
+        
+        Debug.Log($"Current Time: {hour:D2}:{minute:D2}:{second:D2}");
+        return new []{hour, minute, second};
+    }
+    
+    public void AnimateSolution(bool solved, int hour, int minute, int second = 0)
     {
         // Stop the current animations
         stopAnimation();
@@ -65,11 +125,11 @@ public class ClockAnim : MonoBehaviour
         // If the puzzle is solved, set the clock hands to the solution time
         if (solved)
         {
-            setTime(hour, minute);
+            setTime(hour, minute, second);
         }
         else
         {
-            setTime(hour, minute);
+            setTime(hour, minute, second);
             
             // save the material colors before changing them
             Color originalHourColor = hourHand.GetComponent<Renderer>().material.color;
