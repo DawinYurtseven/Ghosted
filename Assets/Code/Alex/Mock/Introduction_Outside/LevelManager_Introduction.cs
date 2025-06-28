@@ -14,7 +14,10 @@ public class LevelManager_Introduction : MonoBehaviour
     public CanvasGroup[] groups;
     public float fadeDuration = 0.5f;
     public float displayDuration = 5f;
+
+    public ghostOrb ghost;
     
+    private AudioSource audioSource;
     [SerializeField] private GameObject player;
     PlayerInputDisabler playerInputDisabler;
     void Start()
@@ -59,19 +62,21 @@ public class LevelManager_Introduction : MonoBehaviour
     [Header("finishLevel")]
     public Image fadeImage; 
     public float fadeDuration_final = 1f;
-    
-    
+
+
+    public void animateGhost()
+    {
+        ghost.MoveToPosition(player.transform.position + new Vector3 (0,1,0.5f), false);
+        ghost.Laugh();
+    }
     public void finishLevel()
     {
         // Set image fully transparent black
         fadeImage.color = new Color(0, 0, 0, 0);
-        if (playerInputDisabler)
-        {
-            playerInputDisabler.DisableInput();
-        }
+        
         fadeImage.DOFade(1f, fadeDuration_final).OnComplete(() =>
         {
-            SceneManager.LoadScene("Birthday_ThirdPlayable");
+            SceneManager.LoadScene("HomeLevel");
         });
     }
 }
