@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class StopClockManager : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class StopClockManager : MonoBehaviour
     [SerializeField] private ClockAnim clockAnim;
     
     [Header("Clock Hands and Solutions")]
+    public UnityEvent onPuzzleSolved;
     [SerializeField] private int solutionHours = -1;
     [SerializeField] private int solutionMinutes = -1;
     [SerializeField] private int solutionSeconds = -1;
@@ -40,6 +42,7 @@ public class StopClockManager : MonoBehaviour
         {
             Debug.Log("Clock hands are correct");
             clockAnim.AnimateSolution(true, solutionHours, solutionMinutes, solutionSeconds);
+            onPuzzleSolved?.Invoke();
         }
         else
         {
