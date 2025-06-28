@@ -62,14 +62,18 @@ public class LevelManager_Introduction : MonoBehaviour
     [Header("finishLevel")]
     public Image fadeImage; 
     public float fadeDuration_final = 1f;
-    
-    
+
+
+    public void animateGhost()
+    {
+        ghost.MoveToPosition(player.transform.position + new Vector3 (0,1,0.5f), false);
+        ghost.Laugh();
+    }
     public void finishLevel()
     {
         // Set image fully transparent black
         fadeImage.color = new Color(0, 0, 0, 0);
-        ghost.MoveToPosition(player.transform.position + new Vector3 (0,1,0.5f), false);
-        ghost.Laugh();
+        
         fadeImage.DOFade(1f, fadeDuration_final).OnComplete(() =>
         {
             SceneManager.LoadScene("HomeLevel");
