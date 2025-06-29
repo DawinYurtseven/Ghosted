@@ -20,13 +20,16 @@ public class StopClockManager : MonoBehaviour
 
     public void getInput(ClockHand hand, bool isRunning)
     {
-        if(isRunning)
+        Debug.Log("Got input for clock hand: " + hand + ", isRunning: " + isRunning);
+        
+        if(!isRunning)  // Clock was stopped
         {
             registerStep(hand);
         }
         else
         {
-            // Do nothing if the clock is not running, then it will toggle
+            // toggle Clock back into running state
+            clockAnim.startHand(hand);
         }
     }
     
@@ -50,11 +53,15 @@ public class StopClockManager : MonoBehaviour
             // get the current time of the clock
             int [] currentTime = clockAnim.getCurrentTime();
             clockAnim.AnimateSolution(false, currentTime[0], currentTime[1], currentTime[2]);
+            clockAnim.setTime(currentTime[0], currentTime[1], currentTime[2]);
+            clockAnim.startHand(hand);
         }
     }
     
     protected bool checkSolution()
     {
+        Debug.Log("Checking solution for clock hands");
+        
         // for all clock hands check if the time is correct
         if(solutionHours > 0 && !checkHand(ClockHand.Hour))
         {

@@ -7,7 +7,7 @@ public class JumpStopHand : JumpPuzzle
     [Header("Clock Hand Settings")]
     //[SerializeField] private ClockAnim clockAnim;
     [SerializeField] private ClockHand _hand;
-    private bool isHandRunning = false;
+    private bool isHandRunning = true;
 
     private void Awake()
     {
@@ -28,10 +28,12 @@ public class JumpStopHand : JumpPuzzle
         if (isHandRunning)
         {
             isHandRunning = false;
+            Debug.Log("Stopped hand: " + _hand);
         }
         else
         {
             isHandRunning = true;
+            Debug.Log("Started hand: " + _hand);
         }
     }
 }

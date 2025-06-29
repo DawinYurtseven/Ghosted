@@ -62,10 +62,14 @@ public class ClockAnim : MonoBehaviour
         // Set the clock hands to a specific time
         float hourRotation = (hour % 12) * 30f + (minute / 60f) * 30f; // 30 degrees per hour
         float minuteRotation = minute * 6f; // 6 degrees per minute
+        float secondRotation = second * 6f; // again, 6 degrees per second
+        
+        
+        hourHand.localRotation = Quaternion.Euler(rotationAxis * hourRotation);
+        minuteHand.localRotation = Quaternion.Euler(rotationAxis * minuteRotation);
+        secondHand.localRotation = Quaternion.Euler(rotationAxis * secondRotation); 
 
-        hourHand.rotation = Quaternion.Euler(rotationAxis * hourRotation);
-        minuteHand.rotation = Quaternion.Euler(rotationAxis * minuteRotation);
-        secondHand.rotation = Quaternion.Euler(rotationAxis * (second * 6f)); // again, 6 degrees per second
+        Debug.Log("Set time to: " + hour + ":" + minute + ":" + second);
     }
     
     public void stopHand(ClockHand hand)
@@ -105,9 +109,9 @@ public class ClockAnim : MonoBehaviour
     public int[] getCurrentTime()
     {
         // Get the current time from the clock hands
-        int hour = Mathf.RoundToInt(hourHand.localEulerAngles.z / 30f) % 12;    // 30 degrees per hour
-        int minute = Mathf.RoundToInt(minuteHand.localEulerAngles.z / 6f);      // 6 degrees per minute
-        int second = Mathf.RoundToInt(secondHand.localEulerAngles.z / 6f);      // 6 degrees per second
+        int hour = Mathf.RoundToInt(hourHand.localEulerAngles.y / 30f) % 12;    // 30 degrees per hour
+        int minute = Mathf.RoundToInt(minuteHand.localEulerAngles.y / 6f);      // 6 degrees per minute
+        int second = Mathf.RoundToInt(secondHand.localEulerAngles.y / 6f);      // 6 degrees per second
         // Ensure hour is in the range [1, 12]
         if (hour == 0) hour = 12;       // Convert 0 to 12 for clock representation
         if (minute < 0) minute += 60;   // Ensure minute is in the range [0, 59]
@@ -129,29 +133,33 @@ public class ClockAnim : MonoBehaviour
         }
         else
         {
-            setTime(hour, minute, second);
-            
-            // save the material colors before changing them
-            Color originalHourColor = hourHand.GetComponent<Renderer>().material.color;
-            Color originalMinuteColor = minuteHand.GetComponent<Renderer>().material.color;
-            Color originalSecondColor = secondHand.GetComponent<Renderer>().material.color;
-            
-            // wait for a short time before flashing the colors
-            DOVirtual.DelayedCall(0.5f, () =>
-            {
-                // Flash red (or any other color) to indicate the wrong solution
-                hourHand.GetComponent<Renderer>().material.color = Color.red;
-                minuteHand.GetComponent<Renderer>().material.color = Color.red;
-                secondHand.GetComponent<Renderer>().material.color = Color.red;
-            }).OnComplete(() =>
-            {
-                // Restore the original colors after flashing
-                hourHand.GetComponent<Renderer>().material.color = originalHourColor;
-                minuteHand.GetComponent<Renderer>().material.color = originalMinuteColor;
-                secondHand.GetComponent<Renderer>().material.color = originalSecondColor;
-            }).SetDelay(0.5f).OnComplete(StartAnimation); // Restart the animations after flashing
-            
+            AnimateNotSolved(hour, minute, second);
         }
+    }
+    
+    private void AnimateNotSolved(int hour, int minute, int second = 0)
+    {
+        setTime(hour, minute, second);
+        
+        // save the material colors before changing them
+        Color originalHourColor = hourHand.GetChild(0).GetComponent<Renderer>().material.color;
+        Color originalMinuteColor = minuteHand.GetChild(0).GetComponent<Renderer>().material.color;
+        Color originalSecondColor = secondHand.GetChild(0).GetComponent<Renderer>().material.color;
+            
+        // wait for a short time before flashing the colors
+        DOVirtual.DelayedCall(0.5f, () =>
+        {
+            // Flash red (or any other color) to indicate the wrong solution
+            hourHand.GetChild(0).GetComponent<Renderer>().material.color = Color.red;
+            minuteHand.GetChild(0).GetComponent<Renderer>().material.color = Color.red;
+            secondHand.GetChild(0).GetComponent<Renderer>().material.color = Color.red;
+        }).OnComplete(() =>
+        {
+            // Restore the original colors after flashing
+            hourHand.GetChild(0).GetComponent<Renderer>().material.color = originalHourColor;
+            minuteHand.GetChild(0).GetComponent<Renderer>().material.color = originalMinuteColor;
+            secondHand.GetChild(0).GetComponent<Renderer>().material.color = originalSecondColor;
+        });
     }
     
     // draw the rotation axis in the scene view for debugging
@@ -160,7 +168,7 @@ public class ClockAnim : MonoBehaviour
         if (hourHand != null)
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawLine(hourHand.position, hourHand.position + rotationAxis * 2.5f);
+            Gizmos.DrawLine(hourHand.localToWorldMatrix.GetPosition(), hourHand.localToWorldMatrix.GetPosition() + rotationAxis * 2.5f);
         }
         if (minuteHand != null)
         {
