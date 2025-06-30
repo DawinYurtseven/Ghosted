@@ -3,6 +3,7 @@ using DG.Tweening;
 
 public class ClockSlideOpenAnim : MonoBehaviour
 {
+    public GameObject clockClosed;
     public GameObject clockLeft;
     public GameObject clockRight;
     public float slideDistance = 1.0f;
@@ -44,6 +45,18 @@ public class ClockSlideOpenAnim : MonoBehaviour
         
         // Animate the right clock back to its original position
         clockRight.transform.DOMove(clockRight.transform.position, slideDuration).SetEase(Ease.InQuad);
+    }
+    
+    public void animateSlide(bool open)
+    {
+        if (open)
+        {
+            animateSlideOpen();
+        }
+        else
+        {
+            animateSlideClose();
+        }
     }
     
     // draw Gizmos to visualize the slide distance in the editor

@@ -28,9 +28,34 @@ public class ClockAnim : MonoBehaviour
     private Tween hourTween;
     private Tween minuteTween;
     private Tween secondTween;
+    private float hourOffset = 0f; // Offset for hour hand rotation
+    private float minuteOffset = 0f; // Offset for minute hand rotation
+    private float secondOffset = 0f; // Offset for second hand rotation
+    
+    private void Awake()
+    {
+        // Ensure the clock hands are set
+        if (hourHand == null || minuteHand == null || secondHand == null)
+        {
+            Debug.LogError("Clock hands are not assigned in the ClockAnim script.");
+        }
+    }
     
     void Start()
     {
+        //Vector3 localRot = hourHand.localRotation.eulerAngles;
+        Vector3 localRot = hourHand.eulerAngles;
+        Debug.Log("Rotation (raw): " + localRot);
+        
+        hourOffset = hourHand.localEulerAngles.z;
+        minuteOffset = minuteHand.localEulerAngles.z;
+        secondOffset = secondHand.localEulerAngles.z;
+
+        Debug.Log("Set offsets for clock " + this.gameObject.name + ": " +
+                  $"Hour Offset: {hourOffset}, " +
+                  $"Minute Offset: {minuteOffset}, " +
+                  $"Second Offset: {secondOffset}");
+        
         AnimateZeiger(minuteHand, minuteHandSpeed);
         AnimateZeiger(hourHand, hourHandSpeed);
         AnimateZeiger(secondHand, secondHandSpeed);
@@ -40,7 +65,8 @@ public class ClockAnim : MonoBehaviour
     {
         float fullRotationTime = 360f / speed;
         // Animate the clock hand to rotate continuously around the specified axis
-        Tween tween = hand.DOLocalRotate(rotationAxis * 360f, fullRotationTime, RotateMode.FastBeyond360)
+        Tween tween = hand.DOLocalRotate(hand.localEulerAngles + new Vector3(0, 0, 360f), 
+                fullRotationTime, RotateMode.FastBeyond360)
             .SetEase(Ease.Linear)
             .SetLoops(-1, LoopType.Restart);
         
@@ -136,16 +162,22 @@ public class ClockAnim : MonoBehaviour
     
     public int[] getCurrentTime()
     {
+        // Adjusted angles
+        float hourAngle = (hourHand.localEulerAngles.z + hourOffset ) % 360f;
+        float minuteAngle = (minuteHand.localEulerAngles.z + minuteOffset ) % 360f;
+        float secondAngle = (secondHand.localEulerAngles.z + secondOffset ) % 360f;
+        
         // Get the current time from the clock hands
-        int hour = Mathf.RoundToInt(hourHand.localEulerAngles.y / 30f) % 12;    // 30 degrees per hour
-        int minute = Mathf.RoundToInt(minuteHand.localEulerAngles.y / 6f);      // 6 degrees per minute
-        int second = Mathf.RoundToInt(secondHand.localEulerAngles.y / 6f);      // 6 degrees per second
+        int hour = Mathf.RoundToInt(hourAngle / 30f) % 12;    // 30 degrees per hour
+        int minute = Mathf.RoundToInt(minuteAngle / 6f) % 60;      // 6 degrees per minute
+        int second = Mathf.RoundToInt(secondAngle / 6f) % 60;
+        
         // Ensure hour is in the range [1, 12]
         if (hour == 0) hour = 12;       // Convert 0 to 12 for clock representation
-        if (minute < 0) minute += 60;   // Ensure minute is in the range [0, 59]
-        if (second < 0) second += 60;   // Ensure second is in the range [0, 59]
+        // if (minute < 0) minute += 60;   // Ensure minute is in the range [0, 59]
+        // if (second < 0) second += 60;   // Ensure second is in the range [0, 59]
         
-        Debug.Log($"Current Time: {hour:D2}:{minute:D2}:{second:D2}");
+        //Debug.Log($"Current Time: {hour:D2}:{minute:D2}:{second:D2}");
         return new []{hour, minute, second};
     }
     
@@ -218,29 +250,5 @@ public class ClockAnim : MonoBehaviour
             .Join(secondHand.DOShakeRotation(duration, strength, vibrato: 10, randomness: 90));
 
         return wiggle;
-    }
-    
-    // draw the rotation axis in the scene view for debugging
-    private void OnDrawGizmos()
-    {
-        if (hourHand != null)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawLine(hourHand.localToWorldMatrix.GetPosition(), hourHand.localToWorldMatrix.GetPosition() + rotationAxis * 2.5f);
-        }
-        if (minuteHand != null)
-        {
-            Gizmos.color = Color.green;
-            Gizmos.DrawLine(minuteHand.position, minuteHand.position + rotationAxis * 2.5f);
-        }
-        if (secondHand != null)
-        {
-            Gizmos.color = Color.blue;
-            Gizmos.DrawLine(secondHand.position, secondHand.position + rotationAxis * 2.5f);
-        }
-        
-        // Draw the rotation axis in the center of the clock
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(transform.position, transform.position + rotationAxis * 2.5f);
     }
 }

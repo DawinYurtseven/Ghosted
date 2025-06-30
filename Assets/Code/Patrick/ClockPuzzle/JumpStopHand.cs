@@ -15,9 +15,10 @@ public class JumpStopHand : MonoBehaviour
     public GameObject animObj; // Object to animate on interaction
     public GameObject indicator; // Indicator for feedback
     private Vector3 originalPos; // Original position for animation
-    private float animJumpStrength = 0.5f;
-    private float animDuration = 0.3f;
-    
+    [SerializeField] private float animJumpStrength = 0.5f;
+    [SerializeField] private float animDuration = 0.3f;
+    [SerializeField] private float animDelay = 2f;
+    public Material pressedMaterial; // Material to indicate pressed state
     
     private void Awake()
     {
@@ -62,10 +63,12 @@ public class JumpStopHand : MonoBehaviour
     private void animate(bool correct)
     {
         animObj.transform.DOKill(); // Stop ongoing tweens
-        animObj.transform.DOMove(originalPos, 0.05f); // Reset position
-
+        animObj.transform.DOMove(originalPos, 0.05f); 
+        indicator.transform.DOKill();
+        
         Debug.Log("Anim on clock hand: " + _hand + ", correct: " + correct);
         
+        animatePlate(animDelay); // Animate the plate for feedback
         if (correct)
         {
             // Correct: strong jump up & shake
@@ -79,6 +82,31 @@ public class JumpStopHand : MonoBehaviour
             Sequence s = DOTween.Sequence();
             s.Append(animObj.transform.DOScaleY(0.9f, 0.1f));
             s.Append(animObj.transform.DOScaleY(1f, 0.5f).SetEase(Ease.OutElastic));
+        }
+    }
+
+    private void animatePlate(float delay = 0)
+    {
+        Material tempMaterial = indicator.GetComponent<Renderer>()?.material;
+        setMaterial(pressedMaterial);
+        
+        // Wrong: squish + bounce back
+        Sequence s = DOTween.Sequence();
+        s.Append(indicator.transform.DOScaleY(animJumpStrength, 0.1f)).SetEase(Ease.OutBack);
+        s.AppendInterval(delay);
+        s.Append(indicator.transform.DOScaleY(1f, 0.5f).SetEase(Ease.OutBack));
+        s.AppendCallback(() => setMaterial(tempMaterial));
+    }
+    
+    private void setMaterial(Material mat)
+    {
+        if (indicator.TryGetComponent<Renderer>(out Renderer rend))
+        {
+            rend.material = mat;
+        }
+        else
+        {
+            Debug.LogWarning("No Renderer found on animObj to set material.");
         }
     }
     
