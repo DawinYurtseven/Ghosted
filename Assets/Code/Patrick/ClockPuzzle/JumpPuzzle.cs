@@ -31,7 +31,7 @@ public abstract class JumpPuzzle : MonoBehaviour
     
     
     // Animate 
-    private void animateSol()
+    protected void animateSol()
     {
         if(useColorAnim)
             animate(true,true);
@@ -40,7 +40,7 @@ public abstract class JumpPuzzle : MonoBehaviour
         effect?.PlayOneShot(solvedSFX.clip);
     }
     
-    private void animate(bool correct, bool timeToShowColor)
+    protected void animate(bool correct, bool timeToShowColor)
     {
         animObj.transform.DOKill(); // Stop ongoing tweens
         animObj.transform.DOMove(originalPos, 0.05f); // Reset position

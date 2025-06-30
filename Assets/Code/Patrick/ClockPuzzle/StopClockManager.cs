@@ -8,7 +8,7 @@ public class StopClockManager : MonoBehaviour
     [SerializeField] private ClockAnim clockAnim;
     
     [Header("Clock Hands and Solutions")]
-    public UnityEvent onPuzzleSolved;
+    public UnityEvent<bool> PuzzleSolved = new UnityEvent<bool>();
     [SerializeField] private int solutionHours = -1;
     [SerializeField] private int solutionMinutes = -1;
     [SerializeField] private int solutionSeconds = -1;
@@ -16,8 +16,9 @@ public class StopClockManager : MonoBehaviour
     [SerializeField] private float threshold = 5f; // threshold in degrees to check if the clock hand is correct
     
     private ClockHand currentHand;
-    private bool isClockRunning = true;
-
+    
+    public bool isSolved { get; private set; } = false;
+    
     public void getInput(ClockHand hand, bool isRunning)
     {
         Debug.Log("Got input for clock hand: " + hand + ", isRunning: " + isRunning);
@@ -35,26 +36,26 @@ public class StopClockManager : MonoBehaviour
     
     public void registerStep(ClockHand hand)
     {
-        if(!isClockRunning)
-            return;
-        
+        // just stop the hand
         currentHand = hand;
+        clockAnim.stopHand(currentHand);
         
-        // check if the solution is correct
-        if (checkSolution())
+        // if clock stopped, check solution
+        if (!clockAnim.isClockRunning)
         {
-            Debug.Log("Clock hands are correct");
-            clockAnim.AnimateSolution(true, solutionHours, solutionMinutes, solutionSeconds);
-            onPuzzleSolved?.Invoke();
-        }
-        else
-        {
-            Debug.Log("Clock hands are not correct yet");
-            // get the current time of the clock
-            int [] currentTime = clockAnim.getCurrentTime();
-            clockAnim.AnimateSolution(false, currentTime[0], currentTime[1], currentTime[2]);
-            clockAnim.setTime(currentTime[0], currentTime[1], currentTime[2]);
-            clockAnim.startHand(hand);
+            if (checkSolution())
+            {
+                Debug.Log("Clock hands are correct");
+                clockAnim.AnimateSolution(true, solutionHours, solutionMinutes, solutionSeconds);
+                PuzzleSolved?.Invoke(true);
+                isSolved = true;
+            }
+            else
+            {
+                int [] currentTime = clockAnim.getCurrentTime();
+                clockAnim.AnimateSolution(false, currentTime[0], currentTime[1], currentTime[2]);
+                PuzzleSolved?.Invoke(false);
+            }
         }
     }
     

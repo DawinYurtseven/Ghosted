@@ -1,6 +1,5 @@
 using UnityEngine;
 using DG.Tweening;
-
 public enum ClockHand
 {
     Hour,
@@ -23,6 +22,13 @@ public class ClockAnim : MonoBehaviour
     
     public bool isClockRunning = true; // Flag to control clock running state
     
+    [Header("Animation Settings")]
+    public Material wrongMaterial; // Material to indicate wrong solution
+    
+    private Tween hourTween;
+    private Tween minuteTween;
+    private Tween secondTween;
+    
     void Start()
     {
         AnimateZeiger(minuteHand, minuteHandSpeed);
@@ -34,9 +40,27 @@ public class ClockAnim : MonoBehaviour
     {
         float fullRotationTime = 360f / speed;
         // Animate the clock hand to rotate continuously around the specified axis
-        hand.DOLocalRotate(rotationAxis * 360f, fullRotationTime, RotateMode.FastBeyond360)
+        Tween tween = hand.DOLocalRotate(rotationAxis * 360f, fullRotationTime, RotateMode.FastBeyond360)
             .SetEase(Ease.Linear)
             .SetLoops(-1, LoopType.Restart);
+        
+        switch (hand)
+        {
+            case var _ when hand == hourHand:
+                hourTween = tween;
+                break;
+            case var _ when hand == minuteHand:
+                minuteTween = tween;
+                break;
+            case var _ when hand == secondHand:
+                secondTween = tween;
+                break;
+            default:
+                Debug.Log("Animation not set for hand: " + hand.name);
+                break;
+        }
+
+        isClockRunning = true;
     }
     
     public void StartAnimation()
@@ -67,8 +91,10 @@ public class ClockAnim : MonoBehaviour
         
         hourHand.localRotation = Quaternion.Euler(rotationAxis * hourRotation);
         minuteHand.localRotation = Quaternion.Euler(rotationAxis * minuteRotation);
-        secondHand.localRotation = Quaternion.Euler(rotationAxis * secondRotation); 
+        secondHand.localRotation = Quaternion.Euler(rotationAxis * secondRotation);
 
+        isClockRunning = false;
+        
         Debug.Log("Set time to: " + hour + ":" + minute + ":" + second);
     }
     
@@ -87,6 +113,8 @@ public class ClockAnim : MonoBehaviour
                 secondHand.DOKill();
                 break;
         }
+        
+        checkClockStopped();
     }
     
     public void startHand(ClockHand hand)
@@ -121,6 +149,12 @@ public class ClockAnim : MonoBehaviour
         return new []{hour, minute, second};
     }
     
+    private void checkClockStopped()
+    {
+        // all hands dont move
+        isClockRunning = hourTween.IsActive() || minuteTween.IsActive() || secondTween.IsActive();
+    }
+    
     public void AnimateSolution(bool solved, int hour, int minute, int second = 0)
     {
         // Stop the current animations
@@ -133,6 +167,7 @@ public class ClockAnim : MonoBehaviour
         }
         else
         {
+            
             AnimateNotSolved(hour, minute, second);
         }
     }
@@ -140,26 +175,49 @@ public class ClockAnim : MonoBehaviour
     private void AnimateNotSolved(int hour, int minute, int second = 0)
     {
         setTime(hour, minute, second);
+
+        var hourRenderer = hourHand.GetChild(0).GetComponent<Renderer>();
+        var minuteRenderer = minuteHand.GetChild(0).GetComponent<Renderer>();
+        var secondRenderer = secondHand.GetChild(0).GetComponent<Renderer>();
+
+        Material originalHourMat = hourRenderer.material;
+        Material originalMinuteMat = minuteRenderer.material;
+        Material originalSecondMat = secondRenderer.material;
         
-        // save the material colors before changing them
-        Color originalHourColor = hourHand.GetChild(0).GetComponent<Renderer>().material.color;
-        Color originalMinuteColor = minuteHand.GetChild(0).GetComponent<Renderer>().material.color;
-        Color originalSecondColor = secondHand.GetChild(0).GetComponent<Renderer>().material.color;
-            
-        // wait for a short time before flashing the colors
-        DOVirtual.DelayedCall(0.5f, () =>
-        {
-            // Flash red (or any other color) to indicate the wrong solution
-            hourHand.GetChild(0).GetComponent<Renderer>().material.color = Color.red;
-            minuteHand.GetChild(0).GetComponent<Renderer>().material.color = Color.red;
-            secondHand.GetChild(0).GetComponent<Renderer>().material.color = Color.red;
-        }).OnComplete(() =>
-        {
-            // Restore the original colors after flashing
-            hourHand.GetChild(0).GetComponent<Renderer>().material.color = originalHourColor;
-            minuteHand.GetChild(0).GetComponent<Renderer>().material.color = originalMinuteColor;
-            secondHand.GetChild(0).GetComponent<Renderer>().material.color = originalSecondColor;
-        });
+        Sequence seq = DOTween.Sequence();
+
+        seq.AppendInterval(0.5f) // wait
+            .AppendCallback(() =>
+            {
+                // turn red
+                hourRenderer.material = wrongMaterial;
+                minuteRenderer.material = wrongMaterial;
+                secondRenderer.material = wrongMaterial;
+            })
+            .Append(WiggleHands(0.6f)) // wiggle duration
+            .AppendInterval(0.5f)
+            .AppendCallback(() =>
+            {
+                // restore color
+                hourRenderer.material = originalHourMat;
+                minuteRenderer.material = originalMinuteMat;
+                secondRenderer.material = originalSecondMat;
+            })
+            .AppendInterval(0.5f)
+            .AppendCallback(StartAnimation);
+    }
+    
+    private Sequence WiggleHands(float duration)
+    {
+        float strength = 10f;
+
+        Sequence wiggle = DOTween.Sequence();
+
+        wiggle.Join(hourHand.DOShakeRotation(duration, strength, vibrato: 10, randomness: 90))
+            .Join(minuteHand.DOShakeRotation(duration, strength, vibrato: 10, randomness: 90))
+            .Join(secondHand.DOShakeRotation(duration, strength, vibrato: 10, randomness: 90));
+
+        return wiggle;
     }
     
     // draw the rotation axis in the scene view for debugging
