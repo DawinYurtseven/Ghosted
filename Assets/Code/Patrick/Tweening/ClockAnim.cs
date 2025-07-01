@@ -43,13 +43,9 @@ public class ClockAnim : MonoBehaviour
     
     void Start()
     {
-        //Vector3 localRot = hourHand.localRotation.eulerAngles;
-        Vector3 localRot = hourHand.eulerAngles;
-        Debug.Log("Rotation (raw): " + localRot);
-        
-        hourOffset = hourHand.localEulerAngles.z;
-        minuteOffset = minuteHand.localEulerAngles.z;
-        secondOffset = secondHand.localEulerAngles.z;
+        hourOffset = hourHand.localRotation.eulerAngles.y;
+        minuteOffset = minuteHand.localRotation.eulerAngles.y;
+        secondOffset = secondHand.localRotation.eulerAngles.y;
 
         Debug.Log("Set offsets for clock " + this.gameObject.name + ": " +
                   $"Hour Offset: {hourOffset}, " +
@@ -65,7 +61,7 @@ public class ClockAnim : MonoBehaviour
     {
         float fullRotationTime = 360f / speed;
         // Animate the clock hand to rotate continuously around the specified axis
-        Tween tween = hand.DOLocalRotate(hand.localEulerAngles + new Vector3(0, 0, 360f), 
+        Tween tween = hand.DOLocalRotate(hand.localEulerAngles + new Vector3(0, 360f,0), 
                 fullRotationTime, RotateMode.FastBeyond360)
             .SetEase(Ease.Linear)
             .SetLoops(-1, LoopType.Restart);
@@ -163,9 +159,9 @@ public class ClockAnim : MonoBehaviour
     public int[] getCurrentTime()
     {
         // Adjusted angles
-        float hourAngle = (hourHand.localEulerAngles.z + hourOffset ) % 360f;
-        float minuteAngle = (minuteHand.localEulerAngles.z + minuteOffset ) % 360f;
-        float secondAngle = (secondHand.localEulerAngles.z + secondOffset ) % 360f;
+        float hourAngle = (hourHand.localEulerAngles.y ) % 360f;
+        float minuteAngle = (minuteHand.localEulerAngles.y ) % 360f;
+        float secondAngle = (secondHand.localEulerAngles.y ) % 360f;
         
         // Get the current time from the clock hands
         int hour = Mathf.RoundToInt(hourAngle / 30f) % 12;    // 30 degrees per hour
