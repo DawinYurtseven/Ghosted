@@ -91,14 +91,14 @@ public class StopClockManager : MonoBehaviour
         switch (hand)
         {
             case ClockHand.Hour:
-                return clockAnim.hourHand.localEulerAngles.z == solutionHours * 30f || 
-                       Mathf.Abs(clockAnim.hourHand.localEulerAngles.z - solutionHours * 30f) < threshold;
+                return Mathf.Approximately(clockAnim.hourHand.localEulerAngles.y, solutionHours * 30f) || 
+                       Mathf.Abs(clockAnim.hourHand.localEulerAngles.y - solutionHours * 30f) < threshold;
             case ClockHand.Minute:
-                return clockAnim.minuteHand.localEulerAngles.z == solutionMinutes * 6f || 
-                       Mathf.Abs(clockAnim.minuteHand.localEulerAngles.z - solutionMinutes * 6f) < threshold;
+                return Mathf.Approximately(clockAnim.minuteHand.localEulerAngles.y, solutionMinutes * 6f) || 
+                       Mathf.Abs(clockAnim.minuteHand.localEulerAngles.y - solutionMinutes * 6f) < threshold;
             case ClockHand.Second:
-                return clockAnim.secondHand.localEulerAngles.z == solutionSeconds * 6f || 
-                       Mathf.Abs(clockAnim.secondHand.localEulerAngles.z - solutionSeconds * 6f) < threshold;
+                return Mathf.Approximately(clockAnim.secondHand.localEulerAngles.y, solutionSeconds * 6f) || 
+                       Mathf.Abs(clockAnim.secondHand.localEulerAngles.y - solutionSeconds * 6f) < threshold;
             default:
                 Debug.Log("Something went deeply wrong with the clock hand check");
                 return false;

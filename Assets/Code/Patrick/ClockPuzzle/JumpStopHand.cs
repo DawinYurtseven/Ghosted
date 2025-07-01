@@ -9,6 +9,7 @@ public class JumpStopHand : MonoBehaviour
     //[SerializeField] private ClockAnim clockAnim;
     [SerializeField] private ClockHand _hand;
     private bool isHandRunning = true;
+    private bool active = true;
     
     [Header("Animation Settings")]
     // For immediate feedback when jumping on the clock
@@ -45,6 +46,7 @@ public class JumpStopHand : MonoBehaviour
         {
             isHandRunning = false;
             animate(true);
+            active = false;
         }
         else
         {
@@ -55,6 +57,9 @@ public class JumpStopHand : MonoBehaviour
     
     void OnTriggerEnter()
     {
+        if(!active)
+            return;
+        
         toggleHand();
         animate(false);
         manager.getInput(_hand, isHandRunning);
