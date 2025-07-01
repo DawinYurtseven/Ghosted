@@ -86,5 +86,15 @@ public class ClockSlideOpenAnim : MonoBehaviour
     
     
     // draw Gizmos to visualize the slide distance in the editor
-    
+    private void OnDrawGizmos()
+    {
+        if (clockLeft != null && clockRight != null && slideDistance > 0)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(clockLeft.transform.position,
+                clockLeft.transform.position + new Vector3(-slideDistance, 0, 0));
+            Gizmos.DrawLine(clockRight.transform.position,
+                clockRight.transform.position + new Vector3(slideDistance, 0, 0));
+        }
+    }
 }
