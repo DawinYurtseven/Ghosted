@@ -47,10 +47,10 @@ public class ClockAnim : MonoBehaviour
         minuteOffset = minuteHand.localRotation.eulerAngles.y;
         secondOffset = secondHand.localRotation.eulerAngles.y;
 
-        Debug.Log("Set offsets for clock " + this.gameObject.name + ": " +
-                  $"Hour Offset: {hourOffset}, " +
-                  $"Minute Offset: {minuteOffset}, " +
-                  $"Second Offset: {secondOffset}");
+        // Debug.Log("Set offsets for clock " + this.gameObject.name + ": " +
+        //           $"Hour Offset: {hourOffset}, " +
+        //           $"Minute Offset: {minuteOffset}, " +
+        //           $"Second Offset: {secondOffset}");
         
         AnimateZeiger(minuteHand, minuteHandSpeed);
         AnimateZeiger(hourHand, hourHandSpeed);

@@ -43,11 +43,11 @@ public class Joy : EmotionAbstract
             }
         }
         Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
-        Debug.Log("Present!");
+        
         if (rb != null) {
             rb.velocity = Vector3.zero;
             rb.velocity += (Vector3.up * force);
-            Debug.Log("Added force!");
+            //Debug.Log("Added force!");
         }
     }
     //This is as far as I copy for now. I am sleepy and will work properly tomorrow. if you guys want to say anything, 
