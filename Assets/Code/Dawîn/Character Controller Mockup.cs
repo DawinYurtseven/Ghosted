@@ -213,22 +213,22 @@ public class CharacterControllerMockup : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-        //print(coyoteJumped);
-        if (context.started &&
-            (Physics.SphereCast(transform.position, 0.3f, -transform.up, out var hit, groundCheckDistance, ground) ||
-             !coyoteJumped))
+        
+        if (context.started && (Physics.SphereCast(transform.position, 0.3f, -transform.up, out var hit, groundCheckDistance, ground) ||
+                                !coyoteJumped))
         {
             float angle = Vector3.Angle(hit.normal, transform.up);
             if (angle > 45f)
                 return;
-            /*var up = transform.up;
-            rb.velocity += up * jumpStrength;
-            //rb.AddForce(up * jumpStrength, ForceMode.Force);
-            coyoteJumped = true;*/
             animator.SetTrigger("jump");
             coyoteJumped = true;
             var up = transform.up;
             rb.velocity += up * jumpStrength;
+            var right = lookAtTarget.right;
+            var forward = lookAtTarget.forward;
+            rb.AddForce( right * moveVector.x * 200f +
+                           forward * moveVector.y * 200f);
+            print("jumped");
         }
     }
 
@@ -248,7 +248,6 @@ public class CharacterControllerMockup : MonoBehaviour
             if (Physics.SphereCast(transform.position, 0.3f, -transform.up, out var hit, groundCheckDistance, ground))
             {
                 isGrounded = true;
-                coyoteJumped = false;
                 animator.SetBool("grounded", true);
                 yield break;
             }
@@ -277,8 +276,6 @@ public class CharacterControllerMockup : MonoBehaviour
         rb.AddForce(-transform.up * fallStrength, ForceMode.Acceleration);
     }
 
-    //TODO: sliding problem 
-    //TODO: 
 
     #endregion
 

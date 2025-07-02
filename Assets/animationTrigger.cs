@@ -8,7 +8,6 @@ public class animationTrigger : MonoBehaviour
     
     public void Talisman()
     {
-        print("thrown");
         mock.ThrowTalismanAnim();
     }
 }
