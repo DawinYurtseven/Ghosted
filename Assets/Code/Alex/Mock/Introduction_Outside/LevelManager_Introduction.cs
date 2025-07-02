@@ -71,7 +71,7 @@ public class LevelManager_Introduction : MonoBehaviour
         }
         fadeImage.DOFade(1f, fadeDuration_final).OnComplete(() =>
         {
-            SceneManager.LoadScene("HomeLevel");
+            SceneManager.LoadScene("Birthday_ThirdPlayable");
         });
     }
 }

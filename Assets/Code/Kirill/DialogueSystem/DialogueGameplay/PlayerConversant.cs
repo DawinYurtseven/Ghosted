@@ -123,7 +123,6 @@ namespace Ghosted.Dialogue {
                     dialogueAIConversant.turnOnHint();
                 }
             }
-
         }
 
         public void EnteredConversantArea(AreaConversant areaConversant)

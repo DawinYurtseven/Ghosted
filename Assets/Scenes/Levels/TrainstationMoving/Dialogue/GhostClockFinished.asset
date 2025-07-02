@@ -1,0 +1,119 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8163460024418547138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 8f974de8-e6fd-489e-ad8b-f495092ddd13
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 267
+    y: 29
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions: []
+  text: ...
+  child: c20608c4-a939-46ee-adaf-fec9884b65dd
+  speaker: You
+--- !u!114 &-6579652213309951311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: c20608c4-a939-46ee-adaf-fec9884b65dd
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 529
+    y: 44
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions: []
+  text: Well, we only need to switch the rails to the correct route, to the central
+    station.
+  child: 98eb625d-3f58-4ef4-984c-de764650095e
+  speaker: You
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0128aa92babf3fd4e9cf4beb0d51198e, type: 3}
+  m_Name: GhostClockFinished
+  m_EditorClassIdentifier: 
+  dialogueSpeakers:
+  - You
+  - Miyu
+  dialogueNodes:
+  - {fileID: 1272631402270421841}
+  - {fileID: -8163460024418547138}
+  - {fileID: -6579652213309951311}
+  - {fileID: 4623183484820419635}
+  replyNodes: []
+--- !u!114 &1272631402270421841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: ac9ea053-4400-48c5-af34-659d2180941c
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions: []
+  text: Yes! Now the train can come!
+  child: 8f974de8-e6fd-489e-ad8b-f495092ddd13
+  speaker: Miyu
+--- !u!114 &4623183484820419635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 98eb625d-3f58-4ef4-984c-de764650095e
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 779
+    y: 105
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions:
+  - Next
+  - delete
+  text: Therefore we need to finde the Signal Tower. It contains the levers for all
+    the switches.
+  child: 
+  speaker: You

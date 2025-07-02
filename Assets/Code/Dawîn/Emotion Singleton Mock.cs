@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using System.Diagnostics.Tracing;
 using UniRx;
 using UnityEngine;
+using UnityEngine.Events;
 
 public enum Emotion
 {
@@ -25,8 +25,7 @@ public class EmotionSingletonMock : MonoBehaviour
     
     public Subject<Emotion> EmotionSubject = new Subject<Emotion>();
     [SerializeField] private Emotion currentEmotion = Emotion.Fear;
-
-
+    public UnityEvent<Emotion> emotionChanged = new UnityEvent<Emotion>();      // Trigger an event each time the emotion is changed
     [SerializeField] private GameObject joyGameObject, fearGameObject;
 
     public void ChangeEmotion(Emotion emotion)
@@ -44,10 +43,13 @@ public class EmotionSingletonMock : MonoBehaviour
             fearGameObject.SetActive(true);
             currentEmotion = Emotion.Fear;
         }
+        
         EmotionSubject.OnNext(currentEmotion);
+        // Trigger event with the current emotion switched to
+        emotionChanged?.Invoke(currentEmotion);
     }
-    
-    
+
+    public Emotion getCurrentEmotion() => currentEmotion;
 
     #endregion
     
