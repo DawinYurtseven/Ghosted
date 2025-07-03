@@ -41,7 +41,7 @@ public class ClockAnim : MonoBehaviour
         }
     }
     
-    void Start()
+    public void Start()
     {
         hourOffset = hourHand.localRotation.eulerAngles.y;
         minuteOffset = minuteHand.localRotation.eulerAngles.y;
@@ -118,6 +118,24 @@ public class ClockAnim : MonoBehaviour
         isClockRunning = false;
         
         Debug.Log("Set time to: " + hour + ":" + minute + ":" + second);
+    }
+
+    public void setHand(ClockHand hand, int time)
+    {
+        
+        if (ClockHand.Hour == hand)
+        {
+            float hourRotation = (time % 12) * 30f; // 30 degrees per hour
+            hourHand.localRotation = Quaternion.Euler(rotationAxis * hourRotation);
+        }
+        else
+        {
+            float secondRotation = time * 6f; // 6 degrees per second
+            secondHand.localRotation = Quaternion.Euler(rotationAxis * secondRotation);
+        } 
+        
+        checkClockStopped();
+        Debug.Log("Set {hand} hand to: {time}");
     }
     
     public void stopHand(ClockHand hand)
