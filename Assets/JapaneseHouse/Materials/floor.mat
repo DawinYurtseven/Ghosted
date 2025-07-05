@@ -21,16 +21,16 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: floor
-  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+  m_Shader: {fileID: 4800000, guid: 5fdde90d226f23848813b7df846c3308, type: 3}
   m_Parent: {fileID: 2100000, guid: c84d2b10ac30d9542980d7e6a02d807f, type: 2}
   m_ModifiedSerializedProperties: 24
-  m_ValidKeywords:
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - _METALLICGLOSSMAP
   - _METALLICSPECGLOSSMAP
   - _NORMALMAP
   - _OCCLUSIONMAP
   - _SPECGLOSSMAP
-  m_InvalidKeywords:
-  - _METALLICGLOSSMAP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -52,4 +52,6 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _DarkTint: {r: 0.93333334, g: 0.79607844, b: 0.6392157, a: 1}
+    - _LightTint: {r: 0.93333334, g: 0.79607844, b: 0.6392157, a: 1}
   m_BuildTextureStacks: []
