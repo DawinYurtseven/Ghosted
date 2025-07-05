@@ -1,3 +1,4 @@
+using System;
 using Cinemachine;
 using Ghosted.Dialogue;
 using UnityEngine;
@@ -37,6 +38,7 @@ public class LevelManagerMock : MonoBehaviour
 
    
     private GlobalConversant dialogue;
+    [SerializeField] private GlobalConversant trainDialogue;
 
     void Start()
     {
@@ -61,7 +63,7 @@ public class LevelManagerMock : MonoBehaviour
         switch (cutScene)
         {
             case CutSceneName.Train:
-                TrainCutScene();
+                TrainCutScene(false);
                 break;
             case CutSceneName.CuckooClock:
                 CuckooClockCutScene();
@@ -97,16 +99,24 @@ public class LevelManagerMock : MonoBehaviour
         }
     }
 
-    void TrainCutScene()
+    bool TrainCutScene(bool calledFromTrain)
     {
-        if (trainSceneCount == 0 || trainSceneCount == 1 && barier.lockedInFear || trainSceneCount == 2 && barier.lockedInFear)
+        if (trainSceneCount == 0 || trainSceneCount == 1 && barier.lockedInFear || trainSceneCount == 2 && barier2.lockedInFear)
         {
             playerCamera.Priority = 0;
             trainCamera.Priority = 10;
             train.GetComponent<SplineAnimate>()?.Play();
             trainSceneCount++;
            // ghost.FollowObject(train.transform);
+           return true;
         }
+
+        if (!calledFromTrain && (trainSceneCount == 1 || trainSceneCount == 2))
+        {
+            trainDialogue.StartGlobalDialogue(player.GetComponent<PlayerConversant>());
+        }
+
+        return false;
     }
 
 
@@ -115,28 +125,39 @@ public class LevelManagerMock : MonoBehaviour
         
         if (roadPart == 0)
         {
-            ghost.MoveToNextWaypoint();
             train.GetComponent<SplineAnimate>().Container = secondSpline;
-            //train.GetComponent<SplineAnimate>().Pause();
+            ghost.MoveToNextWaypoint();
             train.GetComponent<SplineAnimate>()?.Restart(false);
-            playerCamera.Priority = 10;
-            trainCamera.Priority = 0;
-            player.transform.position = playerSpawn1.position;
-            player.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            if (!TrainCutScene(true))
+            {
+                //train.GetComponent<SplineAnimate>().Pause();
+                
+                playerCamera.Priority = 10;
+                trainCamera.Priority = 0;
+                player.transform.position = playerSpawn1.position;
+                player.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            }
+
             roadPart++;
         }
         
         else if (roadPart == 1)
         {
-            ghost.MoveToNextWaypoint();
             train.GetComponent<SplineAnimate>().Container = thirdSpline;
-            //train.GetComponent<SplineAnimate>().Pause();
+            ghost.MoveToNextWaypoint();
             train.GetComponent<SplineAnimate>()?.Restart(false);
-            playerCamera.Priority = 10;
-            trainCamera.Priority = 0;
-            player.transform.position = playerSpawn2.position;
-            player.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            UIHintShow.Instance.showHintMessage("Use R/Right Shoulder to recall all talismans at once");
+            if (!TrainCutScene(true))
+            {
+                //train.GetComponent<SplineAnimate>().Pause();
+                 playerCamera.Priority = 10;
+                 trainCamera.Priority = 0;
+                 player.transform.position = playerSpawn2.position;
+                 player.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                 UIHintShow.Instance.showHintMessage("Use R/Right Shoulder by shrine to recall all talismans at once");
+            }
+
+            roadPart++;
+            
         }
     }
 } 

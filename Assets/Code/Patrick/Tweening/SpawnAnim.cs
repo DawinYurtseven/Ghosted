@@ -14,7 +14,15 @@ public class SpawnAnim : MonoBehaviour
         if (!obj)
             obj = this.gameObject;
         if (!spawnPoint)
-            spawnPoint = this.gameObject.transform;
+        {
+            if(obj)
+            {
+                spawnPoint = obj.transform;
+            }
+            else
+                spawnPoint = this.gameObject.transform;
+        }
+         
         
         if (obj)
         {
@@ -57,6 +65,24 @@ public class SpawnAnim : MonoBehaviour
 
             Debug.Log("Deactivating obj");
         }
+    }
+    
+    public static void moveTo(Transform t, Transform target, float duration = 0.5f)
+    {
+        if (t == null)
+        {
+            Debug.LogWarning("No transform to move!");
+            return;
+        }
+        if(target == null)
+        {
+            Debug.LogWarning("No target transform to move to!");
+            return;
+        }
+
+        t.DOKill();
+        t.DOMove(target.position, duration).SetEase(Ease.OutQuad);
+        t.DORotateQuaternion(target.rotation, duration).SetEase(Ease.OutQuad);
     }
 }
 

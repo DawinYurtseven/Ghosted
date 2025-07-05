@@ -3,7 +3,8 @@ using UnityEngine;
 public class AltarMock : MonoBehaviour
 {
 
-    public GameObject uiHint;
+    public UIFacePlayer uiHint;
+    
     public void ChangeEmotion(Emotion emotion)
     {
         EmotionSingletonMock.Instance.ChangeEmotion(emotion);
@@ -11,11 +12,11 @@ public class AltarMock : MonoBehaviour
 
     public void turnOnHintAltar()
     {
-        uiHint?.SetActive(true);
+        if (uiHint) uiHint.Show();
     }
     
     public void turnOffHintAltar()
     {
-        uiHint?.SetActive(false);
+        if (uiHint) uiHint.Hide();
     }
 }

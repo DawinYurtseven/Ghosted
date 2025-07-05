@@ -3,6 +3,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputDisabler: MonoBehaviour
 {
+    /// <summary>
+    /// This script is turned off for now, because the player input is disabled in many dialogues, but right now we change inputMap for that
+    /// </summary>
     private PlayerInput playerInput;
 
     void Awake()
@@ -12,11 +15,11 @@ public class PlayerInputDisabler: MonoBehaviour
 
     public void DisableInput()
     {
-        playerInput.enabled = false;
+        //playerInput.enabled = false;
     }
 
     public void EnableInput()
     {
-        playerInput.enabled = true;
+       // playerInput.enabled = true;
     }
 }

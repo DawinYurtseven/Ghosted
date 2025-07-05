@@ -26,7 +26,7 @@ public class TalismanTargetMock : MonoBehaviour
         objCollider = GetComponent<Collider>();
         if (!objCollider)
         {
-            Debug.LogError("No collider found on the TalismanTargetMock object.");
+            Debug.LogError("No collider found on the TalismanTargetMock"+ this.name + " object.");
             return;
         }
 

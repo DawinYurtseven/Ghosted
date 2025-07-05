@@ -2,11 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
+using Ghosted.Dialogue;
 using TMPro;
 using UniRx;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -17,10 +16,13 @@ public class CharacterControllerMockup : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject characterObject;
 
+    [SerializeField] private PlayerConversant conversant;
+
     public void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
         rb = GetComponent<Rigidbody>();
+        conversant = GetComponent<PlayerConversant>();
     }
 
     private void Start()
@@ -209,7 +211,7 @@ public class CharacterControllerMockup : MonoBehaviour
     [SerializeField] public float fallStrength;
     [SerializeField] private float groundCheckDistance;
     [SerializeField] private float coyoteTime = 0.2f;
-    [SerializeField] private bool coyoteJumped, isGrounded = true;
+    [SerializeField] private bool coyoteJumped, isGrounded = true, jumpPressed = false;
 
     public void Jump(InputAction.CallbackContext context)
     {
@@ -219,7 +221,7 @@ public class CharacterControllerMockup : MonoBehaviour
              !coyoteJumped))
         {
             float angle = Vector3.Angle(hit.normal, transform.up);
-            if (angle > 45f)
+            if (Vector3.Angle(hit.normal, transform.up) > 45f)
                 return;
             /*var up = transform.up;
             rb.velocity += up * jumpStrength;
@@ -227,7 +229,8 @@ public class CharacterControllerMockup : MonoBehaviour
             coyoteJumped = true;*/
             animator.SetTrigger("jump");
             coyoteJumped = true;
-            var up = transform.up;
+            animator.SetBool("grounded", false);
+            var up = transform.up; 
             rb.velocity += up * jumpStrength;
         }
     }
@@ -473,7 +476,7 @@ public class CharacterControllerMockup : MonoBehaviour
 
     //Check this 
     public int maxTalismans = 3;
-    private int curTalsimans = 0;
+    private int curTalismans = 0;
     [SerializeField] TextMeshProUGUI talismansUsed;
     [SerializeField] private List<TalismanTargetMock> lockedObjects = new List<TalismanTargetMock>();
 
@@ -488,22 +491,23 @@ public class CharacterControllerMockup : MonoBehaviour
             if (lockedObjects.Contains(target))
             {
                 lockedObjects.Remove(target);
-                curTalsimans--;
+                curTalismans--;
                 target.Bind();
                 thrownTalisman = Instantiate(TalismanPrefab, target.gameObject.transform.position,
                     Quaternion.LookRotation((transform.position - gameObject.transform.position).normalized));
                 //thrownTalisman.GetComponent<Talisman>().Initialize(tMode, talismanEmotion);
                 StartCoroutine(thrownTalisman.GetComponent<Talisman>().MoveTowardsPlayer(this));
-                talismansUsed.text = "Talismans used: " + curTalsimans + " / " + maxTalismans;
+                talismansUsed.text = "Talismans used: " + curTalismans + " / " + maxTalismans;
             }
 
             //Throw talisman
             else
             {
-                if (curTalsimans == maxTalismans) return;
+                if (curTalismans == maxTalismans) return;
                 //curTalsimans++;
                 animator.SetTrigger("Throw Talisman");
-                characterObject.transform.LookAt(target.transform);
+                Vector3 lookPosition = new Vector3 (target.transform.position.x, characterObject.transform.position.y, target.transform.position.z);
+                characterObject.transform.LookAt(lookPosition);
                 /*lockedObjects.Add(target);
                 thrownTalisman = Instantiate(TalismanPrefab, gameObject.transform.position,
                     Quaternion.LookRotation((target.transform.position - transform.position).normalized));
@@ -518,18 +522,24 @@ public class CharacterControllerMockup : MonoBehaviour
 
     public void ThrowTalismanAnim()
     {
-        curTalsimans++;
+        curTalismans++;
         lockedObjects.Add(target);
         thrownTalisman = Instantiate(TalismanPrefab, gameObject.transform.position,
             Quaternion.LookRotation((target.transform.position - transform.position).normalized));
         thrownTalisman.GetComponent<Talisman>().Initialize(tMode, talismanEmotion);
         StartCoroutine(thrownTalisman.GetComponent<Talisman>().MoveTowards(target));
-        talismansUsed.text = "Talismans used: " + curTalsimans + " / " + maxTalismans;
+        talismansUsed.text = "Talismans used: " + curTalismans + " / " + maxTalismans;
     }
+    
+    
+    #endregion
 
-
+    #region Interactions
+    
     private TalismanTargetMock tempTar;
     public AltarMock tempAltar;
+    
+    // For Cutscene
     public static event Action firstUsageAltar;
     public bool usedAltar = false;
 
@@ -543,6 +553,7 @@ public class CharacterControllerMockup : MonoBehaviour
         if (tempAltar != null)
         {
             tempAltar.turnOffHintAltar();
+            tempAltar = null;
         }
 
         //Same as for dialogues 
@@ -550,52 +561,46 @@ public class CharacterControllerMockup : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, interactDistanceAltar))
         {
-            TalismanTargetMock tar = hit.collider.GetComponent<TalismanTargetMock>();
+            //TalismanTargetMock tar = hit.collider.GetComponent<TalismanTargetMock>();
             AltarMock altar = hit.collider.GetComponentInParent<AltarMock>();
-            if (tar)
+            if (altar && hit.collider.CompareTag("Altar") && altar != tempAltar)
             {
-                tempTar = (TalismanTargetMock)tar;
-                tempTar.HighlightInteract();
-            }
-            else if (altar && hit.collider.CompareTag("Altar"))
-            {
+                if (tempAltar != null)
+                {
+                    tempAltar.turnOffHintAltar();
+                }
                 //print("altar");
                 tempAltar = (AltarMock)altar;
                 tempAltar.turnOnHintAltar();
             }
-            else
+            else if (tempAltar != null)
             {
-                tempTar = null;
+                tempAltar.turnOffHintAltar();
                 tempAltar = null;
-            }
-        }
-        else
-        {
-            if (tempTar != null)
-            {
-                tempTar.UnHighlight();
-                tempTar = null;
             }
         }
     }
 
-    public void PlaceTalisman(InputAction.CallbackContext context)
+    public void Interact(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            // print("F performed");
+            Debug.Log("E performed");
             // if (tempTar == null && tempAltar == null) return;
             if (tempAltar != null)
             {
+                Debug.Log("Altar found");
                 if (!usedAltar)
                 {
                     usedAltar = true;
                     firstUsageAltar?.Invoke();
                 }
-
-                print("sup");
+                
                 tempAltar.ChangeEmotion(talismanEmotion);
-                return;
+            }
+            else
+            {
+                conversant.InteractDialogue();
             }
 
             // if (previousTargetTalismanObject != null) previousTargetTalismanObject.ResetObject();
@@ -616,8 +621,8 @@ public class CharacterControllerMockup : MonoBehaviour
             }
 
             lockedObjects.Clear();
-            curTalsimans = 0;
-            talismansUsed.text = "Talismans used: " + curTalsimans + " / " + maxTalismans;
+            curTalismans = 0;
+            talismansUsed.text = "Talismans used: " + curTalismans + " / " + maxTalismans;
         }
     }
 
@@ -663,7 +668,7 @@ public class CharacterControllerMockup : MonoBehaviour
 
     public void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Ground"))
+        if (((1 << other.gameObject.layer) & ground) != 0)
         {
             float slopeAngle = Vector3.Angle(other.contacts[0].normal, transform.up);
             // Apply friction on a specific angle 

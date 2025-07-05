@@ -1,15 +1,11 @@
-using System;
 using UnityEngine;
 using DG.Tweening;
-using UnityEngine.Serialization;
-using Random = UnityEngine.Random;
 
 public class JumpPuzzleElement : MonoBehaviour
 {
     public int objectID = 0;              // 0,1,2
     public PuzzleMock manager;
-
-    [FormerlySerializedAs("jumpStrength")]
+    
     [SerializeField] private GameObject animObj;
     [Header("Animation Settings")]
     [SerializeField] private float animJumpStrength = 0.5f;

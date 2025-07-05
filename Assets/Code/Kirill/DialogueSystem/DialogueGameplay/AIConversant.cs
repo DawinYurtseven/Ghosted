@@ -9,9 +9,11 @@ namespace Ghosted.Dialogue
     public class AIConversant : Conversant
     {
 
-        public GameObject uiHint;
+        public UIFacePlayer uiHint;
 
         // Press e to interact, TODO: Combine with overall interact system
+
+        
         public void Interact(PlayerConversant playerConversant)
         {
             if (curDialogue != null)
@@ -22,7 +24,7 @@ namespace Ghosted.Dialogue
         {
             if (uiHint != null)
             {
-                uiHint.SetActive(true);
+                uiHint.Show();
             }
 
         }
@@ -31,7 +33,7 @@ namespace Ghosted.Dialogue
         {
             if (uiHint != null)
             {
-                uiHint.SetActive(false);
+                uiHint.Hide();
             }
            
         }
