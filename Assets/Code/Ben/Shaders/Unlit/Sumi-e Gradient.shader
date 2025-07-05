@@ -6,6 +6,7 @@ Shader "ForgottenColours/Unlit/Sumi-E Gradient"
         [Header(Base Colours)][Space(10)]
         _LightTint("Light Tint", Color) = (1,1,1,1)
         _DarkTint("Dark Tint", Color) = (1,1,1,1)
+        _Alpha("Alpha", Range(0,1)) = 1
 
         [Toggle(SWITCH)] _Switch("Swap Colours", float) = 0
 
@@ -20,10 +21,8 @@ Shader "ForgottenColours/Unlit/Sumi-E Gradient"
 
     SubShader
     {
-        Tags
-        {
-            "RenderType"="Opaque" "Queue"="Geometry"
-        }
+        Tags { "RenderType" = "Transparent" "Queue" = "Transparent" }
+
 
         Pass
         {
@@ -32,7 +31,8 @@ Shader "ForgottenColours/Unlit/Sumi-E Gradient"
             {
                 "LightMode"="UniversalForward"
             }
-            Cull Off
+            Blend SrcAlpha OneMinusSrcAlpha
+
             Cull Off
 
             HLSLPROGRAM
@@ -60,6 +60,7 @@ Shader "ForgottenColours/Unlit/Sumi-E Gradient"
 
             float4 _LightTint;
             float4 _DarkTint;
+            float _Alpha;
 
             float _HeightMin;
             float _HeightMax;
@@ -110,7 +111,7 @@ Shader "ForgottenColours/Unlit/Sumi-E Gradient"
 
                 half3 finalColour = lerp(rampColour, _LightTint.rgb, heightFactor);
 
-                return half4(finalColour, 1.0);
+                return half4(finalColour, _Alpha);
             }
             ENDHLSL
         }
