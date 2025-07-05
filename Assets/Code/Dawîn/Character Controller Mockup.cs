@@ -585,7 +585,7 @@ public class CharacterControllerMockup : MonoBehaviour
     {
         if (context.performed)
         {
-            Debug.Log("E performed");
+            //Debug.Log("E performed");
             // if (tempTar == null && tempAltar == null) return;
             if (tempAltar != null)
             {

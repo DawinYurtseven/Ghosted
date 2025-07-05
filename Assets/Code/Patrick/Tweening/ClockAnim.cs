@@ -256,7 +256,7 @@ public class ClockAnim : MonoBehaviour
     private Sequence WiggleHands(float duration)
     {
         float strength = 10f;
-
+        
         Sequence wiggle = DOTween.Sequence();
 
         wiggle.Join(hourHand.DOShakeRotation(duration, strength, vibrato: 10, randomness: 90))

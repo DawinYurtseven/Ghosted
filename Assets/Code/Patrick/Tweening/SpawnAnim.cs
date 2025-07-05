@@ -67,22 +67,93 @@ public class SpawnAnim : MonoBehaviour
         }
     }
     
-    public static void moveTo(Transform t, Transform target, float duration = 0.5f)
+    public static Sequence moveTo(Transform t, Transform target, float duration = 0.5f, Ease ease = Ease.OutQuad)
     {
         if (t == null)
         {
             Debug.LogWarning("No transform to move!");
-            return;
+            return null;
         }
         if(target == null)
         {
             Debug.LogWarning("No target transform to move to!");
+            return null;
+        }
+
+        // t.DOKill();
+        // t.DOMove(target.position, duration).SetEase(ease);
+        // t.DORotateQuaternion(target.rotation, duration).SetEase(ease);
+        
+        Sequence seq = DOTween.Sequence();
+        seq.Append(t.DOMove(target.position, duration).SetEase(ease));
+        seq.Join(t.DORotateQuaternion(target.rotation, duration).SetEase(ease));
+        
+        return seq;
+    }
+    
+    public static void rotateTo(Transform t, Transform target, Vector3 axis, float duration = 0.5f)
+    {
+        if (t == null)
+        {
+            Debug.LogWarning("No transform to rotate!");
             return;
         }
 
         t.DOKill();
-        t.DOMove(target.position, duration).SetEase(Ease.OutQuad);
-        t.DORotateQuaternion(target.rotation, duration).SetEase(Ease.OutQuad);
+    
+        if (target == null)
+        {
+            // Endlosrotation um die angegebene Achse
+            t.DORotate(axis.normalized * 360f, duration, RotateMode.FastBeyond360)
+                .SetEase(Ease.Linear)
+                .SetLoops(-1, LoopType.Incremental);
+        }
+        else
+        {
+            t.DORotateQuaternion(Quaternion.AngleAxis(axis.magnitude, axis.normalized) * target.rotation, duration)
+                .SetEase(Ease.OutQuad);
+        }
+    }
+    
+    public static void simulatePhysics(Transform t, Vector3 force, float duration = 0.5f, bool once = false)
+    {
+        if (t == null)
+        {
+            Debug.LogWarning("No transform to simulate physics on!");
+            return;
+        }
+
+        Rigidbody rb = t.GetComponent<Rigidbody>();
+        if (rb == null)
+        {
+            // add a Rigidbody if it doesn't exist
+            rb = t.gameObject.AddComponent<Rigidbody>();
+            rb.isKinematic = false; // Ensure it's not kinematic to apply forces
+            return;
+        }
+
+        rb.DOKill();
+        rb.AddForce(force, ForceMode.Impulse);
+        
+        // Optionally, you can add a delay before stopping the physics simulation
+        DOVirtual.DelayedCall(duration, () => rb.velocity = Vector3.zero);
+        
+        if (once)
+        {
+            //remove the Rigidbody after the force is applied
+            DOVirtual.DelayedCall(duration, () => Object.Destroy(rb));
+        }
+    }
+    
+    public static void stopAnimation(Transform t)
+    {
+        if (t == null)
+        {
+            Debug.LogWarning("No transform to stop animation on!");
+            return;
+        }
+        
+        t.DOKill();
     }
 }
 
