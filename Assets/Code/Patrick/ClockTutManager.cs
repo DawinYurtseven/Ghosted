@@ -16,6 +16,9 @@ public class ClockTutManager : MonoBehaviour
     public AudioClip lockStartSound;
     public AudioClip lockSound;
     [SerializeField] private GameObject[] wallparts;
+    [SerializeField] private Vector3 trainCrashForce = new Vector3(1, 0.5f, 0);
+    [SerializeField] private GameObject[] bridgeParts;
+    private bool isTrainCrashed = false;
     
     // Future:
     //public Material highlightMaterial;
@@ -30,7 +33,7 @@ public class ClockTutManager : MonoBehaviour
         // Store the original material for later use
         if (clockAnim != null && clockAnim.hourHand != null)
         {
-            originalMaterial = clockAnim.hourHand.GetComponent<Renderer>().material;
+            originalMaterial = clockAnim.hourHand.GetChild(0).GetComponent<Renderer>().material;
         }
     }
     
@@ -57,13 +60,13 @@ public class ClockTutManager : MonoBehaviour
         if (emotion == Emotion.Joy)
         {
             clockAnim.startHand(ClockHand.Hour);
-            clockAnim.hourHand.GetComponent<Renderer>().material = originalMaterial;
+            clockAnim.hourHand.GetChild(0).GetComponent<Renderer>().material = originalMaterial;
         }
         else
         {
             clockAnim.setHand(ClockHand.Hour, 3);
             clockAnim.stopHand(ClockHand.Hour);
-            clockAnim.hourHand.GetComponent<Renderer>().material = clockDeactivatedMaterial;
+            clockAnim.hourHand.GetChild(0).GetComponent<Renderer>().material = clockDeactivatedMaterial;
         }
     }
 
@@ -97,17 +100,60 @@ public class ClockTutManager : MonoBehaviour
         
         //TODO: Play sound for the locks
         //lockSound.Instance.PlaySound(lockSound);
-        
+        OnTrainCrash();   
         // Set the clock hands to the initial state
         clockAnim.setTime(3, 0, 0); // Example time, adjust as needed
     }
 
     public void OnTrainCrash()
     {
+        if(isTrainCrashed)
+            return;
+        
+        //ChangeBridgePartsLayer(LayerMask.NameToLayer("NoCollision"));
+        
+        isTrainCrashed = true;
         Debug.Log("Simulating train crash...");
         foreach (GameObject part in wallparts)
         {
-            SpawnAnim.simulatePhysics(part.transform, Vector3.zero, 2f);
+            SpawnAnim.simulatePhysics(part.transform, trainCrashForce, 2f);
+        }
+        
+        //wait for duration and change the layer of all bridge parts
+        //Invoke(nameof(ChangeBridgePartsLayer), 2f);
+    }
+    
+    private void ChangeBridgePartsLayer(int layer = -1)
+    {
+        if (bridgeParts == null || bridgeParts.Length == 0)
+        {
+            Debug.LogWarning("No bridge parts set in ClockTutManager.");
+            return;
+        }
+        
+        if(layer< 0)
+        {
+            layer = LayerMask.NameToLayer("CameraCollision");
+        }
+        
+        foreach (GameObject part in bridgeParts)
+        {
+            part.layer = layer;
         }
     }
+    
+    // draw for the first wall part the force vector in simulatePhysics for reference in the editor
+    private void OnDrawGizmos()
+    {
+        if (wallparts != null && wallparts.Length > 0)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(wallparts[0].transform.position, wallparts[0].transform.position + trainCrashForce);
+        }
+        else
+        {
+            Debug.Log("No wall parts set in ClockTutManager.");
+        }
+    }
+    
 }

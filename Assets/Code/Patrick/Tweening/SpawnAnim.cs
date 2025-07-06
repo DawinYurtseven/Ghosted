@@ -79,10 +79,6 @@ public class SpawnAnim : MonoBehaviour
             Debug.LogWarning("No target transform to move to!");
             return null;
         }
-
-        // t.DOKill();
-        // t.DOMove(target.position, duration).SetEase(ease);
-        // t.DORotateQuaternion(target.rotation, duration).SetEase(ease);
         
         Sequence seq = DOTween.Sequence();
         seq.Append(t.DOMove(target.position, duration).SetEase(ease));
@@ -115,7 +111,7 @@ public class SpawnAnim : MonoBehaviour
         }
     }
     
-    public static void simulatePhysics(Transform t, Vector3 force, float duration = 0.5f, bool once = false)
+    public static void simulatePhysics(Transform t, Vector3 force, float duration = 0.5f, bool once = true)
     {
         if (t == null)
         {
@@ -128,8 +124,8 @@ public class SpawnAnim : MonoBehaviour
         {
             // add a Rigidbody if it doesn't exist
             rb = t.gameObject.AddComponent<Rigidbody>();
+            rb.useGravity = true; // Enable gravity
             rb.isKinematic = false; // Ensure it's not kinematic to apply forces
-            return;
         }
 
         rb.DOKill();
@@ -141,7 +137,7 @@ public class SpawnAnim : MonoBehaviour
         if (once)
         {
             //remove the Rigidbody after the force is applied
-            DOVirtual.DelayedCall(duration, () => Object.Destroy(rb));
+            DOVirtual.DelayedCall(duration, () => Destroy(rb)); //Destroy(t.gameObject.GetComponent<Rigidbody>())
         }
     }
     
@@ -154,6 +150,23 @@ public class SpawnAnim : MonoBehaviour
         }
         
         t.DOKill();
+    }
+    
+    public static void changeLayerTo(Transform t, int layer)
+    {
+        if (t == null)
+        {
+            Debug.LogWarning("No transform to change layer!");
+            return;
+        }
+        
+        t.gameObject.layer = layer;
+        
+        // Recursively change the layer for all child objects
+        foreach (Transform child in t)
+        {
+            changeLayerTo(child, layer);
+        }
     }
 }
 

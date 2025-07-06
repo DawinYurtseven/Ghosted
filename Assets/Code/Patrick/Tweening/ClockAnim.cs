@@ -135,7 +135,7 @@ public class ClockAnim : MonoBehaviour
         } 
         
         checkClockStopped();
-        Debug.Log("Set {hand} hand to: {time}");
+        Debug.Log("Set " + hand + " hand to: " + time);
     }
     
     public void stopHand(ClockHand hand)
