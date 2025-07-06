@@ -57,7 +57,7 @@ public class ClockTutManager : MonoBehaviour
 
     private void setHandRotation(Emotion emotion)
     {
-        if (emotion == Emotion.Joy)
+        if (emotion == Emotion.Fear)
         {
             clockAnim.startHand(ClockHand.Hour);
             clockAnim.hourHand.GetChild(0).GetComponent<Renderer>().material = originalMaterial;
@@ -116,7 +116,7 @@ public class ClockTutManager : MonoBehaviour
         Debug.Log("Simulating train crash...");
         foreach (GameObject part in wallparts)
         {
-            SpawnAnim.simulatePhysics(part.transform, trainCrashForce, 2f);
+            SpawnAnim.simulatePhysics(part.transform, trainCrashForce, 3f);
         }
         
         //wait for duration and change the layer of all bridge parts
@@ -143,17 +143,16 @@ public class ClockTutManager : MonoBehaviour
     }
     
     // draw for the first wall part the force vector in simulatePhysics for reference in the editor
-    private void OnDrawGizmos()
-    {
-        if (wallparts != null && wallparts.Length > 0)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawLine(wallparts[0].transform.position, wallparts[0].transform.position + trainCrashForce);
-        }
-        else
-        {
-            Debug.Log("No wall parts set in ClockTutManager.");
-        }
-    }
-    
+    // private void OnDrawGizmos()
+    // {
+    //     if (wallparts != null && wallparts.Length > 0)
+    //     {
+    //         Gizmos.color = Color.red;
+    //         Gizmos.DrawLine(wallparts[0].transform.position, wallparts[0].transform.position + trainCrashForce);
+    //     }
+    //     else
+    //     {
+    //         Debug.Log("No wall parts set in ClockTutManager.");
+    //     }
+    // }
 }

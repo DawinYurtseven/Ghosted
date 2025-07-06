@@ -613,8 +613,10 @@ public class CharacterControllerMockup : MonoBehaviour
 
     public void RecallTalismans(InputAction.CallbackContext context)
     {
-        if (tempAltar != null)
+        if (tempAltar != null && context.performed)
         {
+            Debug.Log("Recalling talismans");
+            
             foreach (TalismanTargetMock lockedObject in lockedObjects)
             {
                 lockedObject.Bind();
