@@ -7,7 +7,8 @@ public class Canon : MonoBehaviour
     [SerializeField] private float canonForce;
     [SerializeField] private GameObject openCanon;
     [SerializeField] private GameObject endPoint;
-
+    [SerializeField] private GameObject startPoint;
+    
     public Vector3 shootingDir;
     public GameObject goalPos;
     
@@ -53,10 +54,13 @@ public class Canon : MonoBehaviour
                 // Check if current emotion is joy
                 
                 // check if openCanon is active and if the current emotion is Joy
-                //if (emoSing.getCurrentEmotion() == Emotion.Joy && openCanon.activeSelf)
+                //if (emoSing.getCurrentEmotion() == Emotion.Joy && openCanon.activeSelf)   // removed for now
                     // Tween player to endPoint and to goal point as shooting
-                    playerRb.transform.DOMove(endPoint.transform.position, 0.5f).SetEase(Ease.InOutSine)
-                    .OnComplete(() => FirePlayer(playerRb));
+                    Sequence s = SpawnAnim.moveTo(playerRb.transform, startPoint.transform, 0.3f);
+                    TriggerConfetti();
+                    s.Append(playerRb.transform.DOMove(endPoint.transform.position, 0.5f).SetEase(Ease.InOutSine));
+                    //.OnComplete(() => FirePlayer(playerRb));
+                    s.Append(playerRb.transform.DOMove(goalPos.transform.position, 0.5f).SetEase(Ease.InOutSine));
             }
         }
     }
@@ -66,8 +70,6 @@ public class Canon : MonoBehaviour
         // playerRb.transform.TransformDirection(shootingDir);
         // playerRb.AddForce(shootingDir * canonForce, ForceMode.Impulse);
         //playerRb.velocity = transform.up * canonForce;
-        
-        TriggerConfetti();
         
         // use DoTween to smoothly move the player
         playerRb.transform.DOMove(goalPos.transform.position, 0.5f).SetEase(Ease.InOutSine);
