@@ -21,6 +21,9 @@ public class JumpStopHand : MonoBehaviour
     [SerializeField] private float animDelay = 2f;
     public Material pressedMaterial; // Material to indicate pressed state
     
+    [Header("Audio Settings")]
+    public AudioClip feedbackSound; // Sound to play when jumping on the clock hand
+        
     private void Awake()
     {
         if(manager == null)
