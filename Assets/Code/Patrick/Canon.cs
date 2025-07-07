@@ -56,7 +56,7 @@ public class Canon : MonoBehaviour
                 // check if openCanon is active and if the current emotion is Joy
                 //if (emoSing.getCurrentEmotion() == Emotion.Joy && openCanon.activeSelf)   // removed for now
                     // Tween player to endPoint and to goal point as shooting
-                    Sequence s = SpawnAnim.moveTo(playerRb.transform, startPoint.transform, 0.3f);
+                    Sequence s = SpawnAnim.moveTo(playerRb.transform, startPoint.transform, 0.3f,Ease.InOutSine , false);
                     TriggerConfetti();
                     s.Append(playerRb.transform.DOMove(endPoint.transform.position, 0.5f).SetEase(Ease.InOutSine));
                     //.OnComplete(() => FirePlayer(playerRb));

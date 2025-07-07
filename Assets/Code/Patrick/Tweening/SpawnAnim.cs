@@ -67,7 +67,7 @@ public class SpawnAnim : MonoBehaviour
         }
     }
     
-    public static Sequence moveTo(Transform t, Transform target, float duration = 0.5f, Ease ease = Ease.OutQuad)
+    public static Sequence moveTo(Transform t, Transform target, float duration = 0.5f, Ease ease = Ease.OutQuad, bool withRotation = true)
     {
         if (t == null)
         {
@@ -82,7 +82,8 @@ public class SpawnAnim : MonoBehaviour
         
         Sequence seq = DOTween.Sequence();
         seq.Append(t.DOMove(target.position, duration).SetEase(ease));
-        seq.Join(t.DORotateQuaternion(target.rotation, duration).SetEase(ease));
+        if(withRotation)
+            seq.Join(t.DORotateQuaternion(target.rotation, duration).SetEase(ease));
         
         return seq;
     }
