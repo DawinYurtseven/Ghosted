@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using DG.Tweening;
 
@@ -54,9 +53,9 @@ public class Canon : MonoBehaviour
                 // Check if current emotion is joy
                 
                 // check if openCanon is active and if the current emotion is Joy
-                if (emoSing.getCurrentEmotion() == Emotion.Joy && openCanon.activeSelf)
+                //if (emoSing.getCurrentEmotion() == Emotion.Joy && openCanon.activeSelf)
                     // Tween player to endPoint and to goal point as shooting
-                    playerRb.transform.DOMove(endPoint.transform.position, 0.21f).SetEase(Ease.InOutSine)
+                    playerRb.transform.DOMove(endPoint.transform.position, 0.5f).SetEase(Ease.InOutSine)
                     .OnComplete(() => FirePlayer(playerRb));
             }
         }

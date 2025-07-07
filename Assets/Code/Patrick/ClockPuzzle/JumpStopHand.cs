@@ -55,10 +55,12 @@ public class JumpStopHand : MonoBehaviour
         }
     }
     
-    void OnTriggerEnter()
+    void OnTriggerEnter(Collider other)
     {
-        if(!active)
+        if (!active || !other.CompareTag("Player"))
             return;
+
+        Debug.Log("Player jumped on clock hand: " + _hand);
         
         toggleHand();
         animate(false);

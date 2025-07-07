@@ -8,7 +8,7 @@ public class ClockTutManager : MonoBehaviour
     public ClockAnim clockAnim;
     public Material clockDeactivatedMaterial;
     private Material originalMaterial;
-
+    
     [Header("Train Sequence")] 
     [SerializeField] private GameObject LockFear;
     [SerializeField] private GameObject LockJoy;

@@ -28,9 +28,9 @@ public class ClockAnim : MonoBehaviour
     private Tween hourTween;
     private Tween minuteTween;
     private Tween secondTween;
-    private float hourOffset = 0f; // Offset for hour hand rotation
-    private float minuteOffset = 0f; // Offset for minute hand rotation
-    private float secondOffset = 0f; // Offset for second hand rotation
+    protected float hourOffset = 0f; // Offset for hour hand rotation
+    protected float minuteOffset = 0f; // Offset for minute hand rotation
+    protected float secondOffset = 0f; // Offset for second hand rotation
     
     private void Awake()
     {
@@ -41,7 +41,7 @@ public class ClockAnim : MonoBehaviour
         }
     }
     
-    public void Start()
+    public virtual void Start()
     {
         hourOffset = hourHand.localRotation.eulerAngles.y;
         minuteOffset = minuteHand.localRotation.eulerAngles.y;
