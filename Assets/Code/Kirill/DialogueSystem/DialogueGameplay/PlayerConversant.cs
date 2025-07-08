@@ -12,7 +12,8 @@ namespace Ghosted.Dialogue {
         [SerializeField] Transform checkForDialoguefrom;
         Dialogue currentDialogue;
         DialogueEditorNode currentNode = null;
-        KirillCharacterInteractionInput inputManager;
+        
+        private PlayerInput playerInput;
 
         public readonly UnityEvent<Dialogue> OnStartDialogue = new UnityEvent<Dialogue>();
         public readonly UnityEvent<Dialogue> OnEndDialogue = new UnityEvent<Dialogue>();
@@ -26,52 +27,73 @@ namespace Ghosted.Dialogue {
         private int playerLayer, layerMask;
         private AIConversant dialogueAIConversant;
 
+        void Awake()
+        {
+            playerInput = GetComponent<PlayerInput>();
+            playerInput.actions.FindActionMap("Dialogue").Disable();
+        }
+        
         void Start()
         {
+            
             playerLayer = LayerMask.NameToLayer("Player");
             layerMask = ~(1 << playerLayer);
-            inputManager = GameObject.FindGameObjectWithTag("ScriptHolder")?.GetComponent<KirillCharacterInteractionInput>();
-            inputManager.SubscribeInteract(OnInteract);
         }
-
+        private float dialogueStartTime;
+        private float dialogueInputDelay = 0.1f;
         public void StartDialogue(Dialogue dialogue)
         {
-            //inputManager.UnsubscribeInteract(OnInteract);
-            //inputManager.SubscribePressedNext(OnNextClick);
-
+            
             currentDialogue = dialogue;
             OnStartDialogue.Invoke(currentDialogue);
 
             Debug.Log(currentDialogue);
             currentNode = currentDialogue.GetRootNode();
             OnDialogueNode.Invoke(currentNode);
+            dialogueStartTime = Time.time;
+            
+            playerInput.actions.FindActionMap("Dialogue").Enable();
+            playerInput.SwitchCurrentActionMap("Dialogue");
+            playerInput.actions.FindActionMap("Character Control").Disable();
             TriggerEnterAction();
+            //Somehow is still laggy for the first dialogue in the scene
+            //StartCoroutine(SwitchInputMapNextFrame("Dialogue"));
         }
 
         public void EndDialogue()
         {
-            //inputManager.UnsubscribePressedNext(OnNextClick);
-            //inputManager.SubscribeInteract(OnInteract);
 
             OnEndDialogue.Invoke(currentDialogue);
             currentDialogue = null;
             currentConversant = null;
             currentNode = null;
+            
+            
+            StartCoroutine(SwitchInputMapDelayed("Character Control"));
+            playerInput.actions.FindActionMap("Dialogue").Disable();
         }
-
-        public void OnNextClick(InputAction.CallbackContext context)
-        {
-            Debug.Log("I clicked");
-            if (currentNode as ReplyNode != null)
-                return;
-
-            Next();
-        }
+        
+        //called from Input asset 
+        //
+        // public void OnNextClick(InputAction.CallbackContext context)
+        // {
+        //     Debug.Log("I clicked");
+        //     if (currentNode as ReplyNode != null)
+        //         return;
+        //
+        //     Next();
+        // }
 
         // This is a moch function that has to be replaces with uniform interaction system
-        private void OnInteract(InputAction.CallbackContext context)
+        public void InteractDialogue()
         {
-            Debug.Log("I try to interact");
+            Debug.Log("I try to interact for dialogue");
+            if (currentDialogue == null &&  dialogueAIConversant != null)
+            {
+                Debug.Log("It's a conversant!");
+                currentConversant = dialogueAIConversant;
+                dialogueAIConversant.Interact(this);
+
             // if (currentDialogue == null)
             // {
             //     //Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue()); // Use mouse position
@@ -97,35 +119,40 @@ namespace Ghosted.Dialogue {
             //     }
             // }
             
-            if (currentDialogue == null &&  dialogueAIConversant != null)
-            {
-                Debug.Log("It's a conversant!");
-                currentConversant = dialogueAIConversant;
-                dialogueAIConversant.Interact(this);
-                        
+                    
             }
         }
 
         void Update()
         {
-            if (dialogueAIConversant != null)
-            {
-                dialogueAIConversant.turnOffHint();
-            }
+            
             Ray ray = new Ray(checkForDialoguefrom.position, checkForDialoguefrom.transform.forward);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, interactDistance, layerMask))
             {
                 AIConversant aIConversant = hit.collider.GetComponent<AIConversant>();
-                if (aIConversant)
+                if (aIConversant )
                 {
-                    dialogueAIConversant = aIConversant;
-                    dialogueAIConversant.turnOnHint();
+                    if (aIConversant != dialogueAIConversant)
+                    {
+                        Debug.Log("Found new dialogue!");
+                        if (dialogueAIConversant != null)
+                        {
+                            dialogueAIConversant.turnOffHint();
+                        }
+                        dialogueAIConversant = aIConversant;
+                        dialogueAIConversant.turnOnHint();
+                    }
+
+                    return;
                 }
             }
-            else
+            
+            if (dialogueAIConversant != null) 
             {
-                OnNextClick(context);
+                dialogueAIConversant.turnOffHint();
+                
+                 dialogueAIConversant = null;
             }
         }
 
@@ -140,19 +167,27 @@ namespace Ghosted.Dialogue {
         }
 
         // Next for DialogeNodes, Select for replies in replyNode
-        public void Next()
+        public void Next(InputAction.CallbackContext context)
         {
-            TriggerExitAction();
-            currentNode = currentDialogue.GetChild((DialogueNode)currentNode);
-            if (currentNode == null)
+            if (context.performed)
             {
-                EndDialogue();
+                if (!currentDialogue) return;
+                //delay so that the start dialogue e is not confused with the next line
+                if (Time.time - dialogueStartTime < dialogueInputDelay) return;
+
+                TriggerExitAction();
+                currentNode = currentDialogue.GetChild((DialogueNode)currentNode);
+                if (currentNode == null)
+                {
+                    EndDialogue();
+                }
+                else
+                {
+                    OnDialogueNode.Invoke(currentNode);
+                    TriggerEnterAction();
+                }
             }
-            else
-            {
-                OnDialogueNode.Invoke(currentNode);
-                TriggerEnterAction();
-            }
+
         }
 
         public void Select(Reply reply)
@@ -213,6 +248,14 @@ namespace Ghosted.Dialogue {
         public DialogueEditorNode GetCurrentNode()
         {
             return currentNode;
+        }
+
+        //change in next frame to avoid confusion
+        private IEnumerator SwitchInputMapDelayed(string mapName, float delay = 0.5f)
+        {
+            yield return new WaitForSeconds(delay);
+            playerInput.SwitchCurrentActionMap(mapName);
+            playerInput.actions.FindActionMap(mapName).Enable();
         }
     }
 }

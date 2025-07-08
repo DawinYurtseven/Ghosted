@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Shoe
-  m_Shader: {fileID: 4800000, guid: 6b008335f0e4d7345bc97ca7fa6aa2a8, type: 3}
+  m_Shader: {fileID: 4800000, guid: 270e6f599de64d24dbca0af84dae2265, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
@@ -111,6 +111,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Alpha: 1
     - _AlphaClip: 0
     - _AlphaCutoff: 0.5
     - _AlphaToMask: 0
@@ -139,6 +140,7 @@ Material:
     - _FbmLacunarity: 1.85
     - _FbmRoughness: 0.97
     - _FbmScale: 10
+    - _FbmSmoothness: 0.5
     - _FresnelPower: 0.5
     - _GlossMapScale: 0
     - _Glossiness: 0
@@ -182,6 +184,7 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Colour: {r: 1, g: 1, b: 1, a: 1}
     - _DarkTint: {r: 0.2905661, g: 0.17721604, b: 0.078398004, a: 1}
     - _DarkTone: {r: 0.101960786, g: 0.078431375, b: 0.078431375, a: 1}
     - _DiffuseColour: {r: 1, g: 1, b: 1, a: 1}

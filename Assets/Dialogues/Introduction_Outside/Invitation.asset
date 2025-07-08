@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9023085088805970300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 2a932ac8-9fda-43f2-980b-0949c9ce12b3
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 58.000008
+    y: 48.666664
+    width: 200
+    height: 80
+  onEnterActions:
+  - enter
+  onExitActions: []
+  text: Hello. I do not wish to disrupt your peace.
+  child: cc1c8736-3fe6-429e-bbe6-699fe1d4e30c
+  speaker: Ghost
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0128aa92babf3fd4e9cf4beb0d51198e, type: 3}
+  m_Name: Invitation
+  m_EditorClassIdentifier: 
+  dialogueSpeakers:
+  - Ghost
+  dialogueNodes:
+  - {fileID: -9023085088805970300}
+  - {fileID: 7046075498798990066}
+  replyNodes: []
+--- !u!114 &7046075498798990066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: cc1c8736-3fe6-429e-bbe6-699fe1d4e30c
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 322.66666
+    y: 114.00001
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions:
+  - exit
+  text: However, would you fancy coming to my birthday party?
+  child: 
+  speaker: Ghost

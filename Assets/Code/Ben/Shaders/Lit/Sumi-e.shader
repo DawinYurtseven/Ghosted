@@ -235,7 +235,7 @@ Shader "ForgottenColours/Lit/Sumi-E"
                 #endif
 
                 // FBM Noise Section
-                half3 noiseCoord = GetTextureSpace(_TextureSpace, n, input.fragLocalPos, input.uv_Albedo);
+                half3 noiseCoord = GetTextureSpace(_TextureSpace, n, input.fragLocalPos, input.fragWorldPos, input.uv_Albedo);
                 float fbmNoise = 1-FbmNoise(noiseCoord, _FbmScale, _FbmDetail, 1-_FbmSmoothness,_FbmSmoothness);
                 float3 fbmNoise3D = float3(fbmNoise,fbmNoise,fbmNoise);
 

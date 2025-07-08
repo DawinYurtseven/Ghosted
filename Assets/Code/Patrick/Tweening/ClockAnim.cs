@@ -13,6 +13,7 @@ public class ClockAnim : MonoBehaviour
     public float minuteHandSpeed = 10f; // degrees per second
     public float hourHandSpeed = 2f; // degrees per second
     public float secondHandSpeed = 15f; // degrees per second (if you want to add a second hand later)
+    
     void Start()
     {
         AnimateZeiger(minuteHand, minuteHandSpeed);
@@ -27,6 +28,14 @@ public class ClockAnim : MonoBehaviour
         hand.DOLocalRotate(rotationAxis * 360f, fullRotationTime, RotateMode.FastBeyond360)
             .SetEase(Ease.Linear)
             .SetLoops(-1, LoopType.Restart);
+    }
+    
+    public void StartAnimation()
+    {
+        // Start the animations for the clock hands
+        AnimateZeiger(hourHand, hourHandSpeed);
+        AnimateZeiger(minuteHand, minuteHandSpeed);
+        AnimateZeiger(secondHand, secondHandSpeed);
     }
     
     public void stopAnimation()
@@ -46,6 +55,43 @@ public class ClockAnim : MonoBehaviour
         hourHand.rotation = Quaternion.Euler(rotationAxis * hourRotation);
         minuteHand.rotation = Quaternion.Euler(rotationAxis * minuteRotation);
         secondHand.rotation = Quaternion.Euler(rotationAxis * 0f); 
+    }
+
+    public void AnimateSolution(bool solved, float hour, float minute)
+    {
+        // Stop the current animations
+        stopAnimation();
+        
+        // If the puzzle is solved, set the clock hands to the solution time
+        if (solved)
+        {
+            setTime(hour, minute);
+        }
+        else
+        {
+            setTime(hour, minute);
+            
+            // save the material colors before changing them
+            Color originalHourColor = hourHand.GetComponent<Renderer>().material.color;
+            Color originalMinuteColor = minuteHand.GetComponent<Renderer>().material.color;
+            Color originalSecondColor = secondHand.GetComponent<Renderer>().material.color;
+            
+            // wait for a short time before flashing the colors
+            DOVirtual.DelayedCall(0.5f, () =>
+            {
+                // Flash red (or any other color) to indicate the wrong solution
+                hourHand.GetComponent<Renderer>().material.color = Color.red;
+                minuteHand.GetComponent<Renderer>().material.color = Color.red;
+                secondHand.GetComponent<Renderer>().material.color = Color.red;
+            }).OnComplete(() =>
+            {
+                // Restore the original colors after flashing
+                hourHand.GetComponent<Renderer>().material.color = originalHourColor;
+                minuteHand.GetComponent<Renderer>().material.color = originalMinuteColor;
+                secondHand.GetComponent<Renderer>().material.color = originalSecondColor;
+            }).SetDelay(0.5f).OnComplete(StartAnimation); // Restart the animations after flashing
+            
+        }
     }
     
     // draw the rotation axis in the scene view for debugging

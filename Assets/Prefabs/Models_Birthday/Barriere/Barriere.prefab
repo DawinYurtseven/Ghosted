@@ -81,6 +81,7 @@ MonoBehaviour:
   openState: {fileID: 8303059892240097144}
   closedState: {fileID: 7976238503449956967}
   shadow: {fileID: 5697549177436729062}
+  lockedInFear: 0
 --- !u!1 &3853510767903395094
 GameObject:
   m_ObjectHideFlags: 0
@@ -826,6 +827,22 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 1604027252192935669, guid: 24521ce69bc8b4c4e8c781246b2eee1d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2713f349436e5e14ca413820fa8dbf85, type: 2}
+    - target: {fileID: 1607332040130663630, guid: 24521ce69bc8b4c4e8c781246b2eee1d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2713f349436e5e14ca413820fa8dbf85, type: 2}
+    - target: {fileID: 1607332040130663630, guid: 24521ce69bc8b4c4e8c781246b2eee1d, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2713f349436e5e14ca413820fa8dbf85, type: 2}
+    - target: {fileID: 1607332040130663630, guid: 24521ce69bc8b4c4e8c781246b2eee1d, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2713f349436e5e14ca413820fa8dbf85, type: 2}
     - target: {fileID: 2418412006541508698, guid: 24521ce69bc8b4c4e8c781246b2eee1d, type: 3}
       propertyPath: m_Name
       value: Automatic Boom Barriers
@@ -838,6 +855,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 3569264990077045687, guid: 24521ce69bc8b4c4e8c781246b2eee1d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2713f349436e5e14ca413820fa8dbf85, type: 2}
     - target: {fileID: 4544641600397128364, guid: 24521ce69bc8b4c4e8c781246b2eee1d, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.50000083
@@ -862,6 +883,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 4608771350884684083, guid: 24521ce69bc8b4c4e8c781246b2eee1d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2713f349436e5e14ca413820fa8dbf85, type: 2}
     - target: {fileID: 4618548248034862491, guid: 24521ce69bc8b4c4e8c781246b2eee1d, type: 3}
       propertyPath: m_Layer
       value: 11
@@ -870,6 +895,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 5556946981933697694, guid: 24521ce69bc8b4c4e8c781246b2eee1d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2713f349436e5e14ca413820fa8dbf85, type: 2}
     - target: {fileID: 5767112908932994026, guid: 24521ce69bc8b4c4e8c781246b2eee1d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.5049132
@@ -918,10 +947,18 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 8106133919177776576, guid: 24521ce69bc8b4c4e8c781246b2eee1d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2713f349436e5e14ca413820fa8dbf85, type: 2}
     - target: {fileID: 8832063423748906140, guid: 24521ce69bc8b4c4e8c781246b2eee1d, type: 3}
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 9064122355529758369, guid: 24521ce69bc8b4c4e8c781246b2eee1d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2713f349436e5e14ca413820fa8dbf85, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
