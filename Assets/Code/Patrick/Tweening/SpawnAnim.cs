@@ -67,6 +67,27 @@ public class SpawnAnim : MonoBehaviour
         }
     }
     
+    // Spawn many objects, if all objects have a SpawnAnim, they will use that spawn point
+    public void SpawnMany(GameObject[] objects, bool state)
+    {
+        if (objects == null || objects.Length <= 0)
+        {
+            Debug.LogWarning("No game objects to spawn!");
+            return;
+        }
+        
+        foreach (GameObject obj in objects)
+        {
+            SpawnAnim anim = obj.GetComponent<SpawnAnim>();
+            if (anim == null)
+            {
+                anim = obj.AddComponent<SpawnAnim>();
+                anim.spawnPoint = this.spawnPoint; // Use the same spawn point
+            }
+            anim.Spawn(state);
+        }
+    }
+    
     public static Sequence moveTo(Transform t, Transform target, float duration = 0.5f, Ease ease = Ease.OutQuad, bool withRotation = true)
     {
         if (t == null)

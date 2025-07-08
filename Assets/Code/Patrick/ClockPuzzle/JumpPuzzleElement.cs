@@ -68,7 +68,7 @@ public class JumpPuzzleElement : MonoBehaviour
             animate(true,true);
         
         //Audio
-        effect?.PlayOneShot(solvedSFX.clip);
+        solvedSFX?.PlayOneShot(solvedSFX.clip);
     }
     
     private void animate(bool correct, bool timeToShowColor)
