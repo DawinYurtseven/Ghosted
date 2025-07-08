@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -8,6 +9,7 @@ using UnityEngine.InputSystem;
 namespace Ghosted.Dialogue {
     public class PlayerConversant : MonoBehaviour
     {
+        [SerializeField] Transform checkForDialoguefrom;
         Dialogue currentDialogue;
         DialogueEditorNode currentNode = null;
         KirillCharacterInteractionInput inputManager;
@@ -21,13 +23,13 @@ namespace Ghosted.Dialogue {
 
         [SerializeField] private float interactDistance = 20f;
 
-        void Awake()
-        {
-
-        }
+        private int playerLayer, layerMask;
+        private AIConversant dialogueAIConversant;
 
         void Start()
         {
+            playerLayer = LayerMask.NameToLayer("Player");
+            layerMask = ~(1 << playerLayer);
             inputManager = GameObject.FindGameObjectWithTag("ScriptHolder")?.GetComponent<KirillCharacterInteractionInput>();
             inputManager.SubscribeInteract(OnInteract);
         }
@@ -70,24 +72,55 @@ namespace Ghosted.Dialogue {
         private void OnInteract(InputAction.CallbackContext context)
         {
             Debug.Log("I try to interact");
-            if (currentDialogue == null)
+            // if (currentDialogue == null)
+            // {
+            //     //Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue()); // Use mouse position
+            //     // Ray ray = new Ray(transform.position, transform.forward);
+            //     
+            //     Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+            //     RaycastHit hit;
+            //
+            //     Debug.Log("I shoot ray " + ray);
+            //
+            //     if (Physics.Raycast(ray, out hit, interactDistance, layerMask))
+            //     {
+            //         Debug.Log("I hit smth " + hit.collider.gameObject.name);
+            //         // Check for the target script
+            //         AIConversant aIConversant = hit.collider.GetComponent<AIConversant>();
+            //         if (aIConversant != null)
+            //         {
+            //             Debug.Log("It's a conversant!");
+            //             currentConversant = aIConversant;
+            //             aIConversant.Interact(this);
+            //             
+            //         }
+            //     }
+            // }
+            
+            if (currentDialogue == null &&  dialogueAIConversant != null)
             {
-                //Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue()); // Use mouse position
-                Ray ray = new Ray(transform.position, transform.forward);
-                RaycastHit hit;
+                Debug.Log("It's a conversant!");
+                currentConversant = dialogueAIConversant;
+                dialogueAIConversant.Interact(this);
+                        
+            }
+        }
 
-                Debug.Log("I shoot ray " + ray);
-
-                if (Physics.Raycast(ray, out hit, interactDistance))
+        void Update()
+        {
+            if (dialogueAIConversant != null)
+            {
+                dialogueAIConversant.turnOffHint();
+            }
+            Ray ray = new Ray(checkForDialoguefrom.position, checkForDialoguefrom.transform.forward);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, interactDistance, layerMask))
+            {
+                AIConversant aIConversant = hit.collider.GetComponent<AIConversant>();
+                if (aIConversant)
                 {
-                    Debug.Log("I hit smth " + hit);
-                    // Check for the target script
-                    AIConversant aIConversant = hit.collider.GetComponent<AIConversant>();
-                    if (aIConversant != null)
-                    {
-                        currentConversant = aIConversant;
-                        aIConversant.Interact(this);
-                    }
+                    dialogueAIConversant = aIConversant;
+                    dialogueAIConversant.turnOnHint();
                 }
             }
             else
@@ -160,7 +193,12 @@ namespace Ghosted.Dialogue {
         private void TriggerAction(string action)
         {
             if (action == "") return;
-            
+
+            if (currentConversant == null)
+            {
+                Debug.Log("No conversant!");
+                return;
+            }
             foreach (DialogueTrigger trigger in currentConversant.GetComponents<DialogueTrigger>())
             {
                 trigger.Trigger(action);

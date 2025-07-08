@@ -1,5 +1,37 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6737417945293514614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3731ce7525664cd4ba2b3f1039b2decc, type: 3}
+  m_Name: ScreenSpaceOutlines
+  m_EditorClassIdentifier: 
+  m_Active: 0
+  renderPassEvent: 1000
+  outlinesLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  outlineSettings:
+    outlineColor: {r: 0.13962269, g: 0.13962269, b: 0.13962269, a: 1}
+    outlineScale: 0.5
+    depthThreshold: 13
+    robertsCrossMultiplier: 100
+    normalThreshold: 0.12
+    steepAngleThreshold: 0.2
+    steepAngleMultiplier: 25
+    colorFormat: 7
+    depthBufferBits: 0
+    filterMode: 0
+    backgroundColor: {r: 0, g: 0, b: 0, a: 0}
+    perObjectData: 0
+    enableDynamicBatching: 0
+    enableInstancing: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16,10 +48,11 @@ MonoBehaviour:
     debugReplacementPS: {fileID: 4800000, guid: cf852408f2e174538bcd9b7fda1c5ae7, type: 3}
     hdrDebugViewPS: {fileID: 4800000, guid: 573620ae32aec764abd4d728906d2587, type: 3}
   m_RendererFeatures:
+  - {fileID: -6737417945293514614}
   - {fileID: 2228217750559454015}
-  - {fileID: 5699785988487265732}
   - {fileID: 3242823584550872503}
-  m_RendererFeatureMap: 3ff350103d38ec1ec43d886328b5194fb7e56972ded2002d
+  - {fileID: 1470068516747167604}
+  m_RendererFeatureMap: 8a18703b13e27fa23ff350103d38ec1eb7e56972ded2002d744733f886bb6614
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
@@ -61,6 +94,29 @@ MonoBehaviour:
   m_CopyDepthMode: 1
   m_AccurateGbufferNormals: 0
   m_IntermediateTextureMode: 1
+--- !u!114 &1470068516747167604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1614fc811f8f184697d9bee70ab9fe5, type: 3}
+  m_Name: DecalRendererFeature
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  m_Settings:
+    technique: 0
+    maxDrawDistance: 1000
+    decalLayers: 0
+    dBufferSettings:
+      surfaceData: 2
+    screenSpaceSettings:
+      normalBlend: 0
+  m_CopyDepthPS: {fileID: 4800000, guid: d6dae50ee9e1bfa4db75f19f99355220, type: 3}
+  m_DBufferClear: {fileID: 4800000, guid: f056d8bd2a1c7e44e9729144b4c70395, type: 3}
 --- !u!114 &2228217750559454015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,21 +173,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Active: 1
   mat: {fileID: 2100000, guid: 160e1cdc1b1104249bcd384a5059dc89, type: 2}
---- !u!114 &5699785988487265732
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 954688954385a614bb7864191db08b7c, type: 3}
-  m_Name: FlickerFeature
-  m_EditorClassIdentifier: 
-  m_Active: 0
-  overlaySettings:
-    shader: {fileID: 4800000, guid: 4546e4eb73e9d864cbf240bd1ff3b639, type: 3}
-    color: {r: 1, g: 0.50740975, b: 0.035848916, a: 1}
-    opacity: 0.05
-    renderPassEvent: 500

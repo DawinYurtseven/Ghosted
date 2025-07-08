@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using System.Diagnostics.Tracing;
 using UniRx;
 using UnityEngine;
+using UnityEngine.Events;
 
 public enum Emotion
 {
@@ -15,6 +15,8 @@ public class EmotionSingletonMock : MonoBehaviour
 {
     public static EmotionSingletonMock Instance { get; private set; }
 
+    public GameObject talismanCounter;
+    public bool disableAll = false;
     #region Emotions
 
     /*
@@ -22,16 +24,32 @@ public class EmotionSingletonMock : MonoBehaviour
      */
     
     public Subject<Emotion> EmotionSubject = new Subject<Emotion>();
-    [SerializeField] private Emotion currentEmotion;
-    
+    [SerializeField] private Emotion currentEmotion = Emotion.Fear;
+    public UnityEvent<Emotion> emotionChanged = new UnityEvent<Emotion>();      // Trigger an event each time the emotion is changed
+    [SerializeField] private GameObject joyGameObject, fearGameObject;
+
     public void ChangeEmotion(Emotion emotion)
     {
-        currentEmotion = emotion;
-        print("triggered");
+        if (currentEmotion == Emotion.Fear)
+        {
+            joyGameObject.SetActive(true);
+            fearGameObject.SetActive(false);
+            currentEmotion = Emotion.Joy;
+        }
+
+        else
+        {
+            joyGameObject.SetActive(false);
+            fearGameObject.SetActive(true);
+            currentEmotion = Emotion.Fear;
+        }
+        
         EmotionSubject.OnNext(currentEmotion);
+        // Trigger event with the current emotion switched to
+        emotionChanged?.Invoke(currentEmotion);
     }
-    
-    
+
+    public Emotion getCurrentEmotion() => currentEmotion;
 
     #endregion
     
@@ -46,41 +64,73 @@ public class EmotionSingletonMock : MonoBehaviour
 
     public readonly Subject<TalismanTargetMock> CurrentTarget = new Subject<TalismanTargetMock>();
     [SerializeField] private TalismanTargetMock currentTarget;
-    
+    [SerializeField] private float range = 15.0f;
     [SerializeField] private List<TalismanTargetMock> availableTalismanTargetMocks;
     private Camera mainCamera;
 
+    public void enableTargets()
+    {
+        disableAll = false;
+        talismanCounter.SetActive(true);
+    }
+    
     public void AddTarget(TalismanTargetMock target)
     {
 
         availableTalismanTargetMocks.Add(target);
     }
     
-    
     private void CheckTargets()
     {
+        if (disableAll)
+        {
+            foreach (var target in availableTalismanTargetMocks)
+            {
+                if (target != null)
+                {
+                    target.turnOff();
+                }
+            }
+            CurrentTarget.OnNext(null);
+            return;
+        }
+
         if (availableTalismanTargetMocks.Count == 0)
         {
             CurrentTarget.OnNext(null);
             return;
         }
-
-        TalismanTargetMock closestTarget = availableTalismanTargetMocks[0];
-        Vector3 closestTargetScreenPoint = mainCamera.WorldToScreenPoint(closestTarget.transform.position) -
-                                           new Vector3((Screen.width - 1) / 2, (Screen.height-1) / 2, 0);
+        
+        TalismanTargetMock closestTarget = null;
+        Vector3 closestTargetScreenPoint = Vector3.zero;
+        float closestDistance = float.MaxValue;
+  
         foreach (var target in availableTalismanTargetMocks)
         {
             if (target == null) continue;
+            float distanceToCamera = Vector3.Distance(mainCamera.transform.position, target.transform.position);
+            if (distanceToCamera > range)
+            {
+                target.turnOff();
+                continue;
+            }
+            target.turnOn();
             var screenPoint = (mainCamera.WorldToScreenPoint(target.transform.position) -
                               new Vector3((Screen.width - 1) / 2, (Screen.height-1) / 2, 0));
             screenPoint.z = 0;
-            if (screenPoint.magnitude < closestTargetScreenPoint.magnitude)
+            float screenDistance = screenPoint.magnitude;
+            if (screenDistance < closestDistance)
             {
                 closestTarget = target;
                 closestTargetScreenPoint = screenPoint;
+                closestDistance = screenDistance;
             }
         }
-        
+        if (!closestTarget)
+        {
+            CurrentTarget.OnNext(null);
+            return;
+        }
         closestTarget.Highlight();
         var temp = currentTarget;
         currentTarget = closestTarget;
@@ -102,8 +152,8 @@ public class EmotionSingletonMock : MonoBehaviour
 
     #endregion
 
-
-    private void OnEnable()
+    
+    private void Awake()
     {
         if (Instance != null && Instance != this)
         {
@@ -115,6 +165,8 @@ public class EmotionSingletonMock : MonoBehaviour
         }
 
         mainCamera = Camera.main;
+        if (disableAll) talismanCounter.SetActive(false);
+        ChangeEmotion(Emotion.Joy);
     }
 
     // Update is called once per frame

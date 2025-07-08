@@ -1,27 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
 public class rotatingCherry : MonoBehaviour
 {
-    public Vector3 rotationSpeed = new Vector3(0, 100, 0); // Degrees per second
+    public float duration = 3f;
 
-    public float pushForce = 3f;
-
-    void Update()
+    private void Start()
     {
-        transform.Rotate(rotationSpeed * Time.deltaTime);
-    }
 
-    void OnCollisionEnter(Collision collision)
-{
-    
-    Rigidbody playerRb = collision.gameObject.GetComponent<Rigidbody>();
-    if (playerRb != null)
-    {
-        Vector3 pushDirection = collision.contacts[0].normal * -1f;
-        playerRb.AddForce(pushForce * pushDirection, ForceMode.Impulse);
+        // Continuous rotation using DOTween
+        transform.DORotate(new Vector3(0, 360f, 0), duration, RotateMode.FastBeyond360)
+            .SetEase(Ease.Linear)
+            .SetLoops(-1);
     }
-    
-}
 }

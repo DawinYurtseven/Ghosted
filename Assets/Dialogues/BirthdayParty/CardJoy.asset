@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0128aa92babf3fd4e9cf4beb0d51198e, type: 3}
+  m_Name: CardJoy
+  m_EditorClassIdentifier: 
+  dialogueSpeakers:
+  - Miyu
+  dialogueNodes:
+  - {fileID: 8935675927277435603}
+  - {fileID: 3292297516071897519}
+  - {fileID: 352078242181474420}
+  replyNodes: []
+--- !u!114 &352078242181474420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 2b974977-0fae-4213-aff0-274c5c32a569
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 578
+    y: 238
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions:
+  - exit
+  text: I never became one, but I did teach art to children. Thanks to Mama.
+  child: 
+  speaker: Miyu
+--- !u!114 &3292297516071897519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 10a4178f-c30e-4ece-821d-fdfcdd08ebdf
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 341
+    y: 141
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions: []
+  text: She always helped me with my painting; she told me I was going to be a great
+    painter one day.
+  child: 2b974977-0fae-4213-aff0-274c5c32a569
+  speaker: Miyu
+--- !u!114 &8935675927277435603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: f3ebf901-1bfc-484b-a24e-99576d3caa29
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 47
+    y: 29
+    width: 200
+    height: 80
+  onEnterActions:
+  - enter
+  onExitActions: []
+  text: Mama painted the flowers on the card. They are so pretty.
+  child: 10a4178f-c30e-4ece-821d-fdfcdd08ebdf
+  speaker: Miyu

@@ -1,0 +1,140 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7821415198680692684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 78358887-ca48-40a3-9b23-e84d79efc4a0
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 279
+    y: 77
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions: []
+  text: "This scares me. I don\u2019t like this."
+  child: 2ba9b52b-12eb-4cac-807f-c5d981ca87f3
+  speaker: Miyu
+--- !u!114 &-652340921611688492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 9e3de92b-367d-4331-a480-a5cf34172880
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 612
+    y: 180
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions: []
+  text: Just hold on a little longer. This is so you can meet your family.
+  child: 
+  speaker: Ghost Binder
+--- !u!114 &-466212918882477014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 7029b2cb-14bb-4aa3-aff8-90b22e4a4c7b
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: -1
+    y: 0
+    width: 200
+    height: 80
+  onEnterActions:
+  - enter
+  onExitActions: []
+  text: See, Miyu? When I place the matching talisman in the shrine, I can change
+    the emotion in the room.
+  child: 78358887-ca48-40a3-9b23-e84d79efc4a0
+  speaker: Ghost Binder
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0128aa92babf3fd4e9cf4beb0d51198e, type: 3}
+  m_Name: clockDialogue
+  m_EditorClassIdentifier: 
+  dialogueSpeakers:
+  - Ghost Binder
+  - Miyu
+  dialogueNodes:
+  - {fileID: -466212918882477014}
+  - {fileID: -7821415198680692684}
+  - {fileID: 4276200084862688949}
+  replyNodes: []
+--- !u!114 &3583418485933859821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 0d12fbb5-24e7-4738-aebf-1b81b45a61ad
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 309
+    y: 119
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions: []
+  text: "This makes me scared. I don\u2019t like it."
+  child: 9e3de92b-367d-4331-a480-a5cf34172880
+  speaker: Miyu
+--- !u!114 &4276200084862688949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 2ba9b52b-12eb-4cac-807f-c5d981ca87f3
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 535
+    y: 198
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions:
+  - exit
+  text: Just hold on a bit. This is so you can meet your family.
+  child: 
+  speaker: Ghost Binder

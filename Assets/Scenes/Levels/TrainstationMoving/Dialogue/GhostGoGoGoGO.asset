@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7194675351295348719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: dc72fe08-20aa-4b9e-bd5e-742ee7b83e3d
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 282
+    y: 77
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions: []
+  text: "Even if I miss it, even if I doubt\u2014\r\nThat girl with the cake?"
+  child: 7b99b68d-ef2f-446c-b89f-9905e5b2dec4
+  speaker: Miyu
+--- !u!114 &-2666537047944515308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 7b99b68d-ef2f-446c-b89f-9905e5b2dec4
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 548
+    y: 143
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions:
+  - Next
+  - Next
+  text: "She\u2019d want me to go."
+  child: 
+  speaker: Miyu
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0128aa92babf3fd4e9cf4beb0d51198e, type: 3}
+  m_Name: GhostGoGoGoGO
+  m_EditorClassIdentifier: 
+  dialogueSpeakers:
+  - You
+  - Miyu
+  dialogueNodes:
+  - {fileID: 1272631402270421841}
+  - {fileID: -7194675351295348719}
+  - {fileID: -2666537047944515308}
+  replyNodes: []
+--- !u!114 &1272631402270421841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: ac9ea053-4400-48c5-af34-659d2180941c
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions: []
+  text: "Let\u2019s go. We\u2019re not turning back."
+  child: dc72fe08-20aa-4b9e-bd5e-742ee7b83e3d
+  speaker: Miyu

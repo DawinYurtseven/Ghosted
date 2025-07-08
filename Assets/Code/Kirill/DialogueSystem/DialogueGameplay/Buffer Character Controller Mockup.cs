@@ -422,7 +422,7 @@ public class BufferCharacterControllerMockup : MonoBehaviour
                     target.Bind();
                     break;
                 case talismanMode.emotions:
-                    //target.EvokeEmotion(talismanEmotion, gameObject);
+
                     break;
             }
             print(target.name);

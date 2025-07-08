@@ -1,9 +1,6 @@
-using System;
 using System.Collections;
 using TMPro;
 using UniRx;
-using UniRx.Triggers;
-using Unity.VisualScripting;
 using UnityEngine;
 using Image = UnityEngine.UI.Image;
 
@@ -16,11 +13,26 @@ public class TalismanTargetMock : MonoBehaviour
     Camera cam;
     Collider objCollider;
     Image lockOnImageComponent;
-
-    void Start()
+    
+    private void Start()
     {
         cam = Camera.main;
-        objCollider =  GetComponent<Collider>();
+        if (!cam)
+        {
+            Debug.LogError("No main camera found. Please assign a camera with the 'MainCamera' tag.");
+            return;
+        }
+        
+        objCollider = GetComponent<Collider>();
+        if (!objCollider)
+        {
+            Debug.LogError("No collider found on the TalismanTargetMock object.");
+            return;
+        }
+
+        lockOnImageComponent = lockOnImage.GetComponent<Image>();
+        
+        // Start checking visibility
         StartCoroutine(CheckAvailability());
         
         //Emotion subscribe
@@ -29,14 +41,18 @@ public class TalismanTargetMock : MonoBehaviour
             {
                 if (!locked) currentEmotion = emotion;
                 surroundEmotion = emotion;
-                EmotionalBehaivour();
+                EmotionalBehaviour();
             });
+        EmotionalBehaviour();
     }
     
     private void OnEnable()
     {
         lockOnImage = lockOnImage.GetComponent<Image>();
         emotionText.text = currentEmotion.ToString();
+        
+        //copied from start but test first cam = Camera.main;
+        objCollider =  GetComponent<Collider>();
     }
 
 
@@ -88,6 +104,17 @@ public class TalismanTargetMock : MonoBehaviour
         lockOnImage.color = Color.white;
     }
 
+    public void turnOff()
+    {
+        interact = false;
+        lockOnImage.enabled = false;
+    }
+    
+    public void turnOn()
+    {
+        lockOnImage.enabled = true;
+    }
+
     #endregion
     
     #region Emotion
@@ -97,44 +124,60 @@ public class TalismanTargetMock : MonoBehaviour
      * the emotion itself will be declared in the singleton
      * 
      */
-    private Emotion currentEmotion, surroundEmotion;
-    private bool locked;
+    protected Emotion currentEmotion;
+    protected Emotion surroundEmotion;
+    protected bool locked;
     [SerializeField] private TextMeshProUGUI emotionText;
-
+    
+    public bool GetLocked()
+    {
+        return locked;
+    }
     private void ResetEmotion()
     {
-        Physics.IgnoreCollision(GameObject.FindWithTag("Player").GetComponent<Collider>(), GetComponent<Collider>(), false);
+        //work on fear properly with ignore tags maybe? or just cheat like now if objects other than player should fall through
+        //Physics.IgnoreCollision(GameObject.FindWithTag("Player").GetComponent<Collider>(), GetComponent<Collider>(), false);
         locked = false;
     }
 
     public void ResetObject()
     {
         currentEmotion = surroundEmotion;
-        EmotionalBehaivour();
+        EmotionalBehaviour();
     }
-    
+
     private void EmotionalBehaivour()
     {
-        ResetEmotion();
-        switch (currentEmotion)
+        Debug.Log("Doing smth?");
+    }
+
+    protected virtual void EmotionalBehaviour()
+    {
+        //ResetEmotion();
+        /*switch (currentEmotion)
         {
-            case Emotion.Lonely:
+            case Emotion.Fear:
+                gameObject.AddComponent<Fear>();
                 Physics.IgnoreCollision(GameObject.FindWithTag("Player").GetComponent<Collider>(), GetComponent<Collider>(), true );
                 emotionText.text = "Lonely";
                 //copy code for seethrough material
                 break;
             case Emotion.Joy:
+                gameObject.AddComponent<Joy>();
                 emotionText.text = "Joy";
+                break;
+            case Emotion.Fear:
+                emotionText.text = "Fear";
                 break;
             default:
                 emotionText.text = "";
                 break;
-        }
+        }*/
     }
 
-    public void Bind()
+    public virtual void Bind()
     {
-        print("bind");
+        print("Target bind");
         if (locked)
         {
             currentEmotion = surroundEmotion;
@@ -146,12 +189,7 @@ public class TalismanTargetMock : MonoBehaviour
         }
     }
 
-    public void EvokeEmotion(Emotion emotion)
-    {
-        currentEmotion = emotion;
-        EmotionalBehaivour();
-    }
-
     #endregion
-
+    
+    
 }

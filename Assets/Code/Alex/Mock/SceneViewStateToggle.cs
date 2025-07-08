@@ -1,20 +1,21 @@
 ﻿using UnityEditor;
+using UnityEditor.UIElements;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 [InitializeOnLoad]
 public static class SceneViewStateToggle
 {
-static GameObject stateJoy;
+    static GameObject stateJoy;
     static GameObject stateFear;
     static bool toggleState = false;
 
     static SceneViewStateToggle()
     {
         // Search for objects named "Joy" and "Fear" when the editor starts or scene view is updated
-        FindObjectsInScene();
-
-        // Listen to the SceneView GUI updates
-        SceneView.duringSceneGui += OnSceneGUI;
+        if(FindObjectsInScene()) 
+            // Listen to the SceneView GUI updates
+            SceneView.duringSceneGui += OnSceneGUI;
     }
 
     private static void OnSceneGUI(SceneView sceneView)
@@ -49,7 +50,8 @@ static GameObject stateJoy;
             }
             else
             {
-                EditorGUILayout.HelpBox("Couldn't find both 'Joy' and 'Fear' objects in the scene.", MessageType.Warning);
+                EditorGUILayout.HelpBox("Couldn't find both 'Joy' and 'Fear' objects in the scene.",
+                    MessageType.Warning);
             }
         }
 
@@ -57,7 +59,7 @@ static GameObject stateJoy;
         Handles.EndGUI();
     }
 
-    private static void FindObjectsInScene()
+    private static bool FindObjectsInScene()
     {
         // Find both active and inactive objects with the specified name
         GameObject[] allObjects = GameObject.FindObjectsOfType<GameObject>(true); // True to include inactive objects
@@ -78,8 +80,21 @@ static GameObject stateJoy;
 
         if (stateJoy == null)
             Debug.LogWarning("No GameObject named 'Joy' found in the scene.");
-        
+
         if (stateFear == null)
             Debug.LogWarning("No GameObject named 'Fear' found in the scene.");
+        return stateJoy != null && stateFear != null;
     }
 }
+
+/*
+[CustomEditor(typeof(SceneViewStateToggle))]
+public class SceneViewStateToggleEditor : Editor
+{
+
+    public override VisualElement CreateInspectorGUI()
+    {
+        VisualElement root = new VisualElement();
+        root.Add(new PropertyField(GameObject));
+    }
+}*/

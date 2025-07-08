@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7242468869153476384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: e17e36cd-02ea-4b2e-9c62-bc0aa0c95f3c
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 50
+    y: 102
+    width: 200
+    height: 80
+  onEnterActions:
+  - enter
+  onExitActions: []
+  text: How can you use these talismans to help me?
+  child: ac29ce5e-07d2-47dd-8261-331206e3c334
+  speaker: Miyu
+--- !u!114 &-1325367603844826908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 59ecb59e-c197-4c4a-bb3a-46bb0572c3ed
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 593
+    y: 159
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions:
+  - exit
+  text: I think I can help you with that!
+  child: 
+  speaker: Miyu
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0128aa92babf3fd4e9cf4beb0d51198e, type: 3}
+  m_Name: OutsideCakeDialogue
+  m_EditorClassIdentifier: 
+  dialogueSpeakers:
+  - Ghost Binder
+  - Miyu
+  dialogueNodes:
+  - {fileID: -7242468869153476384}
+  - {fileID: 5071167461661433999}
+  - {fileID: -1325367603844826908}
+  replyNodes: []
+--- !u!114 &5071167461661433999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: ac29ce5e-07d2-47dd-8261-331206e3c334
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 276
+    y: 92
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions: []
+  text: First, I need to find a shrine. Once I do, I can show you.
+  child: 59ecb59e-c197-4c4a-bb3a-46bb0572c3ed
+  speaker: Ghost Binder

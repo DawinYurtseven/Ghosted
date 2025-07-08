@@ -8,17 +8,17 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Black
-  m_Shader: {fileID: 4800000, guid: 6b008335f0e4d7345bc97ca7fa6aa2a8, type: 3}
+  m_Shader: {fileID: 4800000, guid: 650dd9526735d5b46b79224bc6e94025, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
-  - BACKFACE_LIGHTING
+  m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap: {}
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
@@ -100,6 +100,7 @@ Material:
     - _BackfaceLighting: 1
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
+    - _BlendOp: 0
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
@@ -125,6 +126,7 @@ Material:
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
+    - _SampleGI: 0
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _Specular: 0
@@ -143,15 +145,15 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Color: {r: 0, g: 0, b: 0, a: 1}
+    - _BaseColor: {r: 0.2, g: 0.14509805, b: 0.09803922, a: 1}
+    - _Color: {r: 0.19999996, g: 0.145098, b: 0.09803919, a: 1}
     - _DarkTint: {r: 0.16981131, g: 0.16981131, b: 0.16981131, a: 1}
     - _DarkTone: {r: 0.049999982, g: 0.049999982, b: 0.19999996, a: 1}
     - _DiffuseColour: {r: 0.10943389, g: 0.10943389, b: 0.10943389, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _EmissiveColour: {r: 1, g: 1, b: 1, a: 1}
     - _Highlight: {r: 1, g: 1, b: 1, a: 1}
-    - _LightTint: {r: 0.5320754, g: 0.5320754, b: 0.5320754, a: 1}
+    - _LightTint: {r: 0.18867922, g: 0.18244925, b: 0.18244925, a: 1}
     - _LightTone: {r: 0.8, g: 0.85, b: 0.95, a: 1}
     - _MidDarkTone: {r: 0.09999997, g: 0.09999997, b: 0.29999998, a: 1}
     - _MidLightTone: {r: 0.5, g: 0.6, b: 0.9, a: 1}
