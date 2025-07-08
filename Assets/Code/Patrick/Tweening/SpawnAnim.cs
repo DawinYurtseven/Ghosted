@@ -109,6 +109,23 @@ public class SpawnAnim : MonoBehaviour
         return seq;
     }
     
+    public static Sequence Wiggle(Transform t, float duration, float strength=10f)
+    {
+        if(strength <= 0 || duration <= 0)
+        {
+            Debug.LogWarning("Invalid parameters for wiggle animation!");
+            return null;
+        }
+        
+        Sequence wiggle = DOTween.Sequence();
+
+        wiggle.Join(t.DOShakeRotation(duration, strength, vibrato: 10, randomness: 90))
+            .Join(t.DOShakeRotation(duration, strength, vibrato: 10, randomness: 90))
+            .Join(t.DOShakeRotation(duration, strength, vibrato: 10, randomness: 90));
+
+        return wiggle;
+    }
+    
     public static void rotateTo(Transform t, Transform target, Vector3 axis, float duration = 0.5f)
     {
         if (t == null)
@@ -190,5 +207,6 @@ public class SpawnAnim : MonoBehaviour
             changeLayerTo(child, layer);
         }
     }
+    
 }
 

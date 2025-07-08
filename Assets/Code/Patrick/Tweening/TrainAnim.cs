@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Splines;
 
@@ -6,9 +7,11 @@ public class TrainAnim : MonoBehaviour
     public GameObject train;
     public SplineAnimate train2Anim;
     public float trainDelay = 0.0f; // Delay before the train starts moving
-    public bool isTrainRunning = false;
+    private bool IsTrainRunning = false;
     
-    // TODO: implement using the spline system
+    private float wiggleDuration = 1f;
+    private float wiggleStrength = 1f;
+
     public void StartTrain(bool deleteOnFinish = false)
     {
         if (train == null || train2Anim == null)
@@ -17,19 +20,21 @@ public class TrainAnim : MonoBehaviour
             return;
         }
 
-        if (!isTrainRunning)
+        if (!this.IsTrainRunning)
         {
-            isTrainRunning = true;
+            this.IsTrainRunning = true;
             train.SetActive(true);
             
-            //TODO
+            Debug.Log("I am: " + gameObject.name+ " with delay: " + trainDelay);
+            
             train2Anim.Play();
             train2Anim.Completed += () =>
             {
-                isTrainRunning = false;
+                this.IsTrainRunning = false;
                 if (deleteOnFinish)
                 {
                     Destroy(train);
+                    Destroy(train2Anim);
                     Debug.Log("Train finished moving and was destroyed.");
                 }
                 else
@@ -41,8 +46,44 @@ public class TrainAnim : MonoBehaviour
         }
         else
         {
-            Debug.Log("Train is already running.");
+            Debug.Log("Train " + gameObject.name + "is already running.");
         }
     }
-    
+
+    // a method that first wiggles and then starts the train
+    public void StartWithWiggle(bool deleteOnFinish = false)
+    {
+        if (train == null)
+        {
+            Debug.LogWarning("Train not set!");
+            return;
+        }
+        
+        if (!this.IsTrainRunning)
+        {
+            // wait for the trainDelay before starting the train
+            DOVirtual.DelayedCall(trainDelay, animateTrainBreak);   
+        }
+        else
+        {
+            Debug.Log("Train " + gameObject.name + "is already running:" + this.IsTrainRunning);
+        }
+    }
+
+    private void animateTrainBreak()
+    {
+        train.SetActive(true);
+        Sequence s = SpawnAnim.Wiggle(train.transform, wiggleDuration, wiggleStrength);
+        
+        s.onComplete += () =>
+        {
+            StartTrain();
+        };
+        
+        // sets the isTrainRunning to true itself
+        train2Anim.Completed += () =>
+        {
+            s = SpawnAnim.Wiggle(train.transform, wiggleDuration, wiggleStrength);
+        };
+    }
 }
