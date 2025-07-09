@@ -6,10 +6,14 @@ using TMPro;
 using UniRx;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Rigidbody))]
 public class CharacterControllerMockup : MonoBehaviour
 {
+    //TODO: ADD fmod and animations 
+    
+    
     private static readonly int Grounded = Animator.StringToHash("grounded");
     private static readonly int Speed = Animator.StringToHash("Speed");
     private static readonly int Jumping = Animator.StringToHash("jump");
@@ -44,16 +48,6 @@ public class CharacterControllerMockup : MonoBehaviour
 
             target = talisman;
         });
-        talismanModetext.text = tMode.ToString();
-        if (tMode == talismanMode.bind)
-        {
-            talismanEmotionText.enabled = false;
-        }
-        else
-        {
-            talismanEmotionText.enabled = true;
-            talismanEmotionText.text = talismanEmotion.ToString();
-        }
     }
 
     private void Update()
@@ -502,8 +496,8 @@ public class CharacterControllerMockup : MonoBehaviour
         //Same as for dialogues 
         if (Physics.SphereCast(checkFrom.position, 1f, checkFrom.forward, out var hit, interactDistanceAltar))
         {
-            if (hit.collider.TryGetComponent(typeof(AltarMock), out var altar) &&
-                hit.collider.CompareTag("Altar") && altar != tempAltar)
+            if (hit.collider.CompareTag("Altar") && hit.collider.TryGetComponent(typeof(AltarMock), out var altar) &&
+                 altar != tempAltar)
             {
                 if (tempAltar)
                 {

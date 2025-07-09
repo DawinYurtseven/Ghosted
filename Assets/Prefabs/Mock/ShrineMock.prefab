@@ -2584,6 +2584,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5881375035088986823}
   - component: {fileID: 9058015461321030218}
+  - component: {fileID: 6213701877804845979}
   m_Layer: 11
   m_Name: AreaInteraction
   m_TagString: Altar
@@ -2627,6 +2628,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.48913252, y: 2.1589375, z: 1.0295899}
   m_Center: {x: 0.25543374, y: 1.0314131, z: 0.4651531}
+--- !u!114 &6213701877804845979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3105396329337085171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d02187302ab41de47ab0c5e932c8e2cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiHint: {fileID: 973927859180338982}
 --- !u!1 &3571206615242385029
 GameObject:
   m_ObjectHideFlags: 0
@@ -7775,7 +7789,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8744146259447925201}
-  - component: {fileID: 43065243361153285}
   - component: {fileID: 6664061378530102437}
   m_Layer: 11
   m_Name: ShrineMock
@@ -7814,19 +7827,6 @@ Transform:
   - {fileID: 7052184148387019776}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &43065243361153285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6148870298517556057}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d02187302ab41de47ab0c5e932c8e2cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  uiHint: {fileID: 973927859180338982}
 --- !u!65 &6664061378530102437
 BoxCollider:
   m_ObjectHideFlags: 0
