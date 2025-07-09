@@ -55,7 +55,8 @@ public class SpawnAnim : MonoBehaviour
         {
             /// Show + animate in
             cg.alpha = 0;
-
+            
+            t.localScale = Vector3.zero; // Start from zero scale
             t.DOScale(Vector3.one, animDuration).SetEase(Ease.OutBack);
             cg.DOFade(1, animDuration);
             
