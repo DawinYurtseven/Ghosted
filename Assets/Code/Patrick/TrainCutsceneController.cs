@@ -21,17 +21,17 @@ public class TrainCutsceneController : MonoBehaviour
     private int trainSceneCount = 0;        //keep track (pun intended)
     private void OnEnable()
     {
-        CutSceneTrigger.OnCutScenePlayerTriggered += TrainCutscene;
-        CutSceneTrigger.OnCutSceneTrainTriggered += exitTrain;
+        //CutSceneTrigger.OnCutScenePlayerTriggered += TrainCutscene;
+        //CutSceneTrigger.OnCutSceneTrainTriggered += exitTrain;
     }
 
     private void OnDisable()
     {
-        CutSceneTrigger.OnCutScenePlayerTriggered -= TrainCutscene;
-        CutSceneTrigger.OnCutSceneTrainTriggered -= exitTrain;
+        //CutSceneTrigger.OnCutScenePlayerTriggered -= TrainCutscene;
+        //CutSceneTrigger.OnCutSceneTrainTriggered -= exitTrain;
     }
 
-    private void TrainCutscene(CutSceneName name)
+    /*private void TrainCutscene(CutSceneName name)
     {
         Debug.Log("Triggered " + name);
         
@@ -62,5 +62,5 @@ public class TrainCutsceneController : MonoBehaviour
             player.transform.position = playerSpawn.position;
             player.GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
-    }
+    }*/
 }

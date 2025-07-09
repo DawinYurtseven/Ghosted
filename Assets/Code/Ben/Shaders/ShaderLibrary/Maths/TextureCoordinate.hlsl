@@ -1,7 +1,7 @@
 #ifndef INCLUDE_TEXTURECOORDINATES
 #define INCLUDE_TEXTURECOORDINATES
 
-half3 GetTextureSpace(int space, float3 normal, float3 localPos, float2 uv)
+half3 GetTextureSpace(int space, float3 normal, float3 localPos, float3 worldPos, float2 uv)
 {
     switch (space)
     {
@@ -17,6 +17,7 @@ half3 GetTextureSpace(int space, float3 normal, float3 localPos, float2 uv)
     case 1: return normal;
     case 2: return float3(uv, 0.0);
     case 3: return localPos;
+    case 4: return worldPos;
     default: return float3(0.0, 0.0, 0.0);
     }
 }
