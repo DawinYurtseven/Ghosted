@@ -312,7 +312,7 @@ GameObject:
   - component: {fileID: 7720683292139921320}
   - component: {fileID: 2503532681605587641}
   - component: {fileID: 7660506832019550942}
-  - component: {fileID: 4159515889762125645}
+  - component: {fileID: 5369844143972416732}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -359,9 +359,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd6043bde05a7fc4cba197d06915c1e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damping: {x: 0, y: 0, z: 0}
+  Damping: {x: 0, y: 1.25, z: 0}
   ShoulderOffset: {x: 0, y: 0, z: 0}
-  VerticalArmLength: 2.5
+  VerticalArmLength: 1
   CameraSide: 1
   CameraDistance: 5
   CameraCollisionFilter:
@@ -371,7 +371,7 @@ MonoBehaviour:
   CameraRadius: 0.2
   DampingIntoCollision: 0
   DampingFromCollision: 2
---- !u!114 &4159515889762125645
+--- !u!114 &5369844143972416732
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -380,9 +380,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6135456547889085344}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e8b78ac948f05a46a6d8339a503172b, type: 3}
+  m_Script: {fileID: 11500000, guid: a4c41ac9245b87c4192012080077d830, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Damping: 0
 --- !u!1 &6993583295871193045
 GameObject:
   m_ObjectHideFlags: 0
@@ -692,26 +693,15 @@ MonoBehaviour:
   lookAtPivot: {fileID: 2058017940432768295}
   cameraDirection: {x: 0, y: 0}
   cameraSpeed: 70
-  CameraShoulderOffset: {x: 0, y: 0, z: 0}
-  CameraShoulderLockOnOffset: {x: 2, y: 2, z: 0}
-  strifing: 0
   xAxisMin: -60
   xAxisMax: 60
-  xAxisMinLock: 0
-  xAxisMaxLock: 0
   jumpStrength: 30
   fallStrength: 100
   groundCheckDistance: 1.5
   coyoteTime: 0.2
   coyoteJumped: 0
   isGrounded: 1
-  dashSpeed: 50
-  lastInput: {x: 0, y: 0, z: 0}
-  dashed: 0
-  dashedCooldown: 0
-  lockOnRange: 50
-  camera: {fileID: 8104099331024968956}
-  cameraZoomSpeed: 0.2
+  jumpPressed: 0
   target: {fileID: 0}
   currentTalismanBind: {fileID: 0}
   previousTargetTalismanObject: {fileID: 0}
@@ -719,7 +709,7 @@ MonoBehaviour:
   talismanEmotion: 0
   talismanModetext: {fileID: 3338305222778658250}
   talismanEmotionText: {fileID: 1508658487375581538}
-  TalismanPrefab: {fileID: 7056454499061255236, guid: 3860e4fd9a395ea479a9b8f9c798551e, type: 3}
+  talismanPrefab: {fileID: 0}
   maxTalismans: 3
   talismansUsed: {fileID: 4342936615223942910}
   lockedObjects: []
@@ -903,6 +893,18 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: b7cd53a8-5467-48fd-bfd6-9780e919d5e7
     m_ActionName: Dialogue/NextLine[/Keyboard/space,/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1658e4bd-197d-42d0-84a7-6b57382ed856
+    m_ActionName: UI/Navigate[/Keyboard/upArrow,/Keyboard/downArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a9d39217-afb7-4d2d-9d9b-c06cf447bc54
+    m_ActionName: UI/Submit[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b2bfc8c5-ece9-44e2-8520-351967310c58
+    m_ActionName: UI/AdjustValue[/Keyboard/leftArrow,/Keyboard/rightArrow]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Character Control
@@ -1343,8 +1345,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8732294338570935560}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.17067234, y: 0, z: 0, w: 0.98532784}
-  m_LocalPosition: {x: 0, y: 2.5, z: -5}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

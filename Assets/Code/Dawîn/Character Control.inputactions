@@ -313,7 +313,7 @@
                     "id": "11291d00-87f2-43a5-9cb2-f747bbe3dbfb",
                     "path": "2DVector(mode=2)",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "NormalizeVector2,ScaleVector2(x=4,y=4)",
                     "groups": "",
                     "action": "CameraMove",
                     "isComposite": true,
@@ -413,7 +413,7 @@
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";MK",
                     "action": "Throw Talisman",
                     "isComposite": false,
                     "isPartOfComposite": false
