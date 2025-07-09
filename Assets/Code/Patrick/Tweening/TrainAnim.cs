@@ -8,6 +8,8 @@ public class TrainAnim : MonoBehaviour
     public SplineAnimate train2Anim;
     public float trainDelay = 0.0f; // Delay before the train starts moving
     private bool IsTrainRunning = false;
+
+    //[SerializeField] private SpawnAnim _spawnAnim;
     
     private float wiggleDuration = 1f;
     private float wiggleStrength = 1f;
@@ -50,6 +52,7 @@ public class TrainAnim : MonoBehaviour
         }
     }
 
+    // Specialized mehtods for one thing only
     // a method that first wiggles and then starts the train
     public void StartWithWiggle(bool deleteOnFinish = false)
     {

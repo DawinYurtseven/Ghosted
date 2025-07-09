@@ -3,10 +3,17 @@ using DG.Tweening;
 
 public class SpawnAnim : MonoBehaviour
 {
+    [Header("Spawn Animation Settings")]
+    [Tooltip("The GameObject to animate. If not set, the script's GameObject will be used.")]
     [SerializeField] private GameObject obj;
     [SerializeField] private Transform spawnPoint;
-    [SerializeField] private float animDuration = 0.5f;
+    [SerializeField] private float animDuration = 1f;
     private CanvasGroup cg;
+    
+    [Header("Spawn Many")]
+    [SerializeField] private GameObject[] spawnObjs;
+    private float delay = 9f;
+    
     
     // Set all required Attributes
     private void Awake()
@@ -56,27 +63,20 @@ public class SpawnAnim : MonoBehaviour
         }
         else
         {
-            // Animate out
-            t.DOScale(Vector3.zero, animDuration).SetEase(Ease.InBack);
-            cg.DOFade(0, animDuration).OnComplete(() =>
-            {
-                obj.SetActive(false);
-            });
-
-            Debug.Log("Deactivating obj");
+            animateOut(this.gameObject, animDuration);
         }
     }
     
     // Spawn many objects, if all objects have a SpawnAnim, they will use that spawn point
-    public void SpawnMany(GameObject[] objects, bool state)
+    public void SpawnMany(bool state)
     {
-        if (objects == null || objects.Length <= 0)
+        if (spawnObjs == null || spawnObjs.Length <= 0)
         {
             Debug.LogWarning("No game objects to spawn!");
             return;
         }
         
-        foreach (GameObject obj in objects)
+        foreach (GameObject obj in spawnObjs)
         {
             SpawnAnim anim = obj.GetComponent<SpawnAnim>();
             if (anim == null)
@@ -86,6 +86,46 @@ public class SpawnAnim : MonoBehaviour
             }
             anim.Spawn(state);
         }
+    }
+
+    public void SpawnManyAfter(bool state)
+    {
+        DOVirtual.DelayedCall(delay, () => SpawnMany(state));
+    }
+    
+    public static Sequence animateOut(GameObject obj, float animDuration = 0.6f)
+    {
+        if (obj == null)
+        {
+            Debug.LogWarning("No transform to animate out!");
+            return null;
+        }
+
+        var cg = obj.GetComponent<CanvasGroup>();
+        if (cg == null)
+            cg = obj.AddComponent<CanvasGroup>();
+
+        Sequence seq = DOTween.Sequence();
+        seq.Append(obj.transform.DOScale(Vector3.zero, animDuration).SetEase(Ease.InBack));
+        seq.Join(cg.DOFade(0, animDuration)).OnComplete(() => obj.SetActive(false));
+
+        Debug.Log("Deactivating obj");
+        return seq;
+    }
+    
+    public static void Despawn(GameObject obj, float delay = 0.5f)
+    {
+        if (obj == null)
+        {
+            Debug.LogWarning("No game object to despawn!");
+            return;
+        }
+
+        Sequence s = animateOut(obj);
+        obj.SetActive(false);
+        s.SetDelay(delay);
+        s.OnComplete(() => Destroy(obj)); // Optionally destroy the object after animation
+        Debug.Log("Deleted obj");
     }
     
     public static Sequence moveTo(Transform t, Transform target, float duration = 0.5f, Ease ease = Ease.OutQuad, bool withRotation = true)
