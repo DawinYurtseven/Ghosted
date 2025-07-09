@@ -23,7 +23,7 @@ public class ObjectFade : MonoBehaviour
     public void doFading()
     {
         if (_materials == null) return;
-        
+
         // Animate alpha from 1 to 0
         // _material.DOFade(0f, fadeDuration).OnComplete(() =>
         // {

@@ -22,8 +22,8 @@ Shader "ForgottenColours/VFX/SelectionOverlay"
                 "LightMode"="UniversalForward"
             }
 
-            ZTest Off
-            ZTest Always // Always render on top
+            // ZTest Off
+            // ZTest Always // Always render on top
             Blend SrcAlpha OneMinusSrcAlpha // Standard alpha blending
 
             HLSLPROGRAM
