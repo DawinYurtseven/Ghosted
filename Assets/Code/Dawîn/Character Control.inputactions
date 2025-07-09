@@ -69,18 +69,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Place Talisman",
+                    "name": "Interact",
                     "type": "Button",
                     "id": "3e9d5ec9-d3fd-4904-96dd-455b8cbaf8ea",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "ChangeEmotion",
-                    "type": "Button",
-                    "id": "8022b709-e1a3-4d00-aecb-985eb1fcfd09",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -434,40 +425,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Place Talisman",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "1fd25037-bae9-4cb7-a562-977a5e55a276",
-                    "path": "<Keyboard>/f",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Place Talisman",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "775a06aa-76a5-49fe-81f7-b76c7dc55c4f",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ChangeEmotion",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "185cba29-67d2-4322-a03a-ca1765836350",
                     "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "ChangeEmotion",
+                    "groups": ";MK;Controller",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -490,6 +459,67 @@
                     "processors": "",
                     "groups": ";MK",
                     "action": "RecallTalismans",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Dialogue",
+            "id": "d67cae66-4d32-4fd7-bc4f-a4da8f437ec9",
+            "actions": [
+                {
+                    "name": "NextLine",
+                    "type": "Button",
+                    "id": "b7cd53a8-5467-48fd-bfd6-9780e919d5e7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "8240a0ae-57e3-468b-a177-a23da1be7178",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";MK",
+                    "action": "NextLine",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ca2a7219-3f39-4e2e-bb55-2584f2d1e1fa",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";MK",
+                    "action": "NextLine",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fb812777-6e6b-487f-affb-e650523388b5",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Controller",
+                    "action": "NextLine",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d882432e-2fea-466d-abe2-b7d84e34167a",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NextLine",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

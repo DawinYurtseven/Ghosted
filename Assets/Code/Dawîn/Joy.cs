@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Joy : EmotionAbstract
@@ -11,7 +9,8 @@ public class Joy : EmotionAbstract
     private Collider _col;
     private GameObject parent;
 
-
+    private bool isBound = false;
+    
     private void OnEnable()
     {
         //TODO: Rework later a bit to not be put on the collider object and instead on the parent object
@@ -44,11 +43,11 @@ public class Joy : EmotionAbstract
             }
         }
         Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
-        Debug.Log("Present!");
+        
         if (rb != null) {
             rb.velocity = Vector3.zero;
             rb.velocity += (Vector3.up * force);
-            Debug.Log("Added force!");
+            //Debug.Log("Added force!");
         }
     }
     //This is as far as I copy for now. I am sleepy and will work properly tomorrow. if you guys want to say anything, 
@@ -82,7 +81,7 @@ public class Joy : EmotionAbstract
             _col.enabled = currentEmotion == Emotion.Joy;
             _renderer.material = currentEmotion == Emotion.Joy ? turnedOn : turnedOff;
             locked = false;
-            
+
             if (specialEffect)
             {
                 specialEffect.SetActive(false);

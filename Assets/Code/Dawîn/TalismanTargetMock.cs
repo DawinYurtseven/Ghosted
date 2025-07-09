@@ -26,7 +26,7 @@ public class TalismanTargetMock : MonoBehaviour
         objCollider = GetComponent<Collider>();
         if (!objCollider)
         {
-            Debug.LogError("No collider found on the TalismanTargetMock object.");
+            Debug.LogError("No collider found on the TalismanTargetMock"+ this.name + " object.");
             return;
         }
 
@@ -144,11 +144,6 @@ public class TalismanTargetMock : MonoBehaviour
     {
         currentEmotion = surroundEmotion;
         EmotionalBehaviour();
-    }
-
-    private void EmotionalBehaivour()
-    {
-        Debug.Log("Doing smth?");
     }
 
     protected virtual void EmotionalBehaviour()

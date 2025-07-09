@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Eye
-  m_Shader: {fileID: 4800000, guid: 6b008335f0e4d7345bc97ca7fa6aa2a8, type: 3}
+  m_Shader: {fileID: 4800000, guid: efe22e2ed3a3d164681bf6f89d95859f, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
@@ -139,6 +139,7 @@ Material:
     - _FbmLacunarity: 1.85
     - _FbmRoughness: 0.97
     - _FbmScale: 10
+    - _FbmSmoothness: 0.5
     - _FresnelPower: 0.5
     - _GlossMapScale: 0
     - _Glossiness: 0
@@ -182,12 +183,14 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _DarkTint: {r: 1, g: 1, b: 1, a: 1}
     - _DarkTone: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _DiffuseColour: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _EmissiveColour: {r: 0, g: 1.4980394, b: 1.3644456, a: 1}
     - _FbmShift: {r: 8, g: 8, b: 8, a: 8}
     - _Highlight: {r: 1, g: 1, b: 1, a: 1}
+    - _LightTint: {r: 1, g: 1, b: 1, a: 1}
     - _LightTone: {r: 0.9490196, g: 0.9490196, b: 0.9490196, a: 1}
     - _MidDarkTone: {r: 0.29803923, g: 0.29803923, b: 0.29803923, a: 1}
     - _MidLightTone: {r: 0.9019608, g: 0.9019608, b: 0.9019608, a: 1}

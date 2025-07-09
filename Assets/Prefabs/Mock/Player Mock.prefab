@@ -680,6 +680,7 @@ MonoBehaviour:
     m_Bits: 3319
   animator: {fileID: 5301832819132237187}
   characterObject: {fileID: 3859801504133262998}
+  conversant: {fileID: 0}
   moveVector: {x: 0, y: 0}
   maxSpeed: 10
   acceleration: 20
@@ -700,11 +701,10 @@ MonoBehaviour:
   xAxisMaxLock: 0
   jumpStrength: 30
   fallStrength: 100
-  groundCheckDistance: 1.25
+  groundCheckDistance: 1.5
   coyoteTime: 0.2
   coyoteJumped: 0
   isGrounded: 1
-  jumpPressed: 0
   dashSpeed: 50
   lastInput: {x: 0, y: 0, z: 0}
   dashed: 0
@@ -859,7 +859,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6496545617559681279}
         m_TargetAssemblyTypeName: CharacterControllerMockup, Assembly-CSharp
-        m_MethodName: PlaceTalisman
+        m_MethodName: Interact
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -871,22 +871,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 3e9d5ec9-d3fd-4904-96dd-455b8cbaf8ea
     m_ActionName: Character Control/Place Talisman[/DualSenseGamepadHID/buttonWest,/Keyboard/f]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6496545617559681279}
-        m_TargetAssemblyTypeName: CharacterControllerMockup, Assembly-CSharp
-        m_MethodName: ChangeEmotionTalisman
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 8022b709-e1a3-4d00-aecb-985eb1fcfd09
-    m_ActionName: Character Control/ChangeEmotion[/DualSenseGamepadHID/buttonEast,/Keyboard/e]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6496545617559681279}
@@ -903,6 +887,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 07a540c0-ebfc-429a-bf58-0f234e414c53
     m_ActionName: Character Control/RecallTalismans[/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2507525355676472002}
+        m_TargetAssemblyTypeName: Ghosted.Dialogue.PlayerConversant, Assembly-CSharp
+        m_MethodName: Next
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b7cd53a8-5467-48fd-bfd6-9780e919d5e7
+    m_ActionName: Dialogue/NextLine[/Keyboard/space,/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Character Control

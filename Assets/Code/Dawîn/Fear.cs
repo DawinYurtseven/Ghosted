@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Fear : EmotionAbstract
@@ -10,7 +8,7 @@ public class Fear : EmotionAbstract
     public bool lockedInFear = false;
     protected override void EmotionalBehaviour()
     {
-        base.EmotionalBehaviour();
+        base.EmotionalBehaviour();  //does nothing, is commented out in base class
         if (!locked) {
             if (surroundEmotion == Emotion.Fear) {
                 closedState.SetActive(false);
@@ -27,6 +25,7 @@ public class Fear : EmotionAbstract
     public override void Bind()
     {
         if (locked) {
+            Debug.Log("Unbinding " + gameObject.name + " from fear");
             currentEmotion = surroundEmotion;
             closedState.SetActive(currentEmotion != Emotion.Fear);
             openState.SetActive(currentEmotion == Emotion.Fear);
@@ -42,6 +41,7 @@ public class Fear : EmotionAbstract
         else {
             //Same as with joy, could be locked in any other state as well (just doesn't make a lot of sense)
             locked = true;
+            Debug.Log("Locked " + gameObject.name + " in fear");
             if (specialEffect) {
                 specialEffect.SetActive(true);
                 if (surroundEmotion == Emotion.Joy) {

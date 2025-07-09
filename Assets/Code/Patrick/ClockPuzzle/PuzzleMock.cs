@@ -6,7 +6,7 @@ public class PuzzleMock : MonoBehaviour
 {
     public int requiredSteps = 3;
     [SerializeField] private int[] correctOrder = {3,1,2};
-    private Queue<int> cache = new Queue<int>();
+    [SerializeField] private Queue<int> cache = new Queue<int>();
     public UnityEvent puzzleSolved;
     private int currentStep = -1;   // offset for the first registered step
     public bool isRepeatable = false;
@@ -43,7 +43,13 @@ public class PuzzleMock : MonoBehaviour
 
     private bool checkSolution()
     {
-        if (cache.Count != correctOrder.Length) return false;
+        if (cache.Count != correctOrder.Length)
+        {
+            Debug.Log("Puzzle not solved, wrong number of steps: " + cache.Count + " vs " + correctOrder.Length);
+            return false;
+        }
+        
+        
         int i = 0;
         foreach (var val in cache)
         {
@@ -65,7 +71,7 @@ public class PuzzleMock : MonoBehaviour
     {
         if (cache.Count > requiredSteps)
         {
-            while (cache.Count>requiredSteps)
+            while (cache.Count > requiredSteps)
             {
                 cache.Dequeue();
             }
