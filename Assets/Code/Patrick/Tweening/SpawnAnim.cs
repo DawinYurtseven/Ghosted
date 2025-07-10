@@ -53,7 +53,13 @@ public class SpawnAnim : MonoBehaviour
         Debug.Log("Got: " + state);
         if (state)
         {
-            /// Show + animate in
+            // Show + animate in
+            if (!cg)
+            {
+                Debug.Log("No CanvasGroup found, adding one");
+                cg = obj.AddComponent<CanvasGroup>();
+            }
+            
             cg.alpha = 0;
             
             t.localScale = Vector3.zero; // Start from zero scale

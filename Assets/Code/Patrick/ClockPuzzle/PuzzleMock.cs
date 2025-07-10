@@ -58,6 +58,7 @@ public class PuzzleMock : MonoBehaviour
         }
 
         wasPuzzleSolved = true;
+        //Debug.Log("Solved Puzzle!");
         return true;
     }
     
