@@ -14,7 +14,7 @@ public abstract class EmotionAbstract : TalismanTargetMock
     
     protected IEnumerator PlayAudioSequentially()
     {
-        Debug.Log("AudioSource");
+        //Debug.Log("AudioSource");
         if (bindingSFX != null)
         {
             bindingSFX.Play();

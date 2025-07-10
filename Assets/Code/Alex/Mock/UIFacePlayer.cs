@@ -28,14 +28,14 @@ public class UIFacePlayer : MonoBehaviour
     public void Show()
     {
         if (currentTween != null) currentTween.Kill();
-        Debug.Log("Show UI");
+        //Debug.Log("Show UI");
         currentTween = canvasGroup.DOFade(1f, fadeDuration);
     }
 
     public void Hide()
     {
         if (currentTween != null) currentTween.Kill();
-        Debug.Log("Hide UI");
+        //Debug.Log("Hide UI");
         currentTween = canvasGroup.DOFade(0f, fadeDuration);
     }
 }

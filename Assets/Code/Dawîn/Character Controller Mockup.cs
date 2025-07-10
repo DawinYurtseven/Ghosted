@@ -5,9 +5,7 @@ using Cinemachine;
 using Ghosted.Dialogue;
 using TMPro;
 using UniRx;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -615,8 +613,10 @@ public class CharacterControllerMockup : MonoBehaviour
 
     public void RecallTalismans(InputAction.CallbackContext context)
     {
-        if (tempAltar != null)
+        if (tempAltar != null && context.performed)
         {
+            Debug.Log("Recalling talismans");
+            
             foreach (TalismanTargetMock lockedObject in lockedObjects)
             {
                 lockedObject.Bind();
