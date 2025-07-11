@@ -31,9 +31,9 @@ half3 BlinnPhong(half3 n, half3 v, Light mainLight, half3 albedoTexture)
     half NdotL = max(dot(n, l), 0);
 
     half Ia = _k.x;
-    Ia = smoothstep(0.05,0.3,Ia);
+    Ia = smoothstep(0.05,0.1,Ia);
     half Id = _k.y * NdotL;
-    Id = smoothstep(0.05,0.3,Id);
+    Id = smoothstep(0.05,0.1,Id);
     half Is = 0;
 
     #ifdef SPECULAR
