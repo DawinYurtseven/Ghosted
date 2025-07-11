@@ -54,6 +54,11 @@ public class SpawnAnim : MonoBehaviour
         if (state)
         {
             /// Show + animate in
+            if (!cg)
+            {
+                cg = obj.AddComponent<CanvasGroup>();
+            }
+            
             cg.alpha = 0;
             
             t.localScale = Vector3.zero; // Start from zero scale
