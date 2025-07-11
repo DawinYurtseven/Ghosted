@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Joy : EmotionAbstract
 {
@@ -10,6 +11,8 @@ public class Joy : EmotionAbstract
     private GameObject parent;
 
     private bool isBound = false;
+    
+    public UnityEvent onJumpPadActivated;
     
     private void OnEnable()
     {
@@ -48,6 +51,8 @@ public class Joy : EmotionAbstract
             rb.velocity = Vector3.zero;
             rb.velocity += (Vector3.up * force);
             //Debug.Log("Added force!");
+            
+            onJumpPadActivated?.Invoke();
         }
     }
     //This is as far as I copy for now. I am sleepy and will work properly tomorrow. if you guys want to say anything, 

@@ -53,7 +53,7 @@ public class SpawnAnim : MonoBehaviour
         Debug.Log("Got: " + state);
         if (state)
         {
-            /// Show + animate in
+            // Show + animate in
             if (!cg)
             {
                 cg = obj.AddComponent<CanvasGroup>();
