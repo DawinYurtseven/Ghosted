@@ -157,6 +157,8 @@ public class CharacterControllerMockup : MonoBehaviour
 
     [SerializeField] private float xAxisMin, xAxisMax, xAxisMinLock, xAxisMaxLock;
 
+    [SerializeField] private Vector3 cameraDamping;
+
     public void Camera_Move(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -325,7 +327,8 @@ public class CharacterControllerMockup : MonoBehaviour
     #endregion
 
     #region Target System
-
+    
+    [Header("Target System")]
     [SerializeField] private int lockOnRange;
     [SerializeField] private new CinemachineVirtualCamera camera;
     [SerializeField] private float cameraZoomSpeed;
@@ -495,8 +498,8 @@ public class CharacterControllerMockup : MonoBehaviour
                 target.Bind();
                 thrownTalisman = Instantiate(TalismanPrefab, target.gameObject.transform.position,
                     Quaternion.LookRotation((transform.position - gameObject.transform.position).normalized));
-                //thrownTalisman.GetComponent<Talisman>().Initialize(tMode, talismanEmotion);
                 StartCoroutine(thrownTalisman.GetComponent<Talisman>().MoveTowardsPlayer(this));
+                animator.SetTrigger("call");
                 talismansUsed.text = "Talismans used: " + curTalismans + " / " + maxTalismans;
             }
 
@@ -504,19 +507,11 @@ public class CharacterControllerMockup : MonoBehaviour
             else
             {
                 if (curTalismans == maxTalismans) return;
-                //curTalsimans++;
                 animator.SetTrigger("Throw Talisman");
                 Vector3 lookPosition = new Vector3 (target.transform.position.x, characterObject.transform.position.y, target.transform.position.z);
                 characterObject.transform.LookAt(lookPosition);
-                /*lockedObjects.Add(target);
-                thrownTalisman = Instantiate(TalismanPrefab, gameObject.transform.position,
-                    Quaternion.LookRotation((target.transform.position - transform.position).normalized));
-                thrownTalisman.GetComponent<Talisman>().Initialize(tMode, talismanEmotion);
-                StartCoroutine(thrownTalisman.GetComponent<Talisman>().MoveTowards(target));*/
             }
-
-
-            //previousTargetTalismanObject = target;
+            
         }
     }
 
@@ -535,18 +530,19 @@ public class CharacterControllerMockup : MonoBehaviour
     #endregion
 
     #region Interactions
+    [Header("Interactions")]
     
     private TalismanTargetMock tempTar;
     public AltarMock tempAltar;
     
     // For Cutscene
     public static event Action firstUsageAltar;
-    public bool usedAltar = false;
+    [SerializeField] private bool usedAltar = false;
 
     [SerializeField] private int interactionRange = 10;
 
-    public float interactDistanceAltar = 3f;
-    public Transform checkFrom;
+    [SerializeField] private float interactDistanceAltar = 3f;
+    [SerializeField] private Transform checkFrom;
 
     private void CheckForInteractables()
     {
@@ -559,9 +555,10 @@ public class CharacterControllerMockup : MonoBehaviour
         //Same as for dialogues 
         Ray ray = new Ray(checkFrom.position, checkFrom.forward);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, interactDistanceAltar))
+        if (Physics.SphereCast(ray,1.5f, out hit, interactDistanceAltar))
         {
             //TalismanTargetMock tar = hit.collider.GetComponent<TalismanTargetMock>();
+            
             AltarMock altar = hit.collider.GetComponentInParent<AltarMock>();
             if (altar && hit.collider.CompareTag("Altar") && altar != tempAltar)
             {
@@ -569,8 +566,7 @@ public class CharacterControllerMockup : MonoBehaviour
                 {
                     tempAltar.turnOffHintAltar();
                 }
-                //print("altar");
-                tempAltar = (AltarMock)altar;
+                tempAltar = altar;
                 tempAltar.turnOnHintAltar();
             }
             else if (tempAltar != null)
@@ -586,7 +582,6 @@ public class CharacterControllerMockup : MonoBehaviour
         if (context.performed)
         {
             Debug.Log("E performed");
-            // if (tempTar == null && tempAltar == null) return;
             if (tempAltar != null)
             {
                 Debug.Log("Altar found");
@@ -602,12 +597,6 @@ public class CharacterControllerMockup : MonoBehaviour
             {
                 conversant.InteractDialogue();
             }
-
-            // if (previousTargetTalismanObject != null) previousTargetTalismanObject.ResetObject();
-            // tempTar.Bind();
-            //
-            // previousTargetTalismanObject = tempTar;
-            // print(previousTargetTalismanObject);
         }
     }
 
