@@ -8,7 +8,7 @@ public class MaterialChanger : MonoBehaviour
     [SerializeField] private Material joyMaterial, fearMaterial;
     private Renderer _renderer;
     
-    void Awake()
+    void Start()
     {
         
         _renderer = gameObject.GetComponent<MeshRenderer>();
@@ -18,17 +18,23 @@ public class MaterialChanger : MonoBehaviour
         EmotionSingletonMock.Instance.EmotionSubject
             .Subscribe(emotion =>
             {
-                switch (emotion)
-                {
-                    case Emotion.Joy: 
-                        _renderer.material = joyMaterial;
-                        break;
-                    case Emotion.Fear:
-                        _renderer.material = fearMaterial;
-                        break;
-                    default:
-                        break;
-                }
+                ChangeMaterial(emotion);
             });
+        ChangeMaterial(EmotionSingletonMock.Instance.getCurrentEmotion());
+    }
+
+    public void ChangeMaterial(Emotion emotion)
+    {
+        switch (emotion)
+        {
+            case Emotion.Joy: 
+                _renderer.material = joyMaterial;
+                break;
+            case Emotion.Fear:
+                _renderer.material = fearMaterial;
+                break;
+            default:
+                break;
+        }
     }
 }

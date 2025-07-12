@@ -25,7 +25,7 @@ namespace Ghosted.Dialogue {
         [SerializeField] private float interactDistance = 20f;
 
         private int playerLayer, layerMask;
-        private AIConversant dialogueAIConversant;
+        [SerializeField] private AIConversant dialogueAIConversant;
 
         void Awake()
         {
@@ -67,6 +67,7 @@ namespace Ghosted.Dialogue {
             currentDialogue = null;
             currentConversant = null;
             currentNode = null;
+            LeaveDialogue();
             
             
             StartCoroutine(SwitchInputMapDelayed("Character Control"));
@@ -98,6 +99,7 @@ namespace Ghosted.Dialogue {
             if (dialogueAIConversant != null)
             {
                 dialogueAIConversant.turnOffHint();
+                dialogueAIConversant = null;
             }
         }
 
