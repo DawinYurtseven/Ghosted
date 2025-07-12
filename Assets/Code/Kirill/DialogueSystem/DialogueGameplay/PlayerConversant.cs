@@ -83,6 +83,23 @@ namespace Ghosted.Dialogue {
         //
         //     Next();
         // }
+        
+        public void SetDialogue(AIConversant conversant)
+        {
+            if (dialogueAIConversant != null)
+            {
+                dialogueAIConversant.turnOffHint();
+            }
+            dialogueAIConversant = conversant;
+            dialogueAIConversant.turnOnHint();
+        }
+        public void LeaveDialogue()
+        {
+            if (dialogueAIConversant != null)
+            {
+                dialogueAIConversant.turnOffHint();
+            }
+        }
 
         // This is a moch function that has to be replaces with uniform interaction system
         public void InteractDialogue()
@@ -126,34 +143,34 @@ namespace Ghosted.Dialogue {
         void Update()
         {
             
-            Ray ray = new Ray(checkForDialoguefrom.position, checkForDialoguefrom.transform.forward);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, interactDistance, layerMask))
-            {
-                AIConversant aIConversant = hit.collider.GetComponent<AIConversant>();
-                if (aIConversant )
-                {
-                    if (aIConversant != dialogueAIConversant)
-                    {
-                        Debug.Log("Found new dialogue!");
-                        if (dialogueAIConversant != null)
-                        {
-                            dialogueAIConversant.turnOffHint();
-                        }
-                        dialogueAIConversant = aIConversant;
-                        dialogueAIConversant.turnOnHint();
-                    }
-
-                    return;
-                }
-            }
-            
-            if (dialogueAIConversant != null) 
-            {
-                dialogueAIConversant.turnOffHint();
-                
-                 dialogueAIConversant = null;
-            }
+            // Ray ray = new Ray(checkForDialoguefrom.position, checkForDialoguefrom.transform.forward);
+            // RaycastHit hit;
+            // if (Physics.Raycast(ray, out hit, interactDistance, layerMask))
+            // {
+            //     AIConversant aIConversant = hit.collider.GetComponent<AIConversant>();
+            //     if (aIConversant )
+            //     {
+            //         if (aIConversant != dialogueAIConversant)
+            //         {
+            //             Debug.Log("Found new dialogue!");
+            //             if (dialogueAIConversant != null)
+            //             {
+            //                 dialogueAIConversant.turnOffHint();
+            //             }
+            //             dialogueAIConversant = aIConversant;
+            //             dialogueAIConversant.turnOnHint();
+            //         }
+            //
+            //         return;
+            //     }
+            // }
+            //
+            // if (dialogueAIConversant != null) 
+            // {
+            //     dialogueAIConversant.turnOffHint();
+            //     
+            //      dialogueAIConversant = null;
+            // }
         }
 
         public void EnteredConversantArea(AreaConversant areaConversant)

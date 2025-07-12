@@ -9,7 +9,7 @@ namespace Ghosted.Dialogue
     public class AIConversant : Conversant
     {
 
-        public UIFacePlayer uiHint;
+        public UIInteractionHint uiHint;
 
         // Press e to interact, TODO: Combine with overall interact system
 
@@ -24,6 +24,7 @@ namespace Ghosted.Dialogue
         {
             if (uiHint != null)
             {
+                Debug.Log("Turn On Hint");
                 uiHint.Show();
             }
 
@@ -49,6 +50,23 @@ namespace Ghosted.Dialogue
             
             // Debug.Log("Now: " + this.dialogues);
             // Debug.Log("Current Dialogue");
+        }
+        
+        void OnTriggerEnter(Collider other)
+        {
+            PlayerConversant player = other.GetComponent<PlayerConversant>();
+            if (player != null)
+            {
+                player.SetDialogue(this);
+            }
+        }
+        void OnTriggerExit(Collider other)
+        {
+            PlayerConversant player = other.GetComponent<PlayerConversant>();
+            if (player != null)
+            {
+                player.LeaveDialogue();
+            }
         }
     }
 }
