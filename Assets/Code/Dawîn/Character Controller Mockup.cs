@@ -18,7 +18,8 @@ public class CharacterControllerMockup : MonoBehaviour
     private static readonly int Speed = Animator.StringToHash("Speed");
     private static readonly int Jumping = Animator.StringToHash("jump");
     private static readonly int Throw = Animator.StringToHash("Throw Talisman");
-    
+    private static readonly int Call = Animator.StringToHash("call");
+
     [Header("base values")]
     private Rigidbody _rb;
     [SerializeField] private LayerMask ground;
@@ -431,9 +432,10 @@ public class CharacterControllerMockup : MonoBehaviour
                 target.Bind();
                 _thrownTalisman = Instantiate(talismanPrefab, target.gameObject.transform.position,
                     Quaternion.LookRotation((transform.position - gameObject.transform.position).normalized));
-                StartCoroutine(thrownTalisman.GetComponent<Talisman>().MoveTowardsPlayer(this));
+                StartCoroutine(_thrownTalisman.GetComponent<Talisman>().MoveTowardsPlayer(this));
                 animator.SetTrigger("call");
-                talismansUsed.text = "Talismans used: " + curTalismans + " / " + maxTalismans;
+                talismansUsed.text = "Talismans used: " + _curTalismans + " / " + maxTalismans;
+                animator.SetTrigger(Call);
                 //thrownTalisman.GetComponent<Talisman>().Initialize(tMode, talismanEmotion);
                 StartCoroutine(_thrownTalisman.GetComponent<Talisman>().MoveTowardsPlayer(this));
                 talismansUsed.text = "Talismans used: " + _curTalismans + " / " + maxTalismans;
