@@ -22,8 +22,10 @@ public class JumpStopHand : MonoBehaviour
     public Material pressedMaterial; // Material to indicate pressed state
     
     [Header("Audio Settings")]
-    public AudioClip feedbackSound; // Sound to play when jumping on the clock hand
-        
+    public AudioSource feedbackSound; // Sound to play when jumping on the clock hand
+    public AudioSource releaseSFX;
+    public AudioSource solvedSFX;
+    
     private void Awake()
     {
         if(manager == null)
@@ -85,6 +87,9 @@ public class JumpStopHand : MonoBehaviour
             Sequence s = DOTween.Sequence();
             s.Append(animObj.transform.DOPunchPosition(Vector3.up * animJumpStrength, animDuration, 10, 0.5f));
             s.Join(animObj.transform.DOShakeRotation(animDuration, new Vector3(8, 0, 8), 10, 90));
+            
+            if(solvedSFX != null)
+                solvedSFX.Play();
         }
         else
         {
@@ -105,7 +110,16 @@ public class JumpStopHand : MonoBehaviour
         s.Append(indicator.transform.DOScaleY(animJumpStrength, 0.1f)).SetEase(Ease.OutBack);
         s.AppendInterval(delay);
         s.Append(indicator.transform.DOScaleY(1f, 0.5f).SetEase(Ease.OutBack));
-        s.AppendCallback(() => setMaterial(tempMaterial));
+        s.AppendCallback(() =>
+        {
+            setMaterial(tempMaterial);
+            if (releaseSFX != null)
+            {
+                releaseSFX.Play();
+            }
+        });
+        
+        playFeedbackSound();
     }
     
     private void setMaterial(Material mat)
@@ -131,6 +145,14 @@ public class JumpStopHand : MonoBehaviour
         {
             isHandRunning = true;
             Debug.Log("Started hand: " + _hand);
+        }
+    }
+
+    private void playFeedbackSound()
+    {
+        if (feedbackSound != null)
+        {
+            feedbackSound.Play();
         }
     }
 }
