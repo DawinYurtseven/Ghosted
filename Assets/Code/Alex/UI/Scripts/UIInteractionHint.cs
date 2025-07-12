@@ -8,12 +8,9 @@ public class UIInteractionHint : UIFacePlayer
     private Transform mainCamera;
     
     [SerializeField] private CanvasGroup canvasGroup_text;
-    [SerializeField] private float drawDuration = 1.0f;
-    
-    private Material brushMaterial; //Material with shader to appear from the left to the right
-    [SerializeField] private Image brushImage; 
+    [SerializeField] private BrushStroke stroke;
     private Tween currentTween;
-    private Tween drawTween;
+    
 
     public bool hasText = true;
 
@@ -21,22 +18,19 @@ public class UIInteractionHint : UIFacePlayer
     {
         canvasGroup.alpha = 0f;
         
-        
         if (hasText)
         {
-            if (!brushImage || !brushImage.material || !canvasGroup_text)
+            if (!stroke || !canvasGroup_text)
             {
                 Debug.Log("No text canvas found for interaction");
                 hasText = false;
             }
             else
             {
+                stroke.ResetStroke();
                 canvasGroup_text.alpha = 0f;
-                brushMaterial = Instantiate(brushImage.material);
-                brushImage.material = brushMaterial;
-                brushMaterial.SetFloat("_Progress", 0f);
+                
             }
-            
         }
     }
 
@@ -45,34 +39,23 @@ public class UIInteractionHint : UIFacePlayer
     {
         Debug.Log("Show UI");
         if (currentTween != null) currentTween.Kill();
-        if (drawTween != null) drawTween.Kill();
+        
         if (hasText)
         {
-            brushMaterial.SetFloat("_Progress", 0f);
+            stroke.ResetStroke();
             canvasGroup_text.alpha = 0f;
         }
+
         currentTween = canvasGroup.DOFade(1f, fadeDuration).OnComplete(() =>
         {
-            if (hasText)
-            { // make brush animation
-                drawTween = DOTween.To(
-                        () => brushMaterial.GetFloat("_Progress"),
-                        value => brushMaterial.SetFloat("_Progress", value),
-                        1f,
-                        drawDuration
-                    )
-                    .SetEase(Ease.Linear).OnComplete(() =>
-                    {
-                        canvasGroup_text.DOFade(1f, fadeDuration); 
-                    });
-            }
+            if (hasText) stroke.AnimateBrush(() => canvasGroup_text.DOFade(1f, fadeDuration));
         });
     }
 
     public void Hide()
     {
         if (currentTween != null) currentTween.Kill();
-        if (drawTween != null) drawTween.Kill();
+        
 
         Debug.Log("Hide UI");
 
@@ -82,7 +65,7 @@ public class UIInteractionHint : UIFacePlayer
                 // Reset brush stroke
                 if (hasText)
                 {
-                    brushMaterial.SetFloat("_Progress", 0f);
+                    stroke.ResetStroke();
                     canvasGroup_text.alpha = 0f;
                 }
             });

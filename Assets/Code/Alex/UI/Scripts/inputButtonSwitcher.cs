@@ -7,28 +7,45 @@ public class InputButtonSwitcher : MonoBehaviour
 {
     [Header("Sprites")]
     [SerializeField] private Sprite keyboardMouseSprite;
+
     [SerializeField] private Sprite gamepadSprite;
 
-    [Header("Input References")]
-    [SerializeField] private PlayerInput playerInput;
-
     private Image targetImage;
+
+    private bool subscribed = false;
 
     private void OnEnable()
     {
         if (inputManager.Instance != null)
+        {
             inputManager.Instance.InputChanged += OnInputChanged;
+            Debug.Log($"{gameObject.name} subscribed to InputChanged");
+            subscribed = true;
+        }
+            
     }
 
     private void OnDisable()
     {
-        if (inputManager.Instance != null)
+        if (inputManager.Instance != null && subscribed)
+        {
             inputManager.Instance.InputChanged -= OnInputChanged;
+            inputManager.Instance.InputChanged += OnInputChanged;
+            Debug.Log($"{gameObject.name} unsubscribed from InputChanged");
+            subscribed = false;
+        }
+            
     }
 
     void Start()
     {
         targetImage = GetComponent<Image>();
+        if (!subscribed && inputManager.Instance != null)
+        {
+            inputManager.Instance.InputChanged += OnInputChanged;
+            Debug.Log($"{gameObject.name} subscribed to InputChanged");
+            subscribed = true;
+        }
     }
 
     private void OnInputChanged(string scheme)

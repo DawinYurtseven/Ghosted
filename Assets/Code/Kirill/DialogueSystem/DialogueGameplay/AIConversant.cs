@@ -51,5 +51,22 @@ namespace Ghosted.Dialogue
             // Debug.Log("Now: " + this.dialogues);
             // Debug.Log("Current Dialogue");
         }
+        
+        void OnTriggerEnter(Collider other)
+        {
+            PlayerConversant player = other.GetComponent<PlayerConversant>();
+            if (player != null)
+            {
+                player.SetDialogue(this);
+            }
+        }
+        void OnTriggerExit(Collider other)
+        {
+            PlayerConversant player = other.GetComponent<PlayerConversant>();
+            if (player != null)
+            {
+                player.LeaveDialogue();
+            }
+        }
     }
 }

@@ -58,7 +58,7 @@ public class CharacterControllerMockup : MonoBehaviour
         //CameraControl
         CameraUpdate();
         //interactable check
-        CheckForInteractables();
+        //CheckForInteractables();
     }
 
     public void FixedUpdate()
@@ -550,14 +550,35 @@ public class CharacterControllerMockup : MonoBehaviour
     public float interactDistanceAltar = 3f;
     public Transform checkFrom;
 
-    private void CheckForInteractables()
+    public void SetAltar(AltarMock altar)
+    {
+        if (tempAltar != null)
+        {
+            tempAltar.turnOffHintAltar();
+        }
+        tempAltar = altar;
+        altar.turnOnHintAltar();
+    }
+
+    public void LeaveAltar()
     {
         if (tempAltar != null)
         {
             tempAltar.turnOffHintAltar();
             tempAltar = null;
         }
-
+    }
+    
+    
+    private void CheckForInteractables()
+    {
+        
+        if (tempAltar != null)
+        {
+            tempAltar.turnOffHintAltar();
+            tempAltar = null;
+        }
+        
         //Same as for dialogues 
         Ray ray = new Ray(checkFrom.position, checkFrom.forward);
         RaycastHit hit;
@@ -598,7 +619,7 @@ public class CharacterControllerMockup : MonoBehaviour
                     firstUsageAltar?.Invoke();
                 }
                 
-                tempAltar.ChangeEmotion(talismanEmotion);
+                tempAltar.InteractAltar();
             }
             else
             {

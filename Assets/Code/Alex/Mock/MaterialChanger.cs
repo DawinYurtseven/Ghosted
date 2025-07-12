@@ -8,7 +8,7 @@ public class MaterialChanger : MonoBehaviour
     [SerializeField] private Material joyMaterial, fearMaterial;
     private Renderer _renderer;
     
-    void Start()
+    void Awake()
     {
         
         _renderer = gameObject.GetComponent<MeshRenderer>();

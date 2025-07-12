@@ -470,7 +470,7 @@ public class BufferCharacterControllerMockup : MonoBehaviour
             if (tempAltar != null)
             {
                 print("sup");
-                tempAltar.ChangeEmotion(talismanEmotion);
+                tempAltar.InteractAltar();
                 return;
             }
             switch (tMode)
