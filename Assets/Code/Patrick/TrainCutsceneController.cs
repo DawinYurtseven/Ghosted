@@ -56,7 +56,10 @@ public class TrainCutsceneController : MonoBehaviour
         {
             train.GetComponent<SplineAnimate>().Container = spline;
             train.GetComponent<SplineAnimate>().Pause();
-            train.GetComponent<SplineAnimate>()?.Restart(false);
+            //train.GetComponent<SplineAnimate>()?.Restart(false);
+
+            Debug.Log("Stopped train");
+            
             playerCamera.Priority = 10;
             trainCamera.Priority = 0;
             player.transform.position = playerSpawn.position;
