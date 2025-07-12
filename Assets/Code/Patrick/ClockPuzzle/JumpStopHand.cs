@@ -21,6 +21,9 @@ public class JumpStopHand : MonoBehaviour
     [SerializeField] private float animDelay = 2f;
     public Material pressedMaterial; // Material to indicate pressed state
     
+    [Header("Audio Settings")]
+    public AudioClip feedbackSound; // Sound to play when jumping on the clock hand
+        
     private void Awake()
     {
         if(manager == null)
@@ -55,10 +58,12 @@ public class JumpStopHand : MonoBehaviour
         }
     }
     
-    void OnTriggerEnter()
+    void OnTriggerEnter(Collider other)
     {
-        if(!active)
+        if (!active || !other.CompareTag("Player"))
             return;
+
+        Debug.Log("Player jumped on clock hand: " + _hand);
         
         toggleHand();
         animate(false);

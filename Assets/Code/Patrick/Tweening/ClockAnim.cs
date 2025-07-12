@@ -28,9 +28,9 @@ public class ClockAnim : MonoBehaviour
     private Tween hourTween;
     private Tween minuteTween;
     private Tween secondTween;
-    private float hourOffset = 0f; // Offset for hour hand rotation
-    private float minuteOffset = 0f; // Offset for minute hand rotation
-    private float secondOffset = 0f; // Offset for second hand rotation
+    protected float hourOffset = 0f; // Offset for hour hand rotation
+    protected float minuteOffset = 0f; // Offset for minute hand rotation
+    protected float secondOffset = 0f; // Offset for second hand rotation
     
     private void Awake()
     {
@@ -41,7 +41,7 @@ public class ClockAnim : MonoBehaviour
         }
     }
     
-    void Start()
+    public virtual void Start()
     {
         hourOffset = hourHand.localRotation.eulerAngles.y;
         minuteOffset = minuteHand.localRotation.eulerAngles.y;
@@ -118,6 +118,24 @@ public class ClockAnim : MonoBehaviour
         isClockRunning = false;
         
         Debug.Log("Set time to: " + hour + ":" + minute + ":" + second);
+    }
+
+    public void setHand(ClockHand hand, int time)
+    {
+        
+        if (ClockHand.Hour == hand)
+        {
+            float hourRotation = (time % 12) * 30f; // 30 degrees per hour
+            hourHand.localRotation = Quaternion.Euler(rotationAxis * hourRotation);
+        }
+        else
+        {
+            float secondRotation = time * 6f; // 6 degrees per second
+            secondHand.localRotation = Quaternion.Euler(rotationAxis * secondRotation);
+        } 
+        
+        checkClockStopped();
+        Debug.Log("Set " + hand + " hand to: " + time);
     }
     
     public void stopHand(ClockHand hand)
@@ -238,7 +256,7 @@ public class ClockAnim : MonoBehaviour
     private Sequence WiggleHands(float duration)
     {
         float strength = 10f;
-
+        
         Sequence wiggle = DOTween.Sequence();
 
         wiggle.Join(hourHand.DOShakeRotation(duration, strength, vibrato: 10, randomness: 90))

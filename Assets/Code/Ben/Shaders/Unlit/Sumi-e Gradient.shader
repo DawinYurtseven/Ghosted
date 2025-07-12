@@ -6,6 +6,7 @@ Shader "ForgottenColours/Unlit/Sumi-E Gradient"
         [Header(Base Colours)][Space(10)]
         _LightTint("Light Tint", Color) = (1,1,1,1)
         _DarkTint("Dark Tint", Color) = (1,1,1,1)
+        _BaseTexture("Base Texture", 2D) = "white" {}
         _Alpha("Alpha", Range(0,1)) = 1
 
         [Toggle(SWITCH)] _Switch("Swap Colours", float) = 0
@@ -68,6 +69,7 @@ Shader "ForgottenColours/Unlit/Sumi-E Gradient"
             int _TextureSpace;
             float _MixAmount;
 
+            sampler2D _BaseTexture;
 
             // Function Prototypes
             half3 ProcessNormals(v2f input);
@@ -104,7 +106,7 @@ Shader "ForgottenColours/Unlit/Sumi-E Gradient"
                 _DarkTint.rgb = temp;
                 #endif
 
-                half3 rampColour = lerp(_LightTint.rgb, _DarkTint.rgb, fac);
+                half3 rampColour = lerp(_LightTint.rgb, _DarkTint.rgb * tex2D(_BaseTexture, input.uv), fac);
 
                 // === NEW adjustable offset and power ===
                 float heightFactor = smoothstep(_HeightMin, _HeightMax, input.fragWorldPos.y);

@@ -146,11 +146,6 @@ public class TalismanTargetMock : MonoBehaviour
         EmotionalBehaviour();
     }
 
-    private void EmotionalBehaivour()
-    {
-        Debug.Log("Doing smth?");
-    }
-
     protected virtual void EmotionalBehaviour()
     {
         //ResetEmotion();
