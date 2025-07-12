@@ -25,6 +25,9 @@ public class ClockAnim : MonoBehaviour
     [Header("Animation Settings")]
     public Material wrongMaterial; // Material to indicate wrong solution
     
+    public AudioSource clockTickSound;
+    public float pauseDuration = 0.5f; // Duration to pause the clock tick sound
+    
     private Tween hourTween;
     private Tween minuteTween;
     private Tween secondTween;
@@ -52,9 +55,10 @@ public class ClockAnim : MonoBehaviour
         //           $"Minute Offset: {minuteOffset}, " +
         //           $"Second Offset: {secondOffset}");
         
-        AnimateZeiger(minuteHand, minuteHandSpeed);
-        AnimateZeiger(hourHand, hourHandSpeed);
-        AnimateZeiger(secondHand, secondHandSpeed);
+        StartAnimation();
+        // AnimateZeiger(minuteHand, minuteHandSpeed);
+        // AnimateZeiger(hourHand, hourHandSpeed);
+        // AnimateZeiger(secondHand, secondHandSpeed);
     }
 
     public void AnimateZeiger(Transform hand, float speed)
@@ -92,6 +96,7 @@ public class ClockAnim : MonoBehaviour
         AnimateZeiger(minuteHand, minuteHandSpeed);
         AnimateZeiger(secondHand, secondHandSpeed);
         isClockRunning = true; 
+        playTickSound(true);
     }
     
     public void stopAnimation()
@@ -154,6 +159,8 @@ public class ClockAnim : MonoBehaviour
                 break;
         }
         
+        pauseTickSoundFor(pauseDuration);
+        
         checkClockStopped();
     }
     
@@ -199,12 +206,14 @@ public class ClockAnim : MonoBehaviour
     {
         // all hands dont move
         isClockRunning = hourTween.IsActive() || minuteTween.IsActive() || secondTween.IsActive();
+        if(!isClockRunning) playTickSound(false);
     }
     
     public void AnimateSolution(bool solved, int hour, int minute, int second = 0)
     {
         // Stop the current animations
         stopAnimation();
+        playTickSound(false);
         
         // If the puzzle is solved, set the clock hands to the solution time
         if (solved)
@@ -213,7 +222,6 @@ public class ClockAnim : MonoBehaviour
         }
         else
         {
-            
             AnimateNotSolved(hour, minute, second);
         }
     }
@@ -221,7 +229,7 @@ public class ClockAnim : MonoBehaviour
     private void AnimateNotSolved(int hour, int minute, int second = 0)
     {
         setTime(hour, minute, second);
-
+        
         var hourRenderer = hourHand.GetChild(0).GetComponent<Renderer>();
         var minuteRenderer = minuteHand.GetChild(0).GetComponent<Renderer>();
         var secondRenderer = secondHand.GetChild(0).GetComponent<Renderer>();
@@ -264,5 +272,36 @@ public class ClockAnim : MonoBehaviour
             .Join(secondHand.DOShakeRotation(duration, strength, vibrato: 10, randomness: 90));
 
         return wiggle;
+    }
+
+    private void playTickSound(bool start)
+    {
+        if (clockTickSound != null && !clockTickSound.isPlaying && start)
+        {
+            clockTickSound.Play();
+        }
+        else if (clockTickSound != null && clockTickSound.isPlaying && !start)
+        {
+            clockTickSound.Stop();
+        }
+    }
+    
+    private void pauseTickSoundFor(float duration)
+    {
+        Debug.Log("Pause the clock tick sound for " + pauseDuration);
+        if (clockTickSound != null && clockTickSound.isPlaying)
+        {
+            clockTickSound.Pause();
+            Invoke(nameof(resumeTickSound), duration);
+        }
+    }
+    
+    private void resumeTickSound()
+    {
+        Debug.Log("Resume the clock tick sound");
+        if (!clockTickSound.isPlaying)
+        {
+            clockTickSound.UnPause();
+        }
     }
 }
