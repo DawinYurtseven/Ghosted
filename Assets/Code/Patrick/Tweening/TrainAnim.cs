@@ -8,12 +8,13 @@ public class TrainAnim : MonoBehaviour
     public SplineAnimate train2Anim;
     public float trainDelay = 0.0f; // Delay before the train starts moving
     private bool IsTrainRunning = false;
-
+    public Transform trainTarget; // only for moving the train to a target position, with SpawnAnim.moveTo()
+    private float moveDuration = 5f;
     //[SerializeField] private SpawnAnim _spawnAnim;
     
     private float wiggleDuration = 1f;
     private float wiggleStrength = 1f;
-
+    
     public void StartTrain(bool deleteOnFinish = false)
     {
         if (train == null || train2Anim == null)
@@ -88,5 +89,10 @@ public class TrainAnim : MonoBehaviour
         {
             s = SpawnAnim.Wiggle(train.transform, wiggleDuration, wiggleStrength);
         };
+    }
+
+    public void moveTrain()
+    {
+        SpawnAnim.moveTo(train.transform, trainTarget, duration:moveDuration);
     }
 }
