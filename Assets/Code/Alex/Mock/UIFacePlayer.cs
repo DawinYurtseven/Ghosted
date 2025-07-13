@@ -5,8 +5,8 @@ public class UIFacePlayer : MonoBehaviour
 {
     private Transform mainCamera;
     
-    [SerializeField] private CanvasGroup canvasGroup;
-    [SerializeField] private float fadeDuration = 0.3f;
+    public CanvasGroup canvasGroup;
+    public float fadeDuration = 0.3f;
     
     private Tween currentTween;
 
