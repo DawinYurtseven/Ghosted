@@ -1,4 +1,5 @@
 using DG.Tweening;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -10,8 +11,10 @@ public class UIInteractionHint : UIFacePlayer
     [SerializeField] private CanvasGroup canvasGroup_text;
     [SerializeField] private BrushStroke stroke;
     private Tween currentTween;
+    [SerializeField] private bool charReveal = false;
+    [SerializeField] private TextFadeReveal textFade;
+    [SerializeField] private string textHint;
     
-
     public bool hasText = true;
 
     private void Awake()
@@ -20,7 +23,7 @@ public class UIInteractionHint : UIFacePlayer
         
         if (hasText)
         {
-            if (!stroke || !canvasGroup_text)
+            if (!stroke || !(canvasGroup_text || (textFade && charReveal)))
             {
                 Debug.Log("No text canvas found for interaction");
                 hasText = false;
@@ -28,7 +31,16 @@ public class UIInteractionHint : UIFacePlayer
             else
             {
                 stroke.ResetStroke();
-                canvasGroup_text.alpha = 0f;
+                if (!textFade) charReveal = false;
+                if (charReveal)
+                {
+                    textFade.Reset();
+                }
+                else
+                {
+                    canvasGroup_text.alpha = 0f;
+                }
+                
                 
             }
         }
@@ -43,12 +55,29 @@ public class UIInteractionHint : UIFacePlayer
         if (hasText)
         {
             stroke.ResetStroke();
-            canvasGroup_text.alpha = 0f;
+            if (charReveal)
+            {
+                textFade.Reset();
+            }
+            else
+            {
+                canvasGroup_text.alpha = 0f;
+            }
         }
 
         currentTween = canvasGroup.DOFade(1f, fadeDuration).OnComplete(() =>
         {
-            if (hasText) stroke.AnimateBrush(() => canvasGroup_text.DOFade(1f, fadeDuration));
+            if (hasText) stroke.AnimateBrush(() =>
+            {
+                if (!charReveal)
+                {
+                    canvasGroup_text.DOFade(1f, fadeDuration);
+                }
+            });
+            if (charReveal)
+            {
+                textFade.animateText(textHint);
+            }
         });
     }
 
@@ -66,7 +95,14 @@ public class UIInteractionHint : UIFacePlayer
                 if (hasText)
                 {
                     stroke.ResetStroke();
-                    canvasGroup_text.alpha = 0f;
+                    if (charReveal)
+                    {
+                        textFade.ResetButLeaveText();
+                    }
+                    else
+                    {
+                        canvasGroup_text.alpha = 0f;
+                    }
                 }
             });
     }

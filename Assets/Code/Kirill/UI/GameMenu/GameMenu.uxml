@@ -2,5 +2,5 @@
     <ui:Template name="SettingsWindow" src="project://database/Assets/Code/Kirill/UI/SettingsWindow/SettingsWindow.uxml?fileID=9197481963319205126&amp;guid=7002479b8b09fc34699416a1ec53c789&amp;type=3#SettingsWindow" />
     <ui:Template name="DialogueMenu" src="project://database/Assets/Code/Kirill/UI/DialogueMenu/DialogueMenu.uxml?fileID=9197481963319205126&amp;guid=65b05e78233654f42b89bd8884ec5b78&amp;type=3#DialogueMenu" />
     <ui:Instance template="SettingsWindow" name="SettingsWindow" picking-mode="Ignore" style="height: 50%; width: 50%; position: absolute; left: 25%; top: 25%;" />
-    <ui:Instance template="DialogueMenu" name="DialogueMenu" style="position: absolute; width: 70%; height: 20%; left: 15%; top: 80%;" />
+    <ui:Instance template="DialogueMenu" name="DialogueMenu" style="position: absolute; width: 70%; height: 20%; left: 15%; top: 80%; display: none;" />
 </ui:UXML>

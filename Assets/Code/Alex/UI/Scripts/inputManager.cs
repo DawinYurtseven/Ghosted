@@ -10,6 +10,9 @@ public class inputManager : MonoBehaviour
     public delegate void InputChangedHandler(string newControlScheme);
     public event InputChangedHandler InputChanged;
     public PlayerInput playerInput;
+
+
+    
     private void Awake()
     {
         if (Instance != null && Instance != this)

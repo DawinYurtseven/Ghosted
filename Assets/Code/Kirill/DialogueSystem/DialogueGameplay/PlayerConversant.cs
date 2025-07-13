@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,10 @@ namespace Ghosted.Dialogue {
         public readonly UnityEvent<Dialogue> OnStartDialogue = new UnityEvent<Dialogue>();
         public readonly UnityEvent<Dialogue> OnEndDialogue = new UnityEvent<Dialogue>();
         public readonly UnityEvent<DialogueEditorNode> OnDialogueNode = new UnityEvent<DialogueEditorNode>();
-
+        
+        public Func<bool> IsTextAnimating;
+        public Action CompleteTextAnimation;
+        
         private Conversant currentConversant;
 
 
@@ -40,7 +44,7 @@ namespace Ghosted.Dialogue {
             layerMask = ~(1 << playerLayer);
         }
         private float dialogueStartTime;
-        private float dialogueInputDelay = 0.1f;
+        private float dialogueInputDelay = 0.3f;
         public void StartDialogue(Dialogue dialogue)
         {
             
@@ -193,8 +197,16 @@ namespace Ghosted.Dialogue {
                 if (!currentDialogue) return;
                 //delay so that the start dialogue e is not confused with the next line
                 if (Time.time - dialogueStartTime < dialogueInputDelay) return;
-
+                Debug.Log("Went through input delay");
+                if (IsTextAnimating != null && IsTextAnimating.Invoke())
+                {
+                    CompleteTextAnimation?.Invoke();
+                    return;
+                }
+                
                 TriggerExitAction();
+                
+                //TODO: maybe let the dialogue complete first (if revealing)
                 currentNode = currentDialogue.GetChild((DialogueNode)currentNode);
                 if (currentNode == null)
                 {
