@@ -188,8 +188,8 @@ public class CharacterControllerMockup : MonoBehaviour
         }
         else
         {
-            xAxisAngle += -cameraDirection.y * cameraSpeed * Time.fixedDeltaTime;
-            yAxisAngle += cameraDirection.x * cameraSpeed * Time.fixedDeltaTime;
+            xAxisAngle += -cameraDirection.y * cameraSpeed * Time.fixedDeltaTime * PlayerPrefs.GetInt("invert", 1) * PlayerPrefs.GetFloat("sensitivity", 1);
+            yAxisAngle += cameraDirection.x * cameraSpeed * Time.fixedDeltaTime * PlayerPrefs.GetFloat("sensitivity", 1);
             xAxisAngle = Mathf.Clamp(xAxisAngle, xAxisMin, xAxisMax);
 
             cameraPivot.transform.localRotation = Quaternion.Euler(xAxisAngle, yAxisAngle, 0f);
