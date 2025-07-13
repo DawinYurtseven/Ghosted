@@ -1,5 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:Template name="SettingsWindow" src="project://database/Assets/Code/Kirill/UI/SettingsWindow.uxml?fileID=9197481963319205126&amp;guid=7002479b8b09fc34699416a1ec53c789&amp;type=3#SettingsWindow" />
-    <ui:Button text="Settings&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SettingsButton" style="align-self: flex-end; -unity-text-align: upper-center; font-size: 18px; justify-content: center; align-items: flex-end;" />
-    <ui:Instance template="SettingsWindow" name="SettingsWindow" picking-mode="Ignore" style="height: 100%; width: 100%;" />
+    <ui:Template name="SettingsWindow" src="project://database/Assets/Code/Kirill/UI/SettingsWindow/SettingsWindow.uxml?fileID=9197481963319205126&amp;guid=7002479b8b09fc34699416a1ec53c789&amp;type=3#SettingsWindow" />
+    <ui:Template name="DialogueMenu" src="project://database/Assets/Code/Kirill/UI/DialogueMenu/DialogueMenu.uxml?fileID=9197481963319205126&amp;guid=65b05e78233654f42b89bd8884ec5b78&amp;type=3#DialogueMenu" />
+    <ui:Instance template="SettingsWindow" name="SettingsWindow" picking-mode="Ignore" style="height: 50%; width: 50%; position: absolute; left: 25%; top: 25%;" />
+    <ui:Instance template="DialogueMenu" name="DialogueMenu" style="position: absolute; width: 70%; height: 20%; left: 15%; top: 80%;" />
 </ui:UXML>

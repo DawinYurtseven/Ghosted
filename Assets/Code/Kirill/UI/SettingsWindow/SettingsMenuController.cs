@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UIElements;
 
 public class SettingsMenuController : MonoBehaviour
@@ -15,9 +17,13 @@ public class SettingsMenuController : MonoBehaviour
 
     [SerializeField] private UIDocument document;
 
+    public bool IsOpen { get => isOpen; set => isOpen = value; }
+    private bool isOpen;
+
     void OnEnable()
     {
         var root = document.rootVisualElement;
+        Debug.Log(root);
 
         settingsWindow = root.Q<VisualElement>("SettingsWindow");
         fullscreenToggle = root.Q<Toggle>("FullScreenToggle");
@@ -95,11 +101,20 @@ public class SettingsMenuController : MonoBehaviour
 
     public void CloseWindow()
     {
+        Debug.Log("I am closing settings window");
         settingsWindow.style.display = DisplayStyle.None;
+        isOpen = false;
     }
     public void OpenWindow()
     {
         Debug.Log("Make the window flex");
         settingsWindow.style.display = DisplayStyle.Flex;
+        quitButton.Focus();
+        isOpen = true;
+    }
+
+    public void OnQuitClickSubscribe(Action callback)
+    {
+        quitButton.clicked += callback;
     }
 }

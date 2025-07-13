@@ -4,10 +4,12 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
+// This code is deprecated
 public class UIFocusableNavigator : MonoBehaviour
 {
     public UIDocument uiDocument;
     public InputActionAsset inputActions;
+    public List<string> focusableElemntsToChooseInOrder;
 
     private List<VisualElement> focusableElements = new();
     private int currentIndex = 0;
@@ -19,27 +21,34 @@ public class UIFocusableNavigator : MonoBehaviour
     void Start()
     {
         // Get actions
-        navigateAction = inputActions.FindAction("Navigate");
-        submitAction = inputActions.FindAction("Submit");
-        adjustAction = inputActions.FindAction("AdjustValue");
+        //navigateAction = inputActions.FindAction("Navigate");
+        //submitAction = inputActions.FindAction("Submit");
+        //adjustAction = inputActions.FindAction("AdjustValue");
 
-        navigateAction.performed += OnNavigate;
-        submitAction.performed += OnSubmit;
-        adjustAction.performed += OnAdjustValue;
+        //navigateAction.performed += OnNavigate;
+        //submitAction.performed += OnSubmit;
+        //adjustAction.performed += OnAdjustValue;
 
-        navigateAction.Enable();
-        submitAction.Enable();
-        adjustAction.Enable();
+        //navigateAction.Enable();
+        //submitAction.Enable();
+        //adjustAction.Enable();
 
         // Collect all focusable elements
         focusableElements.Clear();
         var root = uiDocument.rootVisualElement;
 
-        foreach (var el in root.Query<VisualElement>().ToList())
+        foreach (string name in focusableElemntsToChooseInOrder)
         {
+            var el = root.Q<VisualElement>(name);
             if (el.focusable)
                 focusableElements.Add(el);
         }
+
+        /*foreach (var el in root.Query<VisualElement>().ToList())
+        {
+            if (el.focusable)
+                focusableElements.Add(el);
+        }*/
 
         if (focusableElements.Count > 0)
             focusableElements[currentIndex].Focus();
@@ -70,6 +79,7 @@ public class UIFocusableNavigator : MonoBehaviour
     void OnSubmit(InputAction.CallbackContext ctx)
     {
         var current = focusableElements[currentIndex];
+        Debug.Log("I submit something: " + current.name);
 
         if (current is Button btn)
             Debug.Log("I clicked"); //btn.clickable?.Invoke();
@@ -90,6 +100,7 @@ public class UIFocusableNavigator : MonoBehaviour
 
         if (current is Slider slider)
         {
+            Debug.Log("I am adjusting slider: " + slider.name);
             float delta = (slider.highValue - slider.lowValue) * 0.05f;
             slider.value += Mathf.Sign(value) * delta;
             Debug.Log("Slider was effected");
