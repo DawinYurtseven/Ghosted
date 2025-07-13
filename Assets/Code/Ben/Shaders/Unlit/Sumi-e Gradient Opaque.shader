@@ -1,4 +1,4 @@
-Shader "ForgottenColours/Unlit/Sumi-E Gradient"
+Shader "ForgottenColours/Unlit/Sumi-E Gradient Opaque"
 {
     Properties
     {
@@ -33,7 +33,7 @@ Shader "ForgottenColours/Unlit/Sumi-E Gradient"
     {
         Tags
         {
-            "RenderType" = "Transparent" "Queue" = "Transparent"
+            "RenderType" = "Opaque" "Queue" = "Geometry"
         }
 
 
@@ -44,7 +44,8 @@ Shader "ForgottenColours/Unlit/Sumi-E Gradient"
             {
                 "LightMode"="UniversalForward"
             }
-            Blend SrcAlpha OneMinusSrcAlpha
+
+            ZWrite On
 
             Cull Off
 
