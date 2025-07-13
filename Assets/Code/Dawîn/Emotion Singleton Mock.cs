@@ -9,6 +9,7 @@ public enum Emotion
     Fear,
     Lonely,
     Love,
+    None
 }
 
 public class EmotionSingletonMock : MonoBehaviour
@@ -24,12 +25,19 @@ public class EmotionSingletonMock : MonoBehaviour
      */
     
     public Subject<Emotion> EmotionSubject = new Subject<Emotion>();
-    [SerializeField] private Emotion currentEmotion = Emotion.Fear;
+    [SerializeField] private Emotion initialEmotion = Emotion.Joy;
+     private Emotion currentEmotion = Emotion.None; //should be different from initial emotion
     public UnityEvent<Emotion> emotionChanged = new UnityEvent<Emotion>();      // Trigger an event each time the emotion is changed
     [SerializeField] private GameObject joyGameObject, fearGameObject;
 
     public void ChangeEmotion(Emotion emotion)
     {
+        if (emotion == currentEmotion) return;
+
+        if (currentEmotion == Emotion.None)
+        {
+            currentEmotion = (emotion == Emotion.Joy) ? Emotion.Fear : Emotion.Joy;
+        }
         if (currentEmotion == Emotion.Fear)
         {
             joyGameObject.SetActive(true);
@@ -166,7 +174,12 @@ public class EmotionSingletonMock : MonoBehaviour
 
         mainCamera = Camera.main;
         if (disableAll) talismanCounter.SetActive(false);
-        ChangeEmotion(Emotion.Joy);
+        
+    }
+
+    void Start()
+    {
+        ChangeEmotion(initialEmotion);
     }
 
     // Update is called once per frame

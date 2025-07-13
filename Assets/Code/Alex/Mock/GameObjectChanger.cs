@@ -17,35 +17,41 @@ public class GameObjectChanger : MonoBehaviour
         EmotionSingletonMock.Instance.EmotionSubject
             .Subscribe(emotion =>
             {
-                switch (emotion)
-                {
-                    case Emotion.Joy:
-                        
-                        if (joyObject)
-                        {
-                            joyObject.SetActive(true);
-                        }
+                changeObject(emotion);
+            });
+        changeObject(EmotionSingletonMock.Instance.getCurrentEmotion());
+    }
 
-                        if (fearObject)
+    private void changeObject(Emotion emotion)
+    {
+        switch (emotion)
                         {
-                            fearObject.SetActive(false);
+                            case Emotion.Joy:
+                                
+                                if (joyObject)
+                                {
+                                    joyObject.SetActive(true);
+                                }
+        
+                                if (fearObject)
+                                {
+                                    fearObject.SetActive(false);
+                                }
+                                
+                                break;
+                            case Emotion.Fear:
+                                if (joyObject)
+                                {
+                                    joyObject.SetActive(false);
+                                }
+        
+                                if (fearObject)
+                                {
+                                    fearObject.SetActive(true);
+                                }
+                                break;
+                            default:
+                                break;
                         }
-                        
-                        break;
-                    case Emotion.Fear:
-                        if (joyObject)
-                        {
-                            joyObject.SetActive(false);
-                        }
-
-                        if (fearObject)
-                        {
-                            fearObject.SetActive(true);
-                        }
-                        break;
-                    default:
-                        break;
-                }
-            });   
     }
 }
