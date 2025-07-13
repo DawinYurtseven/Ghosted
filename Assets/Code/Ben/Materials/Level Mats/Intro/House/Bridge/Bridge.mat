@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: wall
+  m_Name: Bridge
   m_Shader: {fileID: 4800000, guid: 5fdde90d226f23848813b7df846c3308, type: 3}
-  m_Parent: {fileID: 2100000, guid: a8b066bb1995a664ea6d6cd7cf405025, type: 2}
+  m_Parent: {fileID: 2100000, guid: 66d86ad3107b9924bae78bd49050615a, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -26,11 +26,12 @@ Material:
     m_Ints: []
     m_Floats:
     - _Alpha: 1
-    - _BandCenter: 0.89
-    - _BandWidth: 3.5
-    - _HeightMax: 77.39
+    - _BandCenter: 0.5
+    - _BandWidth: 6.5
+    - _HeightMax: 146.3
     - _HeightMin: 0
     - _Switch: 0
     - _TextureSpace: 3
-    m_Colors: []
+    m_Colors:
+    - _DarkTint: {r: 0.3735848, g: 0.13463151, b: 0.13463151, a: 1}
   m_BuildTextureStacks: []
