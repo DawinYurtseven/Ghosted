@@ -4,16 +4,22 @@ using UnityEngine.Splines;
 
 public class TrainAnim : MonoBehaviour
 {
+    [Header("Train Animation Settings")]
     public GameObject train;
     public SplineAnimate train2Anim;
     public float trainDelay = 0.0f; // Delay before the train starts moving
     private bool IsTrainRunning = false;
 
+    public SplineAnimate trainBackwards;
+    
+    [Header("Train Target Settings, independent of SplineAnimate")]
+    public Transform trainTarget; // only for moving the train to a target position, with SpawnAnim.moveTo()
+    private float moveDuration = 5f;
     //[SerializeField] private SpawnAnim _spawnAnim;
     
     private float wiggleDuration = 1f;
     private float wiggleStrength = 1f;
-
+    
     public void StartTrain(bool deleteOnFinish = false)
     {
         if (train == null || train2Anim == null)
@@ -73,6 +79,24 @@ public class TrainAnim : MonoBehaviour
         }
     }
 
+    public void ReverseTrain()
+    {
+        if (trainBackwards != null && !this.IsTrainRunning)
+        {
+            this.IsTrainRunning = true;
+            trainBackwards.Play();
+            trainBackwards.Completed += () =>
+            {
+                this.IsTrainRunning = false;
+                Debug.Log("Train reversed along the spline.");
+            };
+        }
+        else
+        {
+            Debug.LogWarning("TrainBackwards SplineAnimate not set!");
+        }
+    }
+    
     private void animateTrainBreak()
     {
         train.SetActive(true);
@@ -88,5 +112,10 @@ public class TrainAnim : MonoBehaviour
         {
             s = SpawnAnim.Wiggle(train.transform, wiggleDuration, wiggleStrength);
         };
+    }
+    
+    public void moveTrain()
+    {
+        SpawnAnim.moveTo(train.transform, trainTarget, duration:moveDuration);
     }
 }

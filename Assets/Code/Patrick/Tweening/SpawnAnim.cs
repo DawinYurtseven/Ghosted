@@ -50,7 +50,7 @@ public class SpawnAnim : MonoBehaviour
         
         Transform t = obj.transform;
         obj.SetActive(true);
-        Debug.Log("Got: " + state);
+        //Debug.Log("Got: " + state);
         if (state)
         {
             // Show + animate in
@@ -65,7 +65,7 @@ public class SpawnAnim : MonoBehaviour
             t.DOScale(Vector3.one, animDuration).SetEase(Ease.OutBack);
             cg.DOFade(1, animDuration);
             
-            Debug.Log("Showing obj");
+            Debug.Log("Showing obj " + obj.name);
         }
         else
         {
