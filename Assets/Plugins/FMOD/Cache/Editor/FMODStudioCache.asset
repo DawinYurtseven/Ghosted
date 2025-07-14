@@ -1,5 +1,315 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8699031093508057658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ghost/Ghost Moving
+  m_EditorClassIdentifier: 
+  Path: event:/Ghost/Ghost Moving
+  Guid:
+    Data1: -779308053
+    Data2: 1205884806
+    Data3: 2100770202
+    Data4: -211870627
+  Banks:
+  - {fileID: 7414865105384724901}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 40085
+--- !u!114 &-7349659816390259268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/steps/Floor
+  m_EditorClassIdentifier: 
+  Name: Floor
+  StudioPath: 
+  Min: 0
+  Max: 3
+  Default: 0
+  ID:
+    data1: 1834480355
+    data2: 3388400900
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-6787823683100472006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: FMod/ghosted/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638880591409636974
+  FileSizes:
+  - Name: Desktop
+    Value: 745312
+  Exists: 1
+--- !u!114 &-6747126965549723901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Level/Birthday/Present
+  m_EditorClassIdentifier: 
+  Path: event:/Level/Birthday/Present
+  Guid:
+    Data1: 2033216908
+    Data2: 1222011055
+    Data3: 549413295
+    Data4: -1048870889
+  Banks:
+  - {fileID: 3184715339288316688}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 850
+--- !u!114 &-6361942262156223246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Emotions/Fear/Fear
+  m_EditorClassIdentifier: 
+  Path: event:/Emotions/Fear/Fear
+  Guid:
+    Data1: 1157402193
+    Data2: 1295848804
+    Data3: -1175030400
+    Data4: 345712268
+  Banks:
+  - {fileID: 8620540036345865223}
+  - {fileID: -6787823683100472006}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 36437
+--- !u!114 &-5971671711937332906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Train/Leaving
+  m_EditorClassIdentifier: 
+  Path: event:/Train/Leaving
+  Guid:
+    Data1: -1949178423
+    Data2: 1119041206
+    Data3: 1090729656
+    Data4: -237212956
+  Banks:
+  - {fileID: 3184715339288316688}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2816
+--- !u!114 &-5162114912285669679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/character/steps/steps
+  m_EditorClassIdentifier: 
+  Path: event:/character/steps/steps
+  Guid:
+    Data1: -175474473
+    Data2: 1230855751
+    Data3: 1118599585
+    Data4: 1685570111
+  Banks:
+  - {fileID: -3227690546143361058}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: -7349659816390259268}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-3779794783354652344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Door/Opening
+  m_EditorClassIdentifier: 
+  Path: event:/Door/Opening
+  Guid:
+    Data1: 1719098603
+    Data2: 1209198956
+    Data3: -463636081
+    Data4: 1482127191
+  Banks:
+  - {fileID: 3184715339288316688}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3562
+--- !u!114 &-3227690546143361058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Character.bank
+  m_EditorClassIdentifier: 
+  Path: FMod/ghosted/Build/Desktop/Character.bank
+  Name: Character
+  StudioPath: bank:/Character
+  lastModified: 638880591425436896
+  FileSizes:
+  - Name: Desktop
+    Value: 1552416
+  Exists: 1
+--- !u!114 &-2866646183453175414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Binding/Bind loop
+  m_EditorClassIdentifier: 
+  Path: event:/Binding/Bind loop
+  Guid:
+    Data1: -682431451
+    Data2: 1171700111
+    Data3: 1849559189
+    Data4: -88266026
+  Banks:
+  - {fileID: 5147080327521504559}
+  - {fileID: -6787823683100472006}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 18683
+--- !u!114 &-2776422331113239514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/character/Talisman/Call
+  m_EditorClassIdentifier: 
+  Path: event:/character/Talisman/Call
+  Guid:
+    Data1: -111779618
+    Data2: 1155697148
+    Data3: -1961932653
+    Data4: 1557095196
+  Banks:
+  - {fileID: -3227690546143361058}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 49711
+--- !u!114 &-1548485478606589339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Level/Birthday/Clock
+  m_EditorClassIdentifier: 
+  Path: event:/Level/Birthday/Clock
+  Guid:
+    Data1: -252898845
+    Data2: 1315250824
+    Data3: -707336548
+    Data4: -1179414721
+  Banks:
+  - {fileID: 3184715339288316688}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 5013
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12,10 +322,439 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
-  EditorBanks: []
-  EditorEvents: []
+  EditorBanks:
+  - {fileID: 8145881761011800595}
+  - {fileID: -6787823683100472006}
+  - {fileID: 5147080327521504559}
+  - {fileID: 8620540036345865223}
+  - {fileID: 3184715339288316688}
+  - {fileID: -3227690546143361058}
+  - {fileID: 7414865105384724901}
+  - {fileID: 1510101958602179411}
+  EditorEvents:
+  - {fileID: -2866646183453175414}
+  - {fileID: 5035277206084049182}
+  - {fileID: -6361942262156223246}
+  - {fileID: -1548485478606589339}
+  - {fileID: -5162114912285669679}
+  - {fileID: -2776422331113239514}
+  - {fileID: -6747126965549723901}
+  - {fileID: 7215222120324238887}
+  - {fileID: -8699031093508057658}
+  - {fileID: 5827509614381211026}
+  - {fileID: 5909301613267866887}
+  - {fileID: 1830818133774383287}
+  - {fileID: 8926446126639238140}
+  - {fileID: 4790667027454346161}
+  - {fileID: 6989588029388082139}
+  - {fileID: -5971671711937332906}
+  - {fileID: -3779794783354652344}
+  - {fileID: 8954117867715834137}
   EditorParameters: []
-  MasterBanks: []
-  StringsBanks: []
-  cacheTime: 0
-  cacheVersion: 131625
+  MasterBanks:
+  - {fileID: -6787823683100472006}
+  StringsBanks:
+  - {fileID: 8145881761011800595}
+  cacheVersion: 131848
+  cacheTime: 638880591432875793
+  SerializableEventsDict:
+  - key: event:/Binding/Bind loop
+    index: 0
+  - key: event:/Binding/Bind
+    index: 1
+  - key: event:/Emotions/Fear/Fear
+    index: 2
+  - key: event:/Level/Birthday/Clock
+    index: 3
+  - key: event:/character/steps/steps
+    index: 4
+  - key: event:/character/Talisman/Call
+    index: 5
+  - key: event:/Level/Birthday/Present
+    index: 6
+  - key: event:/character/Change Emotions/Emotion change
+    index: 7
+  - key: event:/Ghost/Ghost Moving
+    index: 8
+  - key: event:/Door/Closing
+    index: 9
+  - key: event:/Weather/Rain
+    index: 10
+  - key: event:/Bar Gate/New Event
+    index: 11
+  - key: event:/Light switch/turn onoff
+    index: 12
+  - key: event:/Train/Moving
+    index: 13
+  - key: event:/clock/Ticking
+    index: 14
+  - key: event:/Train/Leaving
+    index: 15
+  - key: event:/Door/Opening
+    index: 16
+  - key: event:/UI/Confirm
+    index: 17
+--- !u!114 &1510101958602179411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/UI.bank
+  m_EditorClassIdentifier: 
+  Path: FMod/ghosted/Build/Desktop/UI.bank
+  Name: UI
+  StudioPath: bank:/UI
+  lastModified: 638880591432875793
+  FileSizes:
+  - Name: Desktop
+    Value: 245760
+  Exists: 1
+--- !u!114 &1830818133774383287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Bar Gate/New Event
+  m_EditorClassIdentifier: 
+  Path: event:/Bar Gate/New Event
+  Guid:
+    Data1: -264718745
+    Data2: 1222428034
+    Data3: 913375404
+    Data4: 661496900
+  Banks:
+  - {fileID: 3184715339288316688}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 10690
+--- !u!114 &3184715339288316688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Level.bank
+  m_EditorClassIdentifier: 
+  Path: FMod/ghosted/Build/Desktop/Level.bank
+  Name: Level
+  StudioPath: bank:/Level
+  lastModified: 638880591424299057
+  FileSizes:
+  - Name: Desktop
+    Value: 3034944
+  Exists: 1
+--- !u!114 &4790667027454346161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Train/Moving
+  m_EditorClassIdentifier: 
+  Path: event:/Train/Moving
+  Guid:
+    Data1: 567701142
+    Data2: 1309894705
+    Data3: 461619853
+    Data4: -770522894
+  Banks:
+  - {fileID: 3184715339288316688}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 100266
+--- !u!114 &5035277206084049182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Binding/Bind
+  m_EditorClassIdentifier: 
+  Path: event:/Binding/Bind
+  Guid:
+    Data1: -468033335
+    Data2: 1151809718
+    Data3: -235546206
+    Data4: -247704850
+  Banks:
+  - {fileID: 5147080327521504559}
+  - {fileID: -6787823683100472006}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 19735
+--- !u!114 &5147080327521504559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Binding.bank
+  m_EditorClassIdentifier: 
+  Path: FMod/ghosted/Build/Desktop/Binding.bank
+  Name: Binding
+  StudioPath: bank:/Binding
+  lastModified: 638880550158757052
+  FileSizes:
+  - Name: Desktop
+    Value: 430720
+  Exists: 1
+--- !u!114 &5827509614381211026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Door/Closing
+  m_EditorClassIdentifier: 
+  Path: event:/Door/Closing
+  Guid:
+    Data1: -1693147598
+    Data2: 1302603146
+    Data3: 1916072605
+    Data4: -1730861472
+  Banks:
+  - {fileID: 3184715339288316688}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1290
+--- !u!114 &5909301613267866887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Weather/Rain
+  m_EditorClassIdentifier: 
+  Path: event:/Weather/Rain
+  Guid:
+    Data1: 868816989
+    Data2: 1096525481
+    Data3: -1491334008
+    Data4: -1898516278
+  Banks:
+  - {fileID: 3184715339288316688}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 39877
+--- !u!114 &6989588029388082139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/clock/Ticking
+  m_EditorClassIdentifier: 
+  Path: event:/clock/Ticking
+  Guid:
+    Data1: 843980702
+    Data2: 1210880529
+    Data3: -1473513324
+    Data4: -317714011
+  Banks:
+  - {fileID: 3184715339288316688}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 61088
+--- !u!114 &7215222120324238887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/character/Change Emotions/Emotion change
+  m_EditorClassIdentifier: 
+  Path: event:/character/Change Emotions/Emotion change
+  Guid:
+    Data1: -259479428
+    Data2: 1242401777
+    Data3: 1580539065
+    Data4: 1427329610
+  Banks:
+  - {fileID: -3227690546143361058}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 6229
+--- !u!114 &7414865105384724901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Ghost.bank
+  m_EditorClassIdentifier: 
+  Path: FMod/ghosted/Build/Desktop/Ghost.bank
+  Name: Ghost
+  StudioPath: bank:/Ghost
+  lastModified: 638880591430862128
+  FileSizes:
+  - Name: Desktop
+    Value: 467328
+  Exists: 1
+--- !u!114 &8145881761011800595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: FMod/ghosted/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638880591409647200
+  FileSizes:
+  - Name: Desktop
+    Value: 1932
+  Exists: 1
+--- !u!114 &8620540036345865223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Emotions.bank
+  m_EditorClassIdentifier: 
+  Path: FMod/ghosted/Build/Desktop/Emotions.bank
+  Name: Emotions
+  StudioPath: bank:/Emotions
+  lastModified: 638880550159119157
+  FileSizes:
+  - Name: Desktop
+    Value: 314720
+  Exists: 1
+--- !u!114 &8926446126639238140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Light switch/turn onoff
+  m_EditorClassIdentifier: 
+  Path: event:/Light switch/turn onoff
+  Guid:
+    Data1: 1222444927
+    Data2: 1109170133
+    Data3: 1278806457
+    Data4: 954162678
+  Banks:
+  - {fileID: 3184715339288316688}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 500
+--- !u!114 &8954117867715834137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UI/Confirm
+  m_EditorClassIdentifier: 
+  Path: event:/UI/Confirm
+  Guid:
+    Data1: 1015515387
+    Data2: 1332692231
+    Data3: -480103246
+    Data4: -1955111473
+  Banks:
+  - {fileID: 1510101958602179411}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 640

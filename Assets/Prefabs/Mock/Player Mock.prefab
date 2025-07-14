@@ -165,6 +165,69 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!1 &5376292970000476853
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 505742756738657653}
+  - component: {fileID: 3422624687307420923}
+  m_Layer: 0
+  m_Name: Steps SFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &505742756738657653
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5376292970000476853}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4529237661815272492}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3422624687307420923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5376292970000476853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -175474473
+      Data2: 1230855751
+      Data3: 1118599585
+      Data4: 1685570111
+    Path: event:/character/steps/steps
+  Event: 
+  EventPlayTrigger: 11
+  EventStopTrigger: 12
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &5869946941483538501
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,6 +506,7 @@ GameObject:
   - component: {fileID: 7266318017597648310}
   - component: {fileID: 1143476629435873370}
   - component: {fileID: 2507525355676472002}
+  - component: {fileID: 8703700718889776371}
   m_Layer: 8
   m_Name: Player Mock
   m_TagString: Player
@@ -617,7 +681,7 @@ MonoBehaviour:
   talismanEmotion: 0
   talismanModetext: {fileID: 0}
   talismanEmotionText: {fileID: 0}
-  talismanPrefab: {fileID: 0}
+  talismanPrefab: {fileID: 7056454499061255236, guid: 3860e4fd9a395ea479a9b8f9c798551e, type: 3}
   maxTalismans: 3
   talismansUsed: {fileID: 4342936615223942910}
   lockedObjects: []
@@ -824,6 +888,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   checkForDialoguefrom: {fileID: 4529237661815272492}
   interactDistance: 15
+--- !u!114 &8703700718889776371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7186854931979958255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nonRigidbodyVelocity: 0
+  attenuationObject: {fileID: 0}
 --- !u!1 &7359274990481609994
 GameObject:
   m_ObjectHideFlags: 0
@@ -989,6 +1067,69 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &8027448642009051957
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6511739550627197303}
+  - component: {fileID: 8739979050594041366}
+  m_Layer: 0
+  m_Name: Call Talisman SFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &6511739550627197303
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8027448642009051957}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4529237661815272492}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8739979050594041366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8027448642009051957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -111779618
+      Data2: 1155697148
+      Data3: -1961932653
+      Data4: 1557095196
+    Path: event:/character/Talisman/Call
+  Event: 
+  EventPlayTrigger: 11
+  EventStopTrigger: 12
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &8085985945609945402
 GameObject:
   m_ObjectHideFlags: 0
@@ -1017,7 +1158,7 @@ Transform:
   m_GameObject: {fileID: 8085985945609945402}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.680766, y: 1.07, z: -18.212372}
+  m_LocalPosition: {x: 0, y: 1, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1958,7 +2099,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: a0320ca399dadda4c9e0d247b2b6d971, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 505742756738657653}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: a0320ca399dadda4c9e0d247b2b6d971, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6511739550627197303}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a0320ca399dadda4c9e0d247b2b6d971, type: 3}
       insertIndex: -1
@@ -1966,9 +2113,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a0320ca399dadda4c9e0d247b2b6d971, type: 3}
       insertIndex: -1
       addedObject: {fileID: 422391204481980013}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a0320ca399dadda4c9e0d247b2b6d971, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4151152236033141779}
   m_SourcePrefab: {fileID: 100100000, guid: a0320ca399dadda4c9e0d247b2b6d971, type: 3}
 --- !u!1 &3859801504133262998 stripped
 GameObject:
@@ -2009,14 +2153,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mock: {fileID: 6496545617559681279}
---- !u!81 &4151152236033141779
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3859801504133262998}
-  m_Enabled: 1
 --- !u!4 &4529237661815272492 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a0320ca399dadda4c9e0d247b2b6d971, type: 3}
