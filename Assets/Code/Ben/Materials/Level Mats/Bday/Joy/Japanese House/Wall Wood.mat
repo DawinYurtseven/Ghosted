@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Wall Wood
-  m_Shader: {fileID: 4800000, guid: 5fdde90d226f23848813b7df846c3308, type: 3}
+  m_Shader: {fileID: 4800000, guid: 8304b90a97944e21912a5c537421cbb3, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -42,6 +42,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BaseTexture:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -112,6 +116,8 @@ Material:
     - _AlphaCutoff: 0.5
     - _AlphaToMask: 0
     - _BackfaceLighting: 1
+    - _BandCenter: 0.5
+    - _BandWidth: 1
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
@@ -119,6 +125,7 @@ Material:
     - _ClearCoatSmoothness: 0
     - _Cull: 2
     - _Cutoff: 0.5
+    - _DarkEmissiveness: 1
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -133,6 +140,7 @@ Material:
     - _HeightMin: 0
     - _HeightOffset: -4.23
     - _HeightPower: 1
+    - _LightEmissiveness: 1
     - _Metallic: 0
     - _NormalStrength: 1
     - _OcclusionStrength: 1
@@ -148,6 +156,7 @@ Material:
     - _Switch: 0
     - _TextureSpace: 2
     - _UVDirection: 2
+    - _UseEmissive: 0
     - _UseTransparent: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
