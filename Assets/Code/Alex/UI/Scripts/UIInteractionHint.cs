@@ -1,7 +1,5 @@
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
 
 public class UIInteractionHint : UIFacePlayer
 {
