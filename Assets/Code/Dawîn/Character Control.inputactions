@@ -33,24 +33,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "LockOnChangeObject(Not Fix)",
-                    "type": "Value",
-                    "id": "02e2b055-f394-4ddf-ad53-a6965ec87f89",
-                    "expectedControlType": "Axis",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "Bind(Not Fix)",
-                    "type": "Button",
-                    "id": "3b8b3325-6a16-489b-9480-83833080833e",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "CameraMove",
                     "type": "Value",
                     "id": "f65f8052-b590-41f6-9d52-68b0571a6e17",
@@ -243,17 +225,6 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "df3f42cb-77c0-4dd2-91af-60aafd2eafdf",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Bind(Not Fix)",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
                     "name": "MK",
                     "id": "bf78e48d-3a58-42c3-914a-f6317bf77b89",
                     "path": "2DVector(mode=2)",
@@ -313,7 +284,7 @@
                     "id": "11291d00-87f2-43a5-9cb2-f747bbe3dbfb",
                     "path": "2DVector(mode=2)",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "NormalizeVector2,ScaleVector2(x=4,y=2)",
                     "groups": "",
                     "action": "CameraMove",
                     "isComposite": true,
@@ -364,39 +335,6 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "1D Axis",
-                    "id": "0ea26bdd-fcea-44fb-862b-d4af0b548fd4",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "LockOnChangeObject(Not Fix)",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "negative",
-                    "id": "6ebff0e5-cce2-430c-a625-5fb1d83f7a4e",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "LockOnChangeObject(Not Fix)",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "7a754c97-14cc-40d2-8e56-617fbaadd992",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "LockOnChangeObject(Not Fix)",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
                     "name": "",
                     "id": "1f0c44b5-08da-4957-948e-f63b2b1bdd17",
                     "path": "<Gamepad>/rightTrigger",
@@ -413,7 +351,7 @@
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";MK",
                     "action": "Throw Talisman",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -424,7 +362,7 @@
                     "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Controller",
                     "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
