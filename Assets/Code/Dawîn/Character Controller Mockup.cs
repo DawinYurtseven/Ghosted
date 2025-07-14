@@ -484,8 +484,7 @@ public class CharacterControllerMockup : MonoBehaviour
 
     // For Cutscene
     
-    //TODO: change name to FirstUsageAltar
-    public static event Action firstUsageAltar;
+    public static event Action FirstUsageAltar;
     public bool usedAltar = true;
 
     [SerializeField] private int interactionRange = 10;
@@ -525,7 +524,7 @@ public class CharacterControllerMockup : MonoBehaviour
                 if (!usedAltar)
                 {
                     usedAltar = true;
-                    firstUsageAltar?.Invoke();
+                    FirstUsageAltar?.Invoke();
                 }
                 
                 tempAltar.InteractAltar();
