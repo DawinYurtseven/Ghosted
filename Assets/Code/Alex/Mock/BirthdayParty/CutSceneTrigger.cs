@@ -45,12 +45,12 @@ public class CutSceneTrigger : MonoBehaviour
         Debug.Log("Manually triggered CutScene: " + cutSceneName);
         if (enabledByPlayer)
         {
-            Debug.Log("Triggered by Player");
+            Debug.Log("Manually triggered CutScene: " + cutSceneName + " by Player");
             OnCutScenePlayerTriggered?.Invoke(cutSceneName);
         }
         if (enabledByTrain)
         {
-            Debug.Log("Triggered by Train");
+            Debug.Log("Manually triggered CutScene: " + cutSceneName + " by Train");
             OnCutSceneTrainTriggered?.Invoke(cutSceneName);
         }
         // If repeatTimes is set, check if we need to destroy the object

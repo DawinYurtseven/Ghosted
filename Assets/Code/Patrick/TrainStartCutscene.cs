@@ -4,7 +4,7 @@ public class TrainStartCutscene : MonoBehaviour
 {
     public CutSceneTrigger cutSceneTrigger; 
     
-    public void Awake()
+    public void Start()
     {
         if (cutSceneTrigger != null)
         {
@@ -16,7 +16,7 @@ public class TrainStartCutscene : MonoBehaviour
     {
         if (cutSceneTrigger != null)
         {
-            cutSceneTrigger.manuallyTrigger(enabledByTrain:true);
+            cutSceneTrigger.manuallyTrigger(enabledByPlayer:true);
         }
         else
         {
