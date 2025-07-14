@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
@@ -42,7 +43,7 @@ public class BrushStrokeCanvas : MonoBehaviour
         }  
     }
 
-    public void Animate()
+    public void Animate(Action onCompleted = null)
     {
         stroke.AnimateBrush(() =>
         {
@@ -50,6 +51,7 @@ public class BrushStrokeCanvas : MonoBehaviour
             {
                 canvasGroup_text.DOFade(1f, fadeDuration);
             }
+            onCompleted?.Invoke();
         });
         if (charReveal)
         {
