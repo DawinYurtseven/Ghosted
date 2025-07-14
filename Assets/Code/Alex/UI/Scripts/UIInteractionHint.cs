@@ -1,17 +1,11 @@
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
 
 public class UIInteractionHint : UIFacePlayer
 {
-    private Transform mainCamera;
-    
     [SerializeField] private CanvasGroup canvasGroup_text;
     [SerializeField] private BrushStroke stroke;
-    private Tween currentTween;
     
-
     public bool hasText = true;
 
     private void Awake()
@@ -33,8 +27,7 @@ public class UIInteractionHint : UIFacePlayer
             }
         }
     }
-
-
+    
     public void Show()
     {
         Debug.Log("Show UI");
