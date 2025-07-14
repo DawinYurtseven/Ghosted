@@ -487,6 +487,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Mock
       objectReference: {fileID: 0}
+    - target: {fileID: 7266318017597648310, guid: a0d0df5c6dcec6d488dfefaeb5d2b2a4, type: 3}
+      propertyPath: m_ActionEvents.Array.data[11].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8933432016581532239}
     - target: {fileID: 7487231542853866383, guid: a0d0df5c6dcec6d488dfefaeb5d2b2a4, type: 3}
       propertyPath: m_Material
       value: 
@@ -589,6 +593,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8933432016581532239 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6768811827126889070, guid: a0d0df5c6dcec6d488dfefaeb5d2b2a4, type: 3}
+  m_PrefabInstance: {fileID: 2744463933215469601}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da000815a54328e4f81679b923d209f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &3687198367835803055
@@ -860,10 +875,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -2778962957168927574, guid: f961568a63271734f861ed9f7509f26a, type: 2}
     - target: {fileID: 6318079156714429046, guid: d53d3b4c8c67ecc4fb5ea7194c0a7939, type: 3}
-      propertyPath: m_fontSize
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 6318079156714429046, guid: d53d3b4c8c67ecc4fb5ea7194c0a7939, type: 3}
       propertyPath: m_margin.w
       value: -23.568195
       objectReference: {fileID: 0}
@@ -882,10 +893,6 @@ PrefabInstance:
     - target: {fileID: 6318079156714429046, guid: d53d3b4c8c67ecc4fb5ea7194c0a7939, type: 3}
       propertyPath: m_fontSizeMax
       value: 22
-      objectReference: {fileID: 0}
-    - target: {fileID: 6318079156714429046, guid: d53d3b4c8c67ecc4fb5ea7194c0a7939, type: 3}
-      propertyPath: m_fontSizeMin
-      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 6318079156714429046, guid: d53d3b4c8c67ecc4fb5ea7194c0a7939, type: 3}
       propertyPath: m_fontSizeBase
@@ -1122,10 +1129,6 @@ PrefabInstance:
     - target: {fileID: 7689989716605187790, guid: a0d01c5195cae7a4f87dc68851e1aba9, type: 3}
       propertyPath: m_Name
       value: GameMenu
-      objectReference: {fileID: 0}
-    - target: {fileID: 7689989716605187790, guid: a0d01c5195cae7a4f87dc68851e1aba9, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
