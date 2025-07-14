@@ -39,6 +39,24 @@ public class CutSceneTrigger : MonoBehaviour
                 Destroy(gameObject);
         }
     }
+    
+    public void manuallyTrigger(bool enabledByPlayer = false, bool enabledByTrain = false)
+    {
+        Debug.Log("Manually triggered CutScene: " + cutSceneName);
+        if (enabledByPlayer)
+        {
+            Debug.Log("Triggered by Player");
+            OnCutScenePlayerTriggered?.Invoke(cutSceneName);
+        }
+        if (enabledByTrain)
+        {
+            Debug.Log("Triggered by Train");
+            OnCutSceneTrainTriggered?.Invoke(cutSceneName);
+        }
+        // If repeatTimes is set, check if we need to destroy the object
+        if (repeatTimes != -1 && ++currentRepeat >= repeatTimes)
+            Destroy(gameObject);
+    }
 }
 
 
@@ -53,4 +71,6 @@ public enum CutSceneName
     //Patrick:
     Train2Station,
     Exit2Station,
+    Start2StartStation,
+    Exit2StartStation,
 }
