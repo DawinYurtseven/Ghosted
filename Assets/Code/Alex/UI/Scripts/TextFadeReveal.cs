@@ -29,6 +29,8 @@ public class TextFadeReveal : MonoBehaviour
         tmpText.text = text;
     }
 
+
+
     public void Complete()
     {
         DOTween.Kill(this);

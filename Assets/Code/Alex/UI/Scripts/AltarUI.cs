@@ -17,15 +17,21 @@ public class AltarUI : MonoBehaviour
     [SerializeField] private GameObject defaultButton;
 
     
+    private int originalMask;
+    private int altarMask;
 
     void Start()
     {
+        originalMask = Camera.main.cullingMask;
+        int playerLayer = LayerMask.NameToLayer("Player");
+        altarMask = ~(1 << playerLayer);
         brushStroke.ResetStroke();
         emotionChange.SetActive(false);
     }
     
     public void ActivateUI()
     {
+        Camera.main.cullingMask &= altarMask;
         emotionChange.SetActive(true);
         onActivateUI?.Invoke();
         CameraManager.Instance.turnOnOtherCamera(altarCamera);
@@ -45,6 +51,7 @@ public class AltarUI : MonoBehaviour
             CameraManager.Instance.turnoOffOtherCamera(altarCamera);
             PlayerInputDisabler.Instance.EnableInputWithDelay(2f);
             emotionChange.SetActive(false);
+            Camera.main.cullingMask = originalMask;
         });
         
     }

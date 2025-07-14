@@ -10,7 +10,8 @@ public class inputManager : MonoBehaviour
     public delegate void InputChangedHandler(string newControlScheme);
     public event InputChangedHandler InputChanged;
     public PlayerInput playerInput;
-
+    
+    public string currentScheme = "MK";
 
     
     private void Awake()
@@ -33,7 +34,7 @@ public class inputManager : MonoBehaviour
     public void OnControlsChanged()
     {
         Debug.Log("Input Manager changed controls");
-        string scheme = playerInput.currentControlScheme;
-        InputChanged?.Invoke(scheme);
+        currentScheme = playerInput.currentControlScheme;
+        InputChanged?.Invoke(currentScheme);
     }
 }

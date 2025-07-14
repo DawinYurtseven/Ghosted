@@ -82,6 +82,7 @@ public class CharacterControllerMockup : MonoBehaviour
     {
         if (context.performed)
         {
+            if (UIHintShow.Instance) UIHintShow.Instance.NotifyActionPerformed("Move");
             var lastMoveVector = moveVector;
             moveVector = context.ReadValue<Vector2>();
             currentSpeed -= ((lastMoveVector - moveVector).magnitude * currentSpeed / 2) * 0.5f;
@@ -220,6 +221,7 @@ public class CharacterControllerMockup : MonoBehaviour
             (Physics.SphereCast(transform.position, 0.3f, -transform.up, out var hit, groundCheckDistance, ground) ||
              !coyoteJumped))
         {
+            if (UIHintShow.Instance) UIHintShow.Instance.NotifyActionPerformed("Jump");
             float angle = Vector3.Angle(hit.normal, transform.up);
             if (Vector3.Angle(hit.normal, transform.up) > 45f)
                 return;
@@ -486,7 +488,7 @@ public class CharacterControllerMockup : MonoBehaviour
         {
             if (EmotionSingletonMock.Instance.disableAll) return;
             if (target == null || thrownTalisman != null) return;
-
+            if (UIHintShow.Instance) UIHintShow.Instance.NotifyActionPerformed("Shoot");
             //If the object is already bounded, recall talisman
             if (lockedObjects.Contains(target))
             {
@@ -497,14 +499,15 @@ public class CharacterControllerMockup : MonoBehaviour
                     Quaternion.LookRotation((transform.position - gameObject.transform.position).normalized));
                 //thrownTalisman.GetComponent<Talisman>().Initialize(tMode, talismanEmotion);
                 StartCoroutine(thrownTalisman.GetComponent<Talisman>().MoveTowardsPlayer(this));
-                talismansUsed.text = "Talismans used: " + curTalismans + " / " + maxTalismans;
+                talismansUsed.text = maxTalismans- curTalismans + " / " + maxTalismans;
             }
 
             //Throw talisman
             else
             {
                 if (curTalismans == maxTalismans) return;
-                //curTalsimans++;
+                curTalismans++;
+                talismansUsed.text = maxTalismans- curTalismans + " / " + maxTalismans;
                 animator.SetTrigger("Throw Talisman");
                 Vector3 lookPosition = new Vector3 (target.transform.position.x, characterObject.transform.position.y, target.transform.position.z);
                 characterObject.transform.LookAt(lookPosition);
@@ -522,13 +525,13 @@ public class CharacterControllerMockup : MonoBehaviour
 
     public void ThrowTalismanAnim()
     {
-        curTalismans++;
+        //curTalismans++;
         lockedObjects.Add(target);
         thrownTalisman = Instantiate(TalismanPrefab, gameObject.transform.position,
             Quaternion.LookRotation((target.transform.position - transform.position).normalized));
         thrownTalisman.GetComponent<Talisman>().Initialize(tMode, talismanEmotion);
         StartCoroutine(thrownTalisman.GetComponent<Talisman>().MoveTowards(target));
-        talismansUsed.text = "Talismans used: " + curTalismans + " / " + maxTalismans;
+        //talismansUsed.text = "Talismans used: " + curTalismans + " / " + maxTalismans;
     }
     
     
@@ -637,6 +640,7 @@ public class CharacterControllerMockup : MonoBehaviour
         if (tempAltar != null && context.performed)
         {
             Debug.Log("Recalling talismans");
+            if (UIHintShow.Instance) UIHintShow.Instance.NotifyActionPerformed("Recall");
             
             foreach (TalismanTargetMock lockedObject in lockedObjects)
             {
@@ -645,7 +649,7 @@ public class CharacterControllerMockup : MonoBehaviour
 
             lockedObjects.Clear();
             curTalismans = 0;
-            talismansUsed.text = "Talismans used: " + curTalismans + " / " + maxTalismans;
+            talismansUsed.text = maxTalismans- curTalismans + " / " + maxTalismans;
         }
     }
 
