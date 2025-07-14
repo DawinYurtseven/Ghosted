@@ -13,7 +13,7 @@ public class AltarUI : MonoBehaviour
     [SerializeField] public UnityEvent onActivateUI;
     [SerializeField] public UnityEvent onDeactivateUI;
     [SerializeField] public CinemachineVirtualCamera altarCamera;
-    [SerializeField] private BrushStroke brushStroke;
+    [SerializeField] private BrushStrokeCanvas brushStroke;
     [SerializeField] private GameObject defaultButton;
 
     
@@ -24,8 +24,7 @@ public class AltarUI : MonoBehaviour
     {
         originalMask = Camera.main.cullingMask;
         int playerLayer = LayerMask.NameToLayer("Player");
-        altarMask = ~(1 << playerLayer);
-        brushStroke.ResetStroke();
+        altarMask = ~(1 << playerLayer);  
         emotionChange.SetActive(false);
     }
     
@@ -38,9 +37,9 @@ public class AltarUI : MonoBehaviour
         PlayerInputDisabler.Instance.DisableInput();
         uiAnimator.Show(() =>
         {
-            brushStroke.AnimateBrush(() => {
+            brushStroke.Animate(() => {
                  EventSystem.current.SetSelectedGameObject(null);
-                EventSystem.current.SetSelectedGameObject(defaultButton);});
+                 EventSystem.current.SetSelectedGameObject(defaultButton);});
         });
     }
 
@@ -52,6 +51,7 @@ public class AltarUI : MonoBehaviour
             PlayerInputDisabler.Instance.EnableInputWithDelay(2f);
             emotionChange.SetActive(false);
             Camera.main.cullingMask = originalMask;
+            brushStroke.Reset();
         });
         
     }
