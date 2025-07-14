@@ -41,7 +41,7 @@ public class SettingsMenuController : MonoBehaviour
         resolutionDropdown.value = PlayerPrefs.GetString("resolution", "1920x1080");
         volumeSlider.value = PlayerPrefs.GetFloat("volume", 1f);
         sensitivitySlider.value = PlayerPrefs.GetFloat("sensitivity", 0.5f); // multiply it with camera rotation speed
-        invertToggle.value = PlayerPrefs.GetInt("invert", 0) == 1; // muliply the y calue with -1, if toggled
+        invertToggle.value = PlayerPrefs.GetInt("invert", 1) == -1; // muliply the y calue with -1, if toggled
 
         quitButton.clicked += () =>
         {
@@ -75,7 +75,8 @@ public class SettingsMenuController : MonoBehaviour
 
         invertToggle.RegisterValueChangedCallback(evt =>
         {
-            PlayerPrefs.SetInt("invert", evt.newValue ? 1 : 0);
+            PlayerPrefs.SetInt("invert", evt.newValue ? -1 : 1);
+            Debug.Log("I set new invertion: " + PlayerPrefs.GetInt("invert"));
         });
     }
 
