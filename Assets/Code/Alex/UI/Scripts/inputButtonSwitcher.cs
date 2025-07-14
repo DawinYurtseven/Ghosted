@@ -14,6 +14,7 @@ public class InputButtonSwitcher : MonoBehaviour
 
     private bool subscribed = false;
 
+    
     private void OnEnable()
     {
         if (inputManager.Instance != null)

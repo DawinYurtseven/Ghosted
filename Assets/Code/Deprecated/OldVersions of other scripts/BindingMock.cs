@@ -25,7 +25,7 @@ public class BindingMock : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.V)) {
+        /*if (Input.GetKeyDown(KeyCode.V)) {
 
             Debug.Log("Got key");
 
@@ -54,7 +54,7 @@ public class BindingMock : MonoBehaviour
         //Recall talismans
         if (Input.GetKeyDown(KeyCode.R)) {
              resetTalismans();
-        }
+        }*/
     }
 
     public void resetTalismans()

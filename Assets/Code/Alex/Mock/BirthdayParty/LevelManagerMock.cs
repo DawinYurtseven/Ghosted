@@ -48,14 +48,14 @@ public class LevelManagerMock : MonoBehaviour
     {
         CutSceneTrigger.OnCutScenePlayerTriggered += ExecuteCutScenePlayer;
         CutSceneTrigger.OnCutSceneTrainTriggered += ExecuteCutSceneTrain;
-        CharacterControllerMockup.firstUsageAltar += DialogueAfterAltar;
+        CharacterControllerMockup.FirstUsageAltar += DialogueAfterAltar;
     }
 
     private void OnDisable()
     {
         CutSceneTrigger.OnCutScenePlayerTriggered -= ExecuteCutScenePlayer;
         CutSceneTrigger.OnCutSceneTrainTriggered -= ExecuteCutSceneTrain;
-        CharacterControllerMockup.firstUsageAltar -= DialogueAfterAltar;
+        CharacterControllerMockup.FirstUsageAltar -= DialogueAfterAltar;
     }
     
     private void ExecuteCutScenePlayer(CutSceneName cutScene)
@@ -153,7 +153,7 @@ public class LevelManagerMock : MonoBehaviour
                  trainCamera.Priority = 0;
                  player.transform.position = playerSpawn2.position;
                  player.GetComponent<Rigidbody>().velocity = Vector3.zero;
-                 UIHintShow.Instance.showHintMessage("Use R/Right Shoulder by shrine to recall all talismans at once");
+                 UIHintShow.Instance.ShowHintUntilAction("Recall");
             }
 
             roadPart++;
