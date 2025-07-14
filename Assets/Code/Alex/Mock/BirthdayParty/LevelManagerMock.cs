@@ -77,7 +77,7 @@ public class LevelManagerMock : MonoBehaviour
         switch (cutScene)
         {
             case CutSceneName.EnterNextLevel:
-                SceneManager.LoadScene("MovingMock");
+                SceneManager.LoadScene("MovingMockSchlankCopy");
                 break;
             case CutSceneName.ChangeTrain:
                 TrainChangeScene();
