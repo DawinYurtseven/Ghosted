@@ -52,8 +52,8 @@ public class TrainCutsceneController : MonoBehaviour
             trainSceneCount++;
             
             //Set player spawn
-            player.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            player.transform.position = playerSpawn.position;
+            // player.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            // player.transform.position = playerSpawn.position;
         }
         
         if(name == CutSceneName.Start2StartStation)
