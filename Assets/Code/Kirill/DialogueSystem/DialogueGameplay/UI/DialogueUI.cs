@@ -18,7 +18,12 @@ namespace Ghosted.UI
         [SerializeField] GameObject choicePrefab;
         [SerializeField] GameObject replicWindow;
         [SerializeField] GameObject choiceWindow;
+        
+        [SerializeField] private AudioSource audioSource;
 
+        [SerializeField] private TextFadeReveal textAnimator;
+
+        [SerializeField] private bool charReveal;
         // Start is called before the first frame update
         void Start()
         {
@@ -33,7 +38,13 @@ namespace Ghosted.UI
             playerConversant.OnStartDialogue.AddListener(StartDialogue);
             playerConversant.OnEndDialogue.AddListener(EndDialogue);
             playerConversant.OnDialogueNode.AddListener(DisplayNodeInfo);
+            playerConversant.IsTextAnimating = () => textAnimator != null && textAnimator.isAnimating;
 
+            playerConversant.CompleteTextAnimation = () =>
+            {
+                textAnimator?.Complete();
+            };
+            
             exitButton.onClick.AddListener(OnExitDialogueClick);
 
             gameObject.SetActive(false);
@@ -68,11 +79,25 @@ namespace Ghosted.UI
             }
             else if (curNode as DialogueNode != null)
             {
+                audioSource.Stop();
                 DialogueNode dialogueNode = (DialogueNode)curNode;
-
+                if (dialogueNode.voiceClip != null)
+                {
+                    audioSource.clip = dialogueNode.voiceClip;
+                    audioSource.Play();
+                }
                 replicWindow.SetActive(true);
                 choiceWindow.SetActive(false);
-                messageText.text = dialogueNode.text;
+                if (charReveal)
+                {
+                    textAnimator.Reset();
+                    textAnimator.animateText(dialogueNode.text);
+                }
+                else
+                {
+                    messageText.text = dialogueNode.text;
+                }
+                
                 speakerText.text = dialogueNode.speaker;
             }
             else if (curNode as ReplyNode != null)

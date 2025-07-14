@@ -789,11 +789,11 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
+  m_fontSize: 15.1
   m_fontSizeBase: 30
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 11
   m_fontSizeMax: 72
   m_fontStyle: 1
   m_HorizontalAlignment: 1
@@ -1025,6 +1025,9 @@ MonoBehaviour:
   choicePrefab: {fileID: 6224170359929192622, guid: 46fbd57091eab6548b0f9460a20edb98, type: 3}
   replicWindow: {fileID: 8285722696181736203}
   choiceWindow: {fileID: 8666038093389981173}
+  audioSource: {fileID: 0}
+  textAnimator: {fileID: 0}
+  charReveal: 0
 --- !u!1 &6614757072372691990
 GameObject:
   m_ObjectHideFlags: 0

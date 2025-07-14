@@ -1,0 +1,183 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8378301179117725463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 5e64737e-e2b6-4a7a-9ca4-7e73ac3426d4
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 15
+    y: 29
+    width: 200
+    height: 80
+  onEnterActions:
+  - enter
+  - miyu
+  onExitActions: []
+  text: "I\u2019m Miyu. Welcome to my birthday party, isn\u2019t it just wonderful?"
+  child: b440a152-52c7-40b3-b393-13dd8fb00188
+  speaker: Ghost
+  voiceClip: {fileID: 8300000, guid: 941741e0db07b4340a279316c5848a70, type: 3}
+--- !u!114 &-7990788968366959822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 604680de-cbd8-48ae-bda0-4d19967c1221
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 842
+    y: 225
+    width: 200
+    height: 80
+  onEnterActions:
+  - player
+  onExitActions: []
+  text: Uhmm... Yeah.
+  child: 0d0ab245-3816-4cbc-9c60-694d3d5a5ef1
+  speaker: Ghost Binder
+  voiceClip: {fileID: 8300000, guid: f71c95660c05fba44b6514ae7eced5dd, type: 3}
+--- !u!114 &-4875692395481970368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 593f298a-6033-4c4d-b9ff-b881bb1917f5
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 544
+    y: 131
+    width: 200
+    height: 80
+  onEnterActions:
+  - miyu
+  onExitActions: []
+  text: "I\u2019ve never had such a perfect day in all my life! Mama and Papa said
+    8 is a big number. \nLook at all the presents! And lemon sponge cake, my absolute
+    favourite! Do you like lemon cake?? "
+  child: 604680de-cbd8-48ae-bda0-4d19967c1221
+  speaker: Miyu
+  voiceClip: {fileID: 8300000, guid: 2b5c89c6e28ba1f44923478ca812b732, type: 3}
+--- !u!114 &-1912022161151231139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: d9eed0be-58fc-4011-b947-63f0865c7c35
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 1010
+    y: 548
+    width: 200
+    height: 80
+  onEnterActions:
+  - miyu
+  onExitActions:
+  - exit
+  text: "My favourite is the red one in the middle! It\u2019s a very special candle.
+    \nMama said it\u2019s the one that grants all of my wishes. I wish for this party
+    to last forever!!"
+  child: 
+  speaker: Miyu
+  voiceClip: {fileID: 8300000, guid: 291bcb3e5bb3e44498efd56201a389e2, type: 3}
+--- !u!114 &-708463307955517995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 0d0ab245-3816-4cbc-9c60-694d3d5a5ef1
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 728
+    y: 417
+    width: 200
+    height: 80
+  onEnterActions:
+  - goToCandles
+  onExitActions: []
+  text: "Of course you do; everyone does! \nYou know, I helped too! I put the candles
+    into the cake. One by one. Don\u2019t they look great?"
+  child: d9eed0be-58fc-4011-b947-63f0865c7c35
+  speaker: Miyu
+  voiceClip: {fileID: 8300000, guid: b1f455b884cb7144db6a7476f0b9491b, type: 3}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0128aa92babf3fd4e9cf4beb0d51198e, type: 3}
+  m_Name: ghostDIalogue_Birthday
+  m_EditorClassIdentifier: 
+  dialogueSpeakers:
+  - Ghost Binder
+  - Miyu
+  - Ghost
+  dialogueNodes:
+  - {fileID: -8378301179117725463}
+  - {fileID: 7927405230967598860}
+  - {fileID: -4875692395481970368}
+  - {fileID: -7990788968366959822}
+  - {fileID: -708463307955517995}
+  - {fileID: -1912022161151231139}
+  replyNodes: []
+--- !u!114 &7927405230967598860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: b440a152-52c7-40b3-b393-13dd8fb00188
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 292
+    y: 69
+    width: 200
+    height: 80
+  onEnterActions:
+  - player
+  onExitActions: []
+  text: 'Hi, Miyu. Thank you for inviting me to your wonderful party. '
+  child: 593f298a-6033-4c4d-b9ff-b881bb1917f5
+  speaker: Ghost Binder
+  voiceClip: {fileID: 8300000, guid: 2179c8dd4533fc448b61b7a8f75beb43, type: 3}

@@ -25,6 +25,7 @@ MonoBehaviour:
     she simply said no!
   child: a8b82e5c-c5f0-42e2-b32a-5f6a7ab9b938
   speaker: Miyu
+  voiceClip: {fileID: 0}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42,6 +43,7 @@ MonoBehaviour:
   dialogueNodes:
   - {fileID: -6337795610277208645}
   - {fileID: 532528759518099577}
+  - {fileID: 4194511585344463046}
   replyNodes: []
 --- !u!114 &532528759518099577
 MonoBehaviour:
@@ -68,3 +70,28 @@ MonoBehaviour:
     that doll for years. Her name was Kana.
   child: removed
   speaker: Miyu
+  voiceClip: {fileID: 0}
+--- !u!114 &4194511585344463046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 16bd7b5f-bb13-4195-95a6-93f09a92304d
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 236
+    y: 718
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions: []
+  text: 
+  child: 
+  speaker: Miyu
+  voiceClip: {fileID: 0}

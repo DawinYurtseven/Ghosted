@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Serialization;
 
 public class UIAnimator : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class UIAnimator : MonoBehaviour
     public bool fading = true;
     public float duration = 0.4f;
     public float startScale = 0.8f;
-
+    public float finalTransparency = 1.0f;
     public bool hidden = true;
 
     private void Awake()
@@ -115,9 +116,9 @@ public class UIAnimator : MonoBehaviour
 
             if (fading)
             {
-                cg.alpha = show ? 0f : 1f;
+                cg.alpha = show ? 0f : finalTransparency;
                 totalTweens++;
-                cg.DOFade(show ? 1f : 0f, duration)
+                cg.DOFade(show ? finalTransparency : 0f, duration)
                     .SetEase(Ease.InOutSine)
                     .OnComplete(() =>
                     {
@@ -159,8 +160,8 @@ public class UIAnimator : MonoBehaviour
 
                 if (fading)
                 {
-                    cg.alpha = show ? 0f : 1f;
-                    cg.DOFade(show ? 1f : 0f, duration).SetEase(Ease.InOutSine);
+                    cg.alpha = show ? 0f : finalTransparency;
+                    cg.DOFade(show ? finalTransparency : 0f, duration).SetEase(Ease.InOutSine);
                 }
             });
 
