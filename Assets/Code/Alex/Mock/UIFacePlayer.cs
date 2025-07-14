@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class UIFacePlayer : MonoBehaviour
 {
-    private Transform mainCamera;
+    protected Transform mainCamera;
     
     public CanvasGroup canvasGroup;
     public float fadeDuration = 0.3f;
     
-    private Tween currentTween;
+    protected Tween currentTween;
 
     void Awake()
     {
