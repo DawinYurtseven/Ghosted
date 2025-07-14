@@ -23,12 +23,12 @@ public class ghostOrb : MonoBehaviour
     [SerializeField] private AudioClip[] laughing; // Assign this in the Inspector
     private AudioSource audioSource;
 
-
     void Awake()
     {
         audioSource = GetComponent<AudioSource>();
     }
- private void Update()
+    
+    private void Update()
     {
         // follow the target if set
         if (isFollowing && followTarget != null)
@@ -57,7 +57,7 @@ public class ghostOrb : MonoBehaviour
         MoveToPosition(target.position);
     }
 
-    // 3Move back to the current main waypoint
+    // Move back to the current main waypoint
     public void MoveToCurrentWaypoint()
     {
         if (waypoints == null || waypoints.Count == 0) return;

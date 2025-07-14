@@ -50,17 +50,23 @@ public class SpawnAnim : MonoBehaviour
         
         Transform t = obj.transform;
         obj.SetActive(true);
-        Debug.Log("Got: " + state);
+        //Debug.Log("Got: " + state);
         if (state)
         {
-            /// Show + animate in
+            // Show + animate in
+            if (!cg)
+            {
+                Debug.Log("No CanvasGroup found, adding one");
+                cg = obj.AddComponent<CanvasGroup>();
+            }
+            
             cg.alpha = 0;
             
             t.localScale = Vector3.zero; // Start from zero scale
             t.DOScale(Vector3.one, animDuration).SetEase(Ease.OutBack);
             cg.DOFade(1, animDuration);
             
-            Debug.Log("Showing obj");
+            Debug.Log("Showing obj " + obj.name);
         }
         else
         {

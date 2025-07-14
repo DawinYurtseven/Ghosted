@@ -5,6 +5,8 @@ public class AltarMock : MonoBehaviour
 
     public UIInteractionHint uiHint;
     [SerializeField] private AltarUI uiAltar;
+    
+    
     public void ChangeEmotion(Emotion emotion)
     {
         EmotionSingletonMock.Instance.ChangeEmotion(emotion);
@@ -23,12 +25,14 @@ public class AltarMock : MonoBehaviour
     void Awake()
     {
         uiAltar = GetComponent<AltarUI>();
+        
     }
 
     public void InteractAltar()
     {
         Debug.Log("Interacted with altar");
         uiHint.Hide();
+        
         uiAltar.ActivateUI();
     }
 

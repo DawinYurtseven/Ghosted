@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
@@ -47,5 +48,10 @@ public class buttonSelect : MonoBehaviour, ISelectHandler, IDeselectHandler
         if (outline != null)
             outline.DOFade(0f, fadeDuration);
         onDeselect?.Invoke();
+    }
+
+    private void OnDisable()
+    {
+        outline.alpha = 0f;
     }
 }

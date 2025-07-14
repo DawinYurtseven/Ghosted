@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Unity.VisualScripting.FullSerializer;
 using UnityEditor;
 using UnityEngine;
@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 
 public class SceneViewStateToggle : EditorWindow
 {
-    [MenuItem("Project Windows/My Editor Window")]
+    [MenuItem("Project Windows/Scene View State Toggle")]
     public static void ShowExample()
     {
         SceneViewStateToggle wnd = GetWindow<SceneViewStateToggle>();

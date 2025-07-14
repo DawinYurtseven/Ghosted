@@ -8,13 +8,13 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Black
-  m_Shader: {fileID: 4800000, guid: 270e6f599de64d24dbca0af84dae2265, type: 3}
+  m_Shader: {fileID: 4800000, guid: 5fdde90d226f23848813b7df846c3308, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
+  m_ValidKeywords: []
+  m_InvalidKeywords:
   - BACKFACE_LIGHTING
   - USECOLOURRAMP
-  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -30,6 +30,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BaseTexture:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -145,6 +149,8 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _HeightMax: 181.8
+    - _HeightMin: 0
     - _Metallic: 0
     - _MixAmount: 1
     - _Noise: 1
@@ -166,8 +172,9 @@ Material:
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
+    - _Switch: 0
     - _TextureCoordinateSpace: 1
-    - _TextureSpace: 0
+    - _TextureSpace: 3
     - _TextureSpaceFBM: 1
     - _TextureSpaceVoronoi: 1
     - _UseColourRamp: 1
@@ -192,7 +199,7 @@ Material:
     - _EmissiveColour: {r: 0, g: 1.4980394, b: 1.3644456, a: 1}
     - _FbmShift: {r: 8, g: 8, b: 8, a: 8}
     - _Highlight: {r: 0.455, g: 0.455, b: 0.455, a: 1}
-    - _LightTint: {r: 0.2679245, g: 0.2679245, b: 0.2679245, a: 1}
+    - _LightTint: {r: 0.40251565, g: 0.40251565, b: 0.40251565, a: 1}
     - _LightTone: {r: 0.278, g: 0.278, b: 0.278, a: 1}
     - _MidDarkTone: {r: 0.145, g: 0.145, b: 0.145, a: 1}
     - _MidLightTone: {r: 0.307, g: 0.307, b: 0.307, a: 1}

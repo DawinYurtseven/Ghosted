@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,25 +14,21 @@ namespace Ghosted.Dialogue {
         Dialogue currentDialogue;
         DialogueEditorNode currentNode = null;
         
-        private PlayerInput playerInput;
 
         public readonly UnityEvent<Dialogue> OnStartDialogue = new UnityEvent<Dialogue>();
         public readonly UnityEvent<Dialogue> OnEndDialogue = new UnityEvent<Dialogue>();
         public readonly UnityEvent<DialogueEditorNode> OnDialogueNode = new UnityEvent<DialogueEditorNode>();
-
+        
+        public Func<bool> IsTextAnimating;
+        public Action CompleteTextAnimation;
+        
         private Conversant currentConversant;
 
 
         [SerializeField] private float interactDistance = 20f;
 
         private int playerLayer, layerMask;
-        private AIConversant dialogueAIConversant;
-
-        void Awake()
-        {
-            playerInput = GetComponent<PlayerInput>();
-            playerInput.actions.FindActionMap("Dialogue").Disable();
-        }
+        [SerializeField] private AIConversant dialogueAIConversant;
         
         void Start()
         {
@@ -40,7 +37,7 @@ namespace Ghosted.Dialogue {
             layerMask = ~(1 << playerLayer);
         }
         private float dialogueStartTime;
-        private float dialogueInputDelay = 0.1f;
+        private float dialogueInputDelay = 0.3f;
         public void StartDialogue(Dialogue dialogue)
         {
             
@@ -52,9 +49,7 @@ namespace Ghosted.Dialogue {
             OnDialogueNode.Invoke(currentNode);
             dialogueStartTime = Time.time;
             
-            playerInput.actions.FindActionMap("Dialogue").Enable();
-            playerInput.SwitchCurrentActionMap("Dialogue");
-            playerInput.actions.FindActionMap("Character Control").Disable();
+            PlayerInputDisabler.Instance.SwitchInputMap("Dialogue");
             TriggerEnterAction();
             //Somehow is still laggy for the first dialogue in the scene
             //StartCoroutine(SwitchInputMapNextFrame("Dialogue"));
@@ -67,10 +62,10 @@ namespace Ghosted.Dialogue {
             currentDialogue = null;
             currentConversant = null;
             currentNode = null;
+            LeaveDialogue();
             
             
-            StartCoroutine(SwitchInputMapDelayed("Character Control"));
-            playerInput.actions.FindActionMap("Dialogue").Disable();
+            PlayerInputDisabler.Instance.SwitchInputMapDelayed("Character Control");
         }
         
         //called from Input asset 
@@ -98,6 +93,7 @@ namespace Ghosted.Dialogue {
             if (dialogueAIConversant != null)
             {
                 dialogueAIConversant.turnOffHint();
+                dialogueAIConversant = null;
             }
         }
 
@@ -191,8 +187,16 @@ namespace Ghosted.Dialogue {
                 if (!currentDialogue) return;
                 //delay so that the start dialogue e is not confused with the next line
                 if (Time.time - dialogueStartTime < dialogueInputDelay) return;
-
+//                Debug.Log("Went through input delay");
+                if (IsTextAnimating != null && IsTextAnimating.Invoke())
+                {
+                    CompleteTextAnimation?.Invoke();
+                    return;
+                }
+                
                 TriggerExitAction();
+                
+                //TODO: maybe let the dialogue complete first (if revealing)
                 currentNode = currentDialogue.GetChild((DialogueNode)currentNode);
                 if (currentNode == null)
                 {
@@ -267,13 +271,8 @@ namespace Ghosted.Dialogue {
             return currentNode;
         }
 
-        //change in next frame to avoid confusion
-        private IEnumerator SwitchInputMapDelayed(string mapName, float delay = 0.5f)
-        {
-            yield return new WaitForSeconds(delay);
-            playerInput.SwitchCurrentActionMap(mapName);
-            playerInput.actions.FindActionMap(mapName).Enable();
-        }
+       
+        
     }
 }
 

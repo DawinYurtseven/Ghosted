@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Dialogues/Layout Data")]
 public class DialogueWIndowLayoutData : ScriptableObject
 {
     [Range(0, 100)] public float widthPercent;

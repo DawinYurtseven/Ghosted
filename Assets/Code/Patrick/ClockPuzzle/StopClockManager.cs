@@ -13,8 +13,7 @@ public class StopClockManager : MonoBehaviour
     [SerializeField] private int solutionMinutes = -1;
     [SerializeField] private int solutionSeconds = -1;
     
-    [SerializeField] private float threshold = 5f; // threshold in degrees to check if the clock hand is correct
-    
+    private float threshold = 5f; // threshold in degrees to check if the clock hand is correct
     private ClockHand currentHand;
     
     public bool isSolved { get; private set; } = false;
