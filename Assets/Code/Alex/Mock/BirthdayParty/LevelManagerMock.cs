@@ -48,14 +48,14 @@ public class LevelManagerMock : MonoBehaviour
     {
         CutSceneTrigger.OnCutScenePlayerTriggered += ExecuteCutScenePlayer;
         CutSceneTrigger.OnCutSceneTrainTriggered += ExecuteCutSceneTrain;
-        CharacterControllerMockup.firstUsageAltar += DialogueAfterAltar;
+        CharacterControllerMockup.FirstUsageAltar += DialogueAfterAltar;
     }
 
     private void OnDisable()
     {
         CutSceneTrigger.OnCutScenePlayerTriggered -= ExecuteCutScenePlayer;
         CutSceneTrigger.OnCutSceneTrainTriggered -= ExecuteCutSceneTrain;
-        CharacterControllerMockup.firstUsageAltar -= DialogueAfterAltar;
+        CharacterControllerMockup.FirstUsageAltar -= DialogueAfterAltar;
     }
     
     private void ExecuteCutScenePlayer(CutSceneName cutScene)
