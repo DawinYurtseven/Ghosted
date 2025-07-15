@@ -141,7 +141,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4334828715257338577}
   - component: {fileID: 3455341427540510916}
-  - component: {fileID: 7049489265438886618}
   - component: {fileID: 8813004018484779477}
   - component: {fileID: 3106737420495310070}
   m_Layer: 0
@@ -176,18 +175,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &7049489265438886618
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1417332555564441589}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e8b78ac948f05a46a6d8339a503172b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &8813004018484779477
@@ -304,6 +291,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3052702253160985309}
   - component: {fileID: 7437115643067128683}
+  - component: {fileID: 1459574287288415163}
   - component: {fileID: 6601241234990720857}
   m_Layer: 8
   m_Name: EventSystem
@@ -342,7 +330,7 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
---- !u!114 &6601241234990720857
+--- !u!114 &1459574287288415163
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -351,10 +339,41 @@ MonoBehaviour:
   m_GameObject: {fileID: 2596293428574515761}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
+  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_SendPointerHoverToParent: 1
+  m_MoveRepeatDelay: 0.5
+  m_MoveRepeatRate: 0.1
+  m_XRTrackingOrigin: {fileID: 0}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: 19570f7aa29186e4ebef9474ecbe06f6, type: 3}
+  m_PointAction: {fileID: 0}
+  m_MoveAction: {fileID: 1798727657631674586, guid: 19570f7aa29186e4ebef9474ecbe06f6, type: 3}
+  m_SubmitAction: {fileID: -8647105925067941273, guid: 19570f7aa29186e4ebef9474ecbe06f6, type: 3}
+  m_CancelAction: {fileID: 0}
+  m_LeftClickAction: {fileID: 0}
+  m_MiddleClickAction: {fileID: 0}
+  m_RightClickAction: {fileID: 0}
+  m_ScrollWheelAction: {fileID: 0}
+  m_TrackedDevicePositionAction: {fileID: 0}
+  m_TrackedDeviceOrientationAction: {fileID: 0}
+  m_DeselectOnBackgroundClick: 0
+  m_PointerBehavior: 0
+  m_CursorLockBehavior: 0
+  m_ScrollDeltaPerTick: 6
+--- !u!114 &6601241234990720857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2596293428574515761}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 0
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -472,12 +491,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BindingMode: 2
   m_FollowOffset: {x: -0.31, y: 0.02, z: 0.97}
-  m_XDamping: 1
-  m_YDamping: 1.15
-  m_ZDamping: 1
+  m_XDamping: 20
+  m_YDamping: 20
+  m_ZDamping: 20
   m_AngularDampingMode: 0
-  m_PitchDamping: 0
-  m_YawDamping: 0
+  m_PitchDamping: 20
+  m_YawDamping: 20
   m_RollDamping: 0
   m_AngularDamping: 0
 --- !u!114 &5082042178399925522
@@ -496,14 +515,14 @@ MonoBehaviour:
   m_LookaheadTime: 0
   m_LookaheadSmoothing: 0
   m_LookaheadIgnoreY: 1
-  m_HorizontalDamping: 0.5
-  m_VerticalDamping: 0.5
+  m_HorizontalDamping: 4
+  m_VerticalDamping: 4
   m_ScreenX: 0.5
   m_ScreenY: 0.5
-  m_DeadZoneWidth: 0
-  m_DeadZoneHeight: 0
-  m_SoftZoneWidth: 0.8
-  m_SoftZoneHeight: 0.8
+  m_DeadZoneWidth: 0.66
+  m_DeadZoneHeight: 0.75
+  m_SoftZoneWidth: 0.66
+  m_SoftZoneHeight: 0.77
   m_BiasX: 0.03
   m_BiasY: 0
   m_CenterOnActivate: 1
@@ -569,7 +588,7 @@ Transform:
   m_GameObject: {fileID: 7437304850151770597}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.973249, z: -0.22975294, w: 0}
-  m_LocalPosition: {x: 0.91, y: 4.35, z: 40.61}
+  m_LocalPosition: {x: 5.5960007, y: 5.17, z: 40.920013}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1097,6 +1116,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Mock
       objectReference: {fileID: 0}
+    - target: {fileID: 7266318017597648310, guid: a0d0df5c6dcec6d488dfefaeb5d2b2a4, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7266318017597648310, guid: a0d0df5c6dcec6d488dfefaeb5d2b2a4, type: 3}
+      propertyPath: m_ActionEvents.Array.data[10].m_ActionId
+      value: 753e6641-c618-4911-be2d-728af120cbdc
+      objectReference: {fileID: 0}
+    - target: {fileID: 7266318017597648310, guid: a0d0df5c6dcec6d488dfefaeb5d2b2a4, type: 3}
+      propertyPath: m_ActionEvents.Array.data[11].m_ActionId
+      value: 24d7e7cb-20d1-4b97-86b2-effece35948f
+      objectReference: {fileID: 0}
+    - target: {fileID: 7266318017597648310, guid: a0d0df5c6dcec6d488dfefaeb5d2b2a4, type: 3}
+      propertyPath: m_ActionEvents.Array.data[10].m_ActionName
+      value: AltarUI/Submit[/Keyboard/e,/Keyboard/space,/XInputControllerWindows/buttonWest,/XInputControllerWindows/buttonSouth]
+      objectReference: {fileID: 0}
+    - target: {fileID: 7266318017597648310, guid: a0d0df5c6dcec6d488dfefaeb5d2b2a4, type: 3}
+      propertyPath: m_ActionEvents.Array.data[11].m_ActionName
+      value: AltarUI/Navigate[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/XInputControllerWindows/leftStick/up,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/leftStick/right]
+      objectReference: {fileID: 0}
+    - target: {fileID: 7266318017597648310, guid: a0d0df5c6dcec6d488dfefaeb5d2b2a4, type: 3}
+      propertyPath: m_ControlsChangedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 121509755636880057}
     - target: {fileID: 7266318017597648310, guid: a0d0df5c6dcec6d488dfefaeb5d2b2a4, type: 3}
       propertyPath: m_ActionEvents.Array.data[11].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
