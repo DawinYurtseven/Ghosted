@@ -46,7 +46,7 @@ public class DialogueWindowController : MonoBehaviour
     [SerializeField] private Emotion curEmotion;
     private float charDelay;
     //---// Sound //---//
-    public AudioSource audioSource;
+    public FMODUnity.StudioEventEmitter emitter;
 
     PlayerConversant playerConversant;
 
@@ -273,10 +273,10 @@ public class DialogueWindowController : MonoBehaviour
             StopAllCoroutines();
             DialogueNode dialogueNode = (DialogueNode)curNode;
 
-            if (dialogueNode.voiceClip != null)
+            if (!dialogueNode.voiceClip.IsNull)
             {
-                audioSource.clip = dialogueNode.voiceClip;
-                audioSource.Play();
+                emitter.EventReference = dialogueNode.voiceClip;
+                emitter.Play();
             }
 
             speakerLabelCurrent.text = dialogueNode.speaker;

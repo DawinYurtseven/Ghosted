@@ -11,6 +11,6 @@ namespace Ghosted.Dialogue {
         [SerializeField, HideInInspector]
         private string child = "";
         public string speaker = "";
-        public AudioClip voiceClip;
+        public FMODUnity.EventReference voiceClip;
     }
 }

@@ -40,7 +40,7 @@ public class DialogueMenuController : MonoBehaviour
 
 
     PlayerConversant playerConversant;
-    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private FMODUnity.StudioEventEmitter emitter;
     void OnEnable()
     {
         if (document == null) return;
@@ -148,7 +148,7 @@ public class DialogueMenuController : MonoBehaviour
 
     public void EndDialogue(Dialogue dialogue)
     {
-        audioSource.Stop();
+        emitter.Stop();
         dialogueMenu.style.display = DisplayStyle.None;
     }
 
@@ -172,13 +172,13 @@ public class DialogueMenuController : MonoBehaviour
         }
         else if (curNode as DialogueNode != null)
         {
-            audioSource.Stop();
+            emitter.Stop();
             DialogueNode dialogueNode = (DialogueNode)curNode;
 
-            if (dialogueNode.voiceClip != null)
+            if (!dialogueNode.voiceClip.IsNull)
             {
-                audioSource.clip = dialogueNode.voiceClip;
-                audioSource.Play();
+                emitter.EventReference = dialogueNode.voiceClip;
+                emitter.Play();
             }
 
             speakerLabel.text = dialogueNode.speaker;

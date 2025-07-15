@@ -216,7 +216,7 @@ MonoBehaviour:
       Data2: 1230855751
       Data3: 1118599585
       Data4: 1685570111
-    Path: event:/character/steps/steps
+    Path: event:/SFX/character/steps/steps
   Event: 
   EventPlayTrigger: 11
   EventStopTrigger: 12
@@ -261,6 +261,7 @@ RectTransform:
   m_Children:
   - {fileID: 6995319805732802617}
   - {fileID: 8846833617604234328}
+  - {fileID: 7554598165310859269}
   m_Father: {fileID: 1664968010384312648}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -506,7 +507,6 @@ GameObject:
   - component: {fileID: 7266318017597648310}
   - component: {fileID: 1143476629435873370}
   - component: {fileID: 2507525355676472002}
-  - component: {fileID: 8703700718889776371}
   m_Layer: 8
   m_Name: Player Mock
   m_TagString: Player
@@ -667,8 +667,6 @@ MonoBehaviour:
   cameraSpeed: 70
   xAxisMin: -60
   xAxisMax: 60
-  xAxisMinLock: 0
-  xAxisMaxLock: 0
   jumpStrength: 27
   fallStrength: 100
   groundCheckDistance: 1.5
@@ -676,13 +674,6 @@ MonoBehaviour:
   coyoteJumped: 0
   isGrounded: 1
   jumpPressed: 0
-  dashSpeed: 50
-  lastInput: {x: 0, y: 0, z: 0}
-  dashed: 0
-  dashedCooldown: 0
-  lockOnRange: 50
-  camera: {fileID: 8104099331024968956}
-  cameraZoomSpeed: 0.2
   target: {fileID: 0}
   currentTalismanBind: {fileID: 0}
   previousTargetTalismanObject: {fileID: 0}
@@ -2195,9 +2186,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: a0320ca399dadda4c9e0d247b2b6d971, type: 3}
       insertIndex: -1
       addedObject: {fileID: 505742756738657653}
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: a0320ca399dadda4c9e0d247b2b6d971, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6511739550627197303}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a0320ca399dadda4c9e0d247b2b6d971, type: 3}
       insertIndex: -1
