@@ -441,7 +441,7 @@ public class CharacterControllerMockup : MonoBehaviour
                     Quaternion.LookRotation((transform.position - gameObject.transform.position).normalized));
                 StartCoroutine(_thrownTalisman.GetComponent<Talisman>().MoveTowardsPlayer(this));
                 animator.SetTrigger(Call);
-                talismansUsed.text = "Talismans used: " + _curTalismans + " / " + maxTalismans;
+                talismansUsed.text = maxTalismans- _curTalismans + " / " + maxTalismans;
                 //TODO: I think it was merged false because it is the same part, but leaving it here 
                 //animator.SetTrigger(Call);
                 //thrownTalisman.GetComponent<Talisman>().Initialize(tMode, talismanEmotion);
