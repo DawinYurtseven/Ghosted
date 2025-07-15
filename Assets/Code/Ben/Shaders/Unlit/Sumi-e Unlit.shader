@@ -3,20 +3,19 @@ Shader "ForgottenColours/Unlit/Sumi-E Unlit"
     Properties
     {
         _Colour("Colour", Color) = (1,1,1,1)
-        _Alpha("Alpha", Range(0,1)) = 1
     }
 
     SubShader
     {
-        Tags { "RenderType" = "Transparent" "Queue" = "Transparent" }
+        Tags { "RenderType" = "Opaque" "Queue" = "Geometry" }
 
         Pass
         {
             Name "UnlitPass"
             Tags { "LightMode" = "UniversalForward" }
 
-            Blend SrcAlpha OneMinusSrcAlpha
             Cull Off
+            Zwrite On
 
             HLSLPROGRAM
             #pragma vertex vert
@@ -35,7 +34,6 @@ Shader "ForgottenColours/Unlit/Sumi-E Unlit"
             };
 
             float4 _Colour;
-            float _Alpha;
 
             Varyings vert (Attributes IN)
             {
@@ -46,7 +44,7 @@ Shader "ForgottenColours/Unlit/Sumi-E Unlit"
 
             half4 frag (Varyings IN) : SV_Target
             {
-                return half4(_Colour.rgb, _Alpha);
+                return half4(_Colour.rgb, 1);
             }
 
             ENDHLSL

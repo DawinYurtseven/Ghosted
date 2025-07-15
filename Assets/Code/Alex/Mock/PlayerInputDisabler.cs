@@ -42,6 +42,7 @@ public class PlayerInputDisabler: MonoBehaviour
     
     public void EnableInputWithDelay(float delaySeconds)
     {
+        EnableInput();
         StartCoroutine(EnableInputCoroutine(delaySeconds));
     }
 

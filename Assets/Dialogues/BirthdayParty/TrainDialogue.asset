@@ -14,15 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: 558
-    y: 155
+    x: 560
+    y: 163
     width: 200
     height: 80
   onEnterActions: []
   onExitActions: []
-  text: ...I guess so.
-  child: 754d5024-e952-4943-9e57-b00231afbd8d
+  text: ...
+  child: 28a3c1b6-0118-431e-8114-d82a9937945f
   speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &-2695430335982704713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47,6 +54,13 @@ MonoBehaviour:
   text: "You\u2019ll understand once you see it.\r"
   child: 
   speaker: Ghost Binder
+  voiceClip:
+    Guid:
+      Data1: 2083001426
+      Data2: 1193365523
+      Data3: -761739108
+      Data4: 1723985516
+    Path: event:/Dialogue/Dialogue 6/6
 --- !u!114 &-1218873031638777603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,9 +81,16 @@ MonoBehaviour:
     height: 80
   onEnterActions: []
   onExitActions: []
-  text: What do you think? Should we go on with it?
+  text: Should we go on?
   child: 9618fd51-4209-4f73-96b4-c7233d13c534
   speaker: Ghost Binder
+  voiceClip:
+    Guid:
+      Data1: 394458142
+      Data2: 1275993442
+      Data3: -420324683
+      Data4: -1385925203
+    Path: event:/Dialogue/Dialogue 6/2
 --- !u!114 &-1136851469993964585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,29 +114,13 @@ MonoBehaviour:
   text: "I\u2019m not sure I get it."
   child: c7457ae6-29f1-4f38-82e1-b8d2952ad6f4
   speaker: Miyu
---- !u!114 &-184749028420118121
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
-  m_Name: 754d5024-e952-4943-9e57-b00231afbd8d
-  m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 799
-    y: 218
-    width: 200
-    height: 80
-  onEnterActions: []
-  onExitActions: []
-  text: But how will we get into the train?
-  child: c69f66b8-5d52-449b-9568-d7b49dc58e56
-  speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: -562095137
+      Data2: 1225542680
+      Data3: -596740973
+      Data4: -1787370587
+    Path: event:/Dialogue/Dialogue 6/5
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,10 +140,10 @@ MonoBehaviour:
   - {fileID: 5357615108362744399}
   - {fileID: -1218873031638777603}
   - {fileID: -2906217645163519970}
-  - {fileID: -184749028420118121}
   - {fileID: 3729557253263164330}
   - {fileID: -1136851469993964585}
   - {fileID: -2695430335982704713}
+  - {fileID: 3926542566857034767}
   replyNodes: []
 --- !u!114 &3729557253263164330
 MonoBehaviour:
@@ -166,6 +171,43 @@ MonoBehaviour:
     stay the same until I remove the talisman."
   child: 3b54ef93-a612-4607-af57-d0d07205f744
   speaker: Ghost Binder
+  voiceClip:
+    Guid:
+      Data1: -1616027953
+      Data2: 1121410787
+      Data3: -1448866900
+      Data4: 199495802
+    Path: event:/Dialogue/Dialogue 6/4
+--- !u!114 &3926542566857034767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 28a3c1b6-0118-431e-8114-d82a9937945f
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 670
+    y: 300
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions: []
+  text: That looks dangerous. How do we even get on the train?
+  child: c69f66b8-5d52-449b-9568-d7b49dc58e56
+  speaker: Ghost Binder
+  voiceClip:
+    Guid:
+      Data1: -926642748
+      Data2: 1193077387
+      Data3: -1142802029
+      Data4: -1456877340
+    Path: event:/Dialogue/Dialogue 6/3
 --- !u!114 &5357615108362744399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,3 +232,10 @@ MonoBehaviour:
   text: Trains bring back a lot of memories... Some are really hard to remember.
   child: bbfd4bae-6e4c-4252-b93a-ff7aca2713e3
   speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: -364978657
+      Data2: 1190080558
+      Data3: -1335107953
+      Data4: -493967831
+    Path: event:/Dialogue/Dialogue 6/1

@@ -1,0 +1,215 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6156613591578688683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 27ccbe33-43c7-4308-9ba3-83f4d5175140
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 57
+    y: 295
+    width: 200
+    height: 80
+  onEnterActions:
+  - player
+  onExitActions:
+  - exit
+  text: "Yes. Let memory guide your steps\u2014joy, then fear. Not all paths are
+    easy... but they\u2019re yours."
+  child: 
+  speaker: Player
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+--- !u!114 &-4429548071989025157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 6d7afb6e-e722-4f56-94c3-17b569c74095
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 880
+    y: 39
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions: []
+  text: "The train wasn't just arriving\u2026 it was leaving."
+  child: 27ccbe33-43c7-4308-9ba3-83f4d5175140
+  speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0128aa92babf3fd4e9cf4beb0d51198e, type: 3}
+  m_Name: Dial_OrderTrainArrive
+  m_EditorClassIdentifier: 
+  dialogueSpeakers:
+  - Miyu
+  - Player
+  dialogueNodes:
+  - {fileID: 8705371555783416926}
+  - {fileID: 6418530206259528633}
+  - {fileID: 9147519370536567891}
+  - {fileID: 586364034066108345}
+  - {fileID: -4429548071989025157}
+  - {fileID: -6156613591578688683}
+  replyNodes: []
+--- !u!114 &586364034066108345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 6374ab24-3903-429c-948b-8d7d1242d6f7
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 669
+    y: 46
+    width: 200
+    height: 80
+  onEnterActions:
+  - miyu
+  onExitActions: []
+  text: "That was the moment I knew I\u2019d be truly alone. No turning back. I was
+    on the wrong side of everything familiar."
+  child: 6d7afb6e-e722-4f56-94c3-17b569c74095
+  speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+--- !u!114 &6418530206259528633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 79944dcb-a2d0-4043-a463-bece8a1a9c1a
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 244
+    y: 14
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions: []
+  text: That sound filled me with dread. Like it was taking something away from me.
+  child: 2a8ad912-3a19-4890-8afb-2abe1a424f0e
+  speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+--- !u!114 &8705371555783416926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 3200f4de-6a6d-430d-9707-50a8b94630d1
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 14
+    y: 7
+    width: 200
+    height: 80
+  onEnterActions:
+  - enter
+  - miyu
+  - moveTo
+  onExitActions: []
+  text: "Yes\u2026 but after that, I remember hearing the train arriving. The last
+    platform. "
+  child: 79944dcb-a2d0-4043-a463-bece8a1a9c1a
+  speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+--- !u!114 &9147519370536567891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 2a8ad912-3a19-4890-8afb-2abe1a424f0e
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 454
+    y: 17
+    width: 200
+    height: 80
+  onEnterActions:
+  - player
+  onExitActions: []
+  text: Why?
+  child: 6374ab24-3903-429c-948b-8d7d1242d6f7
+  speaker: Player
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 

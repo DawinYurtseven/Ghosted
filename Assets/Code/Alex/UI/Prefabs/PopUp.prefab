@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 26.6}
-  m_SizeDelta: {x: 172.2, y: 1000}
+  m_AnchoredPosition: {x: -7, y: 49.4}
+  m_SizeDelta: {x: 138.1, y: 1000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6546092434011260119
 CanvasRenderer:
@@ -111,7 +111,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -162.3}
+  m_AnchoredPosition: {x: -7, y: -162.3}
   m_SizeDelta: {x: 145.3, y: 161.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6281879765338234159
@@ -186,8 +186,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 158.3}
-  m_SizeDelta: {x: -40, y: 50}
+  m_AnchoredPosition: {x: -10.5, y: 161.5}
+  m_SizeDelta: {x: 7, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8356559181592267281
 CanvasRenderer:
@@ -219,8 +219,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Talisman
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f961568a63271734f861ed9f7509f26a, type: 2}
-  m_sharedMaterial: {fileID: -2778962957168927574, guid: f961568a63271734f861ed9f7509f26a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 99afe73f504050b49bbc46a6664d9b02, type: 2}
+  m_sharedMaterial: {fileID: -2470309590388273975, guid: 99afe73f504050b49bbc46a6664d9b02, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -323,7 +323,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -120, y: 0}
-  m_SizeDelta: {x: 240, y: 0}
+  m_SizeDelta: {x: 217.3, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2944931623383334461
 GameObject:
@@ -359,8 +359,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -95.099945}
-  m_SizeDelta: {x: -40, y: 50}
+  m_AnchoredPosition: {x: -10.5, y: -81}
+  m_SizeDelta: {x: 6.9999995, y: 111.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8444667592642074338
 CanvasRenderer:
@@ -390,10 +390,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '"Some very very important quote about talismans, how they are used etc.
-    etc. that I will definetely ger by Wednesday"
-
-    - A very smart Japanese guy'
+  m_text: "\u201CTalismans are only to be used with the permission of the ghost and
+    never to be used against them or their will.\u201D \r\n<i>\u2013 Spiritual Ghost
+    Binder Ryosuke, 7789</i>\r\n\nThe Talisman is a powerful tool, allowing the Spiritual
+    Ghost Binder to bind the ghost\u2019s lost emotions."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9ffedb76307950942a056e30c03bcc3a, type: 2}
   m_sharedMaterial: {fileID: 8578493399611396483, guid: 9ffedb76307950942a056e30c03bcc3a, type: 2}
@@ -420,8 +420,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 10.7
-  m_fontSizeBase: 10.7
+  m_fontSize: 9.7
+  m_fontSizeBase: 9.7
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -696,6 +696,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 24570293822fbba44884af92f0158988, type: 2}
   - {fileID: 11400000, guid: 57f043e495d00bb4eb31e1dfb04c5af3, type: 2}
   - {fileID: 11400000, guid: 4edf14e013302e145b69b28046979bf6, type: 2}
+  defaultDelay: 1
 --- !u!225 &3879944309411423913
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -815,7 +816,7 @@ PrefabInstance:
     - target: {fileID: 6027874808575762122, guid: d229caca171ac094daa492dbd61f4266, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 1086eb2a45bc6ca4fa635cfcb972622e, type: 3}
+      objectReference: {fileID: -1075221964, guid: 9adedb932b6b69d4da9a18b084757fcf, type: 3}
     - target: {fileID: 6027874808575762122, guid: d229caca171ac094daa492dbd61f4266, type: 3}
       propertyPath: m_Color.a
       value: 1
