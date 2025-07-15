@@ -20,7 +20,8 @@ MonoBehaviour:
     height: 80
   onEnterActions:
   - player
-  onExitActions: []
+  onExitActions:
+  - moveTo
   text: "Then you know what to do. The platforms were never just tracks. They were
     steps\u2014your steps.\r\nOne... two... three. In the order only you could take
     them.\r"
@@ -51,7 +52,8 @@ MonoBehaviour:
     y: 347
     width: 200
     height: 80
-  onEnterActions: []
+  onEnterActions:
+  - showNum1
   onExitActions: []
   text: 'Every train came in the perfect order, one after another. Each platform
     waiting, exactly when I needed it. '
@@ -237,7 +239,8 @@ MonoBehaviour:
     y: 352
     width: 200
     height: 80
-  onEnterActions: []
+  onEnterActions:
+  - showNum3
   onExitActions: []
   text: "It felt like a sign, maybe things would be okay.\nAnd you know what\u2019s
     funny? "

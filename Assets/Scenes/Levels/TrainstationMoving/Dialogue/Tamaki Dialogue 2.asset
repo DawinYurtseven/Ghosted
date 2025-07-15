@@ -585,7 +585,10 @@ MonoBehaviour:
     y: 19
     width: 200
     height: 80
-  onEnterActions: []
+  onEnterActions:
+  - moveTo
+  - miyu
+  - enter
   onExitActions:
   - PauseVoiceline
   text: "My Omamori! You found it! I thought I\u2019d lost it forever. \r"
