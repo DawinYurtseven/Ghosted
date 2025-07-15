@@ -9,7 +9,7 @@
 [LOG] Thread::initThread                       : Init FMOD stream thread. Affinity: 0x4000000000000003, Priority: 0xFFFF7FFB, Stack Size: 98304, Semaphore: No, Sleep Time: 10, Looping: Yes.
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 0
 [LOG] Thread::initThread                       : Init FMOD mixer thread. Affinity: 0x4000000000000001, Priority: 0xFFFF7FFA, Stack Size: 81920, Semaphore: No, Sleep Time: 0, Looping: Yes.
-[LOG] AsyncManager::init                       : manager 000001CAE5BECBA8 isAsync 0 updatePeriod 0.02
+[LOG] AsyncManager::init                       : manager 000001C9D0AD9508 isAsync 0 updatePeriod 0.02
 [LOG] AsyncManager::init                       : done
 [LOG] PlaybackSystem::init                     : 
 [LOG] Thread::initThread                       : Init FMOD Studio sample load thread. Affinity: 0x4000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
@@ -31,394 +31,34 @@
 [LOG] SystemI::createSoundInternal             : exinfo->length             = 3391488
 [LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 48064
 [LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000035F35FF3A8
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000035F4BFF168
 [LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
 [LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFC1ECAD480
 [LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFC1ECAD440
 [LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFC1ECAD560
 [LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFC1ECAD620
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000001CAF2A3EA88
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 4
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='GhostBinder Dia 7 Line 1', format=5, channels=1, frequency=48000, lengthbytes=16544, lengthpcm=97332, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.242218.
-[LOG] SystemI::createSound                     : filename = FMod/ghosted/Build/Desktop/Dialogs.bank : mode 02010082
-[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
-[LOG] AsyncThread::getAsyncThread              : index = 0 / 5
-[LOG] Thread::initThread                       : Init FMOD nonblocking thread (0). Affinity: 0x4000000000000003, Priority: 0xFFFF7FFC, Stack Size: 114688, Semaphore: Yes, Sleep Time: 0, Looping: Yes.
-[LOG] AsyncThread::add                         : add sound to async queue : soundi = 000001CA21657538, queue head = 000001CA21659118, queue count = 0
-[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000001CA21657538
-[LOG] SystemI::createSoundInternal             :     Create name='FMod/ghosted/Build/Desktop/Dialogs.bank', mode=0x02010082
-[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             :     exinfo->length             = 3391488
-[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 48064
-[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000001C9568C8C08
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
-[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Miyu Dia 7 Line 3', format=5, channels=1, frequency=48000, lengthbytes=211232, lengthpcm=1230412, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.273315.
-[LOG] Thread::initThread                       :     Init FMOD file thread. Affinity: 0x4000000000000003, Priority: 0xFFFF7FFC, Stack Size: 65536, Semaphore: No, Sleep Time: 10, Looping: Yes.
-[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000001CA21657538
-[LOG] SoundI::release                          : Miyu Dia 7 Line 3 (000001CA21657538)
-[LOG] SoundI::release                          :     Miyu Dia 7 Line 3 (000001CAE59AE938)
-[LOG] SoundI::release                          :     Miyu Dia 7 Line 3 (000001CAE5F41A48)
-[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 3391488
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 48064
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000035F35FF3A8
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFC1ECAD480
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFC1ECAD440
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFC1ECAD560
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFC1ECAD620
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000001CADF71FB38
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 4
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='GhostBinder Dia 7 Line 2', format=5, channels=1, frequency=48000, lengthbytes=11808, lengthpcm=68403, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.212677.
-[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 3391488
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 48064
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000035F35FF3A8
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFC1ECAD480
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFC1ECAD440
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFC1ECAD560
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFC1ECAD620
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000001CADF71F2F8
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 4
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Miyu Dia 7 Line 4', format=5, channels=1, frequency=48000, lengthbytes=28640, lengthpcm=166318, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.170563.
-[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 3391488
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 48064
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000035F35FF3A8
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFC1ECAD480
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFC1ECAD440
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFC1ECAD560
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFC1ECAD620
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000001CADF71E278
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 4
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Miyu Dia 7 Line 5', format=5, channels=1, frequency=48000, lengthbytes=64192, lengthpcm=366494, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.373444.
-[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 3391488
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 48064
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000035F35FF3A8
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFC1ECAD480
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFC1ECAD440
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFC1ECAD560
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFC1ECAD620
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000001C9625407B8
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000001C9625F1C28
 [LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 4
 [LOG] SystemI::createSoundInternal             : Sample 0/1: name='GhostBinder Dia 7 Line 3', format=5, channels=1, frequency=48000, lengthbytes=29632, lengthpcm=167622, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.365814.
-[LOG] SoundI::release                          :  (000001CADF629D98)
-[LOG] SoundI::release                          :     GhostBinder Dia 7 Line 1 (000001CADF776E08)
-[LOG] SoundI::release                          :  (000001C9568B9E88)
-[LOG] SoundI::release                          :     GhostBinder Dia 7 Line 2 (000001C95579EA88)
-[LOG] SoundI::release                          :  (000001C9568B9908)
-[LOG] SoundI::release                          :     Miyu Dia 7 Line 4 (000001C95579E908)
-[LOG] SoundI::release                          :  (000001C9568B9A68)
-[LOG] SoundI::release                          :     Miyu Dia 7 Line 5 (000001C95579E788)
-[LOG] SoundI::release                          :  (000001C703509CC8)
-[LOG] SoundI::release                          :     GhostBinder Dia 7 Line 3 (000001CA22A884F8)
-[LOG] BankLoader::serializeBank                : fileversion = 146, compatVersion = 146 (oldest = 44, newest = 146)
-[LOG] BankLoader::serializeBank                : fileversion = 146, compatVersion = 146 (oldest = 44, newest = 146)
-[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
-[LOG] BankLoader::serializeBank                : fileversion = 146, compatVersion = 146 (oldest = 44, newest = 146)
-[LOG] BankLoader::serializeBank                : fileversion = 146, compatVersion = 146 (oldest = 44, newest = 146)
-[LOG] BankLoader::serializeBank                : fileversion = 146, compatVersion = 146 (oldest = 44, newest = 146)
-[LOG] BankLoader::serializeBank                : fileversion = 146, compatVersion = 146 (oldest = 44, newest = 146)
-[LOG] BankLoader::serializeBank                : fileversion = 146, compatVersion = 146 (oldest = 44, newest = 146)
-[LOG] BankLoader::serializeBank                : fileversion = 146, compatVersion = 146 (oldest = 44, newest = 146)
-[LOG] BankLoader::serializeBank                : fileversion = 146, compatVersion = 146 (oldest = 44, newest = 146)
 [LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
 [LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
 [LOG] SystemI::createSoundInternal             : exinfo->length             = 3391488
 [LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 48064
 [LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000035F35FF3A8
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000035F4BFF168
 [LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
 [LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFC1ECAD480
 [LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFC1ECAD440
 [LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFC1ECAD560
 [LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFC1ECAD620
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000001C962541208
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 4
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Miyu Dia 7 Line 4', format=5, channels=1, frequency=48000, lengthbytes=28640, lengthpcm=166318, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.170563.
-[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 3391488
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 48064
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000035F35FF3A8
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFC1ECAD480
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFC1ECAD440
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFC1ECAD560
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFC1ECAD620
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000001C96253C5B8
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 4
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Miyu Dia 7 Line 5', format=5, channels=1, frequency=48000, lengthbytes=64192, lengthpcm=366494, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.373444.
-[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 3391488
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 48064
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000035F35FF3A8
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFC1ECAD480
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFC1ECAD440
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFC1ECAD560
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFC1ECAD620
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000001CA2CF70AE8
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000001C8BF7985A8
 [LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 4
 [LOG] SystemI::createSoundInternal             : Sample 0/1: name='Miyu Dia 7 Line 6', format=5, channels=1, frequency=48000, lengthbytes=73408, lengthpcm=415480, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.342468.
-[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 3391488
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 48064
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000035F35FF3A8
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFC1ECAD480
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFC1ECAD440
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFC1ECAD560
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFC1ECAD620
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000001C962540188
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 4
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='GhostBinder Dia 7 Line 4', format=5, channels=1, frequency=48000, lengthbytes=24640, lengthpcm=131746, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.296265.
-[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 3391488
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 48064
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000035F35FF3A8
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFC1ECAD480
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFC1ECAD440
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFC1ECAD560
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFC1ECAD620
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000001CADFA9A6F8
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 4
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Miyu Dia 7 Line 7', format=5, channels=1, frequency=48000, lengthbytes=31712, lengthpcm=182474, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.162811.
-[LOG] SoundI::release                          :  (000001C703509748)
-[LOG] SoundI::release                          :     Miyu Dia 7 Line 4 (000001CA22A88378)
-[LOG] SoundI::release                          :  (000001C703509488)
-[LOG] SoundI::release                          :     Miyu Dia 7 Line 5 (000001CA22A884F8)
-[LOG] SoundI::release                          :  (000001CAE557AD18)
-[LOG] SoundI::release                          :     Miyu Dia 7 Line 6 (000001CAE59AF0B8)
-[LOG] SoundI::release                          :  (000001C7035091C8)
-[LOG] SoundI::release                          :     GhostBinder Dia 7 Line 4 (000001CA22A88678)
-[LOG] SoundI::release                          :  (000001CAEE3BA388)
-[LOG] SoundI::release                          :     Miyu Dia 7 Line 7 (000001C9D03E3498)
-[LOG] BankLoader::serializeBank                : fileversion = 146, compatVersion = 146 (oldest = 44, newest = 146)
-[LOG] BankLoader::serializeBank                : fileversion = 146, compatVersion = 146 (oldest = 44, newest = 146)
-[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
-[LOG] BankLoader::serializeBank                : fileversion = 146, compatVersion = 146 (oldest = 44, newest = 146)
-[LOG] BankLoader::serializeBank                : fileversion = 146, compatVersion = 146 (oldest = 44, newest = 146)
-[LOG] BankLoader::serializeBank                : fileversion = 146, compatVersion = 146 (oldest = 44, newest = 146)
-[LOG] BankLoader::serializeBank                : fileversion = 146, compatVersion = 146 (oldest = 44, newest = 146)
-[LOG] BankLoader::serializeBank                : fileversion = 146, compatVersion = 146 (oldest = 44, newest = 146)
-[LOG] BankLoader::serializeBank                : fileversion = 146, compatVersion = 146 (oldest = 44, newest = 146)
-[LOG] BankLoader::serializeBank                : fileversion = 146, compatVersion = 146 (oldest = 44, newest = 146)
-[LOG] SystemI::createSound                     : filename = FMod/ghosted/Build/Desktop/Dialogs.bank : mode 02010082
-[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
-[LOG] AsyncThread::getAsyncThread              : index = 0 / 5
-[LOG] AsyncThread::add                         : add sound to async queue : soundi = 000001C9D392F9D8, queue head = 000001CA21659118, queue count = 0
-[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000001C9D392F9D8
-[LOG] SystemI::createSoundInternal             :     Create name='FMod/ghosted/Build/Desktop/Dialogs.bank', mode=0x02010082
-[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             :     exinfo->length             = 3391488
-[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 48064
-[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000001C703D90E08
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
-[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Miyu Dia 8 Line 1', format=5, channels=1, frequency=48000, lengthbytes=177312, lengthpcm=1031897, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.275665.
-[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000001C9D392F9D8
-[LOG] SoundI::release                          : Miyu Dia 8 Line 1 (000001C9D392F9D8)
-[LOG] SoundI::release                          :     Miyu Dia 8 Line 1 (000001CAE59AEAB8)
-[LOG] SoundI::release                          :     Miyu Dia 8 Line 1 (000001CAE5F42E98)
-[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 3391488
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 48064
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000035F35FF3A8
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFC1ECAD480
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFC1ECAD440
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFC1ECAD560
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFC1ECAD620
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000001C962542078
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 4
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='GhostBinder Dia 8 Line 1', format=5, channels=1, frequency=48000, lengthbytes=16032, lengthpcm=90389, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.147583.
-[LOG] SystemI::createSound                     : filename = FMod/ghosted/Build/Desktop/Dialogs.bank : mode 02010082
-[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
-[LOG] AsyncThread::getAsyncThread              : index = 0 / 5
-[LOG] AsyncThread::add                         : add sound to async queue : soundi = 000001C7030C0078, queue head = 000001CA21659118, queue count = 0
-[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000001C7030C0078
-[LOG] SystemI::createSoundInternal             :     Create name='FMod/ghosted/Build/Desktop/Dialogs.bank', mode=0x02010082
-[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             :     exinfo->length             = 3391488
-[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 48064
-[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000001C954D987D8
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
-[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Miyu Dia 8 Line 2', format=5, channels=1, frequency=48000, lengthbytes=203648, lengthpcm=1198386, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.277832.
-[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000001C7030C0078
-[LOG] SoundI::release                          : Miyu Dia 8 Line 2 (000001C7030C0078)
-[LOG] SoundI::release                          :     Miyu Dia 8 Line 2 (000001CA22A88678)
-[LOG] SoundI::release                          :     Miyu Dia 8 Line 2 (000001CAE59ACB38)
-[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 3391488
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 48064
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000035F35FF3A8
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFC1ECAD480
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFC1ECAD440
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFC1ECAD560
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFC1ECAD620
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000001CADFA99EB8
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 4
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='GhostBinder Dia 8 Line 2', format=5, channels=1, frequency=48000, lengthbytes=55840, lengthpcm=310372, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.226593.
-[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 3391488
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 48064
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000035F35FF3A8
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFC1ECAD480
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFC1ECAD440
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFC1ECAD560
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFC1ECAD620
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000001CADFA99048
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 4
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Miyu Dia 8 Line 3', format=5, channels=1, frequency=48000, lengthbytes=12704, lengthpcm=71124, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.078400.
-[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 3391488
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 48064
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000035F35FF3A8
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFC1ECAD480
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFC1ECAD440
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFC1ECAD560
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFC1ECAD620
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000001C9FF8C48A8
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 4
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='GhostBinder Dia 8 Line 3', format=5, channels=1, frequency=48000, lengthbytes=35872, lengthpcm=191700, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.165497.
-[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 3391488
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 48064
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000035F35FF3A8
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFC1ECAD480
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFC1ECAD440
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFC1ECAD560
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFC1ECAD620
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000001C9FF8C48A8
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 4
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Miyu Dia 8 Line 4', format=5, channels=1, frequency=48000, lengthbytes=46048, lengthpcm=264825, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.270203.
-[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 3391488
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 48064
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000035F35FF3A8
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFC1ECAD480
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFC1ECAD440
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFC1ECAD560
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFC1ECAD620
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000001C9FF8C73F8
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 4
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='GhostBinder Dia 8 Line 4', format=5, channels=1, frequency=48000, lengthbytes=46688, lengthpcm=265027, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.239929.
-[LOG] SoundI::release                          :  (000001C703509A08)
-[LOG] SoundI::release                          :     GhostBinder Dia 8 Line 1 (000001CA22A88378)
-[LOG] SoundI::release                          :  (000001CAEE3B8128)
-[LOG] SoundI::release                          :     GhostBinder Dia 8 Line 2 (000001C9D03E3018)
-[LOG] SoundI::release                          :  (000001CAEE3B7D08)
-[LOG] SoundI::release                          :     Miyu Dia 8 Line 3 (000001C9D03E3498)
-[LOG] SoundI::release                          :  (000001C932B2CD88)
-[LOG] SoundI::release                          :     GhostBinder Dia 8 Line 3 (000001C7036ED078)
-[LOG] SoundI::release                          :  (000001C932B2CEE8)
-[LOG] SoundI::release                          :     Miyu Dia 8 Line 4 (000001C7036ED1F8)
-[LOG] SoundI::release                          :  (000001C932B2C6A8)
-[LOG] SoundI::release                          :     GhostBinder Dia 8 Line 4 (000001C7036ED4F8)
-[LOG] BankLoader::serializeBank                : fileversion = 146, compatVersion = 146 (oldest = 44, newest = 146)
-[LOG] BankLoader::serializeBank                : fileversion = 146, compatVersion = 146 (oldest = 44, newest = 146)
-[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
-[LOG] BankLoader::serializeBank                : fileversion = 146, compatVersion = 146 (oldest = 44, newest = 146)
-[LOG] BankLoader::serializeBank                : fileversion = 146, compatVersion = 146 (oldest = 44, newest = 146)
-[LOG] BankLoader::serializeBank                : fileversion = 146, compatVersion = 146 (oldest = 44, newest = 146)
-[LOG] BankLoader::serializeBank                : fileversion = 146, compatVersion = 146 (oldest = 44, newest = 146)
-[LOG] BankLoader::serializeBank                : fileversion = 146, compatVersion = 146 (oldest = 44, newest = 146)
-[LOG] BankLoader::serializeBank                : fileversion = 146, compatVersion = 146 (oldest = 44, newest = 146)
-[LOG] BankLoader::serializeBank                : fileversion = 146, compatVersion = 146 (oldest = 44, newest = 146)
-[LOG] SystemI::createSound                     : filename = FMod/ghosted/Build/Desktop/Dialogs.bank : mode 02010082
-[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
-[LOG] AsyncThread::getAsyncThread              : index = 0 / 5
-[LOG] AsyncThread::add                         : add sound to async queue : soundi = 000001C96A2483A8, queue head = 000001CA21659118, queue count = 0
-[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000001C96A2483A8
-[LOG] SystemI::createSoundInternal             :     Create name='FMod/ghosted/Build/Desktop/Dialogs.bank', mode=0x02010082
-[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             :     exinfo->length             = 3391488
-[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 48064
-[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000001C7035095C8
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
-[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Miyu Dia 8 Line 2', format=5, channels=1, frequency=48000, lengthbytes=203648, lengthpcm=1198386, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.277832.
-[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000001C96A2483A8
-[LOG] SoundI::release                          : Miyu Dia 8 Line 2 (000001C96A2483A8)
-[LOG] SoundI::release                          :     Miyu Dia 8 Line 2 (000001CAE59AE938)
-[LOG] SoundI::release                          :     Miyu Dia 8 Line 2 (000001CAF17D0A58)
+[LOG] SoundI::release                          :  (000001C96686CAE8)
+[LOG] SoundI::release                          :     GhostBinder Dia 7 Line 3 (000001C97A534E38)
+[LOG] SoundI::release                          :  (000001CAE557A798)
+[LOG] SoundI::release                          :     Miyu Dia 7 Line 6 (000001CAE59AEAB8)

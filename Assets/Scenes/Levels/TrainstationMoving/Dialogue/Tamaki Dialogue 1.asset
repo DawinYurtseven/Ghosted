@@ -18,7 +18,8 @@ MonoBehaviour:
     y: 1321
     width: 200
     height: 80
-  onEnterActions: []
+  onEnterActions:
+  - miyu
   onExitActions: []
   text: "Colour ... Blue? Or was it red? \r\nIt\u2019s like my mind is clouded. Am
     I losing my mind?\r"
@@ -118,7 +119,8 @@ MonoBehaviour:
     y: 850
     width: 200
     height: 80
-  onEnterActions: []
+  onEnterActions:
+  - miyu
   onExitActions:
   - PauseVoiceline
   text: He had lung cancer. Early stage, but scary, nonetheless.
@@ -182,7 +184,8 @@ MonoBehaviour:
     y: 1069
     width: 200
     height: 80
-  onEnterActions: []
+  onEnterActions:
+  - miyu
   onExitActions: []
   text: "I ... can\u2019t seem to remember.  "
   child: 1354de51-25ed-40b2-a8fb-4128db56ce7c
@@ -212,7 +215,8 @@ MonoBehaviour:
     y: 601
     width: 200
     height: 80
-  onEnterActions: []
+  onEnterActions:
+  - miyu
   onExitActions: []
   text: "I did. Each day ticked by like gears turning\u2014routine, steady\u2014but
     inside, I was waiting for time to rewind."
@@ -273,8 +277,10 @@ MonoBehaviour:
     y: 1510
     width: 200
     height: 80
-  onEnterActions: []
-  onExitActions: []
+  onEnterActions:
+  - miyu
+  onExitActions:
+  - exit
   text: Something Red, golden letters ...
   child: 
   speaker: Miyu
@@ -317,7 +323,8 @@ MonoBehaviour:
     y: 1475
     width: 200
     height: 80
-  onEnterActions: []
+  onEnterActions:
+  - player
   onExitActions: []
   text: "No. You\u2019re remembering. "
   child: dee0008d-3188-4eca-ab6b-0aa191ac7af0
@@ -375,11 +382,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: 739
-    y: 691
+    x: 753
+    y: 714
     width: 200
     height: 80
-  onEnterActions: []
+  onEnterActions:
+  - miyu
   onExitActions: []
   text: "That\u2019s how it felt to me, too. One breath, candles. The next, a train
     whistle and tears I wasn\u2019t ready for."
@@ -410,7 +418,8 @@ MonoBehaviour:
     y: 1044
     width: 200
     height: 80
-  onEnterActions: []
+  onEnterActions:
+  - player
   onExitActions: []
   text: Carry what with you?
   child: 1523665d-56e5-49ea-b974-b0eae11dd349
@@ -585,7 +594,8 @@ MonoBehaviour:
     y: 451
     width: 200
     height: 80
-  onEnterActions: []
+  onEnterActions:
+  - miyu
   onExitActions: []
   text: To Hakodate. Quiet, small. Nothing like home. It felt like I was stepping
     off the world I knew.
@@ -693,7 +703,8 @@ MonoBehaviour:
     y: 1303
     width: 200
     height: 80
-  onEnterActions: []
+  onEnterActions:
+  - player
   onExitActions: []
   text: A goodby gift? Do you remember the colour?
   child: 54d2d43c-ee04-40ca-9540-fcc0885ace4d
@@ -723,10 +734,10 @@ MonoBehaviour:
     y: 12
     width: 200
     height: 80
-  onEnterActions: []
-  onExitActions:
-  - Next
-  - delete
+  onEnterActions:
+  - enter
+  - miyu
+  onExitActions: []
   text: "Saying good-bye was the worst part. I felt like I didn\u2019t even understand
     it was happening. Until suddenly, I was in the train."
   child: 79944dcb-a2d0-4043-a463-bece8a1a9c1a
@@ -758,7 +769,8 @@ MonoBehaviour:
     height: 80
   onEnterActions:
   - ResumeVoiceline
-  onExitActions: []
+  onExitActions:
+  - player
   text: "What if my students hated me? What if I hated them? But most of all, I was
     terrified I\u2019d never see Matsuhito again.  "
   child: 0bb514b5-4ab4-4019-a85f-8fd5ecf15cca
