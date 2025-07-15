@@ -18,13 +18,20 @@ MonoBehaviour:
     y: 254
     width: 200
     height: 80
-  onEnterActions: []
+  onEnterActions:
+  - player
   onExitActions: []
   text: "Then maybe this is the place to unfold it. Look around\u2014this isn\u2019t
     just any clock. It\u2019s your time."
   child: 3905efb4-c402-437a-9d10-7bf90c2f56a9
   speaker: Player
-  voiceClip: {fileID: 0}
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,13 +72,20 @@ MonoBehaviour:
     y: 84
     width: 200
     height: 80
-  onEnterActions: []
+  onEnterActions:
+  - miyu
   onExitActions: []
   text: "Not exactly\u2026 I remember only that feeling. That and how I turned it
     countless times in my hands. "
   child: 2a8ad912-3a19-4890-8afb-2abe1a424f0e
   speaker: Miyu
-  voiceClip: {fileID: 0}
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &6816368054911301818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86,17 +100,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: 76
+    x: 75
     y: 425
     width: 200
     height: 80
-  onEnterActions: []
-  onExitActions: []
+  onEnterActions:
+  - miyu
+  onExitActions:
+  - exit
   text: "It\u2019s all wrong. Hours stacked on top of each other, gears turning and
     spinning - backwards, sideways\u2026"
   child: 
   speaker: Miyu
-  voiceClip: {fileID: 0}
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &8705371555783416926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,15 +137,21 @@ MonoBehaviour:
     y: 14
     width: 200
     height: 80
-  onEnterActions: []
-  onExitActions:
-  - Next
-  - delete
+  onEnterActions:
+  - enter
+  - player
+  onExitActions: []
   text: You said the Omamori helped you remember him. Maybe it still can. Do you
     remember where you were when you last held it?
   child: 79944dcb-a2d0-4043-a463-bece8a1a9c1a
   speaker: Player
-  voiceClip: {fileID: 0}
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &9147519370536567891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,4 +175,10 @@ MonoBehaviour:
   text: "Everything else is blurred\u2014like time folding in on itself."
   child: 488dd0c9-2c83-4857-a0f0-d492481afbe8
   speaker: Miyu
-  voiceClip: {fileID: 0}
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 

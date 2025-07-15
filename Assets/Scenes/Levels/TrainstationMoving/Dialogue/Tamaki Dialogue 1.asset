@@ -32,45 +32,6 @@ MonoBehaviour:
       Data3: -811756901
       Data4: 131566430
     Path: event:/Dialogue/Dialogue 7/9
---- !u!114 &-8354026214179695596
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e53e018a8564904793b16b25d923600, type: 3}
-  m_Name: d6c7bef2-667f-48df-95ce-3bc21521b9e2
-  m_EditorClassIdentifier: 
-  text: Quite the jump from the Birthday Party.
-  child: 5a23d177-d5f6-497e-8b35-4022b8d51b52
---- !u!114 &-7121536755010051268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0966a353404aa7249becdd492a6fa0d9, type: 3}
-  m_Name: 0bb514b5-4ab4-4019-a85f-8fd5ecf15cca
-  m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 25
-    y: 458
-    width: 200
-    height: 230
-  onEnterActions: []
-  onExitActions: []
-  replies:
-  - {fileID: 1695926761222862662}
-  - {fileID: 5783921663846920401}
-  - {fileID: -3941730281051848093}
-  - {fileID: -8354026214179695596}
 --- !u!114 &-6986868417560793157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,8 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: 468
-    y: 451
+    x: 587
+    y: 349
     width: 200
     height: 80
   onEnterActions: []
@@ -211,8 +172,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: 728
-    y: 601
+    x: 832
+    y: 515
     width: 200
     height: 80
   onEnterActions:
@@ -243,8 +204,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: 467
-    y: 565
+    x: 583
+    y: 486
     width: 200
     height: 80
   onEnterActions: []
@@ -291,20 +252,6 @@ MonoBehaviour:
       Data3: -1967011409
       Data4: 1461607988
     Path: event:/Dialogue/Dialogue 7/11
---- !u!114 &-3941730281051848093
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e53e018a8564904793b16b25d923600, type: 3}
-  m_Name: 05113f04-4193-4018-a3b7-9674f46921e2
-  m_EditorClassIdentifier: 
-  text: So you were a Teacher?
-  child: 4d713595-7521-49f2-b49d-50a97e28d9a0
 --- !u!114 &-3099227212386522438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -382,8 +329,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: 753
-    y: 714
+    x: 849
+    y: 679
     width: 200
     height: 80
   onEnterActions:
@@ -391,7 +338,7 @@ MonoBehaviour:
   onExitActions: []
   text: "That\u2019s how it felt to me, too. One breath, candles. The next, a train
     whistle and tears I wasn\u2019t ready for."
-  child: 0bb514b5-4ab4-4019-a85f-8fd5ecf15cca
+  child: removed
   speaker: Miyu
   voiceClip:
     Guid:
@@ -468,8 +415,7 @@ MonoBehaviour:
   - {fileID: 4426520083359603049}
   - {fileID: -2608392613772393449}
   - {fileID: -5751091809421384677}
-  replyNodes:
-  - {fileID: -7121536755010051268}
+  replyNodes: []
 --- !u!114 &654085026690635033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -515,8 +461,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: 467
-    y: 677
+    x: 565
+    y: 628
     width: 200
     height: 80
   onEnterActions: []
@@ -531,20 +477,6 @@ MonoBehaviour:
       Data3: 0
       Data4: 0
     Path: 
---- !u!114 &1695926761222862662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e53e018a8564904793b16b25d923600, type: 3}
-  m_Name: a9d66b4f-0b00-4b78-8ed8-490a6b77e11e
-  m_EditorClassIdentifier: 
-  text: Your brother?
-  child: 79e522b9-2769-426d-adad-6ddc9233ca4f
 --- !u!114 &3017623951677341470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -590,8 +522,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: 763
-    y: 451
+    x: 820
+    y: 358
     width: 200
     height: 80
   onEnterActions:
@@ -599,7 +531,7 @@ MonoBehaviour:
   onExitActions: []
   text: To Hakodate. Quiet, small. Nothing like home. It felt like I was stepping
     off the world I knew.
-  child: 0bb514b5-4ab4-4019-a85f-8fd5ecf15cca
+  child: removed
   speaker: Miyu
   voiceClip:
     Guid:
@@ -608,20 +540,6 @@ MonoBehaviour:
       Data3: 0
       Data4: 0
     Path: 
---- !u!114 &5783921663846920401
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e53e018a8564904793b16b25d923600, type: 3}
-  m_Name: c8727971-5225-4d47-b634-d9cae0f07394
-  m_EditorClassIdentifier: 
-  text: Where were you going?
-  child: 230c590b-b18a-4b8f-a41b-e7685e92cffb
 --- !u!114 &6418530206259528633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -669,11 +587,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: 730
-    y: 311
+    x: 299
+    y: 330
     width: 200
     height: 80
-  onEnterActions: []
+  onEnterActions:
+  - player
   onExitActions: []
   text: Your brother? Why?
   child: e08c91dd-bbdf-4aa2-babd-90a6db21f1d4
@@ -735,6 +654,7 @@ MonoBehaviour:
     width: 200
     height: 80
   onEnterActions:
+  - moveToStart
   - enter
   - miyu
   onExitActions: []
@@ -773,7 +693,7 @@ MonoBehaviour:
   - player
   text: "What if my students hated me? What if I hated them? But most of all, I was
     terrified I\u2019d never see Matsuhito again.  "
-  child: 0bb514b5-4ab4-4019-a85f-8fd5ecf15cca
+  child: 79e522b9-2769-426d-adad-6ddc9233ca4f
   speaker: Miyu
   voiceClip:
     Guid:
