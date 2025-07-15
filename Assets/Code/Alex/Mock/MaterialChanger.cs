@@ -11,16 +11,16 @@ public class MaterialChanger : MonoBehaviour
     void Start()
     {
         
-        _renderer = gameObject.GetComponent<MeshRenderer>();
-        if (!_renderer) return;
-        _renderer.material = joyMaterial;
-        if (!_renderer) return;
-        EmotionSingletonMock.Instance.EmotionSubject
-            .Subscribe(emotion =>
-            {
-                ChangeMaterial(emotion);
-            });
-        ChangeMaterial(EmotionSingletonMock.Instance.getCurrentEmotion());
+        // _renderer = gameObject.GetComponent<MeshRenderer>();
+        // if (!_renderer) return;
+        // _renderer.material = joyMaterial;
+        // if (!_renderer) return;
+        // EmotionSingletonMock.Instance.EmotionSubject
+        //     .Subscribe(emotion =>
+        //     {
+        //         ChangeMaterial(emotion);
+        //     });
+        // ChangeMaterial(EmotionSingletonMock.Instance.getCurrentEmotion());
     }
 
     public void ChangeMaterial(Emotion emotion)
