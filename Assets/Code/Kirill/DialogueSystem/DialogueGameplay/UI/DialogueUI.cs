@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Ghosted.Dialogue;
 using TMPro;
@@ -19,7 +20,7 @@ namespace Ghosted.UI
         [SerializeField] GameObject replicWindow;
         [SerializeField] GameObject choiceWindow;
         
-        [SerializeField] private AudioSource audioSource;
+        [SerializeField] private FMODUnity.StudioEventEmitter emitter;
 
         [SerializeField] private TextFadeReveal textAnimator;
 
@@ -57,6 +58,7 @@ namespace Ghosted.UI
 
         public void EndDialogue(Ghosted.Dialogue.Dialogue dialogue)
         {
+            emitter.Stop();
             gameObject.SetActive(false);
         }
 
@@ -72,19 +74,23 @@ namespace Ghosted.UI
         // Update is called once per frame
         void UpdateUI(DialogueEditorNode node)
         {
+            print("UpdateUI called");
             var curNode = node;
             if (curNode == null)
             {
+                emitter.Stop();
                 Debug.LogError("I have null curNode in UI");
             }
             else if (curNode as DialogueNode != null)
             {
-                audioSource.Stop();
+                emitter.Stop();
                 DialogueNode dialogueNode = (DialogueNode)curNode;
-                if (dialogueNode.voiceClip != null)
+                if (!dialogueNode.voiceClip.IsNull)
                 {
-                    audioSource.clip = dialogueNode.voiceClip;
-                    audioSource.Play();
+                    
+                    emitter.EventReference = dialogueNode.voiceClip;
+                    emitter.Lookup();
+                    emitter.Play();
                 }
                 replicWindow.SetActive(true);
                 choiceWindow.SetActive(false);

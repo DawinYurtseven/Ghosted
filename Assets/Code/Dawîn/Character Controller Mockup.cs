@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using Ghosted.Dialogue;
 using TMPro;
 using UniRx;
@@ -160,12 +161,17 @@ public class CharacterControllerMockup : MonoBehaviour
 
     private void CameraUpdate()
     {
-        _xAxisAngle += -cameraDirection.y * cameraSpeed * Time.fixedDeltaTime;
-        _yAxisAngle += cameraDirection.x * cameraSpeed * Time.fixedDeltaTime;
+        _xAxisAngle += -cameraDirection.y * cameraSpeed * Time.fixedDeltaTime * PlayerPrefs.GetInt("invert", 1) *
+                       PlayerPrefs.GetFloat("sensitivity", 1);
+        ;
+        _yAxisAngle += cameraDirection.x * cameraSpeed * Time.fixedDeltaTime *
+                       PlayerPrefs.GetFloat("sensitivity", 1);
+        ;
         _xAxisAngle = Mathf.Clamp(_xAxisAngle, xAxisMin, xAxisMax);
 
         cameraPivot.transform.localRotation = Quaternion.Euler(_xAxisAngle, _yAxisAngle, 0f);
         lookAtPivot.transform.localRotation = Quaternion.Euler(0f, _yAxisAngle, 0f);
+        
     }
 
     #endregion
@@ -436,10 +442,11 @@ public class CharacterControllerMockup : MonoBehaviour
                 StartCoroutine(_thrownTalisman.GetComponent<Talisman>().MoveTowardsPlayer(this));
                 animator.SetTrigger(Call);
                 talismansUsed.text = "Talismans used: " + _curTalismans + " / " + maxTalismans;
-                animator.SetTrigger(Call);
+                //TODO: I think it was merged false because it is the same part, but leaving it here 
+                //animator.SetTrigger(Call);
                 //thrownTalisman.GetComponent<Talisman>().Initialize(tMode, talismanEmotion);
-                StartCoroutine(_thrownTalisman.GetComponent<Talisman>().MoveTowardsPlayer(this));
-                talismansUsed.text = maxTalismans- _curTalismans + " / " + maxTalismans;
+                //StartCoroutine(_thrownTalisman.GetComponent<Talisman>().MoveTowardsPlayer(this));
+                //talismansUsed.text = maxTalismans- _curTalismans + " / " + maxTalismans;
             }
 
             //Throw talisman
@@ -475,10 +482,7 @@ public class CharacterControllerMockup : MonoBehaviour
     private TalismanTargetMock _tempTar;
     public AltarMock tempAltar;
 
-    // For Cutscene
-    public static event Action FirstUsageAltar;
-    public bool usedAltar;
-
+    
     [SerializeField] private int interactionRange = 10;
 
     [SerializeField] private float interactDistanceAltar = 3f;
@@ -513,13 +517,8 @@ public class CharacterControllerMockup : MonoBehaviour
             if (tempAltar)
             {
                 Debug.Log("Altar found");
-                if (!usedAltar)
-                {
-                    usedAltar = true;
-                    FirstUsageAltar?.Invoke();
-                }
-
-                tempAltar.ChangeEmotion(talismanEmotion);
+                
+                tempAltar.InteractAltar();
             }
             else
             {

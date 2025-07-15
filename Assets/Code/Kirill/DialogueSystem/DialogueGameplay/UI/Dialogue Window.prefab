@@ -764,8 +764,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: As you wish my Friend. I never foubted in you.\nBefcsgdffesdfsrsgfd\nrdfgdsefrdfe
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4a1e9197526b3ea40a267e381c53929d, type: 2}
-  m_sharedMaterial: {fileID: -2771663548881308174, guid: 4a1e9197526b3ea40a267e381c53929d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 9ffedb76307950942a056e30c03bcc3a, type: 2}
+  m_sharedMaterial: {fileID: 8578493399611396483, guid: 9ffedb76307950942a056e30c03bcc3a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -789,12 +789,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 15.1
+  m_fontSize: 22.95
   m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 11
-  m_fontSizeMax: 72
+  m_fontSizeMax: 30
   m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
@@ -975,6 +975,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5277756976990875322}
   - component: {fileID: 2939518592667754975}
+  - component: {fileID: 1911332948471212054}
   m_Layer: 5
   m_Name: Dialogue Window
   m_TagString: Untagged
@@ -1025,9 +1026,40 @@ MonoBehaviour:
   choicePrefab: {fileID: 6224170359929192622, guid: 46fbd57091eab6548b0f9460a20edb98, type: 3}
   replicWindow: {fileID: 8285722696181736203}
   choiceWindow: {fileID: 8666038093389981173}
-  audioSource: {fileID: 0}
+  emitter: {fileID: 1911332948471212054}
   textAnimator: {fileID: 0}
   charReveal: 0
+--- !u!114 &1911332948471212054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5981095842237720147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: -1
+  OverrideMaxDistance: -1
 --- !u!1 &6614757072372691990
 GameObject:
   m_ObjectHideFlags: 0
@@ -1304,8 +1336,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Antilopa
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4a1e9197526b3ea40a267e381c53929d, type: 2}
-  m_sharedMaterial: {fileID: -2771663548881308174, guid: 4a1e9197526b3ea40a267e381c53929d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f961568a63271734f861ed9f7509f26a, type: 2}
+  m_sharedMaterial: {fileID: -2778962957168927574, guid: f961568a63271734f861ed9f7509f26a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

@@ -49,7 +49,7 @@ namespace Ghosted.Dialogue {
             OnDialogueNode.Invoke(currentNode);
             dialogueStartTime = Time.time;
             
-            PlayerInputDisabler.Instance.SwitchInputMap("Dialogue");
+            PlayerInputDisabler.Instance.SwitchInputMapDelayed("Dialogue");
             TriggerEnterAction();
             //Somehow is still laggy for the first dialogue in the scene
             //StartCoroutine(SwitchInputMapNextFrame("Dialogue"));

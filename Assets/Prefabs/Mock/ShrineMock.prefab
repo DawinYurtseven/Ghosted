@@ -2712,7 +2712,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5881375035088986823}
   - component: {fileID: 9058015461321030218}
-  - component: {fileID: 6213701877804845979}
   m_Layer: 11
   m_Name: wholeBody_collider
   m_TagString: Altar
@@ -2756,19 +2755,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.48913252, y: 2.1589375, z: 1.0295899}
   m_Center: {x: 0.25543374, y: 1.0314131, z: 0.4651531}
---- !u!114 &6213701877804845979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3105396329337085171}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d02187302ab41de47ab0c5e932c8e2cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  uiHint: {fileID: 973927859180338982}
 --- !u!1 &3571206615242385029
 GameObject:
   m_ObjectHideFlags: 0
@@ -8061,6 +8047,7 @@ GameObject:
   - component: {fileID: 6664061378530102437}
   - component: {fileID: 4132989297474946664}
   - component: {fileID: 2173763523031978997}
+  - component: {fileID: 4930642966498830141}
   m_Layer: 11
   m_Name: ShrineMock
   m_TagString: Untagged
@@ -8158,6 +8145,20 @@ MonoBehaviour:
   altarCamera: {fileID: 6269018929717526241}
   brushStroke: {fileID: 1978903740690867715}
   defaultButton: {fileID: 307975385190914526}
+--- !u!114 &4930642966498830141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6148870298517556057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d02187302ab41de47ab0c5e932c8e2cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiHint: {fileID: 990437755678250572}
+  uiAltar: {fileID: 2173763523031978997}
 --- !u!1 &6407186196655561482
 GameObject:
   m_ObjectHideFlags: 0
@@ -8373,6 +8374,18 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 91196e22aec64ca43890956c971b76be, type: 3}
+    - target: {fileID: 2984286659693704778, guid: 90c77baaf3ba9e0498e22b313287af03, type: 3}
+      propertyPath: m_Color.b
+      value: 0.7735849
+      objectReference: {fileID: 0}
+    - target: {fileID: 2984286659693704778, guid: 90c77baaf3ba9e0498e22b313287af03, type: 3}
+      propertyPath: m_Color.g
+      value: 0.39044145
+      objectReference: {fileID: 0}
+    - target: {fileID: 2984286659693704778, guid: 90c77baaf3ba9e0498e22b313287af03, type: 3}
+      propertyPath: m_Color.r
+      value: 0.57125527
+      objectReference: {fileID: 0}
     - target: {fileID: 4531133035518701333, guid: 90c77baaf3ba9e0498e22b313287af03, type: 3}
       propertyPath: m_Name
       value: fearButton
@@ -8496,7 +8509,7 @@ PrefabInstance:
     - target: {fileID: 8008571851709671447, guid: 90c77baaf3ba9e0498e22b313287af03, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 43065243361153285}
+      objectReference: {fileID: 4930642966498830141}
     - target: {fileID: 8008571851709671447, guid: 90c77baaf3ba9e0498e22b313287af03, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -9019,7 +9032,7 @@ PrefabInstance:
     - target: {fileID: 8008571851709671447, guid: 90c77baaf3ba9e0498e22b313287af03, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 43065243361153285}
+      objectReference: {fileID: 4930642966498830141}
     - target: {fileID: 8008571851709671447, guid: 90c77baaf3ba9e0498e22b313287af03, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
