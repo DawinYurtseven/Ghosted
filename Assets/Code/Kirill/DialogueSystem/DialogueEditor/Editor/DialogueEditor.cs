@@ -267,7 +267,7 @@ namespace Ghosted.Dialogue.Editor{
                 }
                 menu.ShowAsContext();
             }
-            node.voiceClip = (AudioClip)EditorGUILayout.ObjectField(node.voiceClip, typeof(AudioClip), false, GUILayout.MinWidth(150));
+            //node.voiceClip = EditorGUILayout.ObjectField(node.voiceClip, typeof(FMODUnity.EventReference), false) as FMODUnity.EventReference;
             GUILayout.EndArea();
         }
 

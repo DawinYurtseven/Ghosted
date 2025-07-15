@@ -3150,8 +3150,8 @@ MonoBehaviour:
   specialEffect: {fileID: 4384293144257796451}
   joyVFX: {fileID: 2050323664422878833}
   fearVFX: {fileID: 1797261948969506265}
-  bindingSFX: {fileID: 3874699580538319721}
-  boundSFX: {fileID: 218714083329299942}
+  bindingSFX: {fileID: 0}
+  boundSFX: {fileID: 0}
   force: 45
   turnedOff: {fileID: 2100000, guid: 81e9be15e38a23e4dbfa2a317ee00730, type: 2}
   turnedOn: {fileID: 2100000, guid: 6feed94fac6007f4c81cd3dc4ccf1cbe, type: 2}
@@ -3193,6 +3193,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2757605070477127789}
     m_Modifications:
+    - target: {fileID: -1320630809586400303, guid: e11ff40e3e2f6aa4d94f51da26cf352f, type: 3}
+      propertyPath: EventReference.Path
+      value: event:/SFX/Binding/Bind loop
+      objectReference: {fileID: 0}
     - target: {fileID: 1601085411031642301, guid: e11ff40e3e2f6aa4d94f51da26cf352f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.3899999
@@ -3240,6 +3244,10 @@ PrefabInstance:
     - target: {fileID: 4841323770616215877, guid: e11ff40e3e2f6aa4d94f51da26cf352f, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5407080484987379064, guid: e11ff40e3e2f6aa4d94f51da26cf352f, type: 3}
+      propertyPath: EventReference.Path
+      value: event:/SFX/Binding/Bind
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5346414384292172623, guid: e11ff40e3e2f6aa4d94f51da26cf352f, type: 3}
