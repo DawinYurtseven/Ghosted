@@ -97,7 +97,7 @@ public class SettingsMenuController : MonoBehaviour
 
     private void SetVolume(float volume)
     {
-        AudioListener.volume = volume;
+        FMODUnity.RuntimeManager.GetBus("bus:/Master").setVolume(volume);
     }
 
     public void CloseWindow()

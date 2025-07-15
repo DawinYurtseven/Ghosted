@@ -77,6 +77,7 @@ public class PopUpUI : MonoBehaviour
 
         isShowing = true;
         Time.timeScale = 0f;
+        FMODUnity.RuntimeManager.GetBus("bus:/SFX").setVolume(0);
 
         canvasGroup.blocksRaycasts = true;
         canvasGroup.interactable = true;
@@ -94,6 +95,8 @@ public class PopUpUI : MonoBehaviour
             canvasGroup.blocksRaycasts = false;
             canvasGroup.interactable = false;
             Time.timeScale = 1f;
+            // set the volume back to normal
+            FMODUnity.RuntimeManager.GetBus("bus:/SFX").setVolume(1f);
             PlayerInputDisabler.Instance.SwitchInputMapDelayed(savedActionMap);
             savedActionMap = "";
         });

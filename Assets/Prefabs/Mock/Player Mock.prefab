@@ -979,6 +979,14 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 86518353-0650-4ce6-a0e9-2a95beb7efec
     m_ActionName: PopUp/Accept[/Keyboard/e,/Keyboard/space,/XInputControllerWindows/buttonSouth,/XInputControllerWindows/buttonWest]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 753e6641-c618-4911-be2d-728af120cbdc
+    m_ActionName: AltarUI/Submit[/Keyboard/e,/Keyboard/space,/DualSenseGamepadHID/buttonWest,/DualSenseGamepadHID/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 24d7e7cb-20d1-4b97-86b2-effece35948f
+    m_ActionName: AltarUI/Navigate[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/DualSenseGamepadHID/leftStick/up,/DualSenseGamepadHID/leftStick/down,/DualSenseGamepadHID/leftStick/left,/DualSenseGamepadHID/leftStick/right]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Character Control
@@ -1055,6 +1063,7 @@ GameObject:
   - component: {fileID: 8808585367282419668}
   - component: {fileID: 7344781554409500838}
   - component: {fileID: 7999242773603597648}
+  - component: {fileID: 8592099085331069325}
   m_Layer: 8
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1071,7 +1080,7 @@ Transform:
   m_GameObject: {fileID: 8085985945609945402}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.00000028505562, y: 0.6484664, z: -5.1877313}
+  m_LocalPosition: {x: 0.000000019325805, y: 0.6484664, z: -2.6701276}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1206,6 +1215,20 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &8592099085331069325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8085985945609945402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nonRigidbodyVelocity: 0
+  attenuationObject: {fileID: 0}
 --- !u!1 &8524429437510603603
 GameObject:
   m_ObjectHideFlags: 0
@@ -1288,7 +1311,7 @@ Transform:
   m_GameObject: {fileID: 8732294338570935560}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.00000005073024, y: 0.6484664, z: -3.242332}
+  m_LocalPosition: {x: 0.000000019325805, y: 0.6484664, z: -2.6701276}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
