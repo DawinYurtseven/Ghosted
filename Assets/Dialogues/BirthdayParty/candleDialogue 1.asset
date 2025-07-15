@@ -1,29 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8667969085544363341
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
-  m_Name: 356813cd-937b-44f0-b42b-6eb8ae7c226d
-  m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 1379
-    y: 706
-    width: 200
-    height: 80
-  onEnterActions: []
-  onExitActions:
-  - exit
-  text: Well, sometimes Mama and Papa fought. Just sometimes! About little things.
-  child: 
-  speaker: Miyu
 --- !u!114 &-8371764843600512152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48,6 +24,13 @@ MonoBehaviour:
   text: It was the perfect party
   child: ba89ad3d-6aae-4184-9f59-9fa1ac3670db
   speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: -978384219
+      Data2: 1258897706
+      Data3: 224928896
+      Data4: -1452167170
+    Path: event:/Dialogue/Dialogue 2/5
 --- !u!114 &-1566878805869836316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,6 +55,13 @@ MonoBehaviour:
   text: Wait, what else do you remember from the party, Miyu?
   child: 4fbfa745-9f52-4e07-b6ca-28c11231e417
   speaker: Ghost Binder
+  voiceClip:
+    Guid:
+      Data1: -1215862575
+      Data2: 1144401426
+      Data3: 1459958703
+      Data4: -110745443
+    Path: event:/Dialogue/Dialogue 2/4
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,7 +85,6 @@ MonoBehaviour:
   - {fileID: -8371764843600512152}
   - {fileID: 5234811681678754525}
   - {fileID: 5482821267232400864}
-  - {fileID: -8667969085544363341}
   replyNodes: []
 --- !u!114 &4658048797770967006
 MonoBehaviour:
@@ -121,6 +110,13 @@ MonoBehaviour:
   text: "Sorry, I didn\u2019t mean to ... "
   child: 8c528eed-d5f3-42ce-a675-d2b362e06f2b
   speaker: Ghost Binder
+  voiceClip:
+    Guid:
+      Data1: 388721780
+      Data2: 1140487352
+      Data3: 376958107
+      Data4: 1163460896
+    Path: event:/Dialogue/Dialogue 2/2
 --- !u!114 &5234811681678754525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,6 +141,13 @@ MonoBehaviour:
   text: 'Was your family happy? '
   child: 8ec406c9-e436-40d0-97c2-7d019d8e97de
   speaker: Ghost Binder
+  voiceClip:
+    Guid:
+      Data1: -1131321852
+      Data2: 1171537943
+      Data3: -527425886
+      Data4: -984650606
+    Path: event:/Dialogue/Dialogue 2/6
 --- !u!114 &5482821267232400864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,16 +162,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: 1346
-    y: 541
+    x: 1239
+    y: 526
     width: 200
     height: 80
   onEnterActions:
   - miyu
-  onExitActions: []
-  text: 'Of course they were happy! We were all very happy! '
-  child: 356813cd-937b-44f0-b42b-6eb8ae7c226d
+  onExitActions:
+  - exit
+  text: Of course they were happy! We were all very happy! Well, sometimes Mama and
+    Papa fought. Just sometimes! About little things.
+  child: removed
   speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: -210455027
+      Data2: 1111755512
+      Data3: -937919094
+      Data4: -725694367
+    Path: event:/Dialogue/Dialogue 2/7
 --- !u!114 &7754807279540558429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,6 +206,13 @@ MonoBehaviour:
   text: "But that\u2019s okay! Come on, let\u2019s play!"
   child: 68e811b5-8a24-4597-ba87-d635f86e68cd
   speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 2086629918
+      Data2: 1190235825
+      Data3: -1121289292
+      Data4: 1442016555
+    Path: event:/Dialogue/Dialogue 2/3
 --- !u!114 &9104091565543397349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,3 +238,10 @@ MonoBehaviour:
   text: "Oh no, you\u2019ve ruined my cake. "
   child: b174e885-e799-4181-9350-7ca5683e5c83
   speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 674013426
+      Data2: 1223277711
+      Data3: -804673917
+      Data4: -1679870873
+    Path: event:/Dialogue/Dialogue 2/1

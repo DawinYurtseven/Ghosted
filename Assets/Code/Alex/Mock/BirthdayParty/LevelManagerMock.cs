@@ -30,8 +30,6 @@ public class LevelManagerMock : MonoBehaviour
     
     private int trainSceneCount = 0;
     
-    [Header("CuckooClock")]
-    [SerializeField] private Animator clockAnimator;
 
     [SerializeField] private ghostOrb ghost;
     public GameObject[] objectsToActivate;
@@ -48,14 +46,12 @@ public class LevelManagerMock : MonoBehaviour
     {
         CutSceneTrigger.OnCutScenePlayerTriggered += ExecuteCutScenePlayer;
         CutSceneTrigger.OnCutSceneTrainTriggered += ExecuteCutSceneTrain;
-        CharacterControllerMockup.firstUsageAltar += DialogueAfterAltar;
     }
 
     private void OnDisable()
     {
         CutSceneTrigger.OnCutScenePlayerTriggered -= ExecuteCutScenePlayer;
         CutSceneTrigger.OnCutSceneTrainTriggered -= ExecuteCutSceneTrain;
-        CharacterControllerMockup.firstUsageAltar -= DialogueAfterAltar;
     }
     
     private void ExecuteCutScenePlayer(CutSceneName cutScene)
@@ -77,6 +73,7 @@ public class LevelManagerMock : MonoBehaviour
         switch (cutScene)
         {
             case CutSceneName.EnterNextLevel:
+                //TODO: transition
                 SceneManager.LoadScene("MovingMockSchlankCopy");
                 break;
             case CutSceneName.ChangeTrain:
@@ -86,9 +83,11 @@ public class LevelManagerMock : MonoBehaviour
         }
     }
 
-
-    private void DialogueAfterAltar()
+    private bool altarUsed = false;
+    public void DialogueAfterAltar()
     {
+        if (altarUsed) return;
+        altarUsed = true;
         dialogue.StartGlobalDialogue(player.GetComponent<PlayerConversant>());
     }
     void CuckooClockCutScene()
@@ -153,7 +152,7 @@ public class LevelManagerMock : MonoBehaviour
                  trainCamera.Priority = 0;
                  player.transform.position = playerSpawn2.position;
                  player.GetComponent<Rigidbody>().velocity = Vector3.zero;
-                 UIHintShow.Instance.showHintMessage("Use R/Right Shoulder by shrine to recall all talismans at once");
+                 UIHintShow.Instance.ShowHintUntilAction("Recall");
             }
 
             roadPart++;

@@ -56,6 +56,7 @@ public class SpawnAnim : MonoBehaviour
             // Show + animate in
             if (!cg)
             {
+                Debug.Log("No CanvasGroup found, adding one");
                 cg = obj.AddComponent<CanvasGroup>();
             }
             

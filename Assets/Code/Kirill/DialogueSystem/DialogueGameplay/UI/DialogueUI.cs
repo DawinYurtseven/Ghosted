@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Ghosted.Dialogue;
 using TMPro;
@@ -18,7 +19,12 @@ namespace Ghosted.UI
         [SerializeField] GameObject choicePrefab;
         [SerializeField] GameObject replicWindow;
         [SerializeField] GameObject choiceWindow;
+        
+        [SerializeField] private FMODUnity.StudioEventEmitter emitter;
 
+        [SerializeField] private TextFadeReveal textAnimator;
+
+        [SerializeField] private bool charReveal;
         // Start is called before the first frame update
         void Start()
         {
@@ -33,7 +39,13 @@ namespace Ghosted.UI
             playerConversant.OnStartDialogue.AddListener(StartDialogue);
             playerConversant.OnEndDialogue.AddListener(EndDialogue);
             playerConversant.OnDialogueNode.AddListener(DisplayNodeInfo);
+            playerConversant.IsTextAnimating = () => textAnimator != null && textAnimator.isAnimating;
 
+            playerConversant.CompleteTextAnimation = () =>
+            {
+                textAnimator?.Complete();
+            };
+            
             exitButton.onClick.AddListener(OnExitDialogueClick);
 
             gameObject.SetActive(false);
@@ -46,6 +58,7 @@ namespace Ghosted.UI
 
         public void EndDialogue(Ghosted.Dialogue.Dialogue dialogue)
         {
+            emitter.Stop();
             gameObject.SetActive(false);
         }
 
@@ -61,18 +74,36 @@ namespace Ghosted.UI
         // Update is called once per frame
         void UpdateUI(DialogueEditorNode node)
         {
+            print("UpdateUI called");
             var curNode = node;
             if (curNode == null)
             {
+                emitter.Stop();
                 Debug.LogError("I have null curNode in UI");
             }
             else if (curNode as DialogueNode != null)
             {
+                emitter.Stop();
                 DialogueNode dialogueNode = (DialogueNode)curNode;
-
+                if (!dialogueNode.voiceClip.IsNull)
+                {
+                    
+                    emitter.EventReference = dialogueNode.voiceClip;
+                    emitter.Lookup();
+                    emitter.Play();
+                }
                 replicWindow.SetActive(true);
                 choiceWindow.SetActive(false);
-                messageText.text = dialogueNode.text;
+                if (charReveal)
+                {
+                    textAnimator.Reset();
+                    textAnimator.animateText(dialogueNode.text);
+                }
+                else
+                {
+                    messageText.text = dialogueNode.text;
+                }
+                
                 speakerText.text = dialogueNode.speaker;
             }
             else if (curNode as ReplyNode != null)

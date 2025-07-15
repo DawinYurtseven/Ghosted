@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="DialogueContainer" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.77);">
+        <ui:Label tabindex="-1" text="South America" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Speaker" style="font-size: 48px; color: rgb(255, 255, 255); -unity-font-style: bold; margin-left: 16px; margin-top: 12px;" />
+        <ui:Label tabindex="-1" text="THis is a pretty longs message that has to show, that the text can wrap.&#10;And also new line worjs as well." parse-escape-sequences="true" display-tooltip-when-elided="true" name="Message" style="font-size: 28px; color: rgb(255, 255, 255); padding-top: 18px; margin-left: 17px; white-space: normal; margin-top: 12px;" />
+    </ui:VisualElement>
+</ui:UXML>

@@ -197,7 +197,7 @@ namespace Ghosted.Dialogue.Editor{
             float width = 160;
             float height = textStyle.CalcHeight(new GUIContent(node.text), width);
             Rect newRect = new Rect(node.rect);
-            newRect.height += height;
+            newRect.height += height + 20; // for audioclip reference
 
             GUILayout.BeginArea(newRect, nodeStyle);
             EditorGUI.BeginChangeCheck();
@@ -267,6 +267,7 @@ namespace Ghosted.Dialogue.Editor{
                 }
                 menu.ShowAsContext();
             }
+            //node.voiceClip = EditorGUILayout.ObjectField(node.voiceClip, typeof(FMODUnity.EventReference), false) as FMODUnity.EventReference;
             GUILayout.EndArea();
         }
 
