@@ -1,10 +1,13 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
+using Unity.VisualScripting;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class PopUpUI : MonoBehaviour
 {
@@ -96,8 +99,17 @@ public class PopUpUI : MonoBehaviour
         });
     }
 
-   
-    
-    
 
+    //To use in the end of the dialogue
+    [SerializeField] private float defaultDelay = 1f;
+    public void StartPopUpWithDelay(PopUpData data)
+    {
+        StartCoroutine(ShowPopUpWithDelayCoroutine(data));
+    }
+
+    private IEnumerator ShowPopUpWithDelayCoroutine(PopUpData data)
+    {
+        yield return new WaitForSeconds(defaultDelay);
+        ShowHint(data);
+    }
 }
