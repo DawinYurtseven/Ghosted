@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2850811550861734942}
   - component: {fileID: 3909169526191828851}
-  - component: {fileID: 5783414868777102473}
   m_Layer: 0
   m_Name: JapaneseMapleTree_A
   m_TagString: Untagged
@@ -28,7 +27,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.3359, y: 1.3359, z: 1.3359}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2339342336212904383}
@@ -63,27 +62,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 7989111427467397800}
   m_Enabled: 1
---- !u!65 &5783414868777102473
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6252442513108361000}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.99418867, y: 10.551075, z: 1.322155}
-  m_Center: {x: 0.060138047, y: 4.7755375, z: -0.1610775}
 --- !u!1 &6763275578713281604
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,9 +198,9 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 800af150615757a4bac20a2536dc93fd, type: 2}
-  - {fileID: 2100000, guid: fd47c5e5a0ce14a47bac66bd7042f9a8, type: 2}
-  - {fileID: 2100000, guid: fd47c5e5a0ce14a47bac66bd7042f9a8, type: 2}
+  - {fileID: 2100000, guid: cd61a510f26c9be4fa65020aba5d3c0b, type: 2}
+  - {fileID: 21314317879770914}
+  - {fileID: 21834644072273796}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -419,7 +397,7 @@ Material:
     - _UseUIAlphaClip: 0
     - _WindQuality: 4
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.8396226, g: 0.61387503, b: 0.75900805, a: 1}
     - _HueVariation: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
 --- !u!21 &21685886276480050
@@ -430,13 +408,13 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Billboard Material
-  m_Shader: {fileID: 10770, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 14001, guid: 0000000000000000f000000000000000, type: 0}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords:
+  m_ValidKeywords:
   - EFFECT_BUMP
   - EFFECT_HUE_VARIATION
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -457,14 +435,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _ColorMask: 15
     - _Cutoff: 0.2
-    - _Stencil: 0
-    - _StencilComp: 8
-    - _StencilOp: 0
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
-    - _UseUIAlphaClip: 0
     - _WindQuality: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
@@ -519,7 +490,7 @@ Material:
     - _UseUIAlphaClip: 0
     - _WindQuality: 4
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.8396226, g: 0.61387503, b: 0.75900805, a: 1}
     - _HueVariation: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
 --- !u!21 &21993830125847146
@@ -530,7 +501,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Optimized Bark Material
-  m_Shader: {fileID: 10770, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 10750, guid: 0000000000000000f000000000000000, type: 0}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -559,18 +530,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _ColorMask: 15
     - _Cull: 2
     - _Cutoff: 0.333
-    - _Stencil: 0
-    - _StencilComp: 8
-    - _StencilOp: 0
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
-    - _UseUIAlphaClip: 0
     - _WindQuality: 0
     m_Colors:
-    - _Color: {r: 0.047169805, g: 0.047169805, b: 0.047169805, a: 0.80784315}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _HueVariation: {r: 1, g: 0.5, b: 0, a: 0.1}
   m_BuildTextureStacks: []
 --- !u!43 &43685231032088354
