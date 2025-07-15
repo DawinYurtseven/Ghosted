@@ -34,7 +34,7 @@ public class AltarUI : MonoBehaviour
         emotionChange.SetActive(true);
         onActivateUI?.Invoke();
         CameraManager.Instance.turnOnOtherCamera(altarCamera);
-        PlayerInputDisabler.Instance.DisableInput();
+        PlayerInputDisabler.Instance.SwitchInputMapDelayed("AltarUI");
         uiAnimator.Show(() =>
         {
             brushStroke.Animate(() => {
@@ -46,7 +46,7 @@ public class AltarUI : MonoBehaviour
     public void DeactivateUI()
     {
         uiAnimator.Hide(() => {
-            PlayerInputDisabler.Instance.EnableInputWithDelay(2f);
+            PlayerInputDisabler.Instance.SwitchInputMapDelayed("Character Control");
             CameraManager.Instance.turnoOffOtherCamera(altarCamera);
             
             emotionChange.SetActive(false);

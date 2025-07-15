@@ -73,6 +73,7 @@ public class LevelManagerMock : MonoBehaviour
         switch (cutScene)
         {
             case CutSceneName.EnterNextLevel:
+                //TODO: transition
                 SceneManager.LoadScene("MovingMockSchlankCopy");
                 break;
             case CutSceneName.ChangeTrain:
@@ -82,9 +83,11 @@ public class LevelManagerMock : MonoBehaviour
         }
     }
 
-
+    private bool altarUsed = false;
     public void DialogueAfterAltar()
     {
+        if (altarUsed) return;
+        altarUsed = true;
         dialogue.StartGlobalDialogue(player.GetComponent<PlayerConversant>());
     }
     void CuckooClockCutScene()
