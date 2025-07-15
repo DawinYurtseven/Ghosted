@@ -18,13 +18,21 @@ MonoBehaviour:
     y: 295
     width: 200
     height: 80
-  onEnterActions: []
-  onExitActions: []
+  onEnterActions:
+  - player
+  onExitActions:
+  - exit
   text: "Yes. Let memory guide your steps\u2014joy, then fear. Not all paths are
     easy... but they\u2019re yours."
   child: 
   speaker: Player
-  voiceClip: {fileID: 0}
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &-4429548071989025157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48,7 +56,13 @@ MonoBehaviour:
   text: "The train wasn't just arriving\u2026 it was leaving."
   child: 27ccbe33-43c7-4308-9ba3-83f4d5175140
   speaker: Miyu
-  voiceClip: {fileID: 0}
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,13 +104,20 @@ MonoBehaviour:
     y: 46
     width: 200
     height: 80
-  onEnterActions: []
+  onEnterActions:
+  - miyu
   onExitActions: []
   text: "That was the moment I knew I\u2019d be truly alone. No turning back. I was
     on the wrong side of everything familiar."
   child: 6d7afb6e-e722-4f56-94c3-17b569c74095
   speaker: Miyu
-  voiceClip: {fileID: 0}
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &6418530206259528633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,7 +141,13 @@ MonoBehaviour:
   text: That sound filled me with dread. Like it was taking something away from me.
   child: 2a8ad912-3a19-4890-8afb-2abe1a424f0e
   speaker: Miyu
-  voiceClip: {fileID: 0}
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &8705371555783416926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,15 +166,21 @@ MonoBehaviour:
     y: 7
     width: 200
     height: 80
-  onEnterActions: []
-  onExitActions:
-  - Next
-  - delete
+  onEnterActions:
+  - enter
+  - miyu
+  onExitActions: []
   text: "Yes\u2026 but after that, I remember hearing the train arriving. The last
     platform. "
   child: 79944dcb-a2d0-4043-a463-bece8a1a9c1a
   speaker: Miyu
-  voiceClip: {fileID: 0}
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &9147519370536567891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,9 +199,16 @@ MonoBehaviour:
     y: 17
     width: 200
     height: 80
-  onEnterActions: []
+  onEnterActions:
+  - player
   onExitActions: []
   text: Why?
   child: 6374ab24-3903-429c-948b-8d7d1242d6f7
   speaker: Player
-  voiceClip: {fileID: 0}
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 

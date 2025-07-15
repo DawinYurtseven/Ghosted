@@ -18,14 +18,21 @@ MonoBehaviour:
     y: 551
     width: 200
     height: 80
-  onEnterActions: []
+  onEnterActions:
+  - player
   onExitActions: []
   text: "Then you know what to do. The platforms were never just tracks. They were
     steps\u2014your steps.\r\nOne... two... three. In the order only you could take
     them.\r"
   child: ba4a90ff-f2a2-4a9a-8ca1-4c37c620ce61
   speaker: Player
-  voiceClip: {fileID: 0}
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &-5262417628637357165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50,7 +57,13 @@ MonoBehaviour:
     waiting, exactly when I needed it. '
   child: 57940316-b5d1-46dd-afec-11e0d5444987
   speaker: Miyu
-  voiceClip: {fileID: 0}
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &-4332291629865064448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,13 +82,21 @@ MonoBehaviour:
     y: 605
     width: 200
     height: 80
-  onEnterActions: []
-  onExitActions: []
+  onEnterActions:
+  - miyu
+  onExitActions:
+  - exit
   text: "Then maybe I\u2019m not stuck... just waiting for the right moment to switch
     platforms, in the right order."
   child: 
   speaker: Miyu
-  voiceClip: {fileID: 0}
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &-4190510191975216351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,7 +121,13 @@ MonoBehaviour:
     book.
   child: 3c04b47d-1068-40b7-a0d5-d328ff943d23
   speaker: Miyu
-  voiceClip: {fileID: 0}
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &-2948193506520799808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,13 +146,20 @@ MonoBehaviour:
     y: 307
     width: 200
     height: 80
-  onEnterActions: []
+  onEnterActions:
+  - miyu
   onExitActions: []
   text: "I remember now\u2026 I waited on platform one, unsure and afraid. But then,
     the connecting train came\u2014right at 3 o\u2019clock."
   child: 8af3c18d-87c0-4a56-8ea5-58b6ce64418a
   speaker: Miyu
-  voiceClip: {fileID: 0}
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,12 +206,19 @@ MonoBehaviour:
     y: 117
     width: 200
     height: 80
-  onEnterActions: []
+  onEnterActions:
+  - player
   onExitActions: []
   text: Anchor yourself to that. Let it guide you.
   child: 7a3499e1-516a-4cbc-a5d9-fe07d8b8566a
   speaker: Player
-  voiceClip: {fileID: 0}
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &4928892754109713531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,7 +243,13 @@ MonoBehaviour:
     funny? "
   child: e3a0d203-543a-495f-823a-a48b5d67fb8a
   speaker: Miyu
-  voiceClip: {fileID: 0}
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &6418530206259528633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,7 +274,13 @@ MonoBehaviour:
     wrong path, and I couldn\u2019t go back."
   child: 2a8ad912-3a19-4890-8afb-2abe1a424f0e
   speaker: Miyu
-  voiceClip: {fileID: 0}
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &7340504574902920520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,13 +299,20 @@ MonoBehaviour:
     y: 24
     width: 200
     height: 80
-  onEnterActions: []
+  onEnterActions:
+  - miyu
   onExitActions: []
   text: "But that moment at 3 o\u2019clock\u2014that memory feels clear. The book.
     The sunlight. That was real."
   child: c5a55dd4-7813-481e-b04a-002d24ebad13
   speaker: Miyu
-  voiceClip: {fileID: 0}
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &8705371555783416926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,19 +327,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: 14
+    x: 12
     y: 7
     width: 200
     height: 80
-  onEnterActions: []
-  onExitActions:
-  - Next
-  - delete
+  onEnterActions:
+  - enter
+  - miyu
+  onExitActions: []
   text: "I remember switching platforms\u2026 over and over. Trying to find the right
     one. The right direction."
   child: 79944dcb-a2d0-4043-a463-bece8a1a9c1a
   speaker: Miyu
-  voiceClip: {fileID: 0}
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &9147519370536567891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,10 +364,17 @@ MonoBehaviour:
     y: 12
     width: 200
     height: 80
-  onEnterActions: []
+  onEnterActions:
+  - player
   onExitActions: []
   text: "Time doesn\u2019t always move in a straight line, Miyu. Sometimes it skips...
     or repeats... like changing trains."
   child: 822a7a5a-20d5-459d-adc8-3d85242885de
   speaker: Player
-  voiceClip: {fileID: 0}
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
