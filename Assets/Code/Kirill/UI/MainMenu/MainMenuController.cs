@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem.UI;
 using UnityEngine.UIElements;
 
 public class MainMenuController : MonoBehaviour
