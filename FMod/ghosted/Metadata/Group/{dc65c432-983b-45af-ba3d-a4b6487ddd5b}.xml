@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.03.00">
 	<object class="MixerGroup" id="{dc65c432-983b-45af-ba3d-a4b6487ddd5b}">
+		<property name="volume">
+			<value>-4</value>
+		</property>
 		<property name="name">
 			<value>Dialogue</value>
 		</property>
@@ -16,15 +19,29 @@
 	</object>
 	<object class="MixerBusEffectChain" id="{f898743d-e1ba-4144-a7e6-6c7da001fdad}">
 		<relationship name="effects">
+			<destination>{736b45fa-5a15-4c6f-8d3d-adb6cbd3837c}</destination>
 			<destination>{41de7e88-240f-4942-b03c-9801f1c3df24}</destination>
 			<destination>{08d4a74e-7a8b-4200-bc87-1fcb834f22f9}</destination>
+			<destination>{494691ef-c49d-4928-b8c9-58d83fc5a656}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{19235f42-5939-42ad-8955-a5356a5fc22f}" />
+	<object class="CompressorEffect" id="{736b45fa-5a15-4c6f-8d3d-adb6cbd3837c}">
+		<property name="threshold">
+			<value>-25</value>
+		</property>
+		<property name="ratio">
+			<value>3</value>
+		</property>
+		<property name="gain">
+			<value>16</value>
+		</property>
+	</object>
 	<object class="LimiterEffect" id="{41de7e88-240f-4942-b03c-9801f1c3df24}">
 		<property name="ceiling">
 			<value>-1</value>
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{08d4a74e-7a8b-4200-bc87-1fcb834f22f9}" />
+	<object class="Sidechain" id="{494691ef-c49d-4928-b8c9-58d83fc5a656}" />
 </objects>
