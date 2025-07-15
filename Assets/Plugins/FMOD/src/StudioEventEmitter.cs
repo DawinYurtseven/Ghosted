@@ -188,7 +188,7 @@ namespace FMODUnity
             }
         }
 
-        private void Lookup()
+        public void Lookup()
         {
             eventDescription = RuntimeManager.GetEventDescription(EventReference);
 
@@ -205,6 +205,7 @@ namespace FMODUnity
 
         public void Play()
         {
+            Lookup();
             if (TriggerOnce && hasTriggered)
             {
                 return;
