@@ -18,74 +18,20 @@ MonoBehaviour:
     y: 1321
     width: 200
     height: 80
-  onEnterActions: []
+  onEnterActions:
+  - miyu
   onExitActions: []
   text: "Colour ... Blue? Or was it red? \r\nIt\u2019s like my mind is clouded. Am
     I losing my mind?\r"
   child: 6d135400-9609-4bf5-90d9-4ec94b6909e1
   speaker: Miyu
---- !u!114 &-8354026214179695596
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e53e018a8564904793b16b25d923600, type: 3}
-  m_Name: d6c7bef2-667f-48df-95ce-3bc21521b9e2
-  m_EditorClassIdentifier: 
-  text: Quite the jump from the Birthday Party.
-  child: 5a23d177-d5f6-497e-8b35-4022b8d51b52
---- !u!114 &-7878879142205734906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
-  m_Name: 70165925-ca2d-4fc4-a3c9-c426de182fae
-  m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 690
-    y: 1103
-    width: 200
-    height: 80
-  onEnterActions: []
-  onExitActions: []
-  text: A farewell gift?
-  child: 1354de51-25ed-40b2-a8fb-4128db56ce7c
-  speaker: Player
---- !u!114 &-7121536755010051268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0966a353404aa7249becdd492a6fa0d9, type: 3}
-  m_Name: 0bb514b5-4ab4-4019-a85f-8fd5ecf15cca
-  m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 25
-    y: 458
-    width: 200
-    height: 230
-  onEnterActions: []
-  onExitActions: []
-  replies:
-  - {fileID: 1695926761222862662}
-  - {fileID: 5783921663846920401}
-  - {fileID: -3941730281051848093}
-  - {fileID: -8354026214179695596}
+  voiceClip:
+    Guid:
+      Data1: 70800323
+      Data2: 1131867730
+      Data3: -811756901
+      Data4: 131566430
+    Path: event:/Dialogue/Dialogue 7/9
 --- !u!114 &-6986868417560793157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,8 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: 468
-    y: 451
+    x: 587
+    y: 349
     width: 200
     height: 80
   onEnterActions: []
@@ -109,6 +55,13 @@ MonoBehaviour:
   text: And where were you moving to?
   child: 9f4e6648-103e-4ae8-a27a-b3a6d1c0c2c5
   speaker: Player
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &-6818105479955096796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,11 +80,20 @@ MonoBehaviour:
     y: 850
     width: 200
     height: 80
-  onEnterActions: []
-  onExitActions: []
+  onEnterActions:
+  - miyu
+  onExitActions:
+  - PauseVoiceline
   text: He had lung cancer. Early stage, but scary, nonetheless.
   child: 8cfcab3a-7035-48c7-9f25-f772c0104d28
   speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 1105963610
+      Data2: 1315093343
+      Data3: -1827533640
+      Data4: -1572810277
+    Path: event:/Dialogue/Dialogue 7/4
 --- !u!114 &-6521070093322499782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,12 +112,21 @@ MonoBehaviour:
     y: 862
     width: 200
     height: 80
-  onEnterActions: []
-  onExitActions: []
+  onEnterActions:
+  - ResumeVoiceline
+  onExitActions:
+  - PauseVoiceline
   text: "I almost didn\u2019t accept the job offer in my parents\u2019 hometown.
     But he said he\u2019d never forgive me if I didn\u2019t go after my dream. "
   child: ff56ae9c-86e4-4961-91ad-70fe43aa1363
   speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &-6028019193847932622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,11 +145,19 @@ MonoBehaviour:
     y: 1069
     width: 200
     height: 80
-  onEnterActions: []
+  onEnterActions:
+  - miyu
   onExitActions: []
   text: "I ... can\u2019t seem to remember.  "
-  child: 70165925-ca2d-4fc4-a3c9-c426de182fae
+  child: 1354de51-25ed-40b2-a8fb-4128db56ce7c
   speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: -302643872
+      Data2: 1299025928
+      Data3: -1043292529
+      Data4: -621738200
+    Path: event:/Dialogue/Dialogue 7/6
 --- !u!114 &-5751091809421384677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,16 +172,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: 728
-    y: 601
+    x: 832
+    y: 515
     width: 200
     height: 80
-  onEnterActions: []
+  onEnterActions:
+  - miyu
   onExitActions: []
   text: "I did. Each day ticked by like gears turning\u2014routine, steady\u2014but
     inside, I was waiting for time to rewind."
   child: 
   speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &-4840625584682790413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,8 +204,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: 467
-    y: 565
+    x: 583
+    y: 486
     width: 200
     height: 80
   onEnterActions: []
@@ -226,6 +213,13 @@ MonoBehaviour:
   text: So you worked as a Teacher there?
   child: 83ddc8be-96ee-4cfd-a94d-e352fa43ff75
   speaker: Player
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &-4281602210966029495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,25 +238,20 @@ MonoBehaviour:
     y: 1510
     width: 200
     height: 80
-  onEnterActions: []
-  onExitActions: []
+  onEnterActions:
+  - miyu
+  onExitActions:
+  - exit
   text: Something Red, golden letters ...
   child: 
   speaker: Miyu
---- !u!114 &-3941730281051848093
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e53e018a8564904793b16b25d923600, type: 3}
-  m_Name: 05113f04-4193-4018-a3b7-9674f46921e2
-  m_EditorClassIdentifier: 
-  text: So you were a Teacher?
-  child: 4d713595-7521-49f2-b49d-50a97e28d9a0
+  voiceClip:
+    Guid:
+      Data1: 1035110195
+      Data2: 1082057018
+      Data3: -1967011409
+      Data4: 1461607988
+    Path: event:/Dialogue/Dialogue 7/11
 --- !u!114 &-3099227212386522438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,11 +270,19 @@ MonoBehaviour:
     y: 1475
     width: 200
     height: 80
-  onEnterActions: []
+  onEnterActions:
+  - player
   onExitActions: []
   text: "No. You\u2019re remembering. "
   child: dee0008d-3188-4eca-ab6b-0aa191ac7af0
   speaker: Player
+  voiceClip:
+    Guid:
+      Data1: -1847566762
+      Data2: 1121446204
+      Data3: 1143540379
+      Data4: 1643568009
+    Path: event:/Dialogue/Dialogue 7/10
 --- !u!114 &-3091514694604047307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,15 +297,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: 614
+    x: 615
     y: 867
     width: 200
     height: 80
-  onEnterActions: []
-  onExitActions: []
+  onEnterActions:
+  - ResumeVoiceline
+  onExitActions:
+  - PauseVoiceline
   text: "So, I made him promise to beat cancer until I came to visit. \r"
   child: df6d547c-91a2-4f45-808b-24be2269d94a
   speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &-2608392613772393449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,16 +329,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: 739
-    y: 691
+    x: 849
+    y: 679
     width: 200
     height: 80
-  onEnterActions: []
+  onEnterActions:
+  - miyu
   onExitActions: []
   text: "That\u2019s how it felt to me, too. One breath, candles. The next, a train
     whistle and tears I wasn\u2019t ready for."
-  child: 0bb514b5-4ab4-4019-a85f-8fd5ecf15cca
+  child: removed
   speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &-1714854252500100588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,11 +365,19 @@ MonoBehaviour:
     y: 1044
     width: 200
     height: 80
-  onEnterActions: []
+  onEnterActions:
+  - player
   onExitActions: []
   text: Carry what with you?
   child: 1523665d-56e5-49ea-b974-b0eae11dd349
   speaker: Player
+  voiceClip:
+    Guid:
+      Data1: -530077704
+      Data2: 1077301230
+      Data3: 1540322489
+      Data4: -1228584693
+    Path: event:/Dialogue/Dialogue 7/5
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -385,7 +407,6 @@ MonoBehaviour:
   - {fileID: 3017623951677341470}
   - {fileID: -1714854252500100588}
   - {fileID: -6028019193847932622}
-  - {fileID: -7878879142205734906}
   - {fileID: 654085026690635033}
   - {fileID: 7768067117276261842}
   - {fileID: -9046055365353823515}
@@ -394,8 +415,7 @@ MonoBehaviour:
   - {fileID: 4426520083359603049}
   - {fileID: -2608392613772393449}
   - {fileID: -5751091809421384677}
-  replyNodes:
-  - {fileID: -7121536755010051268}
+  replyNodes: []
 --- !u!114 &654085026690635033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -420,6 +440,13 @@ MonoBehaviour:
     me, in my bag. '
   child: 6db4162a-3627-432f-b5d4-626f7da22af3
   speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 1060668963
+      Data2: 1121898706
+      Data3: -904403313
+      Data4: 1893562602
+    Path: event:/Dialogue/Dialogue 7/7
 --- !u!114 &1424233153763885317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -434,8 +461,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: 467
-    y: 677
+    x: 565
+    y: 628
     width: 200
     height: 80
   onEnterActions: []
@@ -443,20 +470,13 @@ MonoBehaviour:
   text: Huh, things are moving quickly... Weren't we celebrating just a moment ago?
   child: 175db8ed-118d-41f9-aa55-e2e1e2578c45
   speaker: Player
---- !u!114 &1695926761222862662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e53e018a8564904793b16b25d923600, type: 3}
-  m_Name: a9d66b4f-0b00-4b78-8ed8-490a6b77e11e
-  m_EditorClassIdentifier: 
-  text: Your brother?
-  child: 79e522b9-2769-426d-adad-6ddc9233ca4f
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &3017623951677341470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -475,11 +495,19 @@ MonoBehaviour:
     y: 867
     width: 200
     height: 80
-  onEnterActions: []
+  onEnterActions:
+  - ResumeVoiceline
   onExitActions: []
   text: "And he made me promise to always carry it ... with me ... Hm. \r"
   child: 8f3270a9-9211-47f6-954b-17546609fea8
   speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &4426520083359603049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -494,30 +522,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: 763
-    y: 451
+    x: 820
+    y: 358
     width: 200
     height: 80
-  onEnterActions: []
+  onEnterActions:
+  - miyu
   onExitActions: []
   text: To Hakodate. Quiet, small. Nothing like home. It felt like I was stepping
     off the world I knew.
-  child: 0bb514b5-4ab4-4019-a85f-8fd5ecf15cca
+  child: removed
   speaker: Miyu
---- !u!114 &5783921663846920401
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e53e018a8564904793b16b25d923600, type: 3}
-  m_Name: c8727971-5225-4d47-b634-d9cae0f07394
-  m_EditorClassIdentifier: 
-  text: Where were you going?
-  child: 230c590b-b18a-4b8f-a41b-e7685e92cffb
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &6418530206259528633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -537,12 +559,20 @@ MonoBehaviour:
     width: 200
     height: 80
   onEnterActions: []
-  onExitActions: []
+  onExitActions:
+  - PauseVoiceline
   text: "Changing my whole life at 43 was the scariest thing I\u2019d ever done.
     I\u2019d never moved somewhere alone. I was terrified I\u2019d miss the train,
     lose my way, miss my first day at work. "
   child: 2a8ad912-3a19-4890-8afb-2abe1a424f0e
   speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: -1669705493
+      Data2: 1252759348
+      Data3: -542131803
+      Data4: 1711395670
+    Path: event:/Dialogue/Dialogue 7/2
 --- !u!114 &6606743892539307407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -557,15 +587,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: 730
-    y: 311
+    x: 299
+    y: 330
     width: 200
     height: 80
-  onEnterActions: []
+  onEnterActions:
+  - player
   onExitActions: []
   text: Your brother? Why?
   child: e08c91dd-bbdf-4aa2-babd-90a6db21f1d4
   speaker: Player
+  voiceClip:
+    Guid:
+      Data1: 965855724
+      Data2: 1292233717
+      Data3: -52094074
+      Data4: -946410806
+    Path: event:/Dialogue/Dialogue 7/3
 --- !u!114 &7768067117276261842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -584,11 +622,19 @@ MonoBehaviour:
     y: 1303
     width: 200
     height: 80
-  onEnterActions: []
+  onEnterActions:
+  - player
   onExitActions: []
-  text: Do you remember the colour?
+  text: A goodby gift? Do you remember the colour?
   child: 54d2d43c-ee04-40ca-9540-fcc0885ace4d
   speaker: Player
+  voiceClip:
+    Guid:
+      Data1: -234005975
+      Data2: 1181826113
+      Data3: 935100338
+      Data4: 235673398
+    Path: event:/Dialogue/Dialogue 7/8
 --- !u!114 &8705371555783416926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -607,14 +653,22 @@ MonoBehaviour:
     y: 12
     width: 200
     height: 80
-  onEnterActions: []
-  onExitActions:
-  - Next
-  - delete
+  onEnterActions:
+  - moveToStart
+  - enter
+  - miyu
+  onExitActions: []
   text: "Saying good-bye was the worst part. I felt like I didn\u2019t even understand
     it was happening. Until suddenly, I was in the train."
   child: 79944dcb-a2d0-4043-a463-bece8a1a9c1a
   speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: -1070110145
+      Data2: 1192993231
+      Data3: 898830261
+      Data4: 1656898068
+    Path: event:/Dialogue/Dialogue 7/1
 --- !u!114 &9147519370536567891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -633,9 +687,18 @@ MonoBehaviour:
     y: 55
     width: 200
     height: 80
-  onEnterActions: []
-  onExitActions: []
+  onEnterActions:
+  - ResumeVoiceline
+  onExitActions:
+  - player
   text: "What if my students hated me? What if I hated them? But most of all, I was
     terrified I\u2019d never see Matsuhito again.  "
-  child: 0bb514b5-4ab4-4019-a85f-8fd5ecf15cca
+  child: 79e522b9-2769-426d-adad-6ddc9233ca4f
   speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 

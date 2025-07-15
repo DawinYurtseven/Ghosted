@@ -3245,8 +3245,8 @@ MonoBehaviour:
   specialEffect: {fileID: 5988329307344059916}
   joyVFX: {fileID: 8338067435268053278}
   fearVFX: {fileID: 8589449285664273078}
-  bindingSFX: {fileID: 6487224264262964230}
-  boundSFX: {fileID: 7839629959471624841}
+  bindingSFX: {fileID: 0}
+  boundSFX: {fileID: 0}
   openState: {fileID: 6252895713091119478}
   closedState: {fileID: 5947956531982523124}
   shadow: {fileID: 4818134528701374094}
@@ -3259,6 +3259,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4915631566948835626}
     m_Modifications:
+    - target: {fileID: 475568315691202712, guid: e11ff40e3e2f6aa4d94f51da26cf352f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 615779062326898337, guid: e11ff40e3e2f6aa4d94f51da26cf352f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1601085411031642301, guid: e11ff40e3e2f6aa4d94f51da26cf352f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3316,16 +3324,6 @@ Transform:
 --- !u!1 &5988329307344059916 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4841323770616215877, guid: e11ff40e3e2f6aa4d94f51da26cf352f, type: 3}
-  m_PrefabInstance: {fileID: 1167848022092433225}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &6487224264262964230 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 5346414384292172623, guid: e11ff40e3e2f6aa4d94f51da26cf352f, type: 3}
-  m_PrefabInstance: {fileID: 1167848022092433225}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &7839629959471624841 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 9006902935630034368, guid: e11ff40e3e2f6aa4d94f51da26cf352f, type: 3}
   m_PrefabInstance: {fileID: 1167848022092433225}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &8338067435268053278 stripped

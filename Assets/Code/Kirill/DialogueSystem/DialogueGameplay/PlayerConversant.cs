@@ -1,8 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -36,8 +32,10 @@ namespace Ghosted.Dialogue {
             playerLayer = LayerMask.NameToLayer("Player");
             layerMask = ~(1 << playerLayer);
         }
+        
         private float dialogueStartTime;
         private float dialogueInputDelay = 0.3f;
+        
         public void StartDialogue(Dialogue dialogue)
         {
             
@@ -88,6 +86,7 @@ namespace Ghosted.Dialogue {
             dialogueAIConversant = conversant;
             dialogueAIConversant.turnOnHint();
         }
+        
         public void LeaveDialogue()
         {
             if (dialogueAIConversant != null)
@@ -97,7 +96,7 @@ namespace Ghosted.Dialogue {
             }
         }
 
-        // This is a moch function that has to be replaces with uniform interaction system
+        // This is a mock function that has to be replaces with uniform interaction system
         public void InteractDialogue()
         {
             Debug.Log("I try to interact for dialogue");
