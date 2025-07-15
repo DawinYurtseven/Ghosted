@@ -1,0 +1,114 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0128aa92babf3fd4e9cf4beb0d51198e, type: 3}
+  m_Name: fallDIalogue
+  m_EditorClassIdentifier: 
+  dialogueSpeakers:
+  - Miyu
+  dialogueNodes:
+  - {fileID: 5229122363569415389}
+  - {fileID: 1946053568212559241}
+  - {fileID: 9032999289125104301}
+  replyNodes: []
+--- !u!114 &1946053568212559241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: ff5a7904-0e46-4868-bf5c-3e72888f25e9
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 289
+    y: 36
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions:
+  - goToPresent
+  text: "When I opened that cuckoo clock for you, I found an old spring inside\u2026"
+  child: 231f520e-1e4e-4702-aa35-1300a4190f2a
+  speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+--- !u!114 &5229122363569415389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 7e1d964c-fa27-47cb-a436-8fcea8b12414
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 200
+    height: 80
+  onEnterActions:
+  - enter
+  onExitActions: []
+  text: Oh no, are you okay? You fell...
+  child: ff5a7904-0e46-4868-bf5c-3e72888f25e9
+  speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+--- !u!114 &9032999289125104301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 231f520e-1e4e-4702-aa35-1300a4190f2a
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 576
+    y: 71
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions:
+  - exit
+  text: "Here \u2014 try it now!"
+  child: 
+  speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
