@@ -12,6 +12,10 @@ public class TagTriggerzone : TriggerZone
             Debug.Log("Tag entered: " + tagName);
             onTriggerEnter?.Invoke();
         }
+        else
+        {
+            Debug.Log("Tag not matched: " + other.tag);
+        }
     }
     
     public virtual void OnTriggerExit(Collider other)
@@ -22,16 +26,16 @@ public class TagTriggerzone : TriggerZone
         }
     }
 
-    public virtual void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag(tagName))
-        {
-            Debug.Log("Deprecated!");
-            // if (Input.GetKeyUp(KeyCode.E))
-            // {
-            //     OnInteract?.Invoke();
-            // }
-        }
-    }
+    // public virtual void OnTriggerStay(Collider other)
+    // {
+    //     if (other.CompareTag(tagName))
+    //     {
+    //         Debug.Log("Deprecated! " + other.tag);
+    //         // if (Input.GetKeyUp(KeyCode.E))
+    //         // {
+    //         //     OnInteract?.Invoke();
+    //         // }
+    //     }
+    // }
     
 }
