@@ -8,18 +8,18 @@ public class TriggerZone : MonoBehaviour
     public UnityEvent onTriggerExit;
     public UnityEvent OnInteract;
 
-    public void OnTriggerExit(Collider other)
+    public virtual void OnTriggerExit(Collider other)
     {
         onTriggerExit?.Invoke();
     }
 
-    public void OnTriggerStay(Collider other)
+    public virtual void OnTriggerStay(Collider other)
     {
         if(Input.GetKeyUp(KeyCode.E))
             OnInteract?.Invoke();
     }
     
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         onTriggerEnter?.Invoke();
     }

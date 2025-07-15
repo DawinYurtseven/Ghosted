@@ -56,6 +56,14 @@ public class ghostOrb : MonoBehaviour
         moveDuration = moveDuration_fast;
         MoveToPosition(target.position);
     }
+    
+    public void move2TransformSlow(Transform target)
+    {
+        if (target == null) return;
+        isFollowing = false;
+        moveDuration = moveDuration_WayPoint;
+        MoveToPosition(target.position);
+    }
 
     // Move back to the current main waypoint
     public void MoveToCurrentWaypoint()
