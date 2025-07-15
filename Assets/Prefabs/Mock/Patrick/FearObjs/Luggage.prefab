@@ -6724,8 +6724,8 @@ MonoBehaviour:
   specialEffect: {fileID: 5353159393274459313}
   joyVFX: {fileID: 7702892573391672227}
   fearVFX: {fileID: 7954259923446446091}
-  bindingSFX: {fileID: 4852540383853715131}
-  boundSFX: {fileID: 8474395940587190324}
+  bindingSFX: {fileID: 0}
+  boundSFX: {fileID: 0}
   openState: {fileID: 6829846762434412045}
   closedState: {fileID: 7496472147234890238}
   shadow: {fileID: 9210395692619098410}
@@ -11343,6 +11343,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 256719548400849936}
     m_Modifications:
+    - target: {fileID: 475568315691202712, guid: e11ff40e3e2f6aa4d94f51da26cf352f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 475568315691202712, guid: e11ff40e3e2f6aa4d94f51da26cf352f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 615779062326898337, guid: e11ff40e3e2f6aa4d94f51da26cf352f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 615779062326898337, guid: e11ff40e3e2f6aa4d94f51da26cf352f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1601085411031642301, guid: e11ff40e3e2f6aa4d94f51da26cf352f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.25
@@ -11397,11 +11413,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1601085411031642301, guid: e11ff40e3e2f6aa4d94f51da26cf352f, type: 3}
   m_PrefabInstance: {fileID: 677202726602444276}
   m_PrefabAsset: {fileID: 0}
---- !u!82 &4852540383853715131 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 5346414384292172623, guid: e11ff40e3e2f6aa4d94f51da26cf352f, type: 3}
-  m_PrefabInstance: {fileID: 677202726602444276}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5353159393274459313 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4841323770616215877, guid: e11ff40e3e2f6aa4d94f51da26cf352f, type: 3}
@@ -11415,10 +11426,5 @@ GameObject:
 --- !u!1 &7954259923446446091 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7423864077165147647, guid: e11ff40e3e2f6aa4d94f51da26cf352f, type: 3}
-  m_PrefabInstance: {fileID: 677202726602444276}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &8474395940587190324 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 9006902935630034368, guid: e11ff40e3e2f6aa4d94f51da26cf352f, type: 3}
   m_PrefabInstance: {fileID: 677202726602444276}
   m_PrefabAsset: {fileID: 0}

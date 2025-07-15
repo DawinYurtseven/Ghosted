@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-6508187634488602999
+--- !u!114 &-3314012679838310051
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10,21 +10,50 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
-  m_Name: 488dd0c9-2c83-4857-a0f0-d492481afbe8
+  m_Name: 32ef35e0-7737-4c31-bf16-7c00f9494cd1
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: 821
-    y: 254
+    x: 717
+    y: 35
     width: 200
     height: 80
-  onEnterActions:
-  - player
+  onEnterActions: []
   onExitActions: []
-  text: "Then maybe this is the place to unfold it. Look around\u2014this isn\u2019t
-    just any clock. It\u2019s your time."
-  child: 3905efb4-c402-437a-9d10-7bf90c2f56a9
-  speaker: Player
+  text: "But maybe\u2026 maybe that\u2019s what I needed\u2014to be afraid, and still
+    move forward."
+  child: e8ff04be-ae16-4cb9-80fd-9994f1ab7c29
+  speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+--- !u!114 &-3256188402497677697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: ba880446-1e0a-4f2d-b4c4-6a2b745491b9
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 476
+    y: 25
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions: []
+  text: "That train... it terrified me. It meant goodbye. No turning back.\r"
+  child: 32ef35e0-7737-4c31-bf16-7c00f9494cd1
+  speaker: Miyu
   voiceClip:
     Guid:
       Data1: 0
@@ -42,7 +71,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0128aa92babf3fd4e9cf4beb0d51198e, type: 3}
-  m_Name: Dial_ClockInside
+  m_Name: Dial_GhostLockEntry
   m_EditorClassIdentifier: 
   dialogueSpeakers:
   - Miyu
@@ -50,10 +79,42 @@ MonoBehaviour:
   dialogueNodes:
   - {fileID: 8705371555783416926}
   - {fileID: 6418530206259528633}
-  - {fileID: 9147519370536567891}
-  - {fileID: -6508187634488602999}
-  - {fileID: 6816368054911301818}
+  - {fileID: -3256188402497677697}
+  - {fileID: -3314012679838310051}
+  - {fileID: 3397800510797387410}
   replyNodes: []
+--- !u!114 &3397800510797387410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: e8ff04be-ae16-4cb9-80fd-9994f1ab7c29
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 286
+    y: 382
+    width: 200
+    height: 80
+  onEnterActions:
+  - player
+  onExitActions:
+  - exit
+  text: Then lets go through with it.
+  child: 
+  speaker: Player
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &6418530206259528633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,49 +129,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: 304
-    y: 84
+    x: 241
+    y: 16
     width: 200
     height: 80
-  onEnterActions:
-  - miyu
+  onEnterActions: []
   onExitActions: []
-  text: "Not exactly\u2026 I remember only that feeling. That and how I turned it
-    countless times in my hands. "
-  child: 2a8ad912-3a19-4890-8afb-2abe1a424f0e
-  speaker: Miyu
-  voiceClip:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
---- !u!114 &6816368054911301818
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
-  m_Name: 3905efb4-c402-437a-9d10-7bf90c2f56a9
-  m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 75
-    y: 425
-    width: 200
-    height: 80
-  onEnterActions:
-  - miyu
-  onExitActions:
-  - exit
-  text: "It\u2019s all wrong. Hours stacked on top of each other, gears turning and
-    spinning - backwards, sideways\u2026"
-  child: 
+  text: "Don\u2019t go. Don\u2019t leave me alone, too."
+  child: ba880446-1e0a-4f2d-b4c4-6a2b745491b9
   speaker: Miyu
   voiceClip:
     Guid:
@@ -133,48 +159,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: 43
-    y: 14
+    x: 8
+    y: 6
     width: 200
     height: 80
   onEnterActions:
   - enter
   - moveTo
-  - player
+  - miyu
   onExitActions: []
-  text: You said the Omamori helped you remember him. Maybe it still can. Do you
-    remember where you were when you last held it?
+  text: Noo! Don't go in there! Please...
   child: 79944dcb-a2d0-4043-a463-bece8a1a9c1a
-  speaker: Player
-  voiceClip:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
---- !u!114 &9147519370536567891
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
-  m_Name: 2a8ad912-3a19-4890-8afb-2abe1a424f0e
-  m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 596
-    y: 154
-    width: 200
-    height: 80
-  onEnterActions: []
-  onExitActions: []
-  text: "Everything else is blurred\u2014like time folding in on itself."
-  child: 488dd0c9-2c83-4857-a0f0-d492481afbe8
   speaker: Miyu
   voiceClip:
     Guid:

@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Ghosted.Dialogue;
 using UnityEngine;
 using System.Linq;
 
@@ -10,9 +7,6 @@ namespace Ghosted.Dialogue
     {
 
         public UIInteractionHint uiHint;
-
-        // Press e to interact, TODO: Combine with overall interact system
-
         
         public void Interact(PlayerConversant playerConversant)
         {
