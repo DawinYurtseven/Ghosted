@@ -222,7 +222,7 @@ public class CharacterControllerMockup : MonoBehaviour
         float timer = 0f;
         while (timer < coyoteTime)
         {
-            if (Physics.SphereCast(transform.position, 0.3f, -transform.up, out _, groundCheckDistance, ground))
+            if (Physics.SphereCast(transform.position, 0.3f, -transform.up, out _, groundCheckDistance * 1.1f, ground))
             {
                 isGrounded = true;
                 animator.SetBool(Grounded, true);
@@ -241,7 +241,12 @@ public class CharacterControllerMockup : MonoBehaviour
         Debug.DrawLine(transform.position, transform.position - transform.up * groundCheckDistance, Color.red, 0.5f);
         if (!Physics.SphereCast(transform.position, 0.3f, -transform.up, out _, groundCheckDistance, ground))
         {
-            animator.SetBool(Grounded, false);
+            if(!Physics.SphereCast(transform.position, 0.3f, -transform.up, out _, groundCheckDistance * 1.2f, ground))
+            {
+                animator.SetBool(Grounded, false);
+            }
+            else 
+                animator.SetBool(Grounded, true);
             if (isGrounded && !coyoteJumped)
             {
                 isGrounded = false;
