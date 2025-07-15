@@ -30,8 +30,6 @@ public class LevelManagerMock : MonoBehaviour
     
     private int trainSceneCount = 0;
     
-    [Header("CuckooClock")]
-    [SerializeField] private Animator clockAnimator;
 
     [SerializeField] private ghostOrb ghost;
     public GameObject[] objectsToActivate;
@@ -48,14 +46,12 @@ public class LevelManagerMock : MonoBehaviour
     {
         CutSceneTrigger.OnCutScenePlayerTriggered += ExecuteCutScenePlayer;
         CutSceneTrigger.OnCutSceneTrainTriggered += ExecuteCutSceneTrain;
-        CharacterControllerMockup.FirstUsageAltar += DialogueAfterAltar;
     }
 
     private void OnDisable()
     {
         CutSceneTrigger.OnCutScenePlayerTriggered -= ExecuteCutScenePlayer;
         CutSceneTrigger.OnCutSceneTrainTriggered -= ExecuteCutSceneTrain;
-        CharacterControllerMockup.FirstUsageAltar -= DialogueAfterAltar;
     }
     
     private void ExecuteCutScenePlayer(CutSceneName cutScene)
@@ -87,7 +83,7 @@ public class LevelManagerMock : MonoBehaviour
     }
 
 
-    private void DialogueAfterAltar()
+    public void DialogueAfterAltar()
     {
         dialogue.StartGlobalDialogue(player.GetComponent<PlayerConversant>());
     }

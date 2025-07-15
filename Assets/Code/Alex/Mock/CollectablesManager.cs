@@ -12,7 +12,7 @@ public class CollectablesManager : MonoBehaviour
     {
         if (!collectedFirstColelctable)
         {
-            PopUpUI.Instance.ShowHintByType(PopUpType.Collectable);
+            PopUpUI.Instance.StartPopUpWithDelay(PopUpType.Collectable);
             collectedFirstColelctable = true;
         }
     }

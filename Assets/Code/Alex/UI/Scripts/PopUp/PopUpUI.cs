@@ -101,7 +101,7 @@ public class PopUpUI : MonoBehaviour
 
 
     //To use in the end of the dialogue
-    [SerializeField] private float defaultDelay = 1f;
+    [SerializeField] private float defaultDelay = 2.5f;
     public void StartPopUpWithDelay(PopUpData data)
     {
         StartCoroutine(ShowPopUpWithDelayCoroutine(data));
@@ -111,5 +111,10 @@ public class PopUpUI : MonoBehaviour
     {
         yield return new WaitForSeconds(defaultDelay);
         ShowHint(data);
+    }
+    
+    public void StartPopUpWithDelay(PopUpType type)
+    {
+        StartCoroutine(ShowPopUpWithDelayCoroutine(popupDict[type]));
     }
 }

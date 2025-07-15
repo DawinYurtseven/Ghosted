@@ -482,11 +482,7 @@ public class CharacterControllerMockup : MonoBehaviour
     private TalismanTargetMock _tempTar;
     public AltarMock tempAltar;
 
-    // For Cutscene
     
-    public static event Action FirstUsageAltar;
-    public bool usedAltar = true;
-
     [SerializeField] private int interactionRange = 10;
 
     [SerializeField] private float interactDistanceAltar = 3f;
@@ -521,11 +517,6 @@ public class CharacterControllerMockup : MonoBehaviour
             if (tempAltar)
             {
                 Debug.Log("Altar found");
-                if (!usedAltar)
-                {
-                    usedAltar = true;
-                    FirstUsageAltar?.Invoke();
-                }
                 
                 tempAltar.InteractAltar();
             }

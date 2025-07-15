@@ -46,12 +46,13 @@ public class AltarUI : MonoBehaviour
     public void DeactivateUI()
     {
         uiAnimator.Hide(() => {
-            onDeactivateUI?.Invoke();
-            CameraManager.Instance.turnoOffOtherCamera(altarCamera);
             PlayerInputDisabler.Instance.EnableInputWithDelay(2f);
+            CameraManager.Instance.turnoOffOtherCamera(altarCamera);
+            
             emotionChange.SetActive(false);
             Camera.main.cullingMask = originalMask;
             brushStroke.Reset();
+            onDeactivateUI?.Invoke();
         });
         
     }
