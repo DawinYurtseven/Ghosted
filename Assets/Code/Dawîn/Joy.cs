@@ -4,7 +4,7 @@ using UnityEngine.Events;
 public class Joy : EmotionAbstract
 {
     
-    [SerializeField] private float force = 100f;
+    public float force = 100f;
     [SerializeField] private Material turnedOff, turnedOn;
     private Renderer _renderer;
     private Collider _col;
@@ -70,11 +70,13 @@ public class Joy : EmotionAbstract
                 _col.enabled = true;
                 _renderer.material = turnedOn;
                 parent.layer = LayerMask.NameToLayer("JumpPad");
+                gameObject.layer = LayerMask.NameToLayer("JumpPad");
             }
             else {
                 _col.enabled = false;
                 _renderer.material = turnedOff;
                 parent.layer = LayerMask.NameToLayer("Default");
+                gameObject.layer = LayerMask.NameToLayer("Default");
             }
         }
     }
