@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="ParameterPreset" id="{4005869b-c2b8-475a-b31b-6e453be93934}">
+		<property name="name">
+			<value>mEventVolB</value>
+		</property>
+		<relationship name="folder">
+			<destination>{2a76e00f-bbac-4f7f-8213-19e244d4314e}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{bb79cb5d-e40a-4035-89d2-8c0053034d59}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{bb79cb5d-e40a-4035-89d2-8c0053034d59}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<relationship name="automators">
+			<destination>{7c4c8d98-09f3-44bc-ac6f-030cd6e8e93f}</destination>
+		</relationship>
+		<relationship name="modulators">
+			<destination>{e1a5b81b-5fc9-4782-bdb3-b3cb2f445687}</destination>
+		</relationship>
+	</object>
+	<object class="Automator" id="{7c4c8d98-09f3-44bc-ac6f-030cd6e8e93f}">
+		<property name="nameOfPropertyBeingAutomated">
+			<value>cursorPosition</value>
+		</property>
+		<relationship name="automationCurves">
+			<destination>{72b1b6bd-b9e1-463a-8ed1-2264cd0a5dc9}</destination>
+		</relationship>
+	</object>
+	<object class="SeekModulator" id="{e1a5b81b-5fc9-4782-bdb3-b3cb2f445687}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>cursorPosition</value>
+		</property>
+		<property name="speedDescending">
+			<value>0.53999996185302734</value>
+		</property>
+		<property name="asymmetric">
+			<value>true</value>
+		</property>
+	</object>
+	<object class="AutomationCurve" id="{72b1b6bd-b9e1-463a-8ed1-2264cd0a5dc9}">
+		<relationship name="parameter">
+			<destination>{d6c64fd9-0970-4df4-87e5-64fa2de8b4aa}</destination>
+		</relationship>
+		<relationship name="automationPoints">
+			<destination>{97418955-87db-4f93-b604-2205e8fa5964}</destination>
+			<destination>{194b1caa-9196-4569-baef-1e349060a203}</destination>
+		</relationship>
+	</object>
+	<object class="AutomationPoint" id="{97418955-87db-4f93-b604-2205e8fa5964}">
+		<property name="position">
+			<value>0</value>
+		</property>
+		<property name="value">
+			<value>0</value>
+		</property>
+	</object>
+	<object class="AutomationPoint" id="{194b1caa-9196-4569-baef-1e349060a203}">
+		<property name="position">
+			<value>1</value>
+		</property>
+		<property name="value">
+			<value>1</value>
+		</property>
+	</object>
+</objects>
