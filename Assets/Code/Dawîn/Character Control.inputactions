@@ -284,7 +284,7 @@
                     "id": "11291d00-87f2-43a5-9cb2-f747bbe3dbfb",
                     "path": "2DVector(mode=2)",
                     "interactions": "",
-                    "processors": "NormalizeVector2,ScaleVector2(x=4,y=2)",
+                    "processors": "NormalizeVector2",
                     "groups": "",
                     "action": "CameraMove",
                     "isComposite": true,
@@ -484,7 +484,7 @@
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";MK",
                     "action": "Escape",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -492,10 +492,10 @@
                 {
                     "name": "",
                     "id": "5af2b207-35e6-4c4c-ad54-4540905c8905",
-                    "path": "<Gamepad>/leftShoulder",
+                    "path": "<Gamepad>/start",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Controller",
                     "action": "Escape",
                     "isComposite": false,
                     "isPartOfComposite": false

@@ -15,12 +15,12 @@ public class AltarMock : MonoBehaviour
     public void ChangeEmotionJoy()
     {
         EmotionSingletonMock.Instance.ChangeEmotion(Emotion.Joy);
+
     }
     
     public void ChangeEmotionFear()
     {
         EmotionSingletonMock.Instance.ChangeEmotion(Emotion.Fear);
-        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/SFX/EmotionFear");
     }
 
     void Awake()

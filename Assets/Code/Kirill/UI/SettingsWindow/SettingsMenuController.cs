@@ -2,8 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 using UnityEngine.UIElements;
+using Cursor = UnityEngine.Cursor;
 
 public class SettingsMenuController : MonoBehaviour
 {
@@ -22,6 +22,7 @@ public class SettingsMenuController : MonoBehaviour
 
     void OnEnable()
     {
+        Cursor.lockState = CursorLockMode.None;
         var root = document.rootVisualElement;
         Debug.Log(root);
 
@@ -80,6 +81,11 @@ public class SettingsMenuController : MonoBehaviour
         });
     }
 
+    private void OnDisable()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
     private void SetResolution(string resolutionString)
     {
         string[] dims = resolutionString.Split('x');
@@ -97,7 +103,7 @@ public class SettingsMenuController : MonoBehaviour
 
     private void SetVolume(float volume)
     {
-        FMODUnity.RuntimeManager.GetBus("bus:/Master").setVolume(volume);
+        FMODUnity.RuntimeManager.GetBus("bus:/").setVolume(volume);
     }
 
     public void CloseWindow()

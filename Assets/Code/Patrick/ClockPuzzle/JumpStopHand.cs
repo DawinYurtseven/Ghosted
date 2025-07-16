@@ -22,9 +22,9 @@ public class JumpStopHand : MonoBehaviour
     public Material pressedMaterial; // Material to indicate pressed state
     
     [Header("Audio Settings")]
-    public AudioSource feedbackSound; // Sound to play when jumping on the clock hand
-    public AudioSource releaseSFX;
-    public AudioSource solvedSFX;
+    public FMODUnity.EventReference feedbackSound; // Sound to play when jumping on the clock hand
+    public FMODUnity.EventReference releaseSFX;
+    public FMODUnity.EventReference solvedSFX;
     
     private void Awake()
     {
@@ -88,8 +88,8 @@ public class JumpStopHand : MonoBehaviour
             s.Append(animObj.transform.DOPunchPosition(Vector3.up * animJumpStrength, animDuration, 10, 0.5f));
             s.Join(animObj.transform.DOShakeRotation(animDuration, new Vector3(8, 0, 8), 10, 90));
             
-            if(solvedSFX != null)
-                solvedSFX.Play();
+            if(!solvedSFX.IsNull)
+                FMODUnity.RuntimeManager.PlayOneShot(solvedSFX, transform.position);
         }
         else
         {
@@ -113,9 +113,9 @@ public class JumpStopHand : MonoBehaviour
         s.AppendCallback(() =>
         {
             setMaterial(tempMaterial);
-            if (releaseSFX != null)
+            if (!releaseSFX.IsNull)
             {
-                releaseSFX.Play();
+                FMODUnity.RuntimeManager.PlayOneShot(releaseSFX, transform.position);;
             }
         });
         
@@ -150,9 +150,9 @@ public class JumpStopHand : MonoBehaviour
 
     private void playFeedbackSound()
     {
-        if (feedbackSound != null)
+        if (!feedbackSound.IsNull)
         {
-            feedbackSound.Play();
+            FMODUnity.RuntimeManager.PlayOneShot(feedbackSound, transform.position);;
         }
     }
 }

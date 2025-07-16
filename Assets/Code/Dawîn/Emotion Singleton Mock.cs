@@ -18,6 +18,8 @@ public class EmotionSingletonMock : MonoBehaviour
 
     public GameObject talismanCounter;
     public bool disableAll = false;
+    public FMOD.Studio.EventInstance music;
+    
     #region Emotions
 
     /*
@@ -43,6 +45,7 @@ public class EmotionSingletonMock : MonoBehaviour
             joyGameObject.SetActive(true);
             fearGameObject.SetActive(false);
             currentEmotion = Emotion.Joy;
+            FMODUnity.RuntimeManager.StudioSystem.setParameterByName("CurrentEmotion", 0f);
         }
 
         else
@@ -50,6 +53,7 @@ public class EmotionSingletonMock : MonoBehaviour
             joyGameObject.SetActive(false);
             fearGameObject.SetActive(true);
             currentEmotion = Emotion.Fear;
+            FMODUnity.RuntimeManager.StudioSystem.setParameterByName("CurrentEmotion", 1f);
         }
         
         EmotionSubject.OnNext(currentEmotion);
@@ -180,6 +184,8 @@ public class EmotionSingletonMock : MonoBehaviour
     void Start()
     {
         ChangeEmotion(initialEmotion);
+        music = FMODUnity.RuntimeManager.CreateInstance("event:/Music/Main");
+        music.start();
     }
 
     // Update is called once per frame
