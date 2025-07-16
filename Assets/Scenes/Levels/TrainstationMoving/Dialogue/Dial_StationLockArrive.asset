@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0128aa92babf3fd4e9cf4beb0d51198e, type: 3}
-  m_Name: Empty
+  m_Name: Dial_StationLockArrive
   m_EditorClassIdentifier: 
   dialogueSpeakers:
   - Miyu
@@ -38,9 +38,10 @@ MonoBehaviour:
     y: 84
     width: 200
     height: 80
-  onEnterActions: []
+  onEnterActions:
+  - lookAt
   onExitActions: []
-  text: 'Maybe we could use the clocks to stop the big one somehow? '
+  text: Traveling can be so much fun, if your just gone for the moment.
   child: 2a8ad912-3a19-4890-8afb-2abe1a424f0e
   speaker: Miyu
   voiceClip:
@@ -68,9 +69,13 @@ MonoBehaviour:
     y: 14
     width: 200
     height: 80
-  onEnterActions: []
+  onEnterActions:
+  - moveTo
+  - enter
+  - miyu
+  - lookAt
   onExitActions: []
-  text: 'See that clock right here? It shows a time! '
+  text: Trains, Trains and Airports...
   child: 79944dcb-a2d0-4043-a463-bece8a1a9c1a
   speaker: Miyu
   voiceClip:
@@ -94,13 +99,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: 592
+    x: 593
     y: 152
     width: 200
     height: 80
   onEnterActions: []
-  onExitActions: []
-  text: We just need to find the correct time!
+  onExitActions:
+  - exit
+  text: And if you know the next time you see all of your Family and Friends again.
   child: 
   speaker: Miyu
   voiceClip:

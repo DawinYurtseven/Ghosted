@@ -9,6 +9,10 @@ public class DialogueControler : MonoBehaviour
     public ghostOrb ghostOrb;
     public Transform ghostTarget;
     
+    [Header("New Train Arriving")]
+    public AIConversant ghostConversantNewtrain;
+    public Transform ghostTargetNewtrain;
+    
     public void forceDialogueStart(bool fastMove = false)
     {
         if (ghostConversant == null || playerConversant == null ) return;
@@ -20,5 +24,18 @@ public class DialogueControler : MonoBehaviour
             ghostOrb.MoveToTransform(ghostTarget);
         
         ghostConversant.Interact(playerConversant);
+    }
+    
+    public void forceDialogueStartNewTrain(bool fastMove = false)
+    {
+        if (ghostConversantNewtrain == null || playerConversant == null ) return;
+        if(ghostTargetNewtrain == null || ghostOrb == null) return;
+        
+        if(!fastMove)
+            ghostOrb.move2TransformSlow(ghostTargetNewtrain);
+        else
+            ghostOrb.MoveToTransform(ghostTargetNewtrain);
+        
+        ghostConversantNewtrain.Interact(playerConversant);
     }
 }

@@ -1,0 +1,283 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7001539089783142633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: b0686a64-9ceb-4664-83c3-00feff6cdf44
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 528
+    y: 67
+    width: 200
+    height: 80
+  onEnterActions:
+  - miyu
+  onExitActions: []
+  text: "I remember arriving in Japan. The airport lights, the announcements in a
+    language that was familiar but hearing it here...Oddly foreign...\r"
+  child: df93444b-867c-4717-97ce-db5192183754
+  speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+--- !u!114 &-3222729844053685095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: df93444b-867c-4717-97ce-db5192183754
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 798
+    y: 75
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions: []
+  text: "But did I go to Tokyo first? Or\u2026 was it Osaka?\r\nI thought I\u2019d
+    written it all down, but everything\u2019s jumbled\u2014Germany, England\u2026
+    Japan. It\u2019s all overlapping now."
+  child: dd23c737-b297-4d94-b241-eb1d5db25159
+  speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+--- !u!114 &-2989699889829346439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 40ecc968-4f14-4cbd-b6c3-3519d63efc8f
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 566
+    y: 306
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions: []
+  text: "No, wait. I remember standing in Tokyo Station\u2014lost, but oddly excited.
+    That must have been first."
+  child: 79944dcb-a2d0-4043-a463-bece8a1a9c1a
+  speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+--- !u!114 &-1485999910498754739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 04cb70bb-99ea-46b3-8280-ad8e1c382118
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 273
+    y: 49
+    width: 200
+    height: 80
+  onEnterActions:
+  - player
+  onExitActions: []
+  text: "Take your time. You don\u2019t need to rush this train."
+  child: b0686a64-9ceb-4664-83c3-00feff6cdf44
+  speaker: Player
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0128aa92babf3fd4e9cf4beb0d51198e, type: 3}
+  m_Name: Dial_StationTimeTable
+  m_EditorClassIdentifier: 
+  dialogueSpeakers:
+  - Miyu
+  - Player
+  dialogueNodes:
+  - {fileID: 8705371555783416926}
+  - {fileID: 6418530206259528633}
+  - {fileID: -1485999910498754739}
+  - {fileID: -7001539089783142633}
+  - {fileID: -3222729844053685095}
+  - {fileID: 2649124231745951109}
+  - {fileID: 3931636284692325048}
+  - {fileID: -2989699889829346439}
+  replyNodes: []
+--- !u!114 &2649124231745951109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: dd23c737-b297-4d94-b241-eb1d5db25159
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 80
+    y: 301
+    width: 200
+    height: 80
+  onEnterActions:
+  - player
+  onExitActions: []
+  text: "Maybe it\u2019s about why you went. Which place felt like the first step?"
+  child: 60768e06-9605-4796-8ac7-aee94a461207
+  speaker: Player
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+--- !u!114 &3931636284692325048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 60768e06-9605-4796-8ac7-aee94a461207
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 340
+    y: 305
+    width: 200
+    height: 80
+  onEnterActions:
+  - miyu
+  onExitActions: []
+  text: "\u2026Maybe it wasn\u2019t the biggest city. Maybe it was the one that felt
+    small enough to breathe in.\r\nOsaka? Kyoto...?\r"
+  child: 40ecc968-4f14-4cbd-b6c3-3519d63efc8f
+  speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+--- !u!114 &6418530206259528633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 79944dcb-a2d0-4043-a463-bece8a1a9c1a
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 797
+    y: 323
+    width: 200
+    height: 80
+  onEnterActions:
+  - player
+  onExitActions:
+  - exit
+  text: "Then trust that. Find the times that moved you\u2014and let them move you
+    still.\r"
+  child: removed
+  speaker: Player
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+--- !u!114 &8705371555783416926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 3200f4de-6a6d-430d-9707-50a8b94630d1
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 43
+    y: 14
+    width: 200
+    height: 80
+  onEnterActions:
+  - enter
+  - moveTo
+  - miyu
+  onExitActions: []
+  text: "This timetable\u2026 I recognize the names.\r\nTokyo, Kyoto, Osaka\u2026
+    That was all part of my life there. But I\u2014I can\u2019t remember the order. "
+  child: 04cb70bb-99ea-46b3-8280-ad8e1c382118
+  speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
