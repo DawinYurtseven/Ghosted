@@ -18,7 +18,7 @@ public class TrainCutsceneController : MonoBehaviour
     // [SerializeField] private int roadPart = 0;
     
     [Header("Train stop")]
-    [SerializeField] private SplineContainer spline;
+    [SerializeField] private SplineAnimate spline;
     [SerializeField] private Transform playerSpawn;
     [SerializeField] private CutSceneName _cutSceneName;
     
@@ -48,7 +48,11 @@ public class TrainCutsceneController : MonoBehaviour
         
         if (name == CutSceneName.Train2Station)
         {
-            startTrain(spline, trainCamera);
+            // startTrain(spline, trainCamera);
+            playerCamera.Priority = 0;
+            trainCamera.Priority = 10;
+            spline?.Play();
+            
             trainSceneCount++;
             
             //Set player spawn
@@ -93,6 +97,8 @@ public class TrainCutsceneController : MonoBehaviour
         playerCamera.Priority = 0;
         trainCamera.Priority = 10;
         trainAnim.GetComponent<SplineAnimate>()?.Play();
+
+        Debug.Log("Started train animation on spline: " + trainAnim.name);
     }
     
     private void stopTrain(SplineAnimate trainAnim)
@@ -103,7 +109,7 @@ public class TrainCutsceneController : MonoBehaviour
             return;
         }
         
-        trainAnim.Container = spline;
+        //trainAnim.Container = spline;
         trainAnim.Pause();
     }
 
