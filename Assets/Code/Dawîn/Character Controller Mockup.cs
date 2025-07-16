@@ -228,7 +228,7 @@ public class CharacterControllerMockup : MonoBehaviour
         float timer = 0f;
         while (timer < coyoteTime)
         {
-            if (Physics.SphereCast(transform.position, 0.3f, -transform.up, out _, groundCheckDistance, ground))
+            if (Physics.SphereCast(transform.position, 0.3f, -transform.up, out _, groundCheckDistance * 1.1f, ground))
             {
                 isGrounded = true;
                 animator.SetBool(Grounded, true);
@@ -247,7 +247,12 @@ public class CharacterControllerMockup : MonoBehaviour
         Debug.DrawLine(transform.position, transform.position - transform.up * groundCheckDistance, Color.red, 0.5f);
         if (!Physics.SphereCast(transform.position, 0.3f, -transform.up, out _, groundCheckDistance, ground))
         {
-            animator.SetBool(Grounded, false);
+            if(!Physics.SphereCast(transform.position, 0.3f, -transform.up, out _, groundCheckDistance * 1.2f, ground))
+            {
+                animator.SetBool(Grounded, false);
+            }
+            else 
+                animator.SetBool(Grounded, true);
             if (isGrounded && !coyoteJumped)
             {
                 isGrounded = false;
@@ -454,7 +459,7 @@ public class CharacterControllerMockup : MonoBehaviour
             {
                 if (_curTalismans == maxTalismans) return;
                 _curTalismans++;
-                talismansUsed.text = maxTalismans- _curTalismans + " / " + maxTalismans;
+                //talismansUsed.text = maxTalismans- _curTalismans + " / " + maxTalismans;
                 animator.SetTrigger(Throw);
                 Vector3 lookPosition = new Vector3 (target.transform.position.x, characterObject.transform.position.y, target.transform.position.z);
                 characterObject.transform.LookAt(lookPosition);

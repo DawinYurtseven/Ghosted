@@ -20,10 +20,19 @@ MonoBehaviour:
     height: 80
   onEnterActions:
   - enter
-  onExitActions: []
-  text: Hello. I do not wish to disrupt your peace.
-  child: cc1c8736-3fe6-429e-bbe6-699fe1d4e30c
+  onExitActions:
+  - exit
+  text: Hello. I do not wish to disrupt you, but would you fancy coming to my birthday
+    party?
+  child: removed
   speaker: Ghost
+  voiceClip:
+    Guid:
+      Data1: 1304255254
+      Data2: 1213536071
+      Data3: -1114828872
+      Data4: -2006512605
+    Path: event:/Dialogue/Intro/1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40,29 +49,4 @@ MonoBehaviour:
   - Ghost
   dialogueNodes:
   - {fileID: -9023085088805970300}
-  - {fileID: 7046075498798990066}
   replyNodes: []
---- !u!114 &7046075498798990066
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
-  m_Name: cc1c8736-3fe6-429e-bbe6-699fe1d4e30c
-  m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 322.66666
-    y: 114.00001
-    width: 200
-    height: 80
-  onEnterActions: []
-  onExitActions:
-  - exit
-  text: However, would you fancy coming to my birthday party?
-  child: 
-  speaker: Ghost

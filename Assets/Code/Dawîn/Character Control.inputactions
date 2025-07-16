@@ -284,7 +284,7 @@
                     "id": "11291d00-87f2-43a5-9cb2-f747bbe3dbfb",
                     "path": "2DVector(mode=2)",
                     "interactions": "",
-                    "processors": "NormalizeVector2,ScaleVector2(x=4,y=2)",
+                    "processors": "NormalizeVector2",
                     "groups": "",
                     "action": "CameraMove",
                     "isComposite": true,
@@ -484,7 +484,7 @@
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";MK",
                     "action": "Escape",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -492,10 +492,10 @@
                 {
                     "name": "",
                     "id": "5af2b207-35e6-4c4c-ad54-4540905c8905",
-                    "path": "<Gamepad>/leftShoulder",
+                    "path": "<Gamepad>/start",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Controller",
                     "action": "Escape",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -740,6 +740,67 @@
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
+                }
+            ]
+        },
+        {
+            "name": "CutScene",
+            "id": "fe848402-57ee-4ade-8497-cec3d8c7a039",
+            "actions": [
+                {
+                    "name": "Next",
+                    "type": "Button",
+                    "id": "ce844e42-e068-4590-9d62-977597b5d138",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "9675998e-59bb-4424-87e8-dee592502f0c",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";MK",
+                    "action": "Next",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2fd1a55e-56f4-4668-9e54-2d4e24c75da0",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";MK",
+                    "action": "Next",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "742b0f8f-bb9b-4eb7-a310-a273aa6f291a",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Next",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e9ed9533-8141-48f5-8b3c-f5633cb32e8c",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Controller",
+                    "action": "Next",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

@@ -25,7 +25,7 @@ public class ClockAnim : MonoBehaviour
     [Header("Animation Settings")]
     public Material wrongMaterial; // Material to indicate wrong solution
     
-    public AudioSource clockTickSound;
+    public FMODUnity.StudioEventEmitter clockTickSound;
     public float pauseDuration = 0.5f; // Duration to pause the clock tick sound
     
     private Tween hourTween;
@@ -276,11 +276,11 @@ public class ClockAnim : MonoBehaviour
 
     private void playTickSound(bool start)
     {
-        if (clockTickSound != null && !clockTickSound.isPlaying && start)
+        if (clockTickSound != null && !clockTickSound.IsPlaying() && start)
         {
             clockTickSound.Play();
         }
-        else if (clockTickSound != null && clockTickSound.isPlaying && !start)
+        else if (clockTickSound != null && clockTickSound.IsPlaying() && !start)
         {
             clockTickSound.Stop();
         }
@@ -289,9 +289,9 @@ public class ClockAnim : MonoBehaviour
     private void pauseTickSoundFor(float duration)
     {
         Debug.Log("Pause the clock tick sound for " + pauseDuration);
-        if (clockTickSound != null && clockTickSound.isPlaying)
+        if (clockTickSound != null && clockTickSound.IsPlaying())
         {
-            clockTickSound.Pause();
+            clockTickSound.Stop();
             Invoke(nameof(resumeTickSound), duration);
         }
     }
@@ -299,9 +299,9 @@ public class ClockAnim : MonoBehaviour
     private void resumeTickSound()
     {
         Debug.Log("Resume the clock tick sound");
-        if (!clockTickSound.isPlaying)
+        if (!clockTickSound.IsPlaying())
         {
-            clockTickSound.UnPause();
+            clockTickSound.Play();
         }
     }
 }
