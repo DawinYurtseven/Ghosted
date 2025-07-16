@@ -1,82 +1,63 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
 public class LevelManager_Introduction : MonoBehaviour
 {
-    [Header("Introduction Sequence")]
-    public CanvasGroup mainCanvasGroup;
-    public CanvasGroup[] groups;
-    public float fadeDuration = 0.5f;
-    public float displayDuration = 5f;
-
+    //Definitely need to rewrite that, because it is just shitty written, but I dont have time anymore
+    
     public ghostOrb ghost;
     
     private AudioSource audioSource;
     [SerializeField] private GameObject player;
-    PlayerInputDisabler playerInputDisabler;
-    void Start()
-    {
-        PlaySequence();
-        playerInputDisabler = player.GetComponent<PlayerInputDisabler>();
-        if (playerInputDisabler)
-        {
-            playerInputDisabler.DisableInput();
-        }
-    }
 
-    void PlaySequence()
-    {
-        Sequence sequence = DOTween.Sequence();
-
-        foreach (CanvasGroup group in groups)
-        {
-            sequence.AppendCallback(() => group.gameObject.SetActive(true));
-            sequence.Append(group.DOFade(1f, fadeDuration));
-            sequence.AppendInterval(displayDuration);
-            sequence.Append(group.DOFade(0f, fadeDuration));
-            sequence.AppendCallback(() => group.gameObject.SetActive(false));
-        }
-
-        sequence.OnComplete(OnSequenceComplete);
-    }
-
-    void OnSequenceComplete()
-    {
-        Debug.Log("Text sequence finished.");
-        if (playerInputDisabler)
-        {
-            playerInputDisabler.EnableInput();
-        }
-
-        mainCanvasGroup.DOFade(0f, fadeDuration).OnComplete(() => UIHintShow.Instance.ShowHint("Use WASD/Left Joystick to move", 8f));
-    }
+    [SerializeField] private FadeOut fade;
 
     // Update is called once per frame
+    [Header("Cutscenes Canvas")]
+    [SerializeField] private CutSceneCanvas[] cutScenes;
     
-    [Header("finishLevel")]
-    public Image fadeImage; 
-    public float fadeDuration_final = 1f;
+    private CutSceneCanvas currentCutScene = null;
 
+
+    void Start()
+    {
+        currentCutScene = cutScenes[0];
+        cutScenes[0].Initialize(() =>
+        {
+            UIHintShow.Instance.ShowHintUntilAction("Move");
+        });
+    }
+    
+    public void onAccepted(InputAction.CallbackContext context)
+    {
+        if (context.performed && currentCutScene != null)
+        {
+            currentCutScene.onAccepted();
+        }
+    }
+    
 
     public void animateGhost()
+    
+    //TODO for @Dawin - laughing in FMOD
     {
         ghost.MoveToPosition(player.transform.position + new Vector3 (0,1,0.5f), false);
         ghost.Laugh();
     }
     public void finishLevel()
     {
-        // Set image fully transparent black
-        fadeImage.color = new Color(0, 0, 0, 0);
-        
-        fadeImage.DOFade(1f, fadeDuration_final).OnComplete(() =>
+        fade.Fade(true, () =>
         {
             SceneManager.LoadScene("HomeLevel");
         });
+        
     }
 }
