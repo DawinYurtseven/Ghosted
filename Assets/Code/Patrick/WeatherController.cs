@@ -67,7 +67,7 @@ public class WeatherController : MonoBehaviour
             rainGameObject.SetActive(true);
             rainBGM.Play();
             rainLight?.SetActive(true);
-            rainPP?.SetActive(true);
+            rainPP.SetActive(true);
             
             dirLight?.SetActive(false);
         }
