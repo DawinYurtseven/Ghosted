@@ -451,7 +451,7 @@ public class CharacterControllerMockup : MonoBehaviour
                 //animator.SetTrigger(Call);
                 //thrownTalisman.GetComponent<Talisman>().Initialize(tMode, talismanEmotion);
                 //StartCoroutine(_thrownTalisman.GetComponent<Talisman>().MoveTowardsPlayer(this));
-                //talismansUsed.text = maxTalismans- _curTalismans + " / " + maxTalismans;
+                talismansUsed.text = maxTalismans- _curTalismans + " / " + maxTalismans;
             }
 
             //Throw talisman
@@ -459,7 +459,7 @@ public class CharacterControllerMockup : MonoBehaviour
             {
                 if (_curTalismans == maxTalismans) return;
                 _curTalismans++;
-                //talismansUsed.text = maxTalismans- _curTalismans + " / " + maxTalismans;
+                talismansUsed.text = maxTalismans- _curTalismans + " / " + maxTalismans;
                 animator.SetTrigger(Throw);
                 Vector3 lookPosition = new Vector3 (target.transform.position.x, characterObject.transform.position.y, target.transform.position.z);
                 characterObject.transform.LookAt(lookPosition);

@@ -1115,6 +1115,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 24d7e7cb-20d1-4b97-86b2-effece35948f
     m_ActionName: AltarUI/Navigate[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/DualSenseGamepadHID/leftStick/up,/DualSenseGamepadHID/leftStick/down,/DualSenseGamepadHID/leftStick/left,/DualSenseGamepadHID/leftStick/right]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ce844e42-e068-4590-9d62-977597b5d138
+    m_ActionName: CutScene/Next[/Keyboard/e,/Keyboard/space,/XInputControllerWindows/buttonWest,/XInputControllerWindows/buttonSouth]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Character Control
@@ -2502,6 +2506,10 @@ PrefabInstance:
     - target: {fileID: 2306777890290241537, guid: 6a17bb3eaf1ffad42812a302128a367b, type: 3}
       propertyPath: m_Name
       value: Talismans Used
+      objectReference: {fileID: 0}
+    - target: {fileID: 2306777890290241537, guid: 6a17bb3eaf1ffad42812a302128a367b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2796993580372417455, guid: 6a17bb3eaf1ffad42812a302128a367b, type: 3}
       propertyPath: m_Pivot.x
