@@ -1,0 +1,344 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-5386261718020460038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: d5fd5052-0476-4969-8f28-83d477e5df9c
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 782
+    y: 322
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions: []
+  text: "And suddenly, it felt like I\u2019d always been there. Like the silence
+    fit me."
+  child: 3dd42c49-a05c-4b0d-abc2-7e6b15722aaf
+  speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+--- !u!114 &-5284490383351988996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 0ebfb194-41cf-4e75-92da-9e13ce93c542
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 528
+    y: 308
+    width: 200
+    height: 80
+  onEnterActions:
+  - miyu
+  onExitActions: []
+  text: "Yes.\r.. Yes.\nOne evening... the temple bell rang in the distance. I was
+    folding laundry, nothing special.\r"
+  child: d5fd5052-0476-4969-8f28-83d477e5df9c
+  speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+--- !u!114 &-3730083144715232653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 8539f393-3c86-467e-b2c3-782549fea7eb
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 286
+    y: 282
+    width: 200
+    height: 80
+  onEnterActions:
+  - player
+  onExitActions: []
+  text: But something settled.
+  child: 0ebfb194-41cf-4e75-92da-9e13ce93c542
+  speaker: Player
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+--- !u!114 &-3640371405380240828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 941a885f-68d0-4fa6-acd9-ff5134892532
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 492
+    y: 525
+    width: 200
+    height: 80
+  onEnterActions:
+  - miyu
+  onExitActions:
+  - exit
+  text: "I don\u2019t know exactly when it happened\u2026\r Maybe it was just after
+    lunch, when the sun had shifted slightly,\r\nand the world seemed to hold its
+    breath for a moment."
+  child: 
+  speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0128aa92babf3fd4e9cf4beb0d51198e, type: 3}
+  m_Name: Dial_Canon
+  m_EditorClassIdentifier: 
+  dialogueSpeakers:
+  - Miyu
+  - Player
+  dialogueNodes:
+  - {fileID: 8705371555783416926}
+  - {fileID: 6418530206259528633}
+  - {fileID: 9147519370536567891}
+  - {fileID: 4022340045414536918}
+  - {fileID: 2971988691555010464}
+  - {fileID: -3730083144715232653}
+  - {fileID: -5284490383351988996}
+  - {fileID: -5386261718020460038}
+  - {fileID: 269138704807961986}
+  - {fileID: -3640371405380240828}
+  replyNodes: []
+--- !u!114 &269138704807961986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 3dd42c49-a05c-4b0d-abc2-7e6b15722aaf
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 86
+    y: 522
+    width: 200
+    height: 80
+  onEnterActions:
+  - player
+  onExitActions: []
+  text: "That\u2019s a time worth keeping."
+  child: 941a885f-68d0-4fa6-acd9-ff5134892532
+  speaker: Player
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+--- !u!114 &2971988691555010464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: ee083e8e-a75c-4ba5-aa8e-a15e29d7a5fa
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 55
+    y: 238
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions: []
+  text: "Or when someone called me \u201Cneighbor\u201D and I didn\u2019t flinch.\r\nI
+    didn\u2019t even notice it then."
+  child: 8539f393-3c86-467e-b2c3-782549fea7eb
+  speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+--- !u!114 &4022340045414536918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: a74377ff-c5ec-458c-afdb-0ccb63a43310
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 763
+    y: 75
+    width: 200
+    height: 80
+  onEnterActions:
+  - miyu
+  onExitActions: []
+  text: "Maybe\u2026 it was when I stopped translating my thoughts in my head. "
+  child: ee083e8e-a75c-4ba5-aa8e-a15e29d7a5fa
+  speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+--- !u!114 &6418530206259528633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 79944dcb-a2d0-4043-a463-bece8a1a9c1a
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 287
+    y: 31
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions: []
+  text: What if I stop it at the wrong time? What if I trap myself in the wrong memory?
+  child: 2a8ad912-3a19-4890-8afb-2abe1a424f0e
+  speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+--- !u!114 &8705371555783416926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 3200f4de-6a6d-430d-9707-50a8b94630d1
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 43
+    y: 14
+    width: 200
+    height: 80
+  onEnterActions:
+  - enter
+  - moveTo
+  - miyu
+  onExitActions: []
+  text: "I\u2026 I don\u2019t know if I can do this.\r"
+  child: 79944dcb-a2d0-4043-a463-bece8a1a9c1a
+  speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+--- !u!114 &9147519370536567891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 2a8ad912-3a19-4890-8afb-2abe1a424f0e
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 517
+    y: 44
+    width: 200
+    height: 80
+  onEnterActions:
+  - player
+  onExitActions: []
+  text: But there was a moment wasn't there? That made you stay?
+  child: a74377ff-c5ec-458c-afdb-0ccb63a43310
+  speaker: Player
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
