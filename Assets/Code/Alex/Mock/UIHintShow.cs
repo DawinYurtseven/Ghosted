@@ -146,5 +146,6 @@ public class UIHintShow : MonoBehaviour
         currentExpectedAction = null;
         currentHintTemplate = null;
         hintActive = false;
+        brushStroke.Reset();
     }
 }
