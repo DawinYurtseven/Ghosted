@@ -1,0 +1,309 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-5842165850388063826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: dcbf5968-dd67-4a66-b45c-85db2ef18e9f
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 45
+    y: 379
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions: []
+  text: I think I see it now.
+  child: d4a67ef7-ebc5-4881-9c0c-0a1206dc6f0c
+  speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+--- !u!114 &-4353700655444195657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 7bbf402e-ec0d-488b-b42b-c8a1888ae64d
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 368
+    y: 666
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions:
+  - exit
+  text: My rhythm. My path.
+  child: 
+  speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+--- !u!114 &-2224760749036116620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: c142989d-449f-47fb-91da-b9270f633106
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 485
+    y: 403
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions: []
+  text: "but because reading the times, the names of places\u2026 it made me feel
+    like I belonged somewhere. Like I was part of something moving forward."
+  child: 77ee1154-0781-4021-968d-afae6ed99ba7
+  speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0128aa92babf3fd4e9cf4beb0d51198e, type: 3}
+  m_Name: Dial_StationIntro
+  m_EditorClassIdentifier: 
+  dialogueSpeakers:
+  - Miyu
+  - Player
+  dialogueNodes:
+  - {fileID: 8705371555783416926}
+  - {fileID: 6418530206259528633}
+  - {fileID: 9147519370536567891}
+  - {fileID: -5842165850388063826}
+  - {fileID: 553591853015770198}
+  - {fileID: -2224760749036116620}
+  - {fileID: 335767109519130426}
+  - {fileID: 5224999633191336238}
+  - {fileID: -4353700655444195657}
+  replyNodes: []
+--- !u!114 &335767109519130426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 77ee1154-0781-4021-968d-afae6ed99ba7
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 749
+    y: 415
+    width: 200
+    height: 80
+  onEnterActions:
+  - player
+  onExitActions: []
+  text: Those times meant something to you.
+  child: bd08a549-eace-4cf8-8125-cb61bfb4b715
+  speaker: Player
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+--- !u!114 &553591853015770198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: d4a67ef7-ebc5-4881-9c0c-0a1206dc6f0c
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 263
+    y: 407
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions: []
+  text: "I used to stare at the train timetables, hours before I had to leave.\r\nNot
+    because I needed to\u2014"
+  child: c142989d-449f-47fb-91da-b9270f633106
+  speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+--- !u!114 &5224999633191336238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: bd08a549-eace-4cf8-8125-cb61bfb4b715
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 118
+    y: 641
+    width: 200
+    height: 80
+  onEnterActions:
+  - miyu
+  onExitActions: []
+  text: "Each one a step forward. I didn\u2019t realize it then, but they were mine.\r"
+  child: 7bbf402e-ec0d-488b-b42b-c8a1888ae64d
+  speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+--- !u!114 &6418530206259528633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 79944dcb-a2d0-4043-a463-bece8a1a9c1a
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 313
+    y: 118
+    width: 200
+    height: 80
+  onEnterActions:
+  - miyu
+  onExitActions: []
+  text: "I kept thinking I\u2019d made a mistake. I thought moving always meant getting
+    lost\u2026"
+  child: 2a8ad912-3a19-4890-8afb-2abe1a424f0e
+  speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+--- !u!114 &8705371555783416926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 3200f4de-6a6d-430d-9707-50a8b94630d1
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 43
+    y: 14
+    width: 200
+    height: 80
+  onEnterActions:
+  - enter
+  - moveTo
+  - player
+  onExitActions: []
+  text: "Sometimes the right path feels wrong at first. Or lonely. But maybe every
+    platform led you closer\u2014to something you couldn\u2019t see yet."
+  child: 79944dcb-a2d0-4043-a463-bece8a1a9c1a
+  speaker: Player
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+--- !u!114 &9147519370536567891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 2a8ad912-3a19-4890-8afb-2abe1a424f0e
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 559
+    y: 107
+    width: 200
+    height: 80
+  onEnterActions: []
+  onExitActions: []
+  text: "But now\u2026\r\nMaybe I was just afraid to let go of where I\u2019d been."
+  child: dcbf5968-dd67-4a66-b45c-85db2ef18e9f
+  speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
