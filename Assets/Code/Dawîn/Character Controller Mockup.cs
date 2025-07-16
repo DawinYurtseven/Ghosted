@@ -161,11 +161,10 @@ public class CharacterControllerMockup : MonoBehaviour
 
     private void CameraUpdate()
     {
-        _xAxisAngle += -cameraDirection.y * cameraSpeed * Time.fixedDeltaTime * PlayerPrefs.GetInt("invert", 1) *
-                       PlayerPrefs.GetFloat("sensitivity", 1);
+        _xAxisAngle += -cameraDirection.y * Time.fixedDeltaTime *  PlayerPrefs.GetFloat("sensitivity", cameraSpeed);
+                      
         ;
-        _yAxisAngle += cameraDirection.x * cameraSpeed * Time.fixedDeltaTime *
-                       PlayerPrefs.GetFloat("sensitivity", 1);
+        _yAxisAngle += cameraDirection.x  * Time.fixedDeltaTime *  PlayerPrefs.GetFloat("sensitivity", cameraSpeed);
         ;
         _xAxisAngle = Mathf.Clamp(_xAxisAngle, xAxisMin, xAxisMax);
 
