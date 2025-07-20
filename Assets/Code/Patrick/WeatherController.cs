@@ -66,7 +66,7 @@ public class WeatherController : MonoBehaviour
         {
             rainGameObject.SetActive(true);
             rainBGM?.Play();
-            rainLight?.SetActive(true);
+            if(rainLight) rainLight.SetActive(true);
             rainPP.SetActive(true);
             
             dirLight?.SetActive(false);
@@ -77,7 +77,7 @@ public class WeatherController : MonoBehaviour
             rainGameObject.SetActive(false);
             rainBGM?.Stop();
             dirLight?.SetActive(true);
-            rainLight?.SetActive(false);
+            if(rainLight) rainLight.SetActive(false);
             rainPP.SetActive(false);
             Debug.Log("Stop raining");
         }
