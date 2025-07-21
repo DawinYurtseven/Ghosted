@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -64,6 +65,13 @@ public class PuzzleMock : MonoBehaviour
     
     private void addToCache(int newStep)
     {
+        // If the new step is the lastly added step in the cache, don't add it again
+        if(cache.Last() == newStep)
+        {
+            Debug.Log("Step " + newStep + " already in cache (" + cache + "), not adding again.");
+            return;
+        }
+        
         cache.Enqueue(newStep);
         adjustCache();
     }
