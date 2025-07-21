@@ -44,12 +44,20 @@ public class SceneLoaderMock : MonoBehaviour
     {
         loadIntroScene();
     }
+    
     public void loadNextScene(string sceneName = "")
     {
         if (!string.IsNullOrEmpty(sceneName))
         {
             // Load the specified scene by name
-            scenesToLoad.Add(SceneManager.LoadSceneAsync(sceneName));
+            AsyncOperation o = SceneManager.LoadSceneAsync(sceneName);
+            
+            o.completed += (AsyncOperation op) =>
+            {
+                Debug.Log("Scene " + sceneName + " loaded successfully.");
+            };
+            
+            scenesToLoad.Add(o);
             return;
         }
 
@@ -59,6 +67,17 @@ public class SceneLoaderMock : MonoBehaviour
     
     private void LoadNextSceneInBuildSettings()
     {
-        throw new NotImplementedException();
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int nextSceneIndex = currentSceneIndex + 1;
+
+        if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
+        {
+            AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(nextSceneIndex);
+            scenesToLoad.Add(asyncLoad);
+        }
+        else
+        {
+            Debug.LogWarning("No more scenes to load in the build settings.");
+        }
     }
 }

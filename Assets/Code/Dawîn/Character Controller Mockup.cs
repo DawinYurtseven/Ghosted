@@ -210,7 +210,7 @@ public class CharacterControllerMockup : MonoBehaviour
             var forward = lookAtTarget.forward;
             _rb.AddForce(right * moveVector.x * 200f +
                         forward * moveVector.y * 200f);
-            print("jumped");
+            //print("jumped");
         }
     }
 

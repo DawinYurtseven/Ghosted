@@ -14,7 +14,7 @@ public class TagTriggerzone : TriggerZone
         }
         else
         {
-            Debug.Log("Tag not matched: " + other.tag);
+            //Debug.Log("Tag not matched: " + other.tag);
         }
     }
     
