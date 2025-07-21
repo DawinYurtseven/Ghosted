@@ -74,7 +74,7 @@ namespace Ghosted.UI
         // Update is called once per frame
         void UpdateUI(DialogueEditorNode node)
         {
-            print("UpdateUI called");
+            //print("UpdateUI called");
             var curNode = node;
             if (curNode == null)
             {

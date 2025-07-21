@@ -895,7 +895,7 @@ MonoBehaviour:
   cameraPivot: {fileID: 2284378683206641990}
   lookAtPivot: {fileID: 2058017940432768295}
   cameraDirection: {x: 0, y: 0}
-  cameraSpeed: 70
+  cameraSpeed: 60
   xAxisMin: -60
   xAxisMax: 60
   jumpStrength: 27
@@ -1115,6 +1115,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 24d7e7cb-20d1-4b97-86b2-effece35948f
     m_ActionName: AltarUI/Navigate[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/DualSenseGamepadHID/leftStick/up,/DualSenseGamepadHID/leftStick/down,/DualSenseGamepadHID/leftStick/left,/DualSenseGamepadHID/leftStick/right]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ce844e42-e068-4590-9d62-977597b5d138
+    m_ActionName: CutScene/Next[/Keyboard/e,/Keyboard/space,/XInputControllerWindows/buttonWest,/XInputControllerWindows/buttonSouth]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Character Control
@@ -1208,7 +1212,7 @@ Transform:
   m_GameObject: {fileID: 8085985945609945402}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.000000019325805, y: 0.6484664, z: -2.6701276}
+  m_LocalPosition: {x: 0.00000009874279, y: 0.6484664, z: -3.4305787}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1322,8 +1326,8 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
-  m_Antialiasing: 0
+  m_RenderPostProcessing: 1
+  m_Antialiasing: 2
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
@@ -1439,7 +1443,7 @@ Transform:
   m_GameObject: {fileID: 8732294338570935560}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.000000019325805, y: 0.6484664, z: -2.6701276}
+  m_LocalPosition: {x: 0.000000038934704, y: 0.6484664, z: -3.2423325}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2502,6 +2506,10 @@ PrefabInstance:
     - target: {fileID: 2306777890290241537, guid: 6a17bb3eaf1ffad42812a302128a367b, type: 3}
       propertyPath: m_Name
       value: Talismans Used
+      objectReference: {fileID: 0}
+    - target: {fileID: 2306777890290241537, guid: 6a17bb3eaf1ffad42812a302128a367b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2796993580372417455, guid: 6a17bb3eaf1ffad42812a302128a367b, type: 3}
       propertyPath: m_Pivot.x

@@ -13,12 +13,14 @@ public class TriggerZone : MonoBehaviour
         onTriggerExit?.Invoke();
     }
 
+    // TODO: adjust for actual input system
     public virtual void OnTriggerStay(Collider other)
     {
         if(Input.GetKeyUp(KeyCode.E))
             OnInteract?.Invoke();
     }
     
+
     protected virtual void OnTriggerEnter(Collider other)
     {
         onTriggerEnter?.Invoke();

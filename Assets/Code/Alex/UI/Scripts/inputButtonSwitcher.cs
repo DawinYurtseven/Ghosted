@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Image))]
@@ -7,11 +6,9 @@ public class InputButtonSwitcher : MonoBehaviour
 {
     [Header("Sprites")]
     [SerializeField] private Sprite keyboardMouseSprite;
-
     [SerializeField] private Sprite gamepadSprite;
 
     private Image targetImage;
-
     private bool subscribed = false;
 
     
@@ -44,7 +41,7 @@ public class InputButtonSwitcher : MonoBehaviour
         if (!subscribed && inputManager.Instance != null)
         {
             inputManager.Instance.InputChanged += OnInputChanged;
-            Debug.Log($"{gameObject.name} subscribed to InputChanged");
+            //Debug.Log($"{gameObject.name} subscribed to InputChanged");
             subscribed = true;
         }
     }

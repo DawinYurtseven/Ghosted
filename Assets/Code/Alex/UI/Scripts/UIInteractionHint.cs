@@ -11,7 +11,7 @@ public class UIInteractionHint : UIFacePlayer
     
     public void Show()
     {
-        Debug.Log("Show UI");
+        //Debug.Log("Show UI");
         if (currentTween != null) currentTween.Kill();
         
         if (brushStroke)
@@ -32,8 +32,7 @@ public class UIInteractionHint : UIFacePlayer
     {
         if (currentTween != null) currentTween.Kill();
         
-
-        Debug.Log("Hide UI");
+        //Debug.Log("Hide UI");
 
         currentTween = canvasGroup.DOFade(0f, fadeDuration)
             .OnComplete(() =>

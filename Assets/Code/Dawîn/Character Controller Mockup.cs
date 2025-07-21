@@ -161,11 +161,10 @@ public class CharacterControllerMockup : MonoBehaviour
 
     private void CameraUpdate()
     {
-        _xAxisAngle += -cameraDirection.y * cameraSpeed * Time.fixedDeltaTime * PlayerPrefs.GetInt("invert", 1) *
-                       PlayerPrefs.GetFloat("sensitivity", 1);
+        _xAxisAngle += -cameraDirection.y * Time.fixedDeltaTime *  PlayerPrefs.GetFloat("sensitivity", cameraSpeed);
+                      
         ;
-        _yAxisAngle += cameraDirection.x * cameraSpeed * Time.fixedDeltaTime *
-                       PlayerPrefs.GetFloat("sensitivity", 1);
+        _yAxisAngle += cameraDirection.x  * Time.fixedDeltaTime *  PlayerPrefs.GetFloat("sensitivity", cameraSpeed);
         ;
         _xAxisAngle = Mathf.Clamp(_xAxisAngle, xAxisMin, xAxisMax);
 
@@ -211,7 +210,7 @@ public class CharacterControllerMockup : MonoBehaviour
             var forward = lookAtTarget.forward;
             _rb.AddForce(right * moveVector.x * 200f +
                         forward * moveVector.y * 200f);
-            print("jumped");
+            //print("jumped");
         }
     }
 
@@ -451,7 +450,7 @@ public class CharacterControllerMockup : MonoBehaviour
                 //animator.SetTrigger(Call);
                 //thrownTalisman.GetComponent<Talisman>().Initialize(tMode, talismanEmotion);
                 //StartCoroutine(_thrownTalisman.GetComponent<Talisman>().MoveTowardsPlayer(this));
-                //talismansUsed.text = maxTalismans- _curTalismans + " / " + maxTalismans;
+                talismansUsed.text = maxTalismans- _curTalismans + " / " + maxTalismans;
             }
 
             //Throw talisman
@@ -459,7 +458,7 @@ public class CharacterControllerMockup : MonoBehaviour
             {
                 if (_curTalismans == maxTalismans) return;
                 _curTalismans++;
-                //talismansUsed.text = maxTalismans- _curTalismans + " / " + maxTalismans;
+                talismansUsed.text = maxTalismans- _curTalismans + " / " + maxTalismans;
                 animator.SetTrigger(Throw);
                 Vector3 lookPosition = new Vector3 (target.transform.position.x, characterObject.transform.position.y, target.transform.position.z);
                 characterObject.transform.LookAt(lookPosition);
