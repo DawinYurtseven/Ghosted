@@ -26,6 +26,9 @@ public class LevelManagerMock : MonoBehaviour
     [Header("Enter Train third time")]
     [SerializeField] private Fear barier2;
     
+    [Header("Transition to move mock")]
+    [SerializeField] private FadeOut fadeOut;
+    
     private int trainSceneCount = 0;
     
 
@@ -71,8 +74,9 @@ public class LevelManagerMock : MonoBehaviour
         switch (cutScene)
         {
             case CutSceneName.EnterNextLevel:
-                //TODO: transition
-                SceneManager.LoadScene("MoveMockPart1");
+                fadeOut.Fade(true, () => {
+                    SceneManager.LoadScene("MoveMockPart1");
+                });
                 break;
             case CutSceneName.ChangeTrain:
                 TrainChangeScene();
