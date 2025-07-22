@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using Ghosted.Dialogue;
 using TMPro;
 using UniRx;
@@ -160,12 +161,16 @@ public class CharacterControllerMockup : MonoBehaviour
 
     private void CameraUpdate()
     {
-        _xAxisAngle += -cameraDirection.y * cameraSpeed * Time.fixedDeltaTime;
-        _yAxisAngle += cameraDirection.x * cameraSpeed * Time.fixedDeltaTime;
+        _xAxisAngle += -cameraDirection.y * Time.fixedDeltaTime *  PlayerPrefs.GetFloat("sensitivity", cameraSpeed);
+                      
+        ;
+        _yAxisAngle += cameraDirection.x  * Time.fixedDeltaTime *  PlayerPrefs.GetFloat("sensitivity", cameraSpeed);
+        ;
         _xAxisAngle = Mathf.Clamp(_xAxisAngle, xAxisMin, xAxisMax);
 
         cameraPivot.transform.localRotation = Quaternion.Euler(_xAxisAngle, _yAxisAngle, 0f);
         lookAtPivot.transform.localRotation = Quaternion.Euler(0f, _yAxisAngle, 0f);
+        
     }
 
     #endregion
@@ -205,7 +210,7 @@ public class CharacterControllerMockup : MonoBehaviour
             var forward = lookAtTarget.forward;
             _rb.AddForce(right * moveVector.x * 200f +
                         forward * moveVector.y * 200f);
-            print("jumped");
+            //print("jumped");
         }
     }
 
@@ -222,7 +227,7 @@ public class CharacterControllerMockup : MonoBehaviour
         float timer = 0f;
         while (timer < coyoteTime)
         {
-            if (Physics.SphereCast(transform.position, 0.3f, -transform.up, out _, groundCheckDistance, ground))
+            if (Physics.SphereCast(transform.position, 0.3f, -transform.up, out _, groundCheckDistance * 1.1f, ground))
             {
                 isGrounded = true;
                 animator.SetBool(Grounded, true);
@@ -241,7 +246,12 @@ public class CharacterControllerMockup : MonoBehaviour
         Debug.DrawLine(transform.position, transform.position - transform.up * groundCheckDistance, Color.red, 0.5f);
         if (!Physics.SphereCast(transform.position, 0.3f, -transform.up, out _, groundCheckDistance, ground))
         {
-            animator.SetBool(Grounded, false);
+            if(!Physics.SphereCast(transform.position, 0.3f, -transform.up, out _, groundCheckDistance * 1.2f, ground))
+            {
+                animator.SetBool(Grounded, false);
+            }
+            else 
+                animator.SetBool(Grounded, true);
             if (isGrounded && !coyoteJumped)
             {
                 isGrounded = false;
@@ -435,10 +445,11 @@ public class CharacterControllerMockup : MonoBehaviour
                     Quaternion.LookRotation((transform.position - gameObject.transform.position).normalized));
                 StartCoroutine(_thrownTalisman.GetComponent<Talisman>().MoveTowardsPlayer(this));
                 animator.SetTrigger(Call);
-                talismansUsed.text = "Talismans used: " + _curTalismans + " / " + maxTalismans;
-                animator.SetTrigger(Call);
+                talismansUsed.text = maxTalismans- _curTalismans + " / " + maxTalismans;
+                //TODO: I think it was merged false because it is the same part, but leaving it here 
+                //animator.SetTrigger(Call);
                 //thrownTalisman.GetComponent<Talisman>().Initialize(tMode, talismanEmotion);
-                StartCoroutine(_thrownTalisman.GetComponent<Talisman>().MoveTowardsPlayer(this));
+                //StartCoroutine(_thrownTalisman.GetComponent<Talisman>().MoveTowardsPlayer(this));
                 talismansUsed.text = maxTalismans- _curTalismans + " / " + maxTalismans;
             }
 
@@ -475,10 +486,7 @@ public class CharacterControllerMockup : MonoBehaviour
     private TalismanTargetMock _tempTar;
     public AltarMock tempAltar;
 
-    // For Cutscene
-    public static event Action FirstUsageAltar;
-    public bool usedAltar;
-
+    
     [SerializeField] private int interactionRange = 10;
 
     [SerializeField] private float interactDistanceAltar = 3f;
@@ -513,13 +521,8 @@ public class CharacterControllerMockup : MonoBehaviour
             if (tempAltar)
             {
                 Debug.Log("Altar found");
-                if (!usedAltar)
-                {
-                    usedAltar = true;
-                    FirstUsageAltar?.Invoke();
-                }
-
-                tempAltar.ChangeEmotion(talismanEmotion);
+                
+                tempAltar.InteractAltar();
             }
             else
             {

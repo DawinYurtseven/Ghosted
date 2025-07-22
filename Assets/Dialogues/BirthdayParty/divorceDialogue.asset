@@ -21,10 +21,18 @@ MonoBehaviour:
   onEnterActions:
   - face
   onExitActions: []
-  text: 'What you are feeling, is fear. The fear of losing them, the fear of everything
-    changing. '
-  child: aa565bf7-a425-4b7f-a727-7c5709a2b133
+  text: "What you are feeling, is fear. The fear of losing them, the fear of everything
+    changing. But don\u2019t lose the joy you felt during your 8th birthday. The
+    joy of being with your family. Those two emotions can coexist. Joy and Fear."
+  child: 01310669-9b7e-4074-b2ff-a19956a74a66
   speaker: Ghost Binder
+  voiceClip:
+    Guid:
+      Data1: 298431513
+      Data2: 1222379220
+      Data3: -789353818
+      Data4: 1652943687
+    Path: event:/Dialogue/Dialogue 3/8
 --- !u!114 &-8583396139392639622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48,6 +56,13 @@ MonoBehaviour:
   text: "Didn\u2019t they try to throw you the most wonderful birthday party?"
   child: f0ddae24-ad76-4e53-a538-49293be0d030
   speaker: Ghost Binder
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &-8504358156247745820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,6 +86,13 @@ MonoBehaviour:
   text: No, no, no, no ...
   child: efd0ba9a-b3bc-4ac7-a097-18040f419c0a
   speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &-8423385381613332057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,7 +116,14 @@ MonoBehaviour:
   text: "Yes. If you help me find the other emotions you\u2019ve forgotten."
   child: 7205845e-0d78-4692-add7-8dda49958b6a
   speaker: Ghost Binder
---- !u!114 &-7378120422788153165
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+--- !u!114 &-8100558565694840840
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -104,20 +133,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
-  m_Name: aa565bf7-a425-4b7f-a727-7c5709a2b133
+  m_Name: 6c4ad436-e250-4ea9-83ac-6cda489a74a1
   m_EditorClassIdentifier: 
   rect:
     serializedVersion: 2
-    x: 721
-    y: 1280
+    x: 521
+    y: 120
     width: 200
     height: 80
-  onEnterActions: []
+  onEnterActions:
+  - miyu
   onExitActions: []
-  text: "But don\u2019t lose the joy you felt during your 8th birthday. The joy of
-    being with your family. Those two emotions can coexist. Joy and Fear."
-  child: 01310669-9b7e-4074-b2ff-a19956a74a66
-  speaker: Ghost Binder
+  text: Oh no! No! No.
+  child: 524b3a2f-f01c-4869-9439-4638cee3a9a4
+  speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: -971818544
+      Data2: 1093927960
+      Data3: 2055479217
+      Data4: 588283673
+    Path: event:/Dialogue/Dialogue 3/2
 --- !u!114 &-7279868297669876929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,10 +174,18 @@ MonoBehaviour:
     height: 80
   onEnterActions: []
   onExitActions: []
-  text: 'I was looking for matches to light the candles and ... I found the divorce
-    papers in one of the office drawers. '
-  child: d2001da7-f91f-44fc-9ea3-db6a95dfd0b1
+  text: "I was looking for matches to light the candles and ... I found the divorce
+    papers in one of the office drawers.\n I wasn\u2019t supposed to see them. I
+    was so scared. Everything changed after that. And the party was ruined."
+  child: 7f5b4c58-a422-45e7-8655-bee804a7a022
   speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 289891426
+      Data2: 1154097861
+      Data3: 902581651
+      Data4: 728383253
+    Path: event:/Dialogue/Dialogue 3/3
 --- !u!114 &-6597837033568542277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,30 +211,13 @@ MonoBehaviour:
   text: Okay.
   child: 
   speaker: Miyu
---- !u!114 &-6512797254299122011
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
-  m_Name: 81befeb1-d406-4604-b1aa-3c71f946c8e9
-  m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 272
-    y: 294
-    width: 200
-    height: 80
-  onEnterActions:
-  - miyu
-  onExitActions: []
-  text: Oh no! No! No.
-  child: 524b3a2f-f01c-4869-9439-4638cee3a9a4
-  speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: -1072042986
+      Data2: 1116163227
+      Data3: 2004599942
+      Data4: -2062388253
+    Path: event:/Dialogue/Dialogue 3/15
 --- !u!114 &-6363616387741531879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,6 +241,13 @@ MonoBehaviour:
   text: May I use your emotions to retrieve what was lost?
   child: cd533f8e-90e3-491b-ab18-8275b7ac32c9
   speaker: Ghost Binder
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &-4850718842550153668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,6 +272,13 @@ MonoBehaviour:
     to make your Birthday special."
   child: 2f36c579-9491-4091-a06a-84db4e9034db
   speaker: Ghost Binder
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &-3771419577753921087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,6 +302,13 @@ MonoBehaviour:
   text: "Yes. If you help me find the other emotions you\u2019ve forgotten."
   child: ec524a80-4560-40b1-898d-072f845ba19b
   speaker: Ghost Binder
+  voiceClip:
+    Guid:
+      Data1: 646225185
+      Data2: 1282235793
+      Data3: 88839301
+      Data4: -24227050
+    Path: event:/Dialogue/Dialogue 3/13
 --- !u!114 &-3515103887367577918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,6 +332,13 @@ MonoBehaviour:
   text: 'Nobody can help me. '
   child: 9d30f26e-2475-4022-b1c2-d6a18ef64896
   speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &-2927293811903491067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,8 +361,15 @@ MonoBehaviour:
   - face
   onExitActions: []
   text: I am sorry to hear that, Miyu.
-  child: 3174a5a9-5dcc-4607-abd0-b1d7dced5cd9
+  child: b4f6486e-2eb5-4ffe-a298-312064ff8a9a
   speaker: Ghost Binder
+  voiceClip:
+    Guid:
+      Data1: 1034362479
+      Data2: 1293837592
+      Data3: -234197830
+      Data4: 91128574
+    Path: event:/Dialogue/Dialogue 3/4
 --- !u!114 &-1590474649337185875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -332,6 +394,13 @@ MonoBehaviour:
   text: "No, don\u2019t look at that. That\u2019s boring stuff!"
   child: f536a47a-cad9-44e6-8221-4b6d1e9586af
   speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: -1080440288
+      Data2: 1231685831
+      Data3: 80226728
+      Data4: 1170771267
+    Path: event:/Dialogue/Dialogue 3/1
 --- !u!114 &-615474128951554898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -355,6 +424,13 @@ MonoBehaviour:
   text: 'Really? '
   child: babd6fbd-0e20-48ee-b798-b60a5905000a
   speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 1641448970
+      Data2: 1283365175
+      Data3: 878713217
+      Data4: -741274172
+    Path: event:/Dialogue/Dialogue 3/12
 --- !u!114 &-544251701836987098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -378,6 +454,13 @@ MonoBehaviour:
   text: 'You can reunite with your family. '
   child: 1f50aa1a-9774-40bb-9644-8af12cd4ff31
   speaker: Ghost Binder
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,16 +480,11 @@ MonoBehaviour:
   dialogueNodes:
   - {fileID: -1590474649337185875}
   - {fileID: 2977847253299832723}
-  - {fileID: -6512797254299122011}
   - {fileID: -7279868297669876929}
-  - {fileID: 8301211743648051250}
   - {fileID: -2927293811903491067}
-  - {fileID: 8669273194289206928}
-  - {fileID: 6856737445245152461}
   - {fileID: 3570951185976205636}
   - {fileID: 8303755707737489144}
   - {fileID: -9016361461540225428}
-  - {fileID: -7378120422788153165}
   - {fileID: 2382922964711176580}
   - {fileID: 3419938349654655233}
   - {fileID: 5734247590751589768}
@@ -414,6 +492,8 @@ MonoBehaviour:
   - {fileID: -3771419577753921087}
   - {fileID: 4613133267686048442}
   - {fileID: -6597837033568542277}
+  - {fileID: 552831665752469294}
+  - {fileID: -8100558565694840840}
   replyNodes: []
 --- !u!114 &347104624824338369
 MonoBehaviour:
@@ -440,6 +520,45 @@ MonoBehaviour:
     joy of being with your family. Those two emotions can coexist. Joy and Fear."
   child: 12eda31b-a318-4113-a1ae-10070bfa0e38
   speaker: Ghost Binder
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+--- !u!114 &552831665752469294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: b4f6486e-2eb5-4ffe-a298-312064ff8a9a
+  m_EditorClassIdentifier: 
+  rect:
+    serializedVersion: 2
+    x: 863
+    y: 687
+    width: 200
+    height: 80
+  onEnterActions:
+  - miyu
+  onExitActions: []
+  text: "I blew out the candle and wished for them to get back together. But they
+    didn\u2019t. Everything was ruined. And I was so scared to lose everything. "
+  child: f30d4dba-8b81-4b58-b487-3b12ef528997
+  speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 1012550045
+      Data2: 1160364267
+      Data3: 1541435030
+      Data4: 1978100833
+    Path: event:/Dialogue/Dialogue 3/5
 --- !u!114 &804494793844577133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -464,6 +583,13 @@ MonoBehaviour:
     lose everything. '
   child: 39c5985d-6f15-48de-ae61-f424be46ba5d
   speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &1171880761525897787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -488,6 +614,13 @@ MonoBehaviour:
     Tanaka. \r\nChildren: Miyu Tanaka, Matsuhito Tanaka.\r\n"
   child: 70cb71aa-bd0f-45ce-807b-b9342fa87ee8
   speaker: Divorce Paper
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &1689170041963713961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -511,6 +644,13 @@ MonoBehaviour:
   text: 'Really? '
   child: df5bab1f-0f14-4e29-a68f-fe6dca6c3d8a
   speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &2382922964711176580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -535,6 +675,13 @@ MonoBehaviour:
   text: 'So, if you help me, I can help you. '
   child: 60f72e6d-fb82-4a77-9696-41ba88eda7a7
   speaker: Ghost Binder
+  voiceClip:
+    Guid:
+      Data1: 111700399
+      Data2: 1101909332
+      Data3: -160286816
+      Data4: 1309228779
+    Path: event:/Dialogue/Dialogue 3/9
 --- !u!114 &2977847253299832723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -559,8 +706,15 @@ MonoBehaviour:
   - divorceTake
   text: "Divorce Agreement. \r\nPetitioner: Hinako Tanaka. \r\nRespondent: Makoto
     Tanaka. \r\nChildren: Miyu Tanaka, Matsuhito Tanaka.\r\n"
-  child: 81befeb1-d406-4604-b1aa-3c71f946c8e9
+  child: 6c4ad436-e250-4ea9-83ac-6cda489a74a1
   speaker: Divorce Paper
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &3419938349654655233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -584,6 +738,13 @@ MonoBehaviour:
   text: 'No, nobody can help me. '
   child: bed2f799-d831-44b9-8c25-93dbea341d1a
   speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: -615293684
+      Data2: 1228521505
+      Data3: 773557646
+      Data4: 721320639
+    Path: event:/Dialogue/Dialogue 3/10
 --- !u!114 &3570951185976205636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -609,6 +770,13 @@ MonoBehaviour:
     despite everything. "
   child: 146b34a8-7238-4a57-8922-aeee8f5a5c17
   speaker: Ghost Binder
+  voiceClip:
+    Guid:
+      Data1: -1094459604
+      Data2: 1274941986
+      Data3: -942926419
+      Data4: -1720405700
+    Path: event:/Dialogue/Dialogue 3/6
 --- !u!114 &4263523895386252179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -632,6 +800,13 @@ MonoBehaviour:
   text: 'If you help me, I can help you. '
   child: 65c04cc7-69c3-4f5c-a392-5c59c11b6991
   speaker: Ghost Binder
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &4613133267686048442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -655,6 +830,13 @@ MonoBehaviour:
   text: So, may I use your emotions to retrieve what you lost?
   child: 787d2954-77b6-4838-a823-d5d8033f1159
   speaker: Ghost Binder
+  voiceClip:
+    Guid:
+      Data1: 1160629025
+      Data2: 1157789588
+      Data3: -2083661921
+      Data4: -832487475
+    Path: event:/Dialogue/Dialogue 3/14
 --- !u!114 &4981031851086031457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -678,6 +860,13 @@ MonoBehaviour:
   text: Okay.
   child: 
   speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &5734247590751589768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -701,6 +890,13 @@ MonoBehaviour:
   text: 'You can reunite with your family. '
   child: ae5decfe-8abd-4074-b34c-bb1c83878a39
   speaker: Ghost Binder
+  voiceClip:
+    Guid:
+      Data1: -1603921772
+      Data2: 1212064499
+      Data3: -1194080865
+      Data4: -1590147754
+    Path: event:/Dialogue/Dialogue 3/11
 --- !u!114 &6260549048371653639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -725,6 +921,13 @@ MonoBehaviour:
     didn\u2019t. Everything was ruined."
   child: 9304830d-9016-48de-813d-d7dc74215a01
   speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &6717036194787093687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -748,29 +951,13 @@ MonoBehaviour:
   text: 'Hmph. '
   child: 28617b12-b906-4dfb-9e01-226a142774e5
   speaker: Miyu
---- !u!114 &6856737445245152461
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
-  m_Name: fe1d43ce-fc58-4b37-a0d2-6922d1f74b3c
-  m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 781
-    y: 713
-    width: 200
-    height: 80
-  onEnterActions: []
-  onExitActions: []
-  text: 'Everything was ruined. And I was so scared to lose everything. '
-  child: f30d4dba-8b81-4b58-b487-3b12ef528997
-  speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &7291252235786293546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -796,30 +983,13 @@ MonoBehaviour:
     Everything changed after that. The party was ruined."
   child: 44f3b8bf-022c-4c40-8f5e-921a77b020fe
   speaker: Miyu
---- !u!114 &8301211743648051250
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
-  m_Name: d2001da7-f91f-44fc-9ea3-db6a95dfd0b1
-  m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 447
-    y: 383
-    width: 200
-    height: 80
-  onEnterActions: []
-  onExitActions: []
-  text: "I wasn\u2019t supposed to see them. I was so scared. Everything changed
-    after that. And the party was ruined."
-  child: 7f5b4c58-a422-45e7-8655-bee804a7a022
-  speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &8303755707737489144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -844,6 +1014,13 @@ MonoBehaviour:
   text: 'Hmph. '
   child: 9720a6cc-15d6-45bf-af30-00a3168200c2
   speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: -1902536622
+      Data2: 1180375857
+      Data3: 899517869
+      Data4: 1971945700
+    Path: event:/Dialogue/Dialogue 3/7
 --- !u!114 &8360151477634930177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -867,28 +1044,10 @@ MonoBehaviour:
   text: I am sorry to hear that, Miyu.
   child: f55a6254-5664-42d0-95f1-4cbefdd06c96
   speaker: Ghost Binder
---- !u!114 &8669273194289206928
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
-  m_Name: 3174a5a9-5dcc-4607-abd0-b1d7dced5cd9
-  m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 549
-    y: 696
-    width: 200
-    height: 80
-  onEnterActions:
-  - miyu
-  onExitActions: []
-  text: "I blew out the candle and wished for them to get back together. But they
-    didn\u2019t. "
-  child: fe1d43ce-fc58-4b37-a0d2-6922d1f74b3c
-  speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 

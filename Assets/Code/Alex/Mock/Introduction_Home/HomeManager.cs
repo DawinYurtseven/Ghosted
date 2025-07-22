@@ -7,18 +7,12 @@ using UnityEngine.SceneManagement;
 public class HomeManager : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] private Image fadeImage;
-    [SerializeField] private float fadeDuration = 1.5f;
-    void Start()
-    {
-        fadeImage.DOFade(0f, fadeDuration);
-    }
+    [SerializeField] private FadeOut fadeOut;
 
     // Update is called once per frame
     public void Finish()
     {
-        fadeImage.DOFade(1f, fadeDuration).OnComplete(() =>
-        {
+        fadeOut.Fade(true, () => {
             SceneManager.LoadScene("Birthday_ThirdPlayable");
         });
     }

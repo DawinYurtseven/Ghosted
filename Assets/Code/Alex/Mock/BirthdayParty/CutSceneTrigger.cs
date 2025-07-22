@@ -19,7 +19,7 @@ public class CutSceneTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-        Debug.Log("Entered CutScene trigger of " + cutSceneName);
+        //Debug.Log("Entered CutScene trigger of " + cutSceneName);
         
         if (enabledByPlayer && other.gameObject.GetComponent<CharacterControllerMockup>() != null)
         {

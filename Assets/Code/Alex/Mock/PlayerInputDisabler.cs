@@ -42,6 +42,7 @@ public class PlayerInputDisabler: MonoBehaviour
     
     public void EnableInputWithDelay(float delaySeconds)
     {
+        EnableInput();
         StartCoroutine(EnableInputCoroutine(delaySeconds));
     }
 
@@ -83,7 +84,7 @@ public class PlayerInputDisabler: MonoBehaviour
         playerInput.SwitchCurrentActionMap(mapName);
         playerInput.actions.FindActionMap(mapName)?.Enable();
         presavedActionMap = "";
-        Debug.Log("State after coroutine: " + GetCurrentActionMap());
+        //Debug.Log("State after coroutine: " + GetCurrentActionMap());
     }
     
     

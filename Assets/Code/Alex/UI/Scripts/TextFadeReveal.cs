@@ -60,7 +60,7 @@ public class TextFadeReveal : MonoBehaviour
         isAnimating = true;
         DOTween.Kill(this);
         StopAllCoroutines();
-        Debug.Log("started coroutine");
+        //Debug.Log("started coroutine");
         StartCoroutine(RevealTextWithFade(text));
         
     }
@@ -70,7 +70,7 @@ public class TextFadeReveal : MonoBehaviour
         isAnimating = true;
         DOTween.Kill(this);
         StopAllCoroutines();
-        Debug.Log("started coroutine");
+        //Debug.Log("started coroutine");
         StartCoroutine(RevealTextWithFade(tmpText.text));
         
     }

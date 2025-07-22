@@ -31,7 +31,7 @@ public class UIHintShow : MonoBehaviour
         { "Jump", "Press [Jump] to leap" },
         { "Move", "Use [Move] to move" },
         { "Shoot", "Press [Shoot] to throw a talisman to or recall from an object when you see the circle" },
-        { "Recall", "Use [Recall] at a shrine to recall all talismans at once" },
+        { "Recall", "Use [Recall] near shrine to recall all talismans at once" },
     };
     
     
@@ -99,12 +99,14 @@ public class UIHintShow : MonoBehaviour
         string message = HintBuilder.BuildHint(template, iconMappings, currentControlScheme);
         hintText.text = message;
         hintActive = true;
+        canvasGroup.alpha = 1f;
         brushStroke.Animate(message);
     }
     
 
     public void ShowHintUntilAction(string actionKey)
     {
+        Debug.Log("ShowHintUntilAction");
         ClearHint();
         currentExpectedAction = actionKey;
         if (!actionHintTemplates.TryGetValue(actionKey, out var template))
@@ -116,6 +118,7 @@ public class UIHintShow : MonoBehaviour
         string message = HintBuilder.BuildHint(template, iconMappings, currentControlScheme);
         hintText.text = message;
         hintActive = true;
+        canvasGroup.alpha = 1f;
         brushStroke.Animate(message);
     }
     
@@ -143,5 +146,6 @@ public class UIHintShow : MonoBehaviour
         currentExpectedAction = null;
         currentHintTemplate = null;
         hintActive = false;
+        brushStroke.Reset();
     }
 }

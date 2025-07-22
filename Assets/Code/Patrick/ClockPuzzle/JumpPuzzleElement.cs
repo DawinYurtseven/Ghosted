@@ -16,8 +16,8 @@ public class JumpPuzzleElement : MonoBehaviour
     [SerializeField] private GameObject indicator;
     
     [Header("Feedback")] 
-    [SerializeField] private AudioSource effect;
-    [SerializeField] private AudioSource solvedSFX;
+    [SerializeField] private FMODUnity.EventReference effect;
+    [SerializeField] private FMODUnity.EventReference solvedSFX;
     
     private Vector3 originalPos;
     private Renderer rend;
@@ -57,7 +57,7 @@ public class JumpPuzzleElement : MonoBehaviour
                 animate(manager.isSolved(), manager.isSolution());
                 
                 //Audio
-                effect.PlayOneShot(effect.clip);
+                FMODUnity.RuntimeManager.PlayOneShot(effect, transform.position);
             }
         }
     }
@@ -68,7 +68,7 @@ public class JumpPuzzleElement : MonoBehaviour
             animate(true,true);
         
         //Audio
-        solvedSFX?.PlayOneShot(solvedSFX.clip);
+        FMODUnity.RuntimeManager.PlayOneShot(solvedSFX, transform.position);
     }
     
     private void animate(bool correct, bool timeToShowColor)

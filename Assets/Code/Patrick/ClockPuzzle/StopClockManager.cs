@@ -13,7 +13,7 @@ public class StopClockManager : MonoBehaviour
     [SerializeField] private int solutionMinutes = -1;
     [SerializeField] private int solutionSeconds = -1;
     
-    private float threshold = 5f; // threshold in degrees to check if the clock hand is correct
+    [SerializeField] private float threshold = 20f; // threshold in degrees to check if the clock hand is correct
     private ClockHand currentHand;
     
     public bool isSolved { get; private set; } = false;
@@ -93,6 +93,11 @@ public class StopClockManager : MonoBehaviour
                 return Mathf.Approximately(clockAnim.hourHand.localEulerAngles.y, solutionHours * 30f) || 
                        Mathf.Abs(clockAnim.hourHand.localEulerAngles.y - solutionHours * 30f) < threshold;
             case ClockHand.Minute:
+                        bool min = Mathf.Abs(clockAnim.minuteHand.localEulerAngles.y - solutionMinutes * 6f) < threshold;
+                        Debug.Log("Minute is inside threshold: " + min + 
+                                  ", current angle: " + clockAnim.minuteHand.localEulerAngles.y + 
+                                  ", solution angle: " + solutionMinutes * 6f +
+                                  ", threshold angle: " + threshold);
                 return Mathf.Approximately(clockAnim.minuteHand.localEulerAngles.y, solutionMinutes * 6f) || 
                        Mathf.Abs(clockAnim.minuteHand.localEulerAngles.y - solutionMinutes * 6f) < threshold;
             case ClockHand.Second:

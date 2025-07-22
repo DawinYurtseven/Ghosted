@@ -9,7 +9,7 @@ public class WeatherController : MonoBehaviour
     
     [Header("Rain")]
     [SerializeField] private GameObject rainGameObject;
-    [SerializeField] private AudioSource rainBGM;
+    [SerializeField] private FMODUnity.StudioEventEmitter rainBGM;
     [SerializeField] private GameObject rainLight;
     [SerializeField] private Skybox rainSkybox;
     [SerializeField] private GameObject rainPP; 
@@ -65,20 +65,21 @@ public class WeatherController : MonoBehaviour
         if (raining)
         {
             rainGameObject.SetActive(true);
-            rainBGM.Play();
-            rainBGM.loop = true;
-            rainLight?.SetActive(true);
-            rainPP?.SetActive(true);
+            rainBGM?.Play();
+            if(rainLight) rainLight.SetActive(true);
+            rainPP.SetActive(true);
             
             dirLight?.SetActive(false);
+            Debug.Log("made it rain");
         }
         else
         {
             rainGameObject.SetActive(false);
-            rainBGM.Stop();
+            rainBGM?.Stop();
             dirLight?.SetActive(true);
-            rainLight?.SetActive(false);
+            if(rainLight) rainLight.SetActive(false);
             rainPP.SetActive(false);
+            Debug.Log("Stop raining");
         }
     }
 

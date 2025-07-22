@@ -4094,8 +4094,8 @@ MonoBehaviour:
   specialEffect: {fileID: 3044209897353336245}
   joyVFX: {fileID: 761989205077488295}
   fearVFX: {fileID: 1015068718343166223}
-  bindingSFX: {fileID: 2531767472202497983}
-  boundSFX: {fileID: 1580219123506616624}
+  bindingSFX: {fileID: 0}
+  boundSFX: {fileID: 0}
   openState: {fileID: 3820825502290098871}
   closedState: {fileID: 982426240815478007}
   shadow: {fileID: 7745627843486902824}
@@ -6110,6 +6110,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7391699756742049183}
     m_Modifications:
+    - target: {fileID: 475568315691202712, guid: e11ff40e3e2f6aa4d94f51da26cf352f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 475568315691202712, guid: e11ff40e3e2f6aa4d94f51da26cf352f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 615779062326898337, guid: e11ff40e3e2f6aa4d94f51da26cf352f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 615779062326898337, guid: e11ff40e3e2f6aa4d94f51da26cf352f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1601085411031642301, guid: e11ff40e3e2f6aa4d94f51da26cf352f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.25
@@ -6167,16 +6183,6 @@ GameObject:
 --- !u!1 &1015068718343166223 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7423864077165147647, guid: e11ff40e3e2f6aa4d94f51da26cf352f, type: 3}
-  m_PrefabInstance: {fileID: 7570800100893699312}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &1580219123506616624 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 9006902935630034368, guid: e11ff40e3e2f6aa4d94f51da26cf352f, type: 3}
-  m_PrefabInstance: {fileID: 7570800100893699312}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &2531767472202497983 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 5346414384292172623, guid: e11ff40e3e2f6aa4d94f51da26cf352f, type: 3}
   m_PrefabInstance: {fileID: 7570800100893699312}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &3044209897353336245 stripped
