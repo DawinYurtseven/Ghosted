@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerPref_Speed : MonoBehaviour
 {
-    public float sensitivity = 50.0f;
+    public float sensitivity = 70.0f;
     public float adjustmentStep = 10.0f;
     private const string SensitivityKey = "sensitivity";
 
