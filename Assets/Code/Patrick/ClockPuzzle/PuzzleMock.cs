@@ -42,13 +42,14 @@ public class PuzzleMock : MonoBehaviour
             puzzleSolved?.Invoke();
         }
         
-        if (isCacheCorrectUntil(currentStep))
+        if (isCacheCorrectUntil(index))
         {
             Debug.Log("Cache is correct until " + index+"/"+ currentStep + ": " + cache.ToArray());
             solutionCorrectUntil?.Invoke(index);
         }
         else
         {
+            Debug.Log("Resetting all sub-solution indicators");
             solutionCorrectUntil?.Invoke(0);
         }
     }
@@ -119,30 +120,36 @@ public class PuzzleMock : MonoBehaviour
     
     private bool isCacheCorrectUntil(int index)
     {
-        if (index < 0 || index >= correctOrder.Length || cache.Count <= index)
+        if (index < 0 || index >= correctOrder.Length || cache.Count < index)
         {
-            Debug.Log("Index out of bounds: " + index);
+            Debug.Log("Index out of bounds: " + index + " Cache: " + cache.Count);
             return false;
         }
 
+        if (index == 1) return true;
+        
         bool fromBack = checkCacheFromBack(index);
         bool fromFront = checkCacheFromFront(index);
-        if(fromFront && fromBack) return true;
-        //if(fromBack) return true;
+        if(cache.Count < correctOrder.Length )
+        { 
+            return fromFront;
+        }
+        return fromBack;
         
-        return false;
     }
     
     private bool checkCacheFromFront(int index)
     {
         int[] cacheArray = cache.ToArray();
-
-        // Prüfe von vorne (neue Eingaben)
-        for (int i = 0; i <= index; i++)
+        
+        //TODO:
+        // Check from front (correct order), only for the first currentStep elements (or -1, dont know)
+        for (int i = 0; i < index; i++)
         {
             if (cacheArray[i] != correctOrder[i])
             {
-                Debug.Log("Cache not correct until Index " + index + ": " + cacheArray[i] + " != " + correctOrder[i]);
+                Debug.Log("Checking from front: \n " +
+                          "Cache not correct until Index " + index + ": " + cacheArray[i] + " != " + correctOrder[i]);
                 return false;
             }
         }
@@ -155,15 +162,19 @@ public class PuzzleMock : MonoBehaviour
         int[] cacheArray = cache.ToArray();
         
         // Prüfe von hinten (überschriebene alte Eingaben)
-    
-        for (int i = cacheArray.Length - 1; i > 0 ; i--)
+        
+        int j =  0;         //vorher cacheArray.Length -i -1
+        //for (int i = cacheArray.Length - 1; i > 0 ; i--)
+        for (int i = cacheArray.Length - index; i > cacheArray.Length ; i++)
         {
-            Debug.Log(i);
-            if (cacheArray[i] != correctOrder[i])
+            Debug.Log("Checking cache at: " + i+" for solution index: " + j);
+            if (cacheArray[i] != correctOrder[j])
             {
-                Debug.Log("Cache not correct until Index " + index + ": " + cacheArray[i] + " != " + correctOrder[i]);
+                Debug.Log("Checking from back:\n " +
+                          "Cache not correct until Index " + index + ": " + cacheArray[i] + " != " + correctOrder[i]);
                 return false;
             }
+            j++;
         }
 
         return true;

@@ -29,7 +29,7 @@ public class InputButtonSwitcher : MonoBehaviour
         {
             inputManager.Instance.InputChanged -= OnInputChanged;
             inputManager.Instance.InputChanged += OnInputChanged;
-            Debug.Log($"{gameObject.name} unsubscribed from InputChanged");
+            //Debug.Log($"{gameObject.name} unsubscribed from InputChanged");
             subscribed = false;
         }
             

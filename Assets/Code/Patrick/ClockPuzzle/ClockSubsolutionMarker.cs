@@ -31,17 +31,15 @@ public class ClockSubsolutionMarker : MonoBehaviour
     
     private void OnSolutionCorrectUntil(int index)
     {
-        if (index > 0 && id == index)
+        //Debug.Log("Got solution correct until: " + index + " for id: " + id);
+        if (index > 0 && id <= index)
         {
-            originalMaterial = GetComponent<Renderer>().material;
             GetComponent<Renderer>().material = correctMaterial;
-            //indicatorObj.SetActive(true);
         }
         else
         {
             // Reset to original material if current solution is not correct
             GetComponent<Renderer>().material = originalMaterial;
-            //indicatorObj.SetActive(false);
         }
     }
 
