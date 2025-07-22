@@ -34,6 +34,10 @@ public class SceneLoaderMock : MonoBehaviour
             return;
         }
         
+        // private FadeOut fadeOut;
+        // fadeOut.Fade(true, () => {
+        //     SceneManager.LoadScene(trainSceneName);
+        // });
         SceneManager.LoadScene(trainSceneName);
     }
     
