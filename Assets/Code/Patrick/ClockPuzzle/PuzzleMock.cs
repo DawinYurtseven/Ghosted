@@ -13,6 +13,8 @@ public class PuzzleMock : MonoBehaviour
     public bool isRepeatable = false;
     private bool wasPuzzleSolved = false;
     
+    public UnityEvent<int> solutionCorrectUntil = new UnityEvent<int>();
+    
     public bool isSolved()
     {
         return checkSolution();
@@ -33,13 +35,23 @@ public class PuzzleMock : MonoBehaviour
         Debug.Log("Registered current puzzle index: " + index);
         
         addToCache(index);
+        currentStep = (currentStep + 1) % requiredSteps;
         if (checkSolution())
         {
             Debug.Log("Solved Puzzle!");
             puzzleSolved?.Invoke();
         }
-
-        currentStep = (currentStep + 1) % requiredSteps;
+        
+        if (isCacheCorrectUntil(index))
+        {
+            Debug.Log("Cache is correct until " + index+"/"+ currentStep + ": " + cache.ToArray());
+            solutionCorrectUntil?.Invoke(index);
+        }
+        else
+        {
+            Debug.Log("Resetting all sub-solution indicators");
+            solutionCorrectUntil?.Invoke(0);
+        }
     }
 
     private bool checkSolution()
@@ -85,6 +97,85 @@ public class PuzzleMock : MonoBehaviour
                 cache.Dequeue();
             }
         }
+    }
+    
+    // a method to check if an int is at the correct position in the cache
+    private bool isAtCorrectPosition(int index)
+    {
+        if (index < 0 || index >= correctOrder.Length)
+        {
+            Debug.LogError("Index out of bounds: " + index);
+            return false;
+        }
+        
+        if (cache.Count <= index)
+        {
+            Debug.Log("Cache does not have enough elements to check position " + index);
+            return false;
+        }
+        
+        int[] cacheArray = cache.ToArray();
+        return cacheArray[index] == correctOrder[index];
+    }
+    
+    private bool isCacheCorrectUntil(int index)
+    {
+        if (index < 0 || index >= correctOrder.Length || cache.Count < index)
+        {
+            Debug.Log("Index out of bounds: " + index + " Cache: " + cache.Count);
+            return false;
+        }
+
+        if (index == 1) return true;
+        
+        bool fromBack = checkCacheFromBack(index);
+        bool fromFront = checkCacheFromFront(index);
+        if(cache.Count < correctOrder.Length )
+        { 
+            return fromFront;
+        }
+        return fromBack;
+        
+    }
+    
+    // TODO: merge the methods checkCacheFromFront and checkCacheFromBack
+    private bool checkCacheFromFront(int index)
+    {
+        int[] cacheArray = cache.ToArray();
+        
+        //TODO:
+        // Check from front (correct order), only for the first currentStep elements (or -1, dont know)
+        for (int i = 0; i < index; i++)
+        {
+            if (cacheArray[i] != correctOrder[i])
+            {
+                Debug.Log("Checking from front: \n " +
+                          "Cache not correct until Index " + index + ": " + cacheArray[i] + " != " + correctOrder[i]);
+                return false;
+            }
+        }
+
+        return true;
+    }
+    
+    private bool checkCacheFromBack(int index)
+    {
+        int[] cacheArray = cache.ToArray();
+        
+        int j =  0;
+        for (int i = cacheArray.Length - index; i > cacheArray.Length ; i++)
+        {
+            Debug.Log("Checking cache at: " + i+" for solution index: " + j);
+            if (cacheArray[i] != correctOrder[j])
+            {
+                Debug.Log("Checking from back:\n " +
+                          "Cache not correct until Index " + index + ": " + cacheArray[i] + " != " + correctOrder[i]);
+                return false;
+            }
+            j++;
+        }
+
+        return true;
     }
     
 }
