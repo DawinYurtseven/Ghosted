@@ -138,6 +138,7 @@ public class PuzzleMock : MonoBehaviour
         
     }
     
+    // TODO: merge the methods checkCacheFromFront and checkCacheFromBack
     private bool checkCacheFromFront(int index)
     {
         int[] cacheArray = cache.ToArray();
@@ -161,10 +162,7 @@ public class PuzzleMock : MonoBehaviour
     {
         int[] cacheArray = cache.ToArray();
         
-        // Prüfe von hinten (überschriebene alte Eingaben)
-        
-        int j =  0;         //vorher cacheArray.Length -i -1
-        //for (int i = cacheArray.Length - 1; i > 0 ; i--)
+        int j =  0;
         for (int i = cacheArray.Length - index; i > cacheArray.Length ; i++)
         {
             Debug.Log("Checking cache at: " + i+" for solution index: " + j);
