@@ -143,8 +143,7 @@ public class PuzzleMock : MonoBehaviour
     {
         int[] cacheArray = cache.ToArray();
         
-        //TODO:
-        // Check from front (correct order), only for the first currentStep elements (or -1, dont know)
+        // Check from front (correct order)
         for (int i = 0; i < index; i++)
         {
             if (cacheArray[i] != correctOrder[i])
