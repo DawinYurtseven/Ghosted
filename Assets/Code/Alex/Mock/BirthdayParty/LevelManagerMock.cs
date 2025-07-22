@@ -1,8 +1,6 @@
-using System;
 using Cinemachine;
 using Ghosted.Dialogue;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.Splines;
 
