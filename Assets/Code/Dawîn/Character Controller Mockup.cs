@@ -7,6 +7,7 @@ using TMPro;
 using UniRx;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.Universal;
 
 [RequireComponent(typeof(Rigidbody))]
 public class CharacterControllerMockup : MonoBehaviour
@@ -57,6 +58,7 @@ public class CharacterControllerMockup : MonoBehaviour
         CameraUpdate();
         //interactable check
         //CheckForInteractables();
+        ScaleShadowDecal();
     }
 
     public void FixedUpdate()
@@ -66,7 +68,7 @@ public class CharacterControllerMockup : MonoBehaviour
 
         //jumpControl
         RegulateJump();
-
+        
         //check for slope
         Slope();
     }
@@ -191,7 +193,9 @@ public class CharacterControllerMockup : MonoBehaviour
     [SerializeField] private float groundCheckDistance;
     [SerializeField] private float coyoteTime = 0.2f;
     [SerializeField] private bool coyoteJumped, isGrounded = true, jumpPressed;
-
+    [SerializeField] private DecalProjector shadowDecal;
+    [SerializeField] private float shadowMinSize= 0.25f, shadowMaxSize = 1f, scaleFactor = 0.5f;
+    
     public void Jump(InputAction.CallbackContext context)
     {
         if (context.started && (Physics.SphereCast(transform.position, 0.3f, -transform.up, out var hit,
@@ -263,6 +267,28 @@ public class CharacterControllerMockup : MonoBehaviour
         _rb.AddForce(-transform.up * fallStrength, ForceMode.Acceleration);
     }
 
+    //a method that scales the width and hight shadow decal of the player based on the distance to the ground
+    public void ScaleShadowDecal()
+    {
+        if (Physics.SphereCast(transform.position, 0.3f, -transform.up, out var hit, groundCheckDistance * 5f, ground))
+        {
+            if (shadowDecal)
+            {
+                float distance= Vector3.Distance(transform.position, hit.point);   // 0.4 difference
+                //float distance = hit.distance;
+                distance = Mathf.Max(0.01f, hit.distance); // avoid division by zero
+                float size = Mathf.Clamp(1f / distance * scaleFactor, shadowMinSize, shadowMaxSize);
+                shadowDecal.size = new Vector3(size, size, shadowDecal.size.z);
+                shadowDecal.transform.position = hit.point + Vector3.up * 0.01f;    // avoid z-fighting
+                Debug.Log("Distance to next ground: "+ distance + " and size: " + size);
+            }
+            
+            // draw the sphere cast in the editor with the sphere radius and the hit point
+            Debug.DrawLine(transform.position, hit.point, Color.green, 0.5f);
+            //Debug.DrawSphere(hit.point, 0.3f, Color.green, 0.5f);
+        }
+    }
+    
     #endregion
 
 
