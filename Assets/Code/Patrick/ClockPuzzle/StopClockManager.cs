@@ -5,7 +5,7 @@ public class StopClockManager : MonoBehaviour
 {
     [Header("Clock Settings")]
     [SerializeField] private GameObject clockObj;
-    [SerializeField] private ClockAnim clockAnim;
+    public ClockAnim clockAnim;
     
     [Header("Clock Hands and Solutions")]
     public UnityEvent<bool> PuzzleSolved = new UnityEvent<bool>();
@@ -15,7 +15,8 @@ public class StopClockManager : MonoBehaviour
     
     [SerializeField] private float threshold = 20f; // threshold in degrees to check if the clock hand is correct
     private ClockHand currentHand;
-    
+    public ClockHand lastJumpedHand => currentHand;
+
     public bool isSolved { get; private set; } = false;
     
     public void getInput(ClockHand hand, bool isRunning)

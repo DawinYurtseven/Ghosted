@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using DG.Tweening;
 
@@ -25,7 +26,7 @@ public class ClockAnim : MonoBehaviour
     
     [Header("Animation Settings")]
     public Material wrongMaterial; // Material to indicate wrong solution
-    
+    public Action<bool> onPuzzleAnimationComplete;
     public FMODUnity.StudioEventEmitter clockTickSound;
     public float pauseDuration = 0.5f; // Duration to pause the clock tick sound
     
@@ -57,9 +58,6 @@ public class ClockAnim : MonoBehaviour
         //           $"Second Offset: {secondOffset}");
         
         StartAnimation();
-        // AnimateZeiger(minuteHand, minuteHandSpeed);
-        // AnimateZeiger(hourHand, hourHandSpeed);
-        // AnimateZeiger(secondHand, secondHandSpeed);
     }
 
     public void AnimateZeiger(Transform hand, float speed)
@@ -259,7 +257,11 @@ public class ClockAnim : MonoBehaviour
                 secondRenderer.material = originalSecondMat;
             })
             .AppendInterval(0.5f)
-            .AppendCallback(StartAnimation);
+            //.AppendCallback(StartAnimation);
+            .AppendCallback(() =>
+            {
+                onPuzzleAnimationComplete?.Invoke(false);
+            });
     }
     
     private Sequence WiggleHands(float duration)
@@ -289,7 +291,7 @@ public class ClockAnim : MonoBehaviour
     
     private void pauseTickSoundFor(float duration)
     {
-        Debug.Log("Pause the clock tick sound for " + pauseDuration);
+        //Debug.Log("Pause the clock tick sound for " + pauseDuration);
         if (clockTickSound != null && clockTickSound.IsPlaying())
         {
             clockTickSound.Stop();
