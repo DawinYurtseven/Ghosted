@@ -282,10 +282,6 @@ public class CharacterControllerMockup : MonoBehaviour
                 shadowDecal.transform.position = hit.point + Vector3.up * 0.01f;    // avoid z-fighting
                 Debug.Log("Distance to next ground: "+ distance + " and size: " + size);
             }
-            
-            // draw the sphere cast in the editor with the sphere radius and the hit point
-            Debug.DrawLine(transform.position, hit.point, Color.green, 0.5f);
-            //Debug.DrawSphere(hit.point, 0.3f, Color.green, 0.5f);
         }
     }
     
