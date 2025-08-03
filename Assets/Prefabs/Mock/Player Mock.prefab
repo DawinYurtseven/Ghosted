@@ -836,10 +836,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.25940967
+  m_Radius: 0.16555151
   m_Height: 2.1178522
   m_Direction: 1
-  m_Center: {x: -0.0012471676, y: 0.058926105, z: 0.034870148}
+  m_Center: {x: 0.0072210864, y: 0.05892608, z: 0.0011637033}
 --- !u!54 &6886647508386430284
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -905,6 +905,10 @@ MonoBehaviour:
   coyoteJumped: 0
   isGrounded: 1
   jumpPressed: 0
+  shadowDecal: {fileID: 0}
+  shadowMinSize: 0.25
+  shadowMaxSize: 1
+  scaleFactor: 0.5
   target: {fileID: 0}
   currentTalismanBind: {fileID: 0}
   previousTargetTalismanObject: {fileID: 0}
@@ -1212,7 +1216,7 @@ Transform:
   m_GameObject: {fileID: 8085985945609945402}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.00000009874279, y: 0.6484664, z: -3.4305787}
+  m_LocalPosition: {x: 0.000000019325805, y: 0.6484664, z: -2.6701276}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1443,7 +1447,7 @@ Transform:
   m_GameObject: {fileID: 8732294338570935560}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.000000038934704, y: 0.6484664, z: -3.2423325}
+  m_LocalPosition: {x: 0.000000019325805, y: 0.6484664, z: -2.6701276}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
