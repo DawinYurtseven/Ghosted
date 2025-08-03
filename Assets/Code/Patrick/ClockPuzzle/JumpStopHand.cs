@@ -55,8 +55,16 @@ public class JumpStopHand : MonoBehaviour
         }
         else
         {
-            //Debug.Log("Puzzle not solved, hand is running again: " + _hand);
-            isHandRunning = true;
+            if (manager.lastJumpedHand == _hand)
+            {
+                Debug.Log("Puzzle not solved, starting hand again: " + _hand);
+                isHandRunning = true;
+                manager.clockAnim.onPuzzleAnimationComplete = (b) =>
+                {
+                    manager.clockAnim.startHand(_hand);
+                    manager.clockAnim.onPuzzleAnimationComplete = null; // remove listener after use
+                };
+            }
         }
     }
     
@@ -72,6 +80,7 @@ public class JumpStopHand : MonoBehaviour
         manager.getInput(_hand, isHandRunning);
     }
 
+    // Animate the clock hand when the player jumps on it
     private void animate(bool correct)
     {
         animObj.transform.DOKill(); // Stop ongoing tweens

@@ -14,7 +14,7 @@ public enum Emotion
 
 public class EmotionSingletonMock : MonoBehaviour
 {
-    public static EmotionSingletonMock Instance { get; private set; }
+    public static EmotionSingletonMock Instance { get;  set; }
 
     public GameObject talismanCounter;
     public bool disableAll = false;
@@ -42,18 +42,12 @@ public class EmotionSingletonMock : MonoBehaviour
         }
         if (currentEmotion == Emotion.Fear)
         {
-            joyGameObject.SetActive(true);
-            fearGameObject.SetActive(false);
-            currentEmotion = Emotion.Joy;
-            FMODUnity.RuntimeManager.StudioSystem.setParameterByName("CurrentEmotion", 0f);
+            changeToJoy();
         }
 
         else
         {
-            joyGameObject.SetActive(false);
-            fearGameObject.SetActive(true);
-            currentEmotion = Emotion.Fear;
-            FMODUnity.RuntimeManager.StudioSystem.setParameterByName("CurrentEmotion", 1f);
+            changeToFear();
         }
         
         EmotionSubject.OnNext(currentEmotion);
@@ -61,6 +55,28 @@ public class EmotionSingletonMock : MonoBehaviour
         emotionChanged?.Invoke(currentEmotion);
     }
 
+    private void changeToJoy()
+    {
+        if (currentEmotion == Emotion.Joy) return;
+        joyGameObject.SetActive(true);
+        fearGameObject.SetActive(false);
+        currentEmotion = Emotion.Joy;
+        
+        if (Application.isPlaying)
+            FMODUnity.RuntimeManager.StudioSystem.setParameterByName("CurrentEmotion", 0f);
+    }
+    
+    private void changeToFear()
+    {
+        if (currentEmotion == Emotion.Fear) return;
+        joyGameObject.SetActive(false);
+        fearGameObject.SetActive(true);
+        currentEmotion = Emotion.Fear;
+        
+        if (Application.isPlaying)
+            FMODUnity.RuntimeManager.StudioSystem.setParameterByName("CurrentEmotion", 1f);
+    }
+    
     public Emotion getCurrentEmotion() => currentEmotion;
 
     #endregion
@@ -173,6 +189,7 @@ public class EmotionSingletonMock : MonoBehaviour
         }
         else
         {
+            DontDestroyOnLoad(this);
             Instance = this;
         }
 
