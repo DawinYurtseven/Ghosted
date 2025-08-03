@@ -105,68 +105,9 @@ namespace Ghosted.Dialogue {
                 Debug.Log("It's a conversant!");
                 currentConversant = dialogueAIConversant;
                 dialogueAIConversant.Interact(this);
-
-            // if (currentDialogue == null)
-            // {
-            //     //Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue()); // Use mouse position
-            //     // Ray ray = new Ray(transform.position, transform.forward);
-            //     
-            //     Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
-            //     RaycastHit hit;
-            //
-            //     Debug.Log("I shoot ray " + ray);
-            //
-            //     if (Physics.Raycast(ray, out hit, interactDistance, layerMask))
-            //     {
-            //         Debug.Log("I hit smth " + hit.collider.gameObject.name);
-            //         // Check for the target script
-            //         AIConversant aIConversant = hit.collider.GetComponent<AIConversant>();
-            //         if (aIConversant != null)
-            //         {
-            //             Debug.Log("It's a conversant!");
-            //             currentConversant = aIConversant;
-            //             aIConversant.Interact(this);
-            //             
-            //         }
-            //     }
-            // }
-            
-                    
             }
         }
 
-        void Update()
-        {
-            
-            // Ray ray = new Ray(checkForDialoguefrom.position, checkForDialoguefrom.transform.forward);
-            // RaycastHit hit;
-            // if (Physics.Raycast(ray, out hit, interactDistance, layerMask))
-            // {
-            //     AIConversant aIConversant = hit.collider.GetComponent<AIConversant>();
-            //     if (aIConversant )
-            //     {
-            //         if (aIConversant != dialogueAIConversant)
-            //         {
-            //             Debug.Log("Found new dialogue!");
-            //             if (dialogueAIConversant != null)
-            //             {
-            //                 dialogueAIConversant.turnOffHint();
-            //             }
-            //             dialogueAIConversant = aIConversant;
-            //             dialogueAIConversant.turnOnHint();
-            //         }
-            //
-            //         return;
-            //     }
-            // }
-            //
-            // if (dialogueAIConversant != null) 
-            // {
-            //     dialogueAIConversant.turnOffHint();
-            //     
-            //      dialogueAIConversant = null;
-            // }
-        }
 
         public void EnteredConversantArea(AreaConversant areaConversant)
         {

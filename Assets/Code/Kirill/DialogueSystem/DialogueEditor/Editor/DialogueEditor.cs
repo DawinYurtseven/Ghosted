@@ -226,7 +226,7 @@ namespace Ghosted.Dialogue.Editor{
                 } 
             }
             else {
-                if (((DialogueEditorInstance)linkingParentNode).name == node.name) {
+                if (((ScriptableObject)linkingParentNode).name == node.name) {
                     if (GUILayout.Button("cancel")) {
                         linkingParentNode = null;
                         //creatingNode = node;
