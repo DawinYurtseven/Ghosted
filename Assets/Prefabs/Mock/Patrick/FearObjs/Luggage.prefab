@@ -120,7 +120,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4763512654901860930
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6724,8 +6724,8 @@ MonoBehaviour:
   specialEffect: {fileID: 5353159393274459313}
   joyVFX: {fileID: 7702892573391672227}
   fearVFX: {fileID: 7954259923446446091}
-  bindingSFX: {fileID: 0}
-  boundSFX: {fileID: 0}
+  bindingSFX: {fileID: 4786243690480668812}
+  boundSFX: {fileID: 7262552530167139877}
   openState: {fileID: 6829846762434412045}
   closedState: {fileID: 7496472147234890238}
   shadow: {fileID: 9210395692619098410}
@@ -11413,11 +11413,33 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1601085411031642301, guid: e11ff40e3e2f6aa4d94f51da26cf352f, type: 3}
   m_PrefabInstance: {fileID: 677202726602444276}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4786243690480668812 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5407080484987379064, guid: e11ff40e3e2f6aa4d94f51da26cf352f, type: 3}
+  m_PrefabInstance: {fileID: 677202726602444276}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5353159393274459313 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4841323770616215877, guid: e11ff40e3e2f6aa4d94f51da26cf352f, type: 3}
   m_PrefabInstance: {fileID: 677202726602444276}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7262552530167139877 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -1320630809586400303, guid: e11ff40e3e2f6aa4d94f51da26cf352f, type: 3}
+  m_PrefabInstance: {fileID: 677202726602444276}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7702892573391672227 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7170790198359481943, guid: e11ff40e3e2f6aa4d94f51da26cf352f, type: 3}

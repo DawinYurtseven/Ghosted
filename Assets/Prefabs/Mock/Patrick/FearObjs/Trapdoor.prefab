@@ -1434,9 +1434,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7526297884832729484}
-  - component: {fileID: 4808929593658495242}
-  - component: {fileID: 7902790208412048130}
   - component: {fileID: 7248451358407285913}
+  - component: {fileID: 1475378760474388278}
   m_Layer: 0
   m_Name: Trapdoor
   m_TagString: Untagged
@@ -1465,38 +1464,6 @@ Transform:
   - {fileID: 6145921942008931884}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4808929593658495242
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7624059967218629450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ced79fa0dad14b4abdf43548acf06a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvas: {fileID: 6360676336124437049}
-  lockOnImage: {fileID: 8939694980043225655}
-  emotionText: {fileID: 535100763456185296}
---- !u!114 &7902790208412048130
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7624059967218629450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d69c45cf0de2e2d4483cc072f0893ce8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  openState: {fileID: 195932216939056918}
-  closedState: {fileID: 2473384417843279910}
-  shadow: {fileID: 8505626104110534678}
-  specialEffect: {fileID: 0}
-  TargetMock: {fileID: 0}
 --- !u!65 &7248451358407285913
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1518,6 +1485,30 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4.5, y: 1.25, z: 4.75}
   m_Center: {x: 0.5, y: -0.25, z: 0}
+--- !u!114 &1475378760474388278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7624059967218629450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad39a9962f2d62f45bd57291c23a461a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 6360676336124437049}
+  lockOnImage: {fileID: 8939694980043225655}
+  emotionText: {fileID: 535100763456185296}
+  specialEffect: {fileID: 26273461556654036}
+  joyVFX: {fileID: 2373751536887040198}
+  fearVFX: {fileID: 2626826497483563886}
+  bindingSFX: {fileID: 611168824510630889}
+  boundSFX: {fileID: 3377326461060633920}
+  openState: {fileID: 0}
+  closedState: {fileID: 0}
+  shadow: {fileID: 0}
+  lockedInFear: 0
 --- !u!1 &8047026123693389243
 GameObject:
   m_ObjectHideFlags: 0
@@ -2314,6 +2305,43 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e11ff40e3e2f6aa4d94f51da26cf352f, type: 3}
+--- !u!1 &26273461556654036 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4841323770616215877, guid: e11ff40e3e2f6aa4d94f51da26cf352f, type: 3}
+  m_PrefabInstance: {fileID: 4860089623765931665}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &611168824510630889 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5407080484987379064, guid: e11ff40e3e2f6aa4d94f51da26cf352f, type: 3}
+  m_PrefabInstance: {fileID: 4860089623765931665}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &2373751536887040198 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7170790198359481943, guid: e11ff40e3e2f6aa4d94f51da26cf352f, type: 3}
+  m_PrefabInstance: {fileID: 4860089623765931665}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2626826497483563886 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7423864077165147647, guid: e11ff40e3e2f6aa4d94f51da26cf352f, type: 3}
+  m_PrefabInstance: {fileID: 4860089623765931665}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3377326461060633920 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -1320630809586400303, guid: e11ff40e3e2f6aa4d94f51da26cf352f, type: 3}
+  m_PrefabInstance: {fileID: 4860089623765931665}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &6145921942008931884 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1601085411031642301, guid: e11ff40e3e2f6aa4d94f51da26cf352f, type: 3}

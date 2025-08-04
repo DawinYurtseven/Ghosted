@@ -68,7 +68,7 @@ public class JumpPuzzleElement : MonoBehaviour
                 animate(manager.isSolved(), manager.isSolution());
                 
                 //Audio
-                FMODUnity.RuntimeManager.PlayOneShot(effect, transform.position);
+                RuntimeManager.PlayOneShot(effect, transform.position);
             }
         }
     }
@@ -79,7 +79,7 @@ public class JumpPuzzleElement : MonoBehaviour
             animate(true,true);
         
         //Audio
-        FMODUnity.RuntimeManager.PlayOneShot(solvedSFX, transform.position);
+        RuntimeManager.PlayOneShot(solvedSFX, transform.position);
     }
     
     private void animate(bool correct, bool timeToShowColor)

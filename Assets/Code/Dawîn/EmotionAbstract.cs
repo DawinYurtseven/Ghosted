@@ -8,8 +8,8 @@ public abstract class EmotionAbstract : TalismanTargetMock
     [SerializeField] protected GameObject specialEffect;
     [SerializeField] protected GameObject joyVFX;
     [SerializeField] protected GameObject fearVFX;
-    public AudioSource bindingSFX;
-    public AudioSource boundSFX;
+    public FMODUnity.StudioEventEmitter bindingSFX;
+    public FMODUnity.StudioEventEmitter boundSFX;
     
     protected IEnumerator PlayAudioSequentially()
     {
@@ -17,7 +17,11 @@ public abstract class EmotionAbstract : TalismanTargetMock
         if (bindingSFX != null)
         {
             bindingSFX.Play();
-            yield return new WaitForSeconds(bindingSFX.clip.length);
+            
+            while (bindingSFX.IsPlaying())
+            {
+                yield return null;
+            }
         }
 
         if (boundSFX != null)
