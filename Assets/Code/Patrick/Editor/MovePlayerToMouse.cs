@@ -123,7 +123,7 @@ public class PlayerPositionTool : EditorWindow
                 targetPos += config.offset;
                 
                 config.player.transform.position = targetPos;
-                Debug.Log($"Player moved to {targetPos}");
+                //Debug.Log($"Player moved to {targetPos}");
                 
                 // CTRL modifier triggers play mode
                 if (e.control)

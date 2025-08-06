@@ -146,18 +146,40 @@ public class JumpStopHand : MonoBehaviour
     // just toggles the isHandRunning bool
     private void toggleHand()
     {
-        if (isHandRunning)
+        if(isHandRunning)
         {
-            isHandRunning = false;
-            Debug.Log("Stopped hand: " + _hand);
+            StopHand();
         }
         else
         {
-            isHandRunning = true;
-            Debug.Log("Started hand: " + _hand);
+            StartHand();
         }
     }
 
+    private void StopHand()
+    {
+        if (!isHandRunning)
+        {
+            Debug.Log("Hand is already stopped: " + _hand);
+            return;
+        }
+        
+        isHandRunning = false;
+        Debug.Log("Stopped hand: " + _hand);
+    }
+    
+    private void StartHand()
+    {
+        if (isHandRunning)
+        {
+            Debug.Log("Hand is already running: " + _hand);
+            return;
+        }
+        
+        isHandRunning = true;
+        Debug.Log("Started hand: " + _hand);
+    }
+    
     private void playFeedbackSound()
     {
         if (!feedbackSound.IsNull)
