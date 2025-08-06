@@ -18,7 +18,7 @@ public class TagTriggerzone : TriggerZone
         }
     }
     
-    public virtual void OnTriggerExit(Collider other)
+    public override void OnTriggerExit(Collider other)
     {
         if (other.CompareTag(tagName))
         {

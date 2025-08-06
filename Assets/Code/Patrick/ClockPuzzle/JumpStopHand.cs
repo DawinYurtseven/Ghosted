@@ -9,7 +9,7 @@ public class JumpStopHand : MonoBehaviour
     //[SerializeField] private ClockAnim clockAnim;
     [SerializeField] private ClockHand _hand;
     private bool isHandRunning = true;
-    private bool active = true;
+    private bool puzzleActive = true;
     
     [Header("Animation Settings")]
     // For immediate feedback when jumping on the clock
@@ -51,18 +51,26 @@ public class JumpStopHand : MonoBehaviour
         {
             isHandRunning = false;
             animate(true);
-            active = false;
+            puzzleActive = false;
         }
         else
         {
-            //Debug.Log("Puzzle not solved, hand is running again: " + _hand);
-            isHandRunning = true;
+            if (manager.lastJumpedHand == _hand)
+            {
+                Debug.Log("Puzzle not solved, starting hand again: " + _hand);
+                isHandRunning = true;
+                manager.clockAnim.onPuzzleAnimationComplete = (b) =>
+                {
+                    manager.clockAnim.startHand(_hand);
+                    manager.clockAnim.onPuzzleAnimationComplete = null; // remove listener after use
+                };
+            }
         }
     }
     
     void OnTriggerEnter(Collider other)
     {
-        if (!active || !other.CompareTag("Player"))
+        if (!puzzleActive || !other.CompareTag("Player"))
             return;
 
         Debug.Log("Player jumped on clock hand: " + _hand);
@@ -72,6 +80,7 @@ public class JumpStopHand : MonoBehaviour
         manager.getInput(_hand, isHandRunning);
     }
 
+    // Animate the clock hand when the player jumps on it
     private void animate(bool correct)
     {
         animObj.transform.DOKill(); // Stop ongoing tweens
@@ -134,20 +143,43 @@ public class JumpStopHand : MonoBehaviour
         }
     }
     
+    // just toggles the isHandRunning bool
     private void toggleHand()
     {
-        if (isHandRunning)
+        if(isHandRunning)
         {
-            isHandRunning = false;
-            Debug.Log("Stopped hand: " + _hand);
+            StopHand();
         }
         else
         {
-            isHandRunning = true;
-            Debug.Log("Started hand: " + _hand);
+            StartHand();
         }
     }
 
+    private void StopHand()
+    {
+        if (!isHandRunning)
+        {
+            Debug.Log("Hand is already stopped: " + _hand);
+            return;
+        }
+        
+        isHandRunning = false;
+        Debug.Log("Stopped hand: " + _hand);
+    }
+    
+    private void StartHand()
+    {
+        if (isHandRunning)
+        {
+            Debug.Log("Hand is already running: " + _hand);
+            return;
+        }
+        
+        isHandRunning = true;
+        Debug.Log("Started hand: " + _hand);
+    }
+    
     private void playFeedbackSound()
     {
         if (!feedbackSound.IsNull)
@@ -155,4 +187,10 @@ public class JumpStopHand : MonoBehaviour
             FMODUnity.RuntimeManager.PlayOneShot(feedbackSound, transform.position);;
         }
     }
+    
+    public ClockHand getClockHand()
+    {
+        return _hand;
+    }
+    
 }
