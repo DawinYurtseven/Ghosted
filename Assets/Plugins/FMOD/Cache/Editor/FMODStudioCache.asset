@@ -15,11 +15,38 @@ MonoBehaviour:
   Path: FMod/ghosted/Build/Desktop/Ghost.bank
   Name: Ghost
   StudioPath: bank:/Ghost
-  lastModified: 638882288342395798
+  lastModified: 638898459199724217
   FileSizes:
   - Name: Desktop
     Value: 467328
   Exists: 1
+--- !u!114 &-9055262190133859264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Clock/ticking_clock_loop
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Clock/ticking_clock_loop
+  Guid:
+    Data1: 1397771850
+    Data2: 1313718240
+    Data3: -422642302
+    Data4: -224973990
+  Banks:
+  - {fileID: 2633107891268416129}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 8000
 --- !u!114 &-8940351554007978037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,33 +265,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 172000
---- !u!114 &-7871757989032049767
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/switch/switch off
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/switch/switch off
-  Guid:
-    Data1: -856919420
-    Data2: 1178206983
-    Data3: -1819759719
-    Data4: -505548377
-  Banks:
-  - {fileID: 2633107891268416129}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 192
 --- !u!114 &-7267757666554827709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,7 +280,7 @@ MonoBehaviour:
   Path: FMod/ghosted/Build/Desktop/UI.bank
   Name: UI
   StudioPath: bank:/UI
-  lastModified: 638882288374031582
+  lastModified: 638898459200387409
   FileSizes:
   - Name: Desktop
     Value: 245760
@@ -327,7 +327,7 @@ MonoBehaviour:
   Path: FMod/ghosted/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638882305883335845
+  lastModified: 638900955658189799
   FileSizes:
   - Name: Desktop
     Value: 11816448
@@ -401,7 +401,7 @@ MonoBehaviour:
   Path: FMod/ghosted/Build/Desktop/Emotions.bank
   Name: Emotions
   StudioPath: bank:/Emotions
-  lastModified: 638882288341872873
+  lastModified: 638898459199704254
   FileSizes:
   - Name: Desktop
     Value: 314720
@@ -605,9 +605,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Clock/Ticking
+  m_Name: event:/SFX/Clock/ticking
   m_EditorClassIdentifier: 
-  Path: event:/SFX/Clock/Ticking
+  Path: event:/SFX/Clock/ticking
   Guid:
     Data1: 843980702
     Data2: 1210880529
@@ -703,33 +703,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 25633
---- !u!114 &-3264712135991261487
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Clock Bell/Complete
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Clock Bell/Complete
-  Guid:
-    Data1: 1294032543
-    Data2: 1310465026
-    Data3: 1920557959
-    Data4: -683858131
-  Banks:
-  - {fileID: 2633107891268416129}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1500
 --- !u!114 &-2992177919017539200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -784,33 +757,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1614
---- !u!114 &-2551931395234302117
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Weather/amb rain
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Weather/amb rain
-  Guid:
-    Data1: 1557633152
-    Data2: 1245777266
-    Data3: 289374338
-    Data4: 1153725340
-  Banks:
-  - {fileID: 2633107891268416129}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 88668
 --- !u!114 &-2459861424117155151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1205,7 +1151,7 @@ MonoBehaviour:
   Path: FMod/ghosted/Build/Desktop/Character.bank
   Name: Character
   StudioPath: bank:/Character
-  lastModified: 638882288339822941
+  lastModified: 638898459199612638
   FileSizes:
   - Name: Desktop
     Value: 1552416
@@ -1264,33 +1210,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 500
---- !u!114 &-537785810265822600
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Clock/slow ticking
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Clock/slow ticking
-  Guid:
-    Data1: 1260095486
-    Data2: 1240043352
-    Data3: -990951496
-    Data4: -319114685
-  Banks:
-  - {fileID: 2633107891268416129}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 8000
 --- !u!114 &-494326720441914275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1318,33 +1237,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 100266
---- !u!114 &-423262541235384726
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/switch/switch on
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/switch/switch on
-  Guid:
-    Data1: 1163781982
-    Data2: 1223124838
-    Data3: 261210766
-    Data4: 124519330
-  Banks:
-  - {fileID: 2633107891268416129}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 256
 --- !u!114 &-141644226201342407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1501,13 +1393,7 @@ MonoBehaviour:
   - {fileID: 5735427042759416907}
   - {fileID: 17777720020034600}
   - {fileID: -8094361753242677089}
-  - {fileID: 7745632452688565749}
-  - {fileID: -3264712135991261487}
-  - {fileID: -423262541235384726}
-  - {fileID: 1347957965905024545}
-  - {fileID: -537785810265822600}
-  - {fileID: -2551931395234302117}
-  - {fileID: -7871757989032049767}
+  - {fileID: -9055262190133859264}
   EditorParameters:
   - {fileID: 377465009096036401}
   - {fileID: 1316675867748271751}
@@ -1516,7 +1402,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 8145881761011800595}
   cacheVersion: 131848
-  cacheTime: 638882305883351073
+  cacheTime: 638900956979764494
   SerializableEventsDict:
   - key: event:/SFX/Binding/Bind loop
     index: 0
@@ -1785,7 +1671,7 @@ MonoBehaviour:
   Path: FMod/ghosted/Build/Desktop/Binding.bank
   Name: Binding
   StudioPath: bank:/Binding
-  lastModified: 638882288339184172
+  lastModified: 638898459199572594
   FileSizes:
   - Name: Desktop
     Value: 430720
@@ -1924,33 +1810,6 @@ MonoBehaviour:
   - A
   - B
   Exists: 1
---- !u!114 &1347957965905024545
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/glass breaking/glass break
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/glass breaking/glass break
-  Guid:
-    Data1: 1764503523
-    Data2: 1156798997
-    Data3: -680326998
-    Data4: 1711984716
-  Banks:
-  - {fileID: 2633107891268416129}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1308
 --- !u!114 &1374733345268849111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2047,10 +1906,10 @@ MonoBehaviour:
   Path: FMod/ghosted/Build/Desktop/Level.bank
   Name: Level
   StudioPath: bank:/Level
-  lastModified: 638882305882591681
+  lastModified: 638900956979764494
   FileSizes:
   - Name: Desktop
-    Value: 4312480
+    Value: 3146304
   Exists: 1
 --- !u!114 &2840741616920250837
 MonoBehaviour:
@@ -2687,38 +2546,11 @@ MonoBehaviour:
   Path: FMod/ghosted/Build/Desktop/Dialogs.bank
   Name: Dialogs
   StudioPath: bank:/Dialogs
-  lastModified: 638882288341325672
+  lastModified: 638900955619411249
   FileSizes:
   - Name: Desktop
     Value: 3439552
   Exists: 1
---- !u!114 &7745632452688565749
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Clock Bell/Bell
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Clock Bell/Bell
-  Guid:
-    Data1: 656912134
-    Data2: 1211350150
-    Data3: -1595370601
-    Data4: 2007494983
-  Banks:
-  - {fileID: 2633107891268416129}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1164
 --- !u!114 &7908677746975762649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2761,10 +2593,10 @@ MonoBehaviour:
   Path: FMod/ghosted/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638882305883351073
+  lastModified: 638900955658205063
   FileSizes:
   - Name: Desktop
-    Value: 4902
+    Value: 4586
   Exists: 1
 --- !u!114 &8330151729175129455
 MonoBehaviour:
