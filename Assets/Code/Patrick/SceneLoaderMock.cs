@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class SceneLoaderMock : MonoBehaviour
 {
     public String introSceneName;
+    public String cakeSceneName;
     public String trainSceneName;
 
 
@@ -24,6 +25,17 @@ public class SceneLoaderMock : MonoBehaviour
         }
         
         SceneManager.LoadScene(introSceneName);
+    }
+    
+    public void loadCake()
+    {
+        if (string.IsNullOrEmpty(cakeSceneName))
+        {
+            Debug.LogError("Intro scene name is not set.");
+            return;
+        }
+        
+        SceneManager.LoadScene(cakeSceneName);
     }
     
     public void loadTrainScene()
