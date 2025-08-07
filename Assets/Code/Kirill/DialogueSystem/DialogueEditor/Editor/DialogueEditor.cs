@@ -1,3 +1,4 @@
+/*
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -72,6 +73,7 @@ namespace Ghosted.Dialogue.Editor{
             }
         }
 
+        /*
         void OnGUI() {
             if (selectedDialogue == null)
             {
@@ -135,6 +137,7 @@ namespace Ghosted.Dialogue.Editor{
                 }
             }
         }
+        #1#
 
         private void ProcessEvents() {
             switch (Event.current.type) {
@@ -468,3 +471,4 @@ namespace Ghosted.Dialogue.Editor{
         }
     }
 }
+*/

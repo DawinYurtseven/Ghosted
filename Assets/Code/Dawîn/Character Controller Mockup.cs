@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Ghosted.Dialogue;
 using TMPro;
 using UniRx;
 using UnityEngine;
@@ -25,13 +24,13 @@ public class CharacterControllerMockup : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject characterObject;
 
-    [SerializeField] private PlayerConversant conversant;
+    [Header("UI for Dialogue")] 
+    [SerializeField] private TextMeshPro nameField, textField;
 
     public void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
         _rb = GetComponent<Rigidbody>();
-        conversant = GetComponent<PlayerConversant>();
     }
 
     private void Start()
@@ -531,7 +530,7 @@ public class CharacterControllerMockup : MonoBehaviour
         }
     }
     
-
+    
     public void Interact(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -544,10 +543,17 @@ public class CharacterControllerMockup : MonoBehaviour
                 
                 tempAltar.InteractAltar();
             }
-            else
+            if(Physics.SphereCast(transform.position, 0.3f, transform.forward, out var hit, interactionRange))
             {
-                conversant.InteractDialogue();
-            }
+                if (hit.collider.TryGetComponent<ThisIsAProperDialogueSystem>(out var dialogue))
+                {
+                    Debug.Log("Dialogue found");
+                    if (dialogue)
+                    {
+                        dialogue.StartDialogue();
+                    }
+                }
+            }   
         }
     }
 

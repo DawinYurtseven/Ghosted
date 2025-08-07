@@ -3,14 +3,11 @@ using UnityEngine.Events;
 
 public class DialogueTrigger : MonoBehaviour
 {
-    [SerializeField] private string action;
+    public string action;
     [SerializeField] private UnityEvent onTrigger;
 
-    public void Trigger(string actionToTrigger)
+    public void Trigger()
     {
-        if (actionToTrigger == action)
-        {
-            onTrigger.Invoke();
-        }
+        onTrigger.Invoke();
     }
 }
