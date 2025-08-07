@@ -19,7 +19,7 @@ public class SceneViewStateToggle : EditorWindow
 
     public void CreateGUI()
     {
-        Debug.Log("CreateGUI called");
+        //Debug.Log("CreateGUI called");
         VisualElement root = rootVisualElement;
         
         Button joyButton = new Button();
