@@ -143,7 +143,7 @@ public class SceneTriggerzone : TriggerZone
         }
     }
     
-    private static async void moveObjectsToParent(GameObject parent, GameObject newParent)
+    private static void moveObjectsToParent(GameObject parent, GameObject newParent)
     {
         if (parent == null || newParent == null)
         {

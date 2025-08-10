@@ -1,5 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
+using FMODUnity;
 
 public class JumpPuzzleElement : MonoBehaviour
 {
@@ -16,8 +17,8 @@ public class JumpPuzzleElement : MonoBehaviour
     [SerializeField] private GameObject indicator;
     
     [Header("Feedback")] 
-    [SerializeField] private FMODUnity.EventReference effect;
-    [SerializeField] private FMODUnity.EventReference solvedSFX;
+    [SerializeField] private EventReference effect;
+    [SerializeField] private EventReference solvedSFX;
     
     private Vector3 originalPos;
     private Renderer rend;
@@ -31,6 +32,16 @@ public class JumpPuzzleElement : MonoBehaviour
         
         rend = indicator? indicator.GetComponent<Renderer>() : animObj.GetComponent<Renderer>();
         if (rend) defaultColor = rend.material.color;
+        
+        //if the FMOD event is not set, get the sound from the path
+        if (effect.IsNull)
+        {
+            effect = RuntimeManager.PathToEventReference("event:/SFX/Clock Bell/bell");
+        }
+        if (solvedSFX.IsNull)
+        {
+            solvedSFX = RuntimeManager.PathToEventReference("event:/SFX/Clock Bell/complete");
+        }
     }
 
     //Subscribe for win animation
@@ -57,7 +68,7 @@ public class JumpPuzzleElement : MonoBehaviour
                 animate(manager.isSolved(), manager.isSolution());
                 
                 //Audio
-                FMODUnity.RuntimeManager.PlayOneShot(effect, transform.position);
+                RuntimeManager.PlayOneShot(effect, transform.position);
             }
         }
     }
@@ -68,7 +79,7 @@ public class JumpPuzzleElement : MonoBehaviour
             animate(true,true);
         
         //Audio
-        FMODUnity.RuntimeManager.PlayOneShot(solvedSFX, transform.position);
+        RuntimeManager.PlayOneShot(solvedSFX, transform.position);
     }
     
     private void animate(bool correct, bool timeToShowColor)
