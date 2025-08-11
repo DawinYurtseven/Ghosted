@@ -15,6 +15,7 @@ public class ThisIsAProperDialogueSystem : MonoBehaviour
     [SerializeField] private List<DialogueTrigger> triggers;
     [SerializeField] private TextMeshProUGUI _name, _text;
     [SerializeField] private FMODUnity.StudioEventEmitter _emitter;
+    [SerializeField] private bool ForcedDialogue = false;
     
     private int _index = 0;
     private DialogueNode[] nodes;
@@ -104,7 +105,11 @@ public class ThisIsAProperDialogueSystem : MonoBehaviour
         if (player != null)
         {
             player.SetDialogue(this);
-            uiHint.Show();
+            if (ForcedDialogue)
+            {
+                StartDialogue();
+            }
+            if(uiHint) uiHint.Show();
         }
     }
     void OnTriggerExit(Collider other)
@@ -113,7 +118,7 @@ public class ThisIsAProperDialogueSystem : MonoBehaviour
         if (player != null)
         {
             player.LeaveDialogue();
-            uiHint.Hide();
+            if(uiHint) uiHint.Hide();
         }
     }
 }
