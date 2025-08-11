@@ -8,7 +8,6 @@ public class GameMenuController : MonoBehaviour
 {
     [SerializeField] private UIDocument document;
     [SerializeField] private SettingsMenuController settingsMenuController;
-    [SerializeField] private DialogueMenuController dialogueMenuController;
     [SerializeField] private InputActionReference uiEscAction;
 
     void OnEnable()

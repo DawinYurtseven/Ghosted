@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Ghosted.Dialogue {
-    public class DialogueNode : DialogueEditorNode
+    public class DialogueNode : ScriptableObject
     {
         public string text;
         public List<string> onEnterActions = new List<string>();

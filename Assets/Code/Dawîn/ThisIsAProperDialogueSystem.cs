@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using FMODUnity;
 using Ghosted.Dialogue;
 using TMPro;
 using UnityEngine;
@@ -12,10 +13,8 @@ public class ThisIsAProperDialogueSystem : MonoBehaviour
 {
     [SerializeField] private Dialogue fialogue;
     [SerializeField] private List<DialogueTrigger> triggers;
-    private TextMeshPro _name, _text;
-
-    public readonly UnityEvent<Dialogue> OnStartDialogue = new UnityEvent<Dialogue>();
-    public readonly UnityEvent<Dialogue> OnEndDialogue = new UnityEvent<Dialogue>();
+    [SerializeField] private TextMeshProUGUI _name, _text;
+    [SerializeField] private FMODUnity.StudioEventEmitter _emitter;
     
     private int _index = 0;
     private DialogueNode[] nodes;
@@ -25,6 +24,13 @@ public class ThisIsAProperDialogueSystem : MonoBehaviour
         triggers = gameObject.GetComponentsInChildren<DialogueTrigger>().ToList();
         nodes = fialogue.GetAllNodes().ToArray();
     }
+    
+    public void SetTexts(TextMeshProUGUI name, TextMeshProUGUI text, StudioEventEmitter emitter)
+    {
+        _name = name;
+        _text = text;
+        _emitter = emitter;
+    }
 
     public void StartDialogue()
     {
@@ -32,33 +38,32 @@ public class ThisIsAProperDialogueSystem : MonoBehaviour
         _index = 0;
         _text.text = nodes[0].text;
         _name.text = nodes[0].speaker;
-        FMODUnity.RuntimeManager.PlayOneShot(nodes[0].voiceClip);
-        
+        _emitter.EventReference = nodes[0].voiceClip;
+        _emitter.Stop();
+        _emitter.Play();
+
         TriggerDialogueEnterEvents();
-        
-        
     }
-    
-    public void Next(InputAction.CallbackContext context)
+
+    public bool Next()
     {
-        if (context.started)
+        _emitter.Stop();
+         TriggerDialogueExitEvents();
+        _index++;
+        if (_index > triggers.Count)
         {
-            
-            TriggerDialogueExitEvents();
-            _index++;
-            if (_index >= triggers.Count)
-            {
-                PlayerInputDisabler.Instance.SwitchInputMapDelayed("Character Control");
-                return;
-            }
-            _text.text = nodes[_index].text;
-            _name.text = nodes[_index].speaker;
-            FMODUnity.RuntimeManager.PlayOneShot(nodes[_index].voiceClip);
-            
-            TriggerDialogueEnterEvents();
-            
+            PlayerInputDisabler.Instance.SwitchInputMapDelayed("Character Control");
+            _emitter.Stop();
+            return false;
         }
 
+        _text.text = nodes[_index].text;
+        _name.text = nodes[_index].speaker;
+        _emitter.EventReference = nodes[_index].voiceClip;
+        _emitter.Play();
+
+        TriggerDialogueEnterEvents();
+        return true;
     }
 
     private void TriggerDialogueEnterEvents()
@@ -75,7 +80,7 @@ public class ThisIsAProperDialogueSystem : MonoBehaviour
             }
         }
     }
-    
+
     private void TriggerDialogueExitEvents()
     {
         foreach (string action in nodes[_index].onExitActions)
@@ -92,20 +97,22 @@ public class ThisIsAProperDialogueSystem : MonoBehaviour
     }
 
     public UIInteractionHint uiHint;
-
-    public void turnOnHint()
+    
+    void OnTriggerEnter(Collider other)
     {
-        if (uiHint != null)
+        var player = other.GetComponent<CharacterControllerMockup>();
+        if (player != null)
         {
-            Debug.Log("Turn On Hint");
+            player.SetDialogue(this);
             uiHint.Show();
         }
     }
-
-    public void turnOffHint()
+    void OnTriggerExit(Collider other)
     {
-        if (uiHint != null)
+        var player = other.GetComponent<CharacterControllerMockup>();
+        if (player != null)
         {
+            player.LeaveDialogue();
             uiHint.Hide();
         }
     }

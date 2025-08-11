@@ -36,12 +36,12 @@ public class LevelManagerMock : MonoBehaviour
     public GameObject[] objectsToActivate;
 
    
-    private GlobalConversant dialogue;
-    [SerializeField] private GlobalConversant trainDialogue;
+    private ThisIsAProperDialogueSystem dialogue;
+    [SerializeField] private ThisIsAProperDialogueSystem trainDialogue;
 
     void Start()
     {
-        dialogue = this.GetComponent<GlobalConversant>();
+        dialogue = this.GetComponent<ThisIsAProperDialogueSystem>();
     }
     private void OnEnable()
     {
@@ -90,7 +90,7 @@ public class LevelManagerMock : MonoBehaviour
     {
         if (altarUsed) return;
         altarUsed = true;
-        dialogue.StartGlobalDialogue(player.GetComponent<PlayerConversant>());
+        dialogue.StartDialogue();
     }
     void CuckooClockCutScene()
     {
@@ -114,7 +114,7 @@ public class LevelManagerMock : MonoBehaviour
 
         if (!calledFromTrain && (trainSceneCount == 1 || trainSceneCount == 2))
         {
-            trainDialogue.StartGlobalDialogue(player.GetComponent<PlayerConversant>());
+            trainDialogue.StartDialogue();
         }
 
         return false;
