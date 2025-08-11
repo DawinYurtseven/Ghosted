@@ -104,7 +104,10 @@ public class ThisIsAProperDialogueSystem : MonoBehaviour
         if (player != null)
         {
             player.SetDialogue(this);
-            uiHint.Show();
+            if (uiHint)
+            {
+                uiHint.Show();
+            }
         }
     }
     void OnTriggerExit(Collider other)
@@ -113,7 +116,10 @@ public class ThisIsAProperDialogueSystem : MonoBehaviour
         if (player != null)
         {
             player.LeaveDialogue();
-            uiHint.Hide();
+            if (uiHint)
+            {
+                uiHint.Hide();
+            }
         }
     }
 }
