@@ -1928,7 +1928,7 @@ GameObject:
   m_Component:
   - component: {fileID: 147229678}
   - component: {fileID: 147229677}
-  - component: {fileID: 147229676}
+  - component: {fileID: 147229679}
   m_Layer: 0
   m_Name: Don't go back
   m_TagString: Untagged
@@ -1936,20 +1936,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &147229676
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 147229675}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4dadbc991f8da243a098c238e374029, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogues:
-  - {fileID: 11400000, guid: ce2f7430b5ce2474d8a1849ba4536cbb, type: 2}
 --- !u!65 &147229677
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1986,6 +1972,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &147229679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 147229675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c15f82fde144ecc41b0583d41979c729, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fialogue: {fileID: 11400000, guid: ce2f7430b5ce2474d8a1849ba4536cbb, type: 2}
+  triggers: []
+  _name: {fileID: 0}
+  _text: {fileID: 0}
+  _emitter: {fileID: 0}
+  uiHint: {fileID: 0}
 --- !u!1 &147558441
 GameObject:
   m_ObjectHideFlags: 0
@@ -20256,9 +20260,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1667795039}
   - component: {fileID: 1667795038}
-  - component: {fileID: 1667795042}
   - component: {fileID: 1667795041}
   - component: {fileID: 1667795040}
+  - component: {fileID: 1667795042}
   m_Layer: 0
   m_Name: nextLevel
   m_TagString: Untagged
@@ -20379,11 +20383,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1667795036}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4dadbc991f8da243a098c238e374029, type: 3}
+  m_Script: {fileID: 11500000, guid: c15f82fde144ecc41b0583d41979c729, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogues:
-  - {fileID: 11400000, guid: c579f5b3fe2e8d54e97ec407cc3f9403, type: 2}
+  fialogue: {fileID: 11400000, guid: c579f5b3fe2e8d54e97ec407cc3f9403, type: 2}
+  triggers: []
+  _name: {fileID: 0}
+  _text: {fileID: 0}
+  _emitter: {fileID: 0}
+  uiHint: {fileID: 0}
 --- !u!1001 &1673687837
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26513,9 +26521,9 @@ SceneRoots:
   - {fileID: 665603153}
   - {fileID: 1205818948}
   - {fileID: 147229678}
+  - {fileID: 1667795039}
   - {fileID: 1733779789}
   - {fileID: 2093594741}
-  - {fileID: 1667795039}
   - {fileID: 99238017}
   - {fileID: 1949361332}
   - {fileID: 1342486316}
