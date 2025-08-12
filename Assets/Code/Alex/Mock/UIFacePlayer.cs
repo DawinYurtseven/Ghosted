@@ -25,14 +25,14 @@ public class UIFacePlayer : MonoBehaviour
         transform.LookAt(transform.position + mainCamera.forward);
     }
     
-    public void Show()
+    public virtual void Show()
     {
         if (currentTween != null) currentTween.Kill();
         //Debug.Log("Show UI");
         currentTween = canvasGroup.DOFade(1f, fadeDuration);
     }
 
-    public void Hide()
+    public virtual void Hide()
     {
         if (currentTween != null) currentTween.Kill();
         //Debug.Log("Hide UI");

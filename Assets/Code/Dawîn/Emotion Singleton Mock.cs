@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UniRx;
 using UnityEngine;
 using UnityEngine.Events;
@@ -19,6 +20,10 @@ public class EmotionSingletonMock : MonoBehaviour
     public GameObject talismanCounter;
     public bool disableAll = false;
     public FMOD.Studio.EventInstance music;
+
+    public TextMeshProUGUI nameField, textField;
+    public FMODUnity.StudioEventEmitter dialogueEventEmitter;
+    public GameObject dialogueWindowGameObject;
     
     #region Emotions
 
@@ -189,7 +194,6 @@ public class EmotionSingletonMock : MonoBehaviour
         }
         else
         {
-            DontDestroyOnLoad(this);
             Instance = this;
         }
 

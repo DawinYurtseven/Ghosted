@@ -14,10 +14,11 @@ public class ThisIsAProperDialogueSystem : MonoBehaviour
     [SerializeField] private Dialogue fialogue;
     [SerializeField] private List<DialogueTrigger> triggers;
     [SerializeField] private TextMeshProUGUI _name, _text;
-    [SerializeField] private FMODUnity.StudioEventEmitter _emitter;
+    [SerializeField] private StudioEventEmitter _emitter;
     [SerializeField] private bool ForcedDialogue = false;
+    [SerializeField] private GameObject dialogueWindowGameObject;
 
-    private int _index = 0;
+    private int _index ;
     private DialogueNode[] nodes;
 
     private void Awake()
@@ -25,16 +26,16 @@ public class ThisIsAProperDialogueSystem : MonoBehaviour
         triggers = gameObject.GetComponentsInChildren<DialogueTrigger>().ToList();
         nodes = fialogue.GetAllNodes().ToArray();
     }
-
-    public void SetTexts(TextMeshProUGUI name, TextMeshProUGUI text, StudioEventEmitter emitter)
-    {
-        _name = name;
-        _text = text;
-        _emitter = emitter;
-    }
+    
 
     public void StartDialogue()
     {
+        dialogueWindowGameObject = EmotionSingletonMock.Instance.dialogueWindowGameObject;
+        dialogueWindowGameObject.SetActive(true);
+        _emitter = EmotionSingletonMock.Instance.dialogueEventEmitter;
+        _text = EmotionSingletonMock.Instance.textField;
+        _name = EmotionSingletonMock.Instance.nameField;
+        
         PlayerInputDisabler.Instance.SwitchInputMapDelayed("Dialogue");
         _index = 0;
         _text.text = nodes[0].text;
@@ -51,10 +52,11 @@ public class ThisIsAProperDialogueSystem : MonoBehaviour
         _emitter.Stop();
         TriggerDialogueExitEvents();
         _index++;
-        if (_index > triggers.Count)
+        if (_index > fialogue.GetAllNodes().Count-1)
         {
             PlayerInputDisabler.Instance.SwitchInputMapDelayed("Character Control");
             CameraManager.Instance.turnOffAll();
+            dialogueWindowGameObject.SetActive(false);
             return false;
         }
 

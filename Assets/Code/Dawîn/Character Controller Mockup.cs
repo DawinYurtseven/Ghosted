@@ -22,11 +22,7 @@ public class CharacterControllerMockup : MonoBehaviour
     [SerializeField] private LayerMask ground;
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject characterObject;
-
-    [Header("UI for Dialogue")] [SerializeField]
-    private GameObject dialogueWindowGameObject;
-    [SerializeField] private TextMeshProUGUI nameField, textField;
-    [SerializeField] private FMODUnity.StudioEventEmitter dialogueEventEmitter;
+    
 
     public void Awake()
     {
@@ -501,9 +497,6 @@ public class CharacterControllerMockup : MonoBehaviour
     [Header("Interactions")] private TalismanTargetMock _tempTar;
     public AltarMock tempAltar;
 
-
-    [SerializeField] private int interactionRange = 10;
-
     [SerializeField] private float interactDistanceAltar = 3f;
     [SerializeField] private Transform checkFrom;
 
@@ -543,10 +536,6 @@ public class CharacterControllerMockup : MonoBehaviour
 
             if (currdialogue)
             {
-                Debug.Log("Dialogue found");
-
-                dialogueWindowGameObject.SetActive(true);
-                currdialogue.SetTexts(nameField, textField, dialogueEventEmitter);
                 currdialogue.StartDialogue();
             }
         }
@@ -575,7 +564,6 @@ public class CharacterControllerMockup : MonoBehaviour
         {
             if (!currdialogue.Next())
             {
-                dialogueWindowGameObject.SetActive(false);
                 currdialogue = null;
             }
         }
@@ -604,7 +592,7 @@ public class CharacterControllerMockup : MonoBehaviour
     #region Position and Rotation
 
     [Header("Position and Rotation")] private bool _isOnCurvedGround;
-    [SerializeField] private float maxSlopeAngle = 45f, slopeAdjustment = 1.2f;
+    [SerializeField] private float maxSlopeAngle = 45f;
 
     private void Slope()
     {
