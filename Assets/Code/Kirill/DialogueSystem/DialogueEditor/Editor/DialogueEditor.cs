@@ -56,7 +56,7 @@ namespace Ghosted.Dialogue.Editor{
         }
 
         private void OnEnable() {
-            Debug.Log("OnEnableCalled");
+            //Debug.Log("OnEnableCalled");
             Selection.selectionChanged += OnSelectionChanged;
 
             nodeStyle = new GUIStyle();
