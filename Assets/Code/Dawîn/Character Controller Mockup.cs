@@ -576,6 +576,7 @@ public class CharacterControllerMockup : MonoBehaviour
             if (!currdialogue.Next())
             {
                 dialogueWindowGameObject.SetActive(false);
+                currdialogue = null;
             }
         }
     }
