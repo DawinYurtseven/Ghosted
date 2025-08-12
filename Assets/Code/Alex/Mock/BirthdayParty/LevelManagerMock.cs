@@ -90,6 +90,7 @@ public class LevelManagerMock : MonoBehaviour
     {
         if (altarUsed) return;
         altarUsed = true;
+        player.GetComponent<CharacterControllerMockup>().SetDialogue(dialogue);
         dialogue.StartDialogue();
     }
     void CuckooClockCutScene()
