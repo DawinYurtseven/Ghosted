@@ -91,6 +91,9 @@ public class StopClockManager : MonoBehaviour
         switch (hand)
         {
             case ClockHand.Hour:
+                Debug.Log("Checking hour hand: " + clockAnim.hourHand.localEulerAngles.y + 
+                          ", solution: " + solutionHours * 30f + 
+                          ", threshold: " + threshold);
                 return Mathf.Approximately(clockAnim.hourHand.localEulerAngles.y, solutionHours * 30f) || 
                        Mathf.Abs(clockAnim.hourHand.localEulerAngles.y - solutionHours * 30f) < threshold;
             case ClockHand.Minute:
