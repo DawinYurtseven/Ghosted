@@ -16,7 +16,7 @@ public class ThisIsAProperDialogueSystem : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _name, _text;
     [SerializeField] private FMODUnity.StudioEventEmitter _emitter;
     [SerializeField] private bool ForcedDialogue = false;
-    
+
     private int _index = 0;
     private DialogueNode[] nodes;
 
@@ -25,7 +25,7 @@ public class ThisIsAProperDialogueSystem : MonoBehaviour
         triggers = gameObject.GetComponentsInChildren<DialogueTrigger>().ToList();
         nodes = fialogue.GetAllNodes().ToArray();
     }
-    
+
     public void SetTexts(TextMeshProUGUI name, TextMeshProUGUI text, StudioEventEmitter emitter)
     {
         _name = name;
@@ -49,19 +49,22 @@ public class ThisIsAProperDialogueSystem : MonoBehaviour
     public bool Next()
     {
         _emitter.Stop();
-         TriggerDialogueExitEvents();
+        TriggerDialogueExitEvents();
         _index++;
         if (_index > triggers.Count)
         {
             PlayerInputDisabler.Instance.SwitchInputMapDelayed("Character Control");
-            _emitter.Stop();
+            CameraManager.Instance.turnOffAll();
             return false;
         }
 
         _text.text = nodes[_index].text;
         _name.text = nodes[_index].speaker;
-        _emitter.EventReference = nodes[_index].voiceClip;
-        _emitter.Play();
+        if (!nodes[_index].voiceClip.IsNull)
+        {
+            _emitter.EventReference = nodes[_index].voiceClip;
+            _emitter.Play();
+        }
 
         TriggerDialogueEnterEvents();
         return true;
@@ -98,7 +101,7 @@ public class ThisIsAProperDialogueSystem : MonoBehaviour
     }
 
     public UIInteractionHint uiHint;
-    
+
     void OnTriggerEnter(Collider other)
     {
         var player = other.GetComponent<CharacterControllerMockup>();
@@ -109,16 +112,18 @@ public class ThisIsAProperDialogueSystem : MonoBehaviour
             {
                 StartDialogue();
             }
-            if(uiHint) uiHint.Show();
+
+            if (uiHint) uiHint.Show();
         }
     }
+
     void OnTriggerExit(Collider other)
     {
         var player = other.GetComponent<CharacterControllerMockup>();
         if (player != null)
         {
             player.LeaveDialogue();
-            if(uiHint) uiHint.Hide();
+            if (uiHint) uiHint.Hide();
         }
     }
 }
