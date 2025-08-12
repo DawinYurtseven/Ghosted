@@ -40,9 +40,13 @@ public class ThisIsAProperDialogueSystem : MonoBehaviour
         _index = 0;
         _text.text = nodes[0].text;
         _name.text = nodes[0].speaker;
-        _emitter.EventReference = nodes[0].voiceClip;
         _emitter.Stop();
-        _emitter.Play();
+        
+        if (!nodes[0].voiceClip.IsNull)
+        {
+            _emitter.EventReference = nodes[0].voiceClip;
+            _emitter.Play();
+        }
 
         TriggerDialogueEnterEvents();
     }
