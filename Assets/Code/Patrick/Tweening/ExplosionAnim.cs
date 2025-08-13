@@ -1,3 +1,4 @@
+using Cinemachine;
 using DG.Tweening;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ public class ExplosionAnim : MonoBehaviour
     [SerializeField] private GameObject[] partsInTheWay;
     [SerializeField] private GameObject explodingObject;
     [SerializeField] private bool withCamShake = false;
+    [SerializeField] private CinemachineVirtualCamera cam2shake;
     
     [Header("Cleanup Settings")]
     [SerializeField] private bool cleanUp = false;
@@ -51,7 +53,7 @@ public class ExplosionAnim : MonoBehaviour
         }
         
         if(withCamShake)
-            SpawnAnim.shakeCamera();
+            StartCoroutine(SpawnAnim.shakeVirtualCamera(cam2shake));
         
         // explode the parts
         foreach (GameObject part in explosionParts)

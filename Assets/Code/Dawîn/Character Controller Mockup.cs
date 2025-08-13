@@ -57,6 +57,7 @@ public class CharacterControllerMockup : MonoBehaviour
         //interactable check
         //CheckForInteractables();
         ScaleShadowDecal();
+        checkReloadScene();
     }
 
     public void FixedUpdate()
@@ -285,7 +286,20 @@ public class CharacterControllerMockup : MonoBehaviour
     
     #endregion
 
-
+#if UNITY_EDITOR
+    private void checkReloadScene()
+    {
+        // Szene neu laden bei Strg + R
+        if (UnityEditor.EditorApplication.isPlaying && 
+            (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl)) && 
+            Input.GetKeyDown(KeyCode.R))
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(
+                UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+        }
+    }
+#endif
+    
     #region Target System
 
     //If merge conflict -> change to private, used for Mock for level design
@@ -464,7 +478,6 @@ public class CharacterControllerMockup : MonoBehaviour
                 _thrownTalisman = Instantiate(talismanPrefab, target.gameObject.transform.position,
                     Quaternion.LookRotation((transform.position - gameObject.transform.position).normalized));
                 StartCoroutine(_thrownTalisman.GetComponent<Talisman>().MoveTowardsPlayer(this));
-                animator.SetFloat(Call, 90f);
                 animator.SetTrigger(Call);
                 talismansUsed.text = maxTalismans- _curTalismans + " / " + maxTalismans;
                 //TODO: I think it was merged false because it is the same part, but leaving it here 

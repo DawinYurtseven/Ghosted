@@ -1,3 +1,5 @@
+using System.Collections;
+using Cinemachine;
 using UnityEngine;
 using DG.Tweening;
 
@@ -66,7 +68,7 @@ public class SpawnAnim : MonoBehaviour
             t.DOScale(Vector3.one, animDuration).SetEase(Ease.OutBack);
             cg.DOFade(1, animDuration);
             
-            Debug.Log("Showing obj " + obj.name);
+            //Debug.Log("Showing obj " + obj.name);
         }
         else
         {
@@ -134,7 +136,7 @@ public class SpawnAnim : MonoBehaviour
         obj.SetActive(false);
         s.SetDelay(delay);
         s.OnComplete(() => Destroy(obj)); // Optionally destroy the object after animation
-        Debug.Log("Deleted obj");
+        //Debug.Log("Deleted obj");
     }
     
     public static Sequence moveTo(Transform t, Transform target, float duration = 0.5f, Ease ease = Ease.OutQuad, bool withRotation = true)
@@ -256,12 +258,31 @@ public class SpawnAnim : MonoBehaviour
             changeLayerTo(child, layer);
         }
     }
-    
-    public static void shakeCamera(float duration = 0.5f, float strength = 1f, int vibrato = 10, float randomness = 90f)
+
+    public static IEnumerator shakeVirtualCamera(CinemachineVirtualCamera cam = null, float duration = 1f,
+        float strength = 1f, int vibrato = 10, float randomness = 90f)
     {
-        Camera.main.transform.DOShakePosition(duration, strength, vibrato, randomness)
-            .SetEase(Ease.OutQuad);
+        if (cam == null)
+        {
+            Debug.Log("Cam two shake is null");
+            yield break;
+        }
+
+        Debug.Log("Shaking that cam");
+
+        var shaker = cam.GetComponent<CinemachineBasicMultiChannelPerlin>();
+        if (shaker == null)
+            shaker = cam.AddCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+
+        shaker.m_AmplitudeGain = strength;
+        shaker.m_FrequencyGain = vibrato;
+
+        yield return new WaitForSeconds(duration);
+
+        shaker.m_AmplitudeGain = 0f;
+        shaker.m_FrequencyGain = 0f;
     }
-    
+
+
 }
 
