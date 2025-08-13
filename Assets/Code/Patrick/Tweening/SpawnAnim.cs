@@ -100,6 +100,8 @@ public class SpawnAnim : MonoBehaviour
         DOVirtual.DelayedCall(delay, () => SpawnMany(state));
     }
     
+    //------------------- Static Stuff -------------------
+    
     public static Sequence animateOut(GameObject obj, float animDuration = 0.6f)
     {
         if (obj == null)
@@ -253,6 +255,12 @@ public class SpawnAnim : MonoBehaviour
         {
             changeLayerTo(child, layer);
         }
+    }
+    
+    public static void shakeCamera(float duration = 0.5f, float strength = 1f, int vibrato = 10, float randomness = 90f)
+    {
+        Camera.main.transform.DOShakePosition(duration, strength, vibrato, randomness)
+            .SetEase(Ease.OutQuad);
     }
     
 }

@@ -464,6 +464,7 @@ public class CharacterControllerMockup : MonoBehaviour
                 _thrownTalisman = Instantiate(talismanPrefab, target.gameObject.transform.position,
                     Quaternion.LookRotation((transform.position - gameObject.transform.position).normalized));
                 StartCoroutine(_thrownTalisman.GetComponent<Talisman>().MoveTowardsPlayer(this));
+                animator.SetFloat(Call, 90f);
                 animator.SetTrigger(Call);
                 talismansUsed.text = maxTalismans- _curTalismans + " / " + maxTalismans;
                 //TODO: I think it was merged false because it is the same part, but leaving it here 
