@@ -44,7 +44,7 @@ public class PuzzleMock : MonoBehaviour
         
         if (isCacheCorrectUntil(index))
         {
-            Debug.Log("Cache is correct until " + index+"/"+ currentStep + ": " + cache.ToArray());
+            Debug.Log("Cache is correct until " + index+"/"+ currentStep + ": " + getCacheString());
             solutionCorrectUntil?.Invoke(index);
         }
         else
@@ -161,8 +161,11 @@ public class PuzzleMock : MonoBehaviour
     {
         int[] cacheArray = cache.ToArray();
         
-        int j =  0;
-        for (int i = cacheArray.Length - index; i > cacheArray.Length ; i++)
+        int j = 0;
+        Debug.Log("Starting check from back for index: " + index + " with cache length: " + cacheArray.Length);
+        Debug.Log("Checking i: " + (cacheArray.Length - index) + " | i > cacheArray.Length: " + ((cacheArray.Length - index) > cacheArray.Length));
+        
+        for (int i = cacheArray.Length - index; i < cacheArray.Length ; i++)
         {
             Debug.Log("Checking cache at: " + i+" for solution index: " + j);
             if (cacheArray[i] != correctOrder[j])
@@ -177,4 +180,8 @@ public class PuzzleMock : MonoBehaviour
         return true;
     }
     
+    private string getCacheString()
+    {
+        return string.Join(", ", cache.Select(i => i.ToString()).ToArray());
+    }
 }
