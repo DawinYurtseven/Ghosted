@@ -10,8 +10,12 @@ public class ExplosionAnim : MonoBehaviour
     [SerializeField] private GameObject[] partsInTheWay;
     [SerializeField] private GameObject explodingObject;
     [SerializeField] private bool withCamShake = false;
-    [SerializeField] private CinemachineVirtualCamera cam2shake;
     
+    [Header("Camera Shake Settings")]
+    [SerializeField] private CinemachineVirtualCamera cam2shake;
+    [SerializeField] private float shakeStrength = 1.2f;
+    [SerializeField] private float shakeDuration = 1f;
+        
     [Header("Cleanup Settings")]
     [SerializeField] private bool cleanUp = false;
     [SerializeField] private float cleanupDelay;
@@ -53,7 +57,7 @@ public class ExplosionAnim : MonoBehaviour
         }
         
         if(withCamShake)
-            StartCoroutine(SpawnAnim.shakeVirtualCamera(cam2shake));
+            StartCoroutine(SpawnAnim.shakeVirtualCamera(cam2shake, shakeDuration, shakeStrength));
         
         // explode the parts
         foreach (GameObject part in explosionParts)

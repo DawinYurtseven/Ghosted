@@ -2,6 +2,7 @@ using System.Collections;
 using Cinemachine;
 using UnityEngine;
 using DG.Tweening;
+using Unity.Mathematics;
 
 public class SpawnAnim : MonoBehaviour
 {
@@ -260,7 +261,7 @@ public class SpawnAnim : MonoBehaviour
     }
 
     public static IEnumerator shakeVirtualCamera(CinemachineVirtualCamera cam = null, float duration = 1f,
-        float strength = 1f, int vibrato = 10, float randomness = 90f)
+        float strength = 1f, int vibrato = 3, float randomness = 90f)
     {
         if (cam == null)
         {
@@ -269,10 +270,13 @@ public class SpawnAnim : MonoBehaviour
         }
 
         Debug.Log("Shaking that cam");
-
-        var shaker = cam.GetComponent<CinemachineBasicMultiChannelPerlin>();
+        
+        var shaker = cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         if (shaker == null)
+        {
+            Debug.Log("Shaker is null, adding CinemachineBasicMultiChannelPerlin component");
             shaker = cam.AddCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        }
 
         shaker.m_AmplitudeGain = strength;
         shaker.m_FrequencyGain = vibrato;
