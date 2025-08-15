@@ -53,6 +53,7 @@ public class CharacterControllerMockup : MonoBehaviour
         //interactable check
         //CheckForInteractables();
         ScaleShadowDecal();
+        checkReloadScene();
     }
 
     public void FixedUpdate()
@@ -279,7 +280,20 @@ public class CharacterControllerMockup : MonoBehaviour
 
     #endregion
 
-
+#if UNITY_EDITOR
+    private void checkReloadScene()
+    {
+        // Szene neu laden bei Strg + R
+        if (UnityEditor.EditorApplication.isPlaying && 
+            (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl)) && 
+            Input.GetKeyDown(KeyCode.R))
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(
+                UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+        }
+    }
+#endif
+    
     #region Target System
 
     //If merge conflict -> change to private, used for Mock for level design
