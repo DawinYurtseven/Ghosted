@@ -19,10 +19,14 @@ public class ThisIsAProperDialogueSystem : MonoBehaviour
 
     private void Awake()
     {
-        triggers = gameObject.GetComponentsInChildren<DialogueTrigger>().ToList();
+        if (triggers == null)
+        {
+            triggers = new List<DialogueTrigger>();
+            triggers = gameObject.GetComponentsInChildren<DialogueTrigger>().ToList();
+        }
+        
         nodes = dialogue.GetAllNodes().ToArray();
     }
-    
 
     public void StartDialogue()
     {
@@ -83,6 +87,10 @@ public class ThisIsAProperDialogueSystem : MonoBehaviour
                 {
                     trig.Trigger();
                 }
+            }
+            else
+            {
+                Debug.LogWarning("No trigger found for action: " + action);
             }
         }
     }
