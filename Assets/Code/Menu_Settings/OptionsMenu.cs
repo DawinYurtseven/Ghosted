@@ -29,7 +29,8 @@ public class OptionsMenu : MonoBehaviour
         SetResolution(PlayerPrefs.GetInt("Resolution") == 0 ? 1 : PlayerPrefs.GetInt("Resolution"));
 
         // Volume
-        volumeSlider.value = AudioListener.volume;
+        FMODUnity.RuntimeManager.GetBus("bus:/").getVolume(out var volume);
+        volumeSlider.value = volume;
         volumeSlider.onValueChanged.AddListener(SetVolume);
         
         //Sensitivity
@@ -78,7 +79,7 @@ public class OptionsMenu : MonoBehaviour
 
     public void SetVolume(float volume)
     {
-        audioMixer.SetFloat("volume", volume);
+        FMODUnity.RuntimeManager.GetBus("bus:/").setVolume(volume);
     }
     
     public void SetSensitivity(float sensitivity)
