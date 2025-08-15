@@ -1,6 +1,4 @@
 /*
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEditor.Callbacks;
@@ -73,7 +71,7 @@ namespace Ghosted.Dialogue.Editor{
             }
         }
 
-        /*
+        
         void OnGUI() {
             if (selectedDialogue == null)
             {

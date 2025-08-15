@@ -1,13 +1,9 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using FMODUnity;
 using Ghosted.Dialogue;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.InputSystem;
 
 public class ThisIsAProperDialogueSystem : MonoBehaviour
 {
