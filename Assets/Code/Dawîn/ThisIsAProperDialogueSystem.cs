@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class ThisIsAProperDialogueSystem : MonoBehaviour
 {
-    [SerializeField] private Dialogue fialogue;
+    [SerializeField] private Dialogue dialogue;
     [SerializeField] private List<DialogueTrigger> triggers;
     [SerializeField] private TextMeshProUGUI _name, _text;
     [SerializeField] private StudioEventEmitter _emitter;
@@ -20,7 +20,7 @@ public class ThisIsAProperDialogueSystem : MonoBehaviour
     private void Awake()
     {
         triggers = gameObject.GetComponentsInChildren<DialogueTrigger>().ToList();
-        nodes = fialogue.GetAllNodes().ToArray();
+        nodes = dialogue.GetAllNodes().ToArray();
     }
     
 
@@ -52,7 +52,7 @@ public class ThisIsAProperDialogueSystem : MonoBehaviour
         _emitter.Stop();
         TriggerDialogueExitEvents();
         _index++;
-        if (_index > fialogue.GetAllNodes().Count-1)
+        if (_index > dialogue.GetAllNodes().Count-1)
         {
             PlayerInputDisabler.Instance.SwitchInputMapDelayed("Character Control");
             CameraManager.Instance.turnOffAll();
