@@ -9,8 +9,7 @@ public class Joy : EmotionAbstract
     private Renderer _renderer;
     private Collider _col;
     private GameObject parent;
-
-    private bool isBound = false;
+    
     
     public UnityEvent onJumpPadActivated;
     

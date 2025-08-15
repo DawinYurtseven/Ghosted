@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Ghosted.Dialogue {
-    public class Reply : DialogueEditorInstance, IHasChildren
+    public class Reply : ScriptableObject, IHasChildren
     {
         public string text = "";
         public string Child { get => child; set => child = value; }

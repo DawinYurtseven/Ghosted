@@ -15,7 +15,6 @@ public class SceneViewStateToggle : EditorWindow
     
     static GameObject stateJoy;
     static GameObject stateFear;
-    static bool toggleState = false;
 
     public void CreateGUI()
     {

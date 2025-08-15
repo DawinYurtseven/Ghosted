@@ -1,3 +1,4 @@
+/*
 using System.Collections;
 using System.Collections.Generic;
 using Ghosted.Dialogue;
@@ -210,7 +211,7 @@ public class DialogueMenuController : MonoBehaviour
             int intCount = Mathf.FloorToInt(count);
             messageLabelCurrent.text = fullText.Substring(0, Mathf.Clamp(intCount, 0, fullText.Length));
         }, fullText.Length, 3).SetEase(Ease.Linear).SetOptions(true).Play();
-    }*/
+    }#1#
 
     private IEnumerator TypeText(string fullText)
     {
@@ -225,3 +226,4 @@ public class DialogueMenuController : MonoBehaviour
         }
     }
 }
+*/

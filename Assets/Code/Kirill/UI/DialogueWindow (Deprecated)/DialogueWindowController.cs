@@ -1,3 +1,4 @@
+/*
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -181,7 +182,7 @@ public class DialogueWindowController : MonoBehaviour
             isDoingTransition = false;
             Debug.Log("Ended Transition");
         });
-    }*/
+    }#1#
     private void AdaptToNewEmotion(Emotion emotion)
     {
         switch (emotion)
@@ -211,7 +212,7 @@ public class DialogueWindowController : MonoBehaviour
         Debug.Log("New font: " + messageLabelCurrent.resolvedStyle.unityFontDefinition.fontAsset);
         charDelay = settings.charDelay;
 
-        messageLabelCurrent.MarkDirtyRepaint();*/
+        messageLabelCurrent.MarkDirtyRepaint();#1#
         if (messageLabelCurrent != null)
             messageLabelCurrent.style.display = DisplayStyle.None;
         if (speakerLabelCurrent != null)
@@ -315,3 +316,4 @@ public class DialogueWindowController : MonoBehaviour
         }
     }
 }
+*/

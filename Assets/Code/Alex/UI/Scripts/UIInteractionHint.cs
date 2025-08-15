@@ -9,7 +9,7 @@ public class UIInteractionHint : UIFacePlayer
         canvasGroup.alpha = 0f;
     }
     
-    public void Show()
+    public override void Show()
     {
         //Debug.Log("Show UI");
         if (currentTween != null) currentTween.Kill();
@@ -28,7 +28,7 @@ public class UIInteractionHint : UIFacePlayer
         });
     }
 
-    public void Hide()
+    public override void Hide()
     {
         if (currentTween != null) currentTween.Kill();
         

@@ -8,11 +8,11 @@ namespace Ghosted.Dialogue
 
         public UIInteractionHint uiHint;
         
-        public void Interact(PlayerConversant playerConversant)
+        /*public void Interact(PlayerConversant playerConversant)
         {
             if (curDialogue != null)
                 playerConversant.StartDialogue(curDialogue);
-        }
+        }*/
 
         public void turnOnHint()
         {
@@ -46,7 +46,7 @@ namespace Ghosted.Dialogue
             // Debug.Log("Current Dialogue");
         }
         
-        void OnTriggerEnter(Collider other)
+        /*void OnTriggerEnter(Collider other)
         {
             PlayerConversant player = other.GetComponent<PlayerConversant>();
             if (player != null)
@@ -61,6 +61,6 @@ namespace Ghosted.Dialogue
             {
                 player.LeaveDialogue();
             }
-        }
+        }*/
     }
 }

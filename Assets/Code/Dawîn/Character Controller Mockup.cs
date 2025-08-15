@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Ghosted.Dialogue;
 using TMPro;
 using UniRx;
 using UnityEngine;
@@ -11,27 +10,24 @@ using UnityEngine.Rendering.Universal;
 public class CharacterControllerMockup : MonoBehaviour
 {
     //TODO: ADD fmod and animations 
-    
-    
+
+
     private static readonly int Grounded = Animator.StringToHash("grounded");
     private static readonly int Speed = Animator.StringToHash("Speed");
     private static readonly int Jumping = Animator.StringToHash("jump");
     private static readonly int Throw = Animator.StringToHash("Throw Talisman");
     private static readonly int Call = Animator.StringToHash("call");
 
-    [Header("base values")]
-    private Rigidbody _rb;
+    [Header("base values")] private Rigidbody _rb;
     [SerializeField] private LayerMask ground;
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject characterObject;
-
-    [SerializeField] private PlayerConversant conversant;
+    
 
     public void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
         _rb = GetComponent<Rigidbody>();
-        conversant = GetComponent<PlayerConversant>();
     }
 
     private void Start()
@@ -67,7 +63,7 @@ public class CharacterControllerMockup : MonoBehaviour
 
         //jumpControl
         RegulateJump();
-        
+
         //check for slope
         Slope();
     }
@@ -142,8 +138,7 @@ public class CharacterControllerMockup : MonoBehaviour
 
     #region Camera
 
-    [Header("Camera")] 
-    [SerializeField] private GameObject cameraPivot;
+    [Header("Camera")] [SerializeField] private GameObject cameraPivot;
     [SerializeField] private GameObject lookAtPivot;
     [SerializeField] private Vector2 cameraDirection;
     [SerializeField] private float cameraSpeed;
@@ -162,16 +157,15 @@ public class CharacterControllerMockup : MonoBehaviour
 
     private void CameraUpdate()
     {
-        _xAxisAngle += -cameraDirection.y * Time.fixedDeltaTime *  PlayerPrefs.GetFloat("sensitivity", cameraSpeed);
-                      
+        _xAxisAngle += -cameraDirection.y * Time.fixedDeltaTime * PlayerPrefs.GetFloat("sensitivity", cameraSpeed);
+
         ;
-        _yAxisAngle += cameraDirection.x  * Time.fixedDeltaTime *  PlayerPrefs.GetFloat("sensitivity", cameraSpeed);
+        _yAxisAngle += cameraDirection.x * Time.fixedDeltaTime * PlayerPrefs.GetFloat("sensitivity", cameraSpeed);
         ;
         _xAxisAngle = Mathf.Clamp(_xAxisAngle, xAxisMin, xAxisMax);
 
         cameraPivot.transform.localRotation = Quaternion.Euler(_xAxisAngle, _yAxisAngle, 0f);
         lookAtPivot.transform.localRotation = Quaternion.Euler(0f, _yAxisAngle, 0f);
-        
     }
 
     #endregion
@@ -186,15 +180,14 @@ public class CharacterControllerMockup : MonoBehaviour
      * coyoteTime: How long the player can jump after leaving the ground, this is used to allow the player to jump after leaving the ground.
      * the two booleans coyoteJumped and isGrounded are used to check if the player is grounded or not and dictate coyote time.
      */
-    [Header("Jump")] 
-    [SerializeField] public float jumpStrength;
+    [Header("Jump")] [SerializeField] public float jumpStrength;
     [SerializeField] public float fallStrength;
     [SerializeField] private float groundCheckDistance;
     [SerializeField] private float coyoteTime = 0.2f;
     [SerializeField] private bool coyoteJumped, isGrounded = true, jumpPressed;
     [SerializeField] private DecalProjector shadowDecal;
-    [SerializeField] private float shadowMinSize= 0.25f, shadowMaxSize = 1f, scaleFactor = 0.5f;
-    
+    [SerializeField] private float shadowMinSize = 0.25f, shadowMaxSize = 1f, scaleFactor = 0.5f;
+
     public void Jump(InputAction.CallbackContext context)
     {
         if (context.started && (Physics.SphereCast(transform.position, 0.3f, -transform.up, out var hit,
@@ -212,7 +205,7 @@ public class CharacterControllerMockup : MonoBehaviour
             var right = lookAtTarget.right;
             var forward = lookAtTarget.forward;
             _rb.AddForce(right * moveVector.x * 200f +
-                        forward * moveVector.y * 200f);
+                         forward * moveVector.y * 200f);
             //print("jumped");
         }
     }
@@ -249,12 +242,13 @@ public class CharacterControllerMockup : MonoBehaviour
         Debug.DrawLine(transform.position, transform.position - transform.up * groundCheckDistance, Color.red, 0.5f);
         if (!Physics.SphereCast(transform.position, 0.3f, -transform.up, out _, groundCheckDistance, ground))
         {
-            if(!Physics.SphereCast(transform.position, 0.3f, -transform.up, out _, groundCheckDistance * 1.2f, ground))
+            if (!Physics.SphereCast(transform.position, 0.3f, -transform.up, out _, groundCheckDistance * 1.2f, ground))
             {
                 animator.SetBool(Grounded, false);
             }
-            else 
+            else
                 animator.SetBool(Grounded, true);
+
             if (isGrounded && !coyoteJumped)
             {
                 isGrounded = false;
@@ -273,17 +267,17 @@ public class CharacterControllerMockup : MonoBehaviour
         {
             if (shadowDecal)
             {
-                float distance= Vector3.Distance(transform.position, hit.point);   // 0.4 difference
+                float distance = Vector3.Distance(transform.position, hit.point); // 0.4 difference
                 //float distance = hit.distance;
                 distance = Mathf.Max(0.01f, hit.distance); // avoid division by zero
                 float size = Mathf.Clamp(1f / distance * scaleFactor, shadowMinSize, shadowMaxSize);
                 shadowDecal.size = new Vector3(size, size, shadowDecal.size.z);
-                shadowDecal.transform.position = hit.point + Vector3.up * 0.01f;    // avoid z-fighting
-                Debug.Log("Distance to next ground: "+ distance + " and size: " + size);
+                shadowDecal.transform.position = hit.point + Vector3.up * 0.01f; // avoid z-fighting
+                Debug.Log("Distance to next ground: " + distance + " and size: " + size);
             }
         }
     }
-    
+
     #endregion
 
 #if UNITY_EDITOR
@@ -303,8 +297,7 @@ public class CharacterControllerMockup : MonoBehaviour
     #region Target System
 
     //If merge conflict -> change to private, used for Mock for level design
-    [Header("Targeting")]
-    [SerializeField] public TalismanTargetMock target;
+    [Header("Targeting")] [SerializeField] public TalismanTargetMock target;
 
     /*
     [SerializeField] private int lockOnRange;
@@ -442,9 +435,8 @@ public class CharacterControllerMockup : MonoBehaviour
     #endregion
 
     #region Talismans
-    
-    [Header("Talismans")]
-    [SerializeField] private TalismanTargetMock currentTalismanBind, previousTargetTalismanObject;
+
+    [Header("Talismans")] [SerializeField] private TalismanTargetMock currentTalismanBind, previousTargetTalismanObject;
     [SerializeField] private talismanMode tMode;
     [SerializeField] private Emotion talismanEmotion;
 
@@ -479,12 +471,12 @@ public class CharacterControllerMockup : MonoBehaviour
                     Quaternion.LookRotation((transform.position - gameObject.transform.position).normalized));
                 StartCoroutine(_thrownTalisman.GetComponent<Talisman>().MoveTowardsPlayer(this));
                 animator.SetTrigger(Call);
-                talismansUsed.text = maxTalismans- _curTalismans + " / " + maxTalismans;
+                talismansUsed.text = maxTalismans - _curTalismans + " / " + maxTalismans;
                 //TODO: I think it was merged false because it is the same part, but leaving it here 
                 //animator.SetTrigger(Call);
                 //thrownTalisman.GetComponent<Talisman>().Initialize(tMode, talismanEmotion);
                 //StartCoroutine(_thrownTalisman.GetComponent<Talisman>().MoveTowardsPlayer(this));
-                talismansUsed.text = maxTalismans- _curTalismans + " / " + maxTalismans;
+                talismansUsed.text = maxTalismans - _curTalismans + " / " + maxTalismans;
             }
 
             //Throw talisman
@@ -492,12 +484,12 @@ public class CharacterControllerMockup : MonoBehaviour
             {
                 if (_curTalismans == maxTalismans) return;
                 _curTalismans++;
-                talismansUsed.text = maxTalismans- _curTalismans + " / " + maxTalismans;
+                talismansUsed.text = maxTalismans - _curTalismans + " / " + maxTalismans;
                 animator.SetTrigger(Throw);
-                Vector3 lookPosition = new Vector3 (target.transform.position.x, characterObject.transform.position.y, target.transform.position.z);
+                Vector3 lookPosition = new Vector3(target.transform.position.x, characterObject.transform.position.y,
+                    target.transform.position.z);
                 characterObject.transform.LookAt(lookPosition);
             }
-            
         }
     }
 
@@ -516,12 +508,8 @@ public class CharacterControllerMockup : MonoBehaviour
 
     #region Interactions
 
-    [Header("Interactions")]
-    private TalismanTargetMock _tempTar;
+    [Header("Interactions")] private TalismanTargetMock _tempTar;
     public AltarMock tempAltar;
-
-    
-    [SerializeField] private int interactionRange = 10;
 
     [SerializeField] private float interactDistanceAltar = 3f;
     [SerializeField] private Transform checkFrom;
@@ -532,6 +520,7 @@ public class CharacterControllerMockup : MonoBehaviour
         {
             tempAltar.turnOffHintAltar();
         }
+
         tempAltar = altar;
         altar.turnOnHintAltar();
     }
@@ -544,7 +533,7 @@ public class CharacterControllerMockup : MonoBehaviour
             tempAltar = null;
         }
     }
-    
+
 
     public void Interact(InputAction.CallbackContext context)
     {
@@ -555,12 +544,41 @@ public class CharacterControllerMockup : MonoBehaviour
             if (tempAltar)
             {
                 Debug.Log("Altar found");
-                
+
                 tempAltar.InteractAltar();
             }
-            else
+
+            if (currdialogue)
             {
-                conversant.InteractDialogue();
+                currdialogue.StartDialogue();
+            }
+        }
+    }
+
+    private ThisIsAProperDialogueSystem currdialogue;
+
+    public void SetDialogue(ThisIsAProperDialogueSystem dialogue)
+    {
+        if (currdialogue != null)
+        {
+            currdialogue.gameObject.SetActive(false);
+        }
+
+        currdialogue = dialogue;
+    }
+
+    public void LeaveDialogue()
+    {
+        currdialogue = null;
+    }
+
+    public void NextDialogueLine(InputAction.CallbackContext context)
+    {
+        if (context.performed && currdialogue != null)
+        {
+            if (!currdialogue.Next())
+            {
+                currdialogue = null;
             }
         }
     }
@@ -571,7 +589,7 @@ public class CharacterControllerMockup : MonoBehaviour
         {
             Debug.Log("Recalling talismans");
             if (UIHintShow.Instance) UIHintShow.Instance.NotifyActionPerformed("Recall");
-            
+
             foreach (TalismanTargetMock lockedObject in lockedObjects)
             {
                 lockedObject.Bind();
@@ -579,18 +597,16 @@ public class CharacterControllerMockup : MonoBehaviour
 
             lockedObjects.Clear();
             _curTalismans = 0;
-            talismansUsed.text = maxTalismans- _curTalismans + " / " + maxTalismans;
+            talismansUsed.text = maxTalismans - _curTalismans + " / " + maxTalismans;
         }
     }
 
     #endregion
 
     #region Position and Rotation
-    
-    [Header("Position and Rotation")]
 
-    private bool _isOnCurvedGround;
-    [SerializeField] private float maxSlopeAngle = 45f, slopeAdjustment = 1.2f;
+    [Header("Position and Rotation")] private bool _isOnCurvedGround;
+    [SerializeField] private float maxSlopeAngle = 45f;
 
     private void Slope()
     {

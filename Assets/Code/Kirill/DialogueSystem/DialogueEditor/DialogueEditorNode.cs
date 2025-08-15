@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Ghosted.Dialogue {
-    public class DialogueEditorNode : DialogueEditorInstance
+    public class DialogueEditorNode : ScriptableObject
     {
 
         public Rect rect = new Rect(0, 0, 200, 80);

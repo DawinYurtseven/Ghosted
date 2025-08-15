@@ -3,19 +3,18 @@ using UnityEngine;
 
 public class DialogueControler : MonoBehaviour
 {
-    [Header("Going into Ghost Lock")]
-    public AIConversant ghostConversant;
-    public PlayerConversant playerConversant;
+    [Header("Going into Ghost Lock")] 
+    public ThisIsAProperDialogueSystem ghostdialogue;
     public ghostOrb ghostOrb;
     public Transform ghostTarget;
     
     [Header("New Train Arriving")]
-    public AIConversant ghostConversantNewtrain;
+    public ThisIsAProperDialogueSystem ghostDialogueNewtrain;
     public Transform ghostTargetNewtrain;
     
     public void forceDialogueStart(bool fastMove = false)
     {
-        if (ghostConversant == null || playerConversant == null ) return;
+        if (!ghostdialogue) return;
         if(ghostTarget == null || ghostOrb == null) return;
         
         if(!fastMove)
@@ -23,12 +22,12 @@ public class DialogueControler : MonoBehaviour
         else
             ghostOrb.MoveToTransform(ghostTarget);
         
-        ghostConversant.Interact(playerConversant);
+        ghostdialogue.StartDialogue();
     }
     
     public void forceDialogueStartNewTrain(bool fastMove = false)
     {
-        if (ghostConversantNewtrain == null || playerConversant == null ) return;
+        if (!ghostDialogueNewtrain) return;
         if(ghostTargetNewtrain == null || ghostOrb == null) return;
         
         if(!fastMove)
@@ -36,6 +35,6 @@ public class DialogueControler : MonoBehaviour
         else
             ghostOrb.MoveToTransform(ghostTargetNewtrain);
         
-        ghostConversantNewtrain.Interact(playerConversant);
+        ghostDialogueNewtrain.StartDialogue();
     }
 }
