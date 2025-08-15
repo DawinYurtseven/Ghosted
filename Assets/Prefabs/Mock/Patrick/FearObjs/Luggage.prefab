@@ -250,8 +250,8 @@ GameObject:
   - component: {fileID: 8027637252918061359}
   - component: {fileID: 4198704248245580739}
   - component: {fileID: 8143117225964101671}
-  - component: {fileID: 970129581495249456}
   - component: {fileID: 544966145352029094}
+  - component: {fileID: 3635033458659640100}
   m_Layer: 10
   m_Name: Cylinder (4)
   m_TagString: Untagged
@@ -1388,28 +1388,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2728620048680451197}
   m_Mesh: {fileID: 0}
---- !u!64 &970129581495249456
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2728620048680451197}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!114 &544966145352029094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1424,6 +1402,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joyMaterial: {fileID: 2100000, guid: 382c18de2571a17489e51edfa22f6b50, type: 2}
   fearMaterial: {fileID: 2100000, guid: 6d5d70889d07ebb4a995989184546aa3, type: 2}
+--- !u!65 &3635033458659640100
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2728620048680451197}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.5, y: 2.5, z: 1.5000004}
+  m_Center: {x: 0.24999988, y: 1.25, z: 0.7500002}
 --- !u!1 &4312339165681688155
 GameObject:
   m_ObjectHideFlags: 0
@@ -6234,9 +6233,9 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
 --- !u!114 &3982120094046059409
@@ -10624,9 +10623,9 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
 --- !u!1 &8447146581360604353
