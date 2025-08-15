@@ -53,7 +53,9 @@ public class CharacterControllerMockup : MonoBehaviour
         //interactable check
         //CheckForInteractables();
         ScaleShadowDecal();
-        checkReloadScene();
+#if UnityEditor
+            checkReloadScene();
+#endif
     }
 
     public void FixedUpdate()
