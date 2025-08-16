@@ -85,7 +85,7 @@ public class LevelManagerMock : MonoBehaviour
         }
     }
 
-    private bool altarUsed = false;
+    private bool altarUsed;
     public void DialogueAfterAltar()
     {
         if (altarUsed) return;
