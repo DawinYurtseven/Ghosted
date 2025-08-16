@@ -12,50 +12,26 @@ public class PauseMenu : MonoBehaviour
     private InputAction pauseAction;
     private bool isPaused;
 
-    void Start()
+    
+
+    public void OnPausePressed(InputAction.CallbackContext context)
     {
-        if (playerInput == null)
+        if (context.started)
         {
-            Debug.LogError("PlayerInput reference is missing on PauseMenu!");
-            return;
-        }
-
-        pauseAction = playerInput.actions["Pause"];
-        if (pauseAction == null)
-        {
-            Debug.LogError("No 'Pause' action found in PlayerInput actions.");
-            return;
-        }
-
-        pauseAction.Enable();
-        pauseAction.performed += OnPausePressed;
-
-        if (backButton != null)
-        {
-            backButton.onClick.AddListener(BackToPauseMenu);
-        }
-        else
-        {
-            Debug.LogWarning("Back button not assigned in PauseMenu.");
+            TogglePause();
         }
     }
 
-    void OnDisable()
-    {
-        pauseAction.performed -= OnPausePressed;
-        pauseAction.Disable();
-    }
-
-    private void OnPausePressed(InputAction.CallbackContext context)
-    {
-        TogglePause();
-    }
-
+    private string previousActionMap = "";
+    
     public void TogglePause()
     {
+        
         if (isPaused)
         {
             DeactivateMenu();
+            Debug.Log(previousActionMap);
+            PlayerInputDisabler.Instance.SwitchInputMap(previousActionMap);
         }
         else
         {
@@ -65,7 +41,9 @@ public class PauseMenu : MonoBehaviour
             }
             else
             {
-                ActivateMenu();   
+                ActivateMenu();
+                previousActionMap = PlayerInputDisabler.Instance.GetCurrentActionMap();
+                PlayerInputDisabler.Instance.SwitchInputMap("UI");
             }
         }
     }
@@ -75,7 +53,7 @@ public class PauseMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         Time.timeScale = 0;
-        AudioListener.pause = true;
+        FMODUnity.RuntimeManager.GetBus("bus:/").setPaused(true);
         pauseUI.SetActive(true);
         isPaused = true;
     }
@@ -85,7 +63,6 @@ public class PauseMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
         Time.timeScale = 1;
-        AudioListener.pause = false;
         pauseUI.SetActive(false);
         optionsUI.SetActive(false);
         isPaused = false;
