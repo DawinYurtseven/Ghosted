@@ -60,10 +60,10 @@ public class Fear : EmotionAbstract
     
     public void checkCurrentEmotion()
     {
+        surroundEmotion = EmotionSingletonMock.Instance.getCurrentEmotion();
+        
         Debug.Log("Checking current emotion for " + gameObject.name + 
                   " with surrounding emotion: " + surroundEmotion);
-        
-        surroundEmotion = EmotionSingletonMock.Instance.getCurrentEmotion();
         
         if (surroundEmotion == Emotion.Fear || lockedInFear) {
             closedState.SetActive(false);
