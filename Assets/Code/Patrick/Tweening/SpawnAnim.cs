@@ -120,7 +120,7 @@ public class SpawnAnim : MonoBehaviour
         seq.Append(obj.transform.DOScale(Vector3.zero, animDuration).SetEase(Ease.InBack));
         seq.Join(cg.DOFade(0, animDuration)).OnComplete(() => obj.SetActive(false));
 
-        Debug.Log("Deactivating obj");
+        //Debug.Log("Deactivating obj");
         return seq;
     }
     
