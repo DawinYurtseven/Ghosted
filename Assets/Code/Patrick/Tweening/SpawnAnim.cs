@@ -2,7 +2,6 @@ using System.Collections;
 using Cinemachine;
 using UnityEngine;
 using DG.Tweening;
-using Unity.Mathematics;
 
 public class SpawnAnim : MonoBehaviour
 {

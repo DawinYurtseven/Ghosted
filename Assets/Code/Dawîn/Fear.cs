@@ -57,4 +57,17 @@ public class Fear : EmotionAbstract
             }
         }
     }
+    
+    private void OnEnable()
+    {
+        if (surroundEmotion == Emotion.Fear) {
+            closedState.SetActive(false);
+            openState.SetActive(true);
+        }
+        else {
+            closedState.SetActive(true);
+            openState.SetActive(false);
+        }
+        shadow.SetActive(surroundEmotion == Emotion.Fear);
+    }
 }
