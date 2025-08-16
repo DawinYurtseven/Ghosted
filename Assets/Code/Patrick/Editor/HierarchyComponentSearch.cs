@@ -73,4 +73,13 @@ public class HierarchyComponentSearch : MonoBehaviour
         Debug.Log("Hierarchy Component Search: " + (searchComponents ? "Enabled" : "Disabled"));
         EditorApplication.RepaintHierarchyWindow();
     }
+
+    [MenuItem("Tools/Hierarchy Search/Search Components with Hierarchy Input")]
+    private static void SearchComponentsWithHierarchyInput()
+    {
+        searchComponents = true;
+        searchQuery = GetHierarchySearchString();
+        Debug.Log("Component search with hierarchy search field enabled. Search term: " + searchQuery);
+        EditorApplication.RepaintHierarchyWindow();
+    }
 }
