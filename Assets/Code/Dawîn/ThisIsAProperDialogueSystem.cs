@@ -19,7 +19,7 @@ public class ThisIsAProperDialogueSystem : MonoBehaviour
 
     private void Awake()
     {
-        if (triggers == null)
+        if (triggers == null || triggers.Count == 0)
         {
             triggers = new List<DialogueTrigger>();
             triggers = gameObject.GetComponentsInChildren<DialogueTrigger>().ToList();
