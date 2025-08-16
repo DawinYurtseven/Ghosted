@@ -3089,6 +3089,7 @@ GameObject:
   - component: {fileID: 8252207823525258563}
   - component: {fileID: 7899431631919814151}
   - component: {fileID: 1389670851263536838}
+  - component: {fileID: 3941703100863764245}
   m_Layer: 9
   m_Name: Platform
   m_TagString: Untagged
@@ -3155,6 +3156,7 @@ MonoBehaviour:
   force: 45
   turnedOff: {fileID: 2100000, guid: 81e9be15e38a23e4dbfa2a317ee00730, type: 2}
   turnedOn: {fileID: 2100000, guid: 6feed94fac6007f4c81cd3dc4ccf1cbe, type: 2}
+  _emitter: {fileID: 3941703100863764245}
   onJumpPadActivated:
     m_PersistentCalls:
       m_Calls:
@@ -3185,6 +3187,37 @@ MonoBehaviour:
   confettiPrefab: {fileID: 775052837850562669, guid: 0fa390eddc143ba459d9ccaee925daa3, type: 3}
   spawnOffset: {x: 0, y: 1.5, z: 0}
   spawnRotation: {x: -90, y: 0, z: 0}
+--- !u!114 &3941703100863764245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8423072715559200462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 2033216908
+      Data2: 1222011055
+      Data3: 549413295
+      Data4: -1048870889
+    Path: event:/SFX/Level/Birthday/Present
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &9221108361868697638
 PrefabInstance:
   m_ObjectHideFlags: 0

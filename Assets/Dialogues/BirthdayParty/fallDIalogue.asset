@@ -31,16 +31,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
   m_Name: ff5a7904-0e46-4868-bf5c-3e72888f25e9
   m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 289
-    y: 36
-    width: 200
-    height: 80
+  text: "When I opened that cuckoo clock for you, I found an old spring inside\u2026"
   onEnterActions: []
   onExitActions:
   - goToPresent
-  text: "When I opened that cuckoo clock for you, I found an old spring inside\u2026"
   child: 231f520e-1e4e-4702-aa35-1300a4190f2a
   speaker: Miyu
   voiceClip:
@@ -62,16 +56,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
   m_Name: 7e1d964c-fa27-47cb-a436-8fcea8b12414
   m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 200
-    height: 80
+  text: Oh no, are you okay? You fell...
   onEnterActions:
   - enter
   onExitActions: []
-  text: Oh no, are you okay? You fell...
   child: ff5a7904-0e46-4868-bf5c-3e72888f25e9
   speaker: Miyu
   voiceClip:
@@ -93,16 +81,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
   m_Name: 231f520e-1e4e-4702-aa35-1300a4190f2a
   m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 576
-    y: 71
-    width: 200
-    height: 80
-  onEnterActions: []
+  text: "Here \u2014 try it now!"
+  onEnterActions:
+  - changeMaterial
   onExitActions:
   - exit
-  text: "Here \u2014 try it now!"
   child: 
   speaker: Miyu
   voiceClip:
