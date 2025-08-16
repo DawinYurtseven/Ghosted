@@ -1,17 +1,13 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using FMODUnity;
 using Ghosted.Dialogue;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.InputSystem;
 
 public class ThisIsAProperDialogueSystem : MonoBehaviour
 {
-    [SerializeField] private Dialogue fialogue;
+    [SerializeField] private Dialogue dialogue;
     [SerializeField] private List<DialogueTrigger> triggers;
     [SerializeField] private TextMeshProUGUI _name, _text;
     [SerializeField] private StudioEventEmitter _emitter;
@@ -23,10 +19,14 @@ public class ThisIsAProperDialogueSystem : MonoBehaviour
 
     private void Awake()
     {
-        triggers = gameObject.GetComponentsInChildren<DialogueTrigger>().ToList();
-        nodes = fialogue.GetAllNodes().ToArray();
+        if (triggers == null)
+        {
+            triggers = new List<DialogueTrigger>();
+            triggers = gameObject.GetComponentsInChildren<DialogueTrigger>().ToList();
+        }
+        
+        nodes = dialogue.GetAllNodes().ToArray();
     }
-    
 
     public void StartDialogue()
     {
@@ -56,7 +56,7 @@ public class ThisIsAProperDialogueSystem : MonoBehaviour
         _emitter.Stop();
         TriggerDialogueExitEvents();
         _index++;
-        if (_index > fialogue.GetAllNodes().Count-1)
+        if (_index > dialogue.GetAllNodes().Count-1)
         {
             PlayerInputDisabler.Instance.SwitchInputMapDelayed("Character Control");
             CameraManager.Instance.turnOffAll();
@@ -87,6 +87,10 @@ public class ThisIsAProperDialogueSystem : MonoBehaviour
                 {
                     trig.Trigger();
                 }
+            }
+            else
+            {
+                Debug.LogWarning("No trigger found for action: " + action);
             }
         }
     }
