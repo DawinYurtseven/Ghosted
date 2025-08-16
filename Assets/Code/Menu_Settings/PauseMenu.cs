@@ -43,7 +43,7 @@ public class PauseMenu : MonoBehaviour
             {
                 ActivateMenu();
                 previousActionMap = PlayerInputDisabler.Instance.GetCurrentActionMap();
-                PlayerInputDisabler.Instance.SwitchInputMap("UI");
+                PlayerInputDisabler.Instance.SwitchInputMap("AltarUI");
             }
         }
     }
