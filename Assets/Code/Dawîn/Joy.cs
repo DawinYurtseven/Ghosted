@@ -10,6 +10,8 @@ public class Joy : EmotionAbstract
     private Collider _col;
     private GameObject parent;
     
+    [SerializeField] private FMODUnity.StudioEventEmitter _emitter;
+    
     
     public UnityEvent onJumpPadActivated;
     
@@ -23,6 +25,8 @@ public class Joy : EmotionAbstract
             Debug.Log ("Collider missing on JumpPad!");
             enabled = false;
         }
+
+        _emitter.GetComponent<FMODUnity.StudioEventEmitter>();
     }
     
     private void OnTriggerEnter (Collider other) {
@@ -50,6 +54,9 @@ public class Joy : EmotionAbstract
             rb.velocity = Vector3.zero;
             rb.velocity += (Vector3.up * force);
             //Debug.Log("Added force!");
+            
+            // Play the jump pad activation sound
+            _emitter.Play();
             
             onJumpPadActivated?.Invoke();
         }
