@@ -11,8 +11,29 @@ public class PauseMenu : MonoBehaviour
 
     private InputAction pauseAction;
     private bool isPaused;
-
     
+    private Button lastButton;
+
+    public static PauseMenu Instance { get; private set; }
+    
+    public void CurrentSelectedButton(Button button)
+    {
+        if (button != null)
+        {
+            lastButton = button;
+        }
+    }
+    
+    void Awake()
+    {
+        // Set up singleton
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+            return;
+        }
+        Instance = this;
+    }
 
     public void OnPausePressed(InputAction.CallbackContext context)
     {
@@ -21,17 +42,24 @@ public class PauseMenu : MonoBehaviour
             TogglePause();
         }
     }
+    
 
     private string previousActionMap = "";
-    
+
     public void TogglePause()
     {
-        
         if (isPaused)
         {
             DeactivateMenu();
             Debug.Log(previousActionMap);
-            PlayerInputDisabler.Instance.SwitchInputMap(previousActionMap);
+            if (previousActionMap != "AltarUI")
+            {
+                PlayerInputDisabler.Instance.SwitchInputMap(previousActionMap);
+            }
+            if (lastButton != null)
+            {
+                lastButton.Select();
+            }
         }
         else
         {
@@ -43,7 +71,10 @@ public class PauseMenu : MonoBehaviour
             {
                 ActivateMenu();
                 previousActionMap = PlayerInputDisabler.Instance.GetCurrentActionMap();
-                PlayerInputDisabler.Instance.SwitchInputMap("AltarUI");
+                if (previousActionMap != "AltarUI")
+                {
+                    PlayerInputDisabler.Instance.SwitchInputMap("AltarUI");
+                }
             }
         }
     }

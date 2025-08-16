@@ -445,6 +445,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "3afb22a5-a3c5-4b75-b301-b8bb2794de3a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -491,74 +500,10 @@
                     "action": "NextLine",
                     "isComposite": false,
                     "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "UI",
-            "id": "84555fec-0dd9-4263-812b-10671596f1cc",
-            "actions": [
-                {
-                    "name": "Pause",
-                    "type": "Button",
-                    "id": "56b8881c-0875-4bcf-9add-ac61322f673b",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "UISubmit",
-                    "type": "Button",
-                    "id": "be756b3c-26f4-4308-a3df-823d86dc6bd0",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "UIPoint",
-                    "type": "PassThrough",
-                    "id": "e9785b06-98ed-4c8b-ab73-4228b2e373b4",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "UIClick",
-                    "type": "PassThrough",
-                    "id": "2fc82012-f547-468f-9165-23569976010a",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "UINavigate",
-                    "type": "Value",
-                    "id": "70991026-1cee-4350-ba37-b3efa11d9558",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "5eef8674-6d5b-4962-a7a3-dd9eb6df7e20",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";MK",
-                    "action": "Pause",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "5af2b207-35e6-4c4c-ad54-4540905c8905",
+                    "id": "d6d8afc5-3028-48c0-9669-f0bf238234e9",
                     "path": "<Gamepad>/start",
                     "interactions": "",
                     "processors": "",
@@ -569,188 +514,12 @@
                 },
                 {
                     "name": "",
-                    "id": "9712f111-99db-4fc5-8a49-3cbdbfcabbce",
-                    "path": "<Keyboard>/e",
+                    "id": "c3000824-9e58-4b7a-8fe3-745bd97863f5",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": ";MK",
-                    "action": "UISubmit",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "cadcddfd-bc8a-4b16-86c0-6ee1fe2be9e6",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";MK",
-                    "action": "UISubmit",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "524f9ec2-ee94-4034-b55f-84ab4dd8f4fa",
-                    "path": "<Gamepad>/buttonWest",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Controller",
-                    "action": "UISubmit",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "1b177500-c728-4031-9947-b1f52ff2abea",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Controller",
-                    "action": "UISubmit",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "529c36a2-beb6-47da-94a2-033a40e50a50",
-                    "path": "<Mouse>/position",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";MK",
-                    "action": "UIPoint",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "7c2e8285-712e-43ed-8ee3-252ba95be7e1",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";MK",
-                    "action": "UIClick",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "2D Vector",
-                    "id": "176ca0e4-fe17-4231-8932-8476df912e5c",
-                    "path": "2DVector",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "UINavigate",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "up",
-                    "id": "7c29c6db-556e-4c59-bbf4-ebba79eef74a",
-                    "path": "<Keyboard>/w",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "UINavigate",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "0c602fcd-02b6-4943-a2c7-2064f2273d6a",
-                    "path": "<Keyboard>/s",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "UINavigate",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "left",
-                    "id": "4be369c7-c368-49a2-bbec-b2ddd3a4c8e6",
-                    "path": "<Keyboard>/a",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "UINavigate",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "88d0528a-9660-4ca0-976a-2db58ba15c89",
-                    "path": "<Keyboard>/d",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "UINavigate",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "2D Vector",
-                    "id": "a6f0a1cc-1931-418c-938e-8d4b581a0a9c",
-                    "path": "2DVector",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "UINavigate",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "up",
-                    "id": "0f4bc5c9-0fc0-4879-b0f4-b79f3537a4ce",
-                    "path": "<Gamepad>/leftStick/up",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Controller",
-                    "action": "UINavigate",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "9ba22e92-84fc-4b98-b5fa-d4a60871ac44",
-                    "path": "<Gamepad>/leftStick/down",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Controller",
-                    "action": "UINavigate",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "left",
-                    "id": "29f96010-0248-4426-922f-130e32a5802e",
-                    "path": "<Gamepad>/leftStick/left",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Controller",
-                    "action": "UINavigate",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "db037921-e332-48b3-8ca1-d892751f774f",
-                    "path": "<Gamepad>/leftStick/right",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Controller",
-                    "action": "UINavigate",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "84f3e14a-f52a-43ca-98f8-61222fdf380c",
-                    "path": "<Gamepad>/dpad",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Controller",
-                    "action": "UINavigate",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
