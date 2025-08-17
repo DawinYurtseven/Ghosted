@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -13,6 +14,16 @@ public class PauseMenu : MonoBehaviour
     private bool isPaused;
     
     private Button lastButton;
+    
+    public CanvasGroup canvasGroup;
+
+    [Header("Animation")]
+    public RectTransform panelRoot;
+    public float slideDuration = 0.5f;
+    private Vector2 offScreenPos;
+    private Vector2 onScreenPos;
+
+    private bool isShowing = false;
 
     public static PauseMenu Instance { get; private set; }
     
@@ -33,6 +44,10 @@ public class PauseMenu : MonoBehaviour
             return;
         }
         Instance = this;
+        onScreenPos = panelRoot.anchoredPosition;
+        offScreenPos = onScreenPos + new Vector2(500f, 0f); // adjust for screen width
+        panelRoot.anchoredPosition = offScreenPos;
+        canvasGroup.alpha = 0;
     }
 
     public void OnPausePressed(InputAction.CallbackContext context)
@@ -78,26 +93,41 @@ public class PauseMenu : MonoBehaviour
             }
         }
     }
+    
+    private string savedActionMap = "";
+
 
     void ActivateMenu()
     {
+        
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         Time.timeScale = 0;
         FMODUnity.RuntimeManager.GetBus("bus:/").setPaused(true);
-        pauseUI.SetActive(true);
+        
         isPaused = true;
+        canvasGroup.blocksRaycasts = true;
+        canvasGroup.interactable = true;
+        pauseUI.SetActive(true);
+        panelRoot.DOAnchorPos(onScreenPos, slideDuration).SetUpdate(true);
+        canvasGroup.DOFade(1f, 0.3f).SetUpdate(true);
     }
 
     public void DeactivateMenu()
     {
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = false;
-        Time.timeScale = 1;
-        FMODUnity.RuntimeManager.GetBus("bus:/").setPaused(false);
-        pauseUI.SetActive(false);
-        optionsUI.SetActive(false);
-        isPaused = false;
+        panelRoot.DOAnchorPos(offScreenPos, slideDuration).SetUpdate(true);
+        canvasGroup.DOFade(0f, 0.2f).SetUpdate(true).OnComplete(() =>
+        {
+            canvasGroup.blocksRaycasts = false;
+            canvasGroup.interactable = false;
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = false;
+            Time.timeScale = 1;
+            FMODUnity.RuntimeManager.GetBus("bus:/").setPaused(false);
+            pauseUI.SetActive(false);
+            optionsUI.SetActive(false);
+            isPaused = false;
+        });
     }
 
     public void ResumeGame() => TogglePause();

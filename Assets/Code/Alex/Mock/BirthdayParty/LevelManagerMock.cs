@@ -74,6 +74,7 @@ public class LevelManagerMock : MonoBehaviour
         switch (cutScene)
         {
             case CutSceneName.EnterNextLevel:
+                train.GetComponent<SplineAnimate>()?.Restart(false);
                 fadeOut.Fade(true, () => {
                     SceneManager.LoadScene("MoveMockPart1");
                 });
