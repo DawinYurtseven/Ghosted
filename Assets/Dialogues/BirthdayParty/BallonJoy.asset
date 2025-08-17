@@ -12,18 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
   m_Name: 0d5e3087-3dbe-4d7c-9af5-668bb38a7a38
   m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 200
-    height: 80
-  onEnterActions: []
-  onExitActions: []
   text: I won against Matsuhito haha! He thought he could blow up more balloons than
     me. I got 10, and he 8. After that, his face turned so red, I laughed so hard!
+  onEnterActions:
+  - enter
+  onExitActions:
+  - exit
   child: 
   speaker: Player
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
