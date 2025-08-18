@@ -5,7 +5,7 @@
 			<value>Fear</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{2caa7907-cffc-45f2-9ab7-660646e2fbd7}</destination>
@@ -109,9 +109,15 @@
 	<object class="MixerBusEffectChain" id="{ff0cff62-c1b8-4eb9-81b4-d597db99d51a}">
 		<relationship name="effects">
 			<destination>{e5a24c2d-c7c6-4341-8feb-7f78f49091de}</destination>
+			<destination>{88ab2f96-093f-43a2-ab86-6f0dd6436879}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{053ef3fd-5cad-4413-b057-dfe2a012a7e4}" />
 	<object class="MixerBusFader" id="{0ab2cda3-0d50-4c18-829a-5935cb303360}" />
 	<object class="MixerBusFader" id="{e5a24c2d-c7c6-4341-8feb-7f78f49091de}" />
+	<object class="SpatialiserEffect" id="{88ab2f96-093f-43a2-ab86-6f0dd6436879}">
+		<property name="distanceRolloffType">
+			<value>1</value>
+		</property>
+	</object>
 </objects>
