@@ -1,47 +1,52 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using FMODUnity;
 using Ghosted.Dialogue;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.InputSystem;
 
 public class ThisIsAProperDialogueSystem : MonoBehaviour
 {
-    [SerializeField] private Dialogue fialogue;
+    [SerializeField] private Dialogue dialogue;
     [SerializeField] private List<DialogueTrigger> triggers;
     [SerializeField] private TextMeshProUGUI _name, _text;
-    [SerializeField] private FMODUnity.StudioEventEmitter _emitter;
+    [SerializeField] private StudioEventEmitter _emitter;
     [SerializeField] private bool ForcedDialogue = false;
+    [SerializeField] private GameObject dialogueWindowGameObject;
 
-    private int _index = 0;
+    private int _index ;
     private DialogueNode[] nodes;
 
     private void Awake()
     {
-        triggers = gameObject.GetComponentsInChildren<DialogueTrigger>().ToList();
-        nodes = fialogue.GetAllNodes().ToArray();
-    }
-
-    public void SetTexts(TextMeshProUGUI name, TextMeshProUGUI text, StudioEventEmitter emitter)
-    {
-        _name = name;
-        _text = text;
-        _emitter = emitter;
+        if (triggers == null || triggers.Count == 0)
+        {
+            triggers = new List<DialogueTrigger>();
+            triggers = gameObject.GetComponentsInChildren<DialogueTrigger>().ToList();
+        }
+        
+        nodes = dialogue.GetAllNodes().ToArray();
     }
 
     public void StartDialogue()
     {
+        dialogueWindowGameObject = EmotionSingletonMock.Instance.dialogueWindowGameObject;
+        dialogueWindowGameObject.SetActive(true);
+        _emitter = EmotionSingletonMock.Instance.dialogueEventEmitter;
+        _text = EmotionSingletonMock.Instance.textField;
+        _name = EmotionSingletonMock.Instance.nameField;
+        
         PlayerInputDisabler.Instance.SwitchInputMapDelayed("Dialogue");
         _index = 0;
         _text.text = nodes[0].text;
         _name.text = nodes[0].speaker;
-        _emitter.EventReference = nodes[0].voiceClip;
         _emitter.Stop();
-        _emitter.Play();
+        
+        if (!nodes[0].voiceClip.IsNull)
+        {
+            _emitter.EventReference = nodes[0].voiceClip;
+            _emitter.Play();
+        }
 
         TriggerDialogueEnterEvents();
     }
@@ -51,10 +56,11 @@ public class ThisIsAProperDialogueSystem : MonoBehaviour
         _emitter.Stop();
         TriggerDialogueExitEvents();
         _index++;
-        if (_index > triggers.Count)
+        if (_index > dialogue.GetAllNodes().Count-1)
         {
             PlayerInputDisabler.Instance.SwitchInputMapDelayed("Character Control");
             CameraManager.Instance.turnOffAll();
+            dialogueWindowGameObject.SetActive(false);
             return false;
         }
 
@@ -81,6 +87,10 @@ public class ThisIsAProperDialogueSystem : MonoBehaviour
                 {
                     trig.Trigger();
                 }
+            }
+            else
+            {
+                Debug.LogWarning("No trigger found for action: " + action);
             }
         }
     }

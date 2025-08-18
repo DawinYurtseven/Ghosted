@@ -57,4 +57,23 @@ public class Fear : EmotionAbstract
             }
         }
     }
+    
+    public void checkCurrentEmotion()
+    {
+        surroundEmotion = EmotionSingletonMock.Instance.getCurrentEmotion();
+        
+        Debug.Log("Checking current emotion for " + gameObject.name + 
+                  " with surrounding emotion: " + surroundEmotion);
+        
+        if (surroundEmotion == Emotion.Fear || lockedInFear) {
+            closedState.SetActive(false);
+            openState.SetActive(true);
+        }
+        else {
+            closedState.SetActive(true);
+            openState.SetActive(false);
+        }
+        shadow.SetActive(surroundEmotion == Emotion.Fear);
+    }
+    
 }

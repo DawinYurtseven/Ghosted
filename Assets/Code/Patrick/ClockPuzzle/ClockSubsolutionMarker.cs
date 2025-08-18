@@ -16,7 +16,7 @@ public class ClockSubsolutionMarker : MonoBehaviour
         if (!correctMaterial)
             Debug.LogError("Correct Material is not set on " + gameObject.name + " for solution indicator!");
         
-        originalMaterial = GetComponent<Renderer>().material;
+        originalMaterial = indicatorObj.GetComponent<Renderer>().material;
     }
 
     public void OnEnable()
@@ -34,12 +34,12 @@ public class ClockSubsolutionMarker : MonoBehaviour
         //Debug.Log("Got solution correct until: " + index + " for id: " + id);
         if (index > 0 && id <= index)
         {
-            GetComponent<Renderer>().material = correctMaterial;
+            indicatorObj.GetComponent<Renderer>().material = correctMaterial;
         }
         else
         {
             // Reset to original material if current solution is not correct
-            GetComponent<Renderer>().material = originalMaterial;
+            indicatorObj.GetComponent<Renderer>().material = originalMaterial;
         }
     }
 

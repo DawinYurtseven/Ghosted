@@ -74,6 +74,7 @@ public class LevelManagerMock : MonoBehaviour
         switch (cutScene)
         {
             case CutSceneName.EnterNextLevel:
+                train.GetComponent<SplineAnimate>()?.Restart(false);
                 fadeOut.Fade(true, () => {
                     SceneManager.LoadScene("MoveMockPart1");
                 });
@@ -85,11 +86,12 @@ public class LevelManagerMock : MonoBehaviour
         }
     }
 
-    private bool altarUsed = false;
+    private bool altarUsed;
     public void DialogueAfterAltar()
     {
         if (altarUsed) return;
         altarUsed = true;
+        player.GetComponent<CharacterControllerMockup>().SetDialogue(dialogue);
         dialogue.StartDialogue();
     }
     void CuckooClockCutScene()

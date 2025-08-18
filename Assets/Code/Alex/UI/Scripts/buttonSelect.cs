@@ -39,6 +39,7 @@ public class buttonSelect : MonoBehaviour, ISelectHandler, IDeselectHandler
         if (outline != null)
             outline.DOFade(1f, fadeDuration);
         onSelect?.Invoke();
+        PauseMenu.Instance.CurrentSelectedButton(gameObject.GetComponent<Button>());
     }
 
     public void OnDeselect(BaseEventData eventData)

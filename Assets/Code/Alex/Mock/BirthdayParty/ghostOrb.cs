@@ -22,6 +22,7 @@ public class ghostOrb : MonoBehaviour
     
     [SerializeField] private AudioClip[] laughing; // Assign this in the Inspector
     private AudioSource audioSource;
+    [SerializeField] private FMODUnity.StudioEventEmitter ghostMove;
 
     void Awake()
     {
@@ -99,6 +100,8 @@ public class ghostOrb : MonoBehaviour
 
         Vector3 offsetTarget = targetPos;
         
+        PlayGhostMoveSound();
+        
         currentTween = transform.DOMove(offsetTarget, moveDuration)
             .SetEase(moveEase)
             .SetUpdate(UpdateType.Normal, true);
@@ -141,5 +144,18 @@ public class ghostOrb : MonoBehaviour
 
         int index = Random.Range(0, laughing.Length);
         audioSource.PlayOneShot(laughing[index]);
+    }
+    
+    public void PlayGhostMoveSound()
+    {
+        if (ghostMove != null)
+        {
+            ghostMove.Stop();
+            ghostMove.Play();
+        }
+        else
+        {
+            Debug.LogWarning("Ghost move sound emitter is not assigned!");
+        }
     }
 }

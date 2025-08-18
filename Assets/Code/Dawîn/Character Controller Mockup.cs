@@ -22,11 +22,7 @@ public class CharacterControllerMockup : MonoBehaviour
     [SerializeField] private LayerMask ground;
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject characterObject;
-
-    [Header("UI for Dialogue")] [SerializeField]
-    private GameObject dialogueWindowGameObject;
-    [SerializeField] private TextMeshProUGUI nameField, textField;
-    [SerializeField] private FMODUnity.StudioEventEmitter dialogueEventEmitter;
+    
 
     public void Awake()
     {
@@ -57,6 +53,9 @@ public class CharacterControllerMockup : MonoBehaviour
         //interactable check
         //CheckForInteractables();
         ScaleShadowDecal();
+#if UnityEditor
+            checkReloadScene();
+#endif
     }
 
     public void FixedUpdate()
@@ -193,7 +192,8 @@ public class CharacterControllerMockup : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (context.started && (Physics.SphereCast(transform.position, 0.3f, -transform.up, out var hit,
+        
+        if (context.started && (Physics.SphereCast(transform.position - transform.up * 1f, 0.3f, -transform.up, out var hit,
                                     groundCheckDistance, ground) ||
                                 !coyoteJumped))
         {
@@ -283,7 +283,20 @@ public class CharacterControllerMockup : MonoBehaviour
 
     #endregion
 
-
+#if UNITY_EDITOR
+    private void checkReloadScene()
+    {
+        // Szene neu laden bei Strg + R
+        if (UnityEditor.EditorApplication.isPlaying && 
+            (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl)) && 
+            Input.GetKeyDown(KeyCode.R))
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(
+                UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+        }
+    }
+#endif
+    
     #region Target System
 
     //If merge conflict -> change to private, used for Mock for level design
@@ -501,9 +514,6 @@ public class CharacterControllerMockup : MonoBehaviour
     [Header("Interactions")] private TalismanTargetMock _tempTar;
     public AltarMock tempAltar;
 
-
-    [SerializeField] private int interactionRange = 10;
-
     [SerializeField] private float interactDistanceAltar = 3f;
     [SerializeField] private Transform checkFrom;
 
@@ -543,10 +553,6 @@ public class CharacterControllerMockup : MonoBehaviour
 
             if (currdialogue)
             {
-                Debug.Log("Dialogue found");
-
-                dialogueWindowGameObject.SetActive(true);
-                currdialogue.SetTexts(nameField, textField, dialogueEventEmitter);
                 currdialogue.StartDialogue();
             }
         }
@@ -575,7 +581,6 @@ public class CharacterControllerMockup : MonoBehaviour
         {
             if (!currdialogue.Next())
             {
-                dialogueWindowGameObject.SetActive(false);
                 currdialogue = null;
             }
         }
@@ -604,7 +609,7 @@ public class CharacterControllerMockup : MonoBehaviour
     #region Position and Rotation
 
     [Header("Position and Rotation")] private bool _isOnCurvedGround;
-    [SerializeField] private float maxSlopeAngle = 45f, slopeAdjustment = 1.2f;
+    [SerializeField] private float maxSlopeAngle = 45f;
 
     private void Slope()
     {

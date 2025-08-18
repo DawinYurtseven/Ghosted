@@ -1,0 +1,234 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7001539089783142633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: b0686a64-9ceb-4664-83c3-00feff6cdf44
+  m_EditorClassIdentifier: 
+  text: It somehow takes me back to my inital journey from England to Japan. The
+    entire trip gave me hours to reflect on everything I wanted, and had to, do once
+    I arrived.
+  onEnterActions:
+  - miyu
+  onExitActions: []
+  child: df93444b-867c-4717-97ce-db5192183754
+  speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+--- !u!114 &-3222729844053685095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: df93444b-867c-4717-97ce-db5192183754
+  m_EditorClassIdentifier: 
+  text: 'That means I took a train from my old place to London. Hmm... Then, during
+    my flight to Tokyo, that''s where I found myself planning out my first classes. '
+  onEnterActions: []
+  onExitActions: []
+  child: dd23c737-b297-4d94-b241-eb1d5db25159
+  speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+--- !u!114 &-2989699889829346439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 40ecc968-4f14-4cbd-b6c3-3519d63efc8f
+  m_EditorClassIdentifier: 
+  text: "Yes, i think that was it. The train to Y\u016Brei-mura, where all I could
+    think about was visiting that park, the one my brother and I always went to when
+    we visited grandpa and grandma. "
+  onEnterActions: []
+  onExitActions:
+  - exit
+  child: 79944dcb-a2d0-4043-a463-bece8a1a9c1a
+  speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+--- !u!114 &-1485999910498754739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 04cb70bb-99ea-46b3-8280-ad8e1c382118
+  m_EditorClassIdentifier: 
+  text: Take your time.
+  onEnterActions:
+  - player
+  onExitActions: []
+  child: b0686a64-9ceb-4664-83c3-00feff6cdf44
+  speaker: Player
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0128aa92babf3fd4e9cf4beb0d51198e, type: 3}
+  m_Name: Dial_StationTimeTable Felipe
+  m_EditorClassIdentifier: 
+  dialogueSpeakers:
+  - Miyu
+  - Player
+  dialogueNodes:
+  - {fileID: 8705371555783416926}
+  - {fileID: 6418530206259528633}
+  - {fileID: -7001539089783142633}
+  - {fileID: -3222729844053685095}
+  - {fileID: 2649124231745951109}
+  - {fileID: 3931636284692325048}
+  - {fileID: -2989699889829346439}
+  replyNodes: []
+--- !u!114 &2649124231745951109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: dd23c737-b297-4d94-b241-eb1d5db25159
+  m_EditorClassIdentifier: 
+  text: 'And the last stop before i landed ... arrived... '
+  onEnterActions: []
+  onExitActions: []
+  child: 60768e06-9605-4796-8ac7-aee94a461207
+  speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+--- !u!114 &3931636284692325048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 60768e06-9605-4796-8ac7-aee94a461207
+  m_EditorClassIdentifier: 
+  text: Must have been something with my family. So probably ... ... No, maybe near
+    my grandparents?
+  onEnterActions: []
+  onExitActions: []
+  child: 40ecc968-4f14-4cbd-b6c3-3519d63efc8f
+  speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+--- !u!114 &6418530206259528633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 79944dcb-a2d0-4043-a463-bece8a1a9c1a
+  m_EditorClassIdentifier: 
+  text: "Then trust that. Find the times that moved you\u2014and let them move you
+    still.\r"
+  onEnterActions:
+  - player
+  onExitActions:
+  - exit
+  child: removed
+  speaker: Player
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+--- !u!114 &8705371555783416926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 3200f4de-6a6d-430d-9707-50a8b94630d1
+  m_EditorClassIdentifier: 
+  text: "This timetable\u2026 I recognize the names.\r\nLondon, Tokyo, Y\u016Brei\u2026
+    That was all part of my life there. But I\u2014I can\u2019t remember the order. "
+  onEnterActions:
+  - enter
+  - moveTo
+  - miyu
+  onExitActions: []
+  child: 04cb70bb-99ea-46b3-8280-ad8e1c382118
+  speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
