@@ -974,7 +974,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5277756976990875322}
-  - component: {fileID: 2939518592667754975}
   - component: {fileID: 1911332948471212054}
   m_Layer: 5
   m_Name: Dialogue Window
@@ -1007,28 +1006,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 250}
   m_Pivot: {x: 0.5, y: 0}
---- !u!114 &2939518592667754975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5981095842237720147}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 916fc460d7dd0274295d08211ae5b0d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  messageText: {fileID: 6318079156714429046}
-  speakerText: {fileID: 6301890187321503725}
-  exitButton: {fileID: 2666136213689848280}
-  choiceRoot: {fileID: 5329970455504531827}
-  choicePrefab: {fileID: 6224170359929192622, guid: 46fbd57091eab6548b0f9460a20edb98, type: 3}
-  replicWindow: {fileID: 8285722696181736203}
-  choiceWindow: {fileID: 8666038093389981173}
-  emitter: {fileID: 1911332948471212054}
-  textAnimator: {fileID: 0}
-  charReveal: 0
 --- !u!114 &1911332948471212054
 MonoBehaviour:
   m_ObjectHideFlags: 0
