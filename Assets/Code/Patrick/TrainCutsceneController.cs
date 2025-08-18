@@ -6,6 +6,7 @@ public class TrainCutsceneController : MonoBehaviour
 {
     [Header("Player")]
     [SerializeField] private GameObject player;
+    [SerializeField] private GameObject playerModel;
     [SerializeField] private CinemachineVirtualCamera playerCamera;
     
     [Header("Train Start")]
@@ -28,7 +29,7 @@ public class TrainCutsceneController : MonoBehaviour
     [SerializeField] private CutSceneName _cutSceneNameStart;
     
     private int trainSceneCount = 0;        //keep track (pun intended)
-    private int trainStartSceneCount = 0; //for the start train
+    private int trainStartSceneCount = 0;   //for the start train
     
     private void OnEnable()
     {
@@ -51,13 +52,12 @@ public class TrainCutsceneController : MonoBehaviour
             // startTrain(spline, trainCamera);
             playerCamera.Priority = 0;
             trainCamera.Priority = 10;
+            
+            hidePlayer();
+            
             spline?.Play();
             
             trainSceneCount++;
-            
-            //Set player spawn
-            // player.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            // player.transform.position = playerSpawn.position;
         }
         
         if(name == CutSceneName.Start2StartStation)
@@ -96,6 +96,9 @@ public class TrainCutsceneController : MonoBehaviour
         
         playerCamera.Priority = 0;
         trainCamera.Priority = 10;
+        
+        hidePlayer();
+        
         trainAnim.GetComponent<SplineAnimate>()?.Play();
 
         Debug.Log("Started train animation on spline: " + trainAnim.name);
@@ -115,9 +118,17 @@ public class TrainCutsceneController : MonoBehaviour
 
     private void spawnPlayer(Vector3 position, CinemachineVirtualCamera trainCamera = null)
     {
+        playerModel.gameObject.SetActive(true);
+        
         playerCamera.Priority = 10;
         if (trainCamera != null) trainCamera.Priority = 0;
         player.GetComponent<Rigidbody>().velocity = Vector3.zero;
         player.transform.position = position;
+    }
+    
+    private void hidePlayer()
+    {
+        playerModel.gameObject.SetActive(false);
+        player.GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
 }
