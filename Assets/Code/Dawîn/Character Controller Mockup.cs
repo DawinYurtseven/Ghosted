@@ -12,7 +12,7 @@ public class CharacterControllerMockup : MonoBehaviour
     //TODO: ADD fmod and animations 
 
 
-    private static readonly int Grounded = Animator.StringToHash("grounded");
+    private static readonly int NotGrounded = Animator.StringToHash("notGrounded");
     private static readonly int Speed = Animator.StringToHash("Speed");
     private static readonly int Jumping = Animator.StringToHash("jump");
     private static readonly int Throw = Animator.StringToHash("Throw Talisman");
@@ -32,7 +32,7 @@ public class CharacterControllerMockup : MonoBehaviour
 
     private void Start()
     {
-        animator.SetBool(Grounded, true);
+        animator.SetBool(NotGrounded, false);
         EmotionSingletonMock.Instance.CurrentTarget.Subscribe(talisman =>
         {
             /*if (talisman == null && target != null && lockOn && mockTransform != null)
@@ -202,7 +202,7 @@ public class CharacterControllerMockup : MonoBehaviour
                 return;
             animator.SetTrigger(Jumping);
             coyoteJumped = true;
-            animator.SetBool(Grounded, false);
+            animator.SetBool(NotGrounded, true);
             var up = transform.up;
             _rb.velocity += up * jumpStrength;
             var right = lookAtTarget.right;
@@ -215,7 +215,7 @@ public class CharacterControllerMockup : MonoBehaviour
 
     public void Jump()
     {
-        animator.SetBool(Grounded, false);
+        animator.SetBool(NotGrounded, true);
         var up = transform.up;
         _rb.velocity += up * jumpStrength;
         //rb.AddForce(up * jumpStrength, ForceMode.Force);
@@ -229,7 +229,7 @@ public class CharacterControllerMockup : MonoBehaviour
             if (Physics.SphereCast(transform.position, 0.3f, -transform.up, out _, groundCheckDistance * 1.1f, ground))
             {
                 isGrounded = true;
-                animator.SetBool(Grounded, true);
+                animator.SetBool(NotGrounded, false);
                 yield break;
             }
 
@@ -247,10 +247,10 @@ public class CharacterControllerMockup : MonoBehaviour
         {
             if (!Physics.SphereCast(transform.position, 0.3f, -transform.up, out _, groundCheckDistance * 1.2f, ground))
             {
-                animator.SetBool(Grounded, false);
+                animator.SetBool(NotGrounded, true);
             }
             else
-                animator.SetBool(Grounded, true);
+                animator.SetBool(NotGrounded, false);
 
             if (isGrounded && !coyoteJumped)
             {
@@ -639,7 +639,7 @@ public class CharacterControllerMockup : MonoBehaviour
             {
                 isGrounded = true;
                 coyoteJumped = false;
-                animator.SetBool(Grounded, true);
+                animator.SetBool(NotGrounded, false);
                 animator.ResetTrigger(Jumping);
             }
         }
