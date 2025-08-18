@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-5386261718020460038
+--- !u!114 &-7001539089783142633
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10,39 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
-  m_Name: d5fd5052-0476-4969-8f28-83d477e5df9c
+  m_Name: b0686a64-9ceb-4664-83c3-00feff6cdf44
   m_EditorClassIdentifier: 
-  text: "And suddenly, it felt like I\u2019d always been there. Like the silence
-    fit me."
-  onEnterActions: []
-  onExitActions: []
-  child: 3dd42c49-a05c-4b0d-abc2-7e6b15722aaf
-  speaker: Miyu
-  voiceClip:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
---- !u!114 &-5284490383351988996
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
-  m_Name: 0ebfb194-41cf-4e75-92da-9e13ce93c542
-  m_EditorClassIdentifier: 
-  text: "Yes.\r.. Yes.\nOne evening... the temple bell rang in the distance. I was
-    folding laundry, nothing special.\r"
+  text: It somehow takes me back to my inital journey from England to Japan. The
+    entire trip gave me hours to reflect on everything I wanted, and had to, do once
+    I arrived.
   onEnterActions:
   - miyu
   onExitActions: []
-  child: d5fd5052-0476-4969-8f28-83d477e5df9c
+  child: df93444b-867c-4717-97ce-db5192183754
   speaker: Miyu
   voiceClip:
     Guid:
@@ -51,7 +27,7 @@ MonoBehaviour:
       Data3: 0
       Data4: 0
     Path: 
---- !u!114 &-3730083144715232653
+--- !u!114 &-3222729844053685095
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -61,39 +37,66 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
-  m_Name: 8539f393-3c86-467e-b2c3-782549fea7eb
+  m_Name: df93444b-867c-4717-97ce-db5192183754
   m_EditorClassIdentifier: 
-  text: But something settled.
+  text: 'That means I took a train from my old place to London. Hmm... Then, during
+    my flight to Tokyo, that''s where I found myself planning out my first classes. '
+  onEnterActions: []
+  onExitActions: []
+  child: dd23c737-b297-4d94-b241-eb1d5db25159
+  speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+--- !u!114 &-2989699889829346439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 40ecc968-4f14-4cbd-b6c3-3519d63efc8f
+  m_EditorClassIdentifier: 
+  text: "Yes, i think that was it. The train to Y\u016Brei-mura, where all I could
+    think about was visiting that park, the one my brother and I always went to when
+    we visited grandpa and grandma. "
+  onEnterActions: []
+  onExitActions:
+  - exit
+  child: 79944dcb-a2d0-4043-a463-bece8a1a9c1a
+  speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+--- !u!114 &-1485999910498754739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
+  m_Name: 04cb70bb-99ea-46b3-8280-ad8e1c382118
+  m_EditorClassIdentifier: 
+  text: Take your time.
   onEnterActions:
   - player
   onExitActions: []
-  child: 0ebfb194-41cf-4e75-92da-9e13ce93c542
+  child: b0686a64-9ceb-4664-83c3-00feff6cdf44
   speaker: Player
-  voiceClip:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
---- !u!114 &-3640371405380240828
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
-  m_Name: 941a885f-68d0-4fa6-acd9-ff5134892532
-  m_EditorClassIdentifier: 
-  text: "I don\u2019t know exactly when it happened\u2026\r"
-  onEnterActions:
-  - miyu
-  onExitActions: []
-  child: 2317ae66-64fe-4d77-a155-6125af8ab8d9
-  speaker: Miyu
   voiceClip:
     Guid:
       Data1: 0
@@ -111,7 +114,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0128aa92babf3fd4e9cf4beb0d51198e, type: 3}
-  m_Name: Dial_Canon
+  m_Name: Dial_StationTimeTable Felipe
   m_EditorClassIdentifier: 
   dialogueSpeakers:
   - Miyu
@@ -119,17 +122,13 @@ MonoBehaviour:
   dialogueNodes:
   - {fileID: 8705371555783416926}
   - {fileID: 6418530206259528633}
-  - {fileID: 9147519370536567891}
-  - {fileID: 4022340045414536918}
-  - {fileID: 2971988691555010464}
-  - {fileID: -3730083144715232653}
-  - {fileID: -5284490383351988996}
-  - {fileID: -5386261718020460038}
-  - {fileID: 269138704807961986}
-  - {fileID: -3640371405380240828}
-  - {fileID: 8687843266053351769}
+  - {fileID: -7001539089783142633}
+  - {fileID: -3222729844053685095}
+  - {fileID: 2649124231745951109}
+  - {fileID: 3931636284692325048}
+  - {fileID: -2989699889829346439}
   replyNodes: []
---- !u!114 &269138704807961986
+--- !u!114 &2649124231745951109
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,38 +138,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
-  m_Name: 3dd42c49-a05c-4b0d-abc2-7e6b15722aaf
+  m_Name: dd23c737-b297-4d94-b241-eb1d5db25159
   m_EditorClassIdentifier: 
-  text: "That\u2019s a time worth keeping."
-  onEnterActions:
-  - player
-  onExitActions: []
-  child: 941a885f-68d0-4fa6-acd9-ff5134892532
-  speaker: Player
-  voiceClip:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
---- !u!114 &2971988691555010464
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
-  m_Name: ee083e8e-a75c-4ba5-aa8e-a15e29d7a5fa
-  m_EditorClassIdentifier: 
-  text: "Or when someone called me \u201Cneighbor\u201D and I didn\u2019t flinch.\r\nI
-    didn\u2019t even notice it then."
+  text: 'And the last stop before i landed ... arrived... '
   onEnterActions: []
   onExitActions: []
-  child: 8539f393-3c86-467e-b2c3-782549fea7eb
+  child: 60768e06-9605-4796-8ac7-aee94a461207
   speaker: Miyu
   voiceClip:
     Guid:
@@ -179,7 +152,7 @@ MonoBehaviour:
       Data3: 0
       Data4: 0
     Path: 
---- !u!114 &4022340045414536918
+--- !u!114 &3931636284692325048
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -189,13 +162,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
-  m_Name: a74377ff-c5ec-458c-afdb-0ccb63a43310
+  m_Name: 60768e06-9605-4796-8ac7-aee94a461207
   m_EditorClassIdentifier: 
-  text: "Maybe\u2026 it was when I stopped translating my thoughts in my head. "
-  onEnterActions:
-  - miyu
+  text: Must have been something with my family. So probably ... ... No, maybe near
+    my grandparents?
+  onEnterActions: []
   onExitActions: []
-  child: ee083e8e-a75c-4ba5-aa8e-a15e29d7a5fa
+  child: 40ecc968-4f14-4cbd-b6c3-3519d63efc8f
   speaker: Miyu
   voiceClip:
     Guid:
@@ -216,39 +189,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
   m_Name: 79944dcb-a2d0-4043-a463-bece8a1a9c1a
   m_EditorClassIdentifier: 
-  text: What if I stop it at the wrong time? What if I trap myself in the wrong memory?
-  onEnterActions: []
-  onExitActions: []
-  child: 2a8ad912-3a19-4890-8afb-2abe1a424f0e
-  speaker: Miyu
-  voiceClip:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
---- !u!114 &8687843266053351769
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
-  m_Name: 2317ae66-64fe-4d77-a155-6125af8ab8d9
-  m_EditorClassIdentifier: 
-  text: ' Maybe it was just after lunch, when the sun had shifted slightly,
-
-    and
-    the world seemed to hold its breath for a moment.'
-  onEnterActions: []
+  text: "Then trust that. Find the times that moved you\u2014and let them move you
+    still.\r"
+  onEnterActions:
+  - player
   onExitActions:
   - exit
-  child: 
-  speaker: Miyu
+  child: removed
+  speaker: Player
   voiceClip:
     Guid:
       Data1: 0
@@ -268,39 +216,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
   m_Name: 3200f4de-6a6d-430d-9707-50a8b94630d1
   m_EditorClassIdentifier: 
-  text: "I\u2026 I don\u2019t know if I can do this.\r"
+  text: "This timetable\u2026 I recognize the names.\r\nLondon, Tokyo, Y\u016Brei\u2026
+    That was all part of my life there. But I\u2014I can\u2019t remember the order. "
   onEnterActions:
   - enter
   - moveTo
   - miyu
   onExitActions: []
-  child: 79944dcb-a2d0-4043-a463-bece8a1a9c1a
+  child: 04cb70bb-99ea-46b3-8280-ad8e1c382118
   speaker: Miyu
-  voiceClip:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
---- !u!114 &9147519370536567891
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
-  m_Name: 2a8ad912-3a19-4890-8afb-2abe1a424f0e
-  m_EditorClassIdentifier: 
-  text: But there was a moment, wasn't there? That made you stay?
-  onEnterActions:
-  - player
-  onExitActions: []
-  child: a74377ff-c5ec-458c-afdb-0ccb63a43310
-  speaker: Player
   voiceClip:
     Guid:
       Data1: 0
