@@ -34,7 +34,7 @@ public class TriggerZone : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Interact action is not assigned.");
+            //Debug.LogWarning("Interact action is not assigned.");
         }
     }
     
