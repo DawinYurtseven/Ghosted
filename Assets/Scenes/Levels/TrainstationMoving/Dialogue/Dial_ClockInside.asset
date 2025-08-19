@@ -12,19 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
   m_Name: 488dd0c9-2c83-4857-a0f0-d492481afbe8
   m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 821
-    y: 254
-    width: 200
-    height: 80
+  text: "Then maybe this is the place to unfold it. Look around\u2014this isn\u2019t
+    just any clock. It\u2019s your time."
   onEnterActions:
   - player
   onExitActions: []
-  text: "Then maybe this is the place to unfold it. Look around\u2014this isn\u2019t
-    just any clock. It\u2019s your time."
   child: 3905efb4-c402-437a-9d10-7bf90c2f56a9
-  speaker: Player
+  speaker: Ghost Binder
   voiceClip:
     Guid:
       Data1: 0
@@ -46,7 +40,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueSpeakers:
   - Miyu
-  - Player
+  - Ghost Binder
   dialogueNodes:
   - {fileID: 8705371555783416926}
   - {fileID: 6418530206259528633}
@@ -66,17 +60,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
   m_Name: 79944dcb-a2d0-4043-a463-bece8a1a9c1a
   m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 304
-    y: 84
-    width: 200
-    height: 80
+  text: "Not exactly\u2026 I remember only that feeling. That and how I turned it
+    countless times in my hands. "
   onEnterActions:
   - miyu
   onExitActions: []
-  text: "Not exactly\u2026 I remember only that feeling. That and how I turned it
-    countless times in my hands. "
   child: 2a8ad912-3a19-4890-8afb-2abe1a424f0e
   speaker: Miyu
   voiceClip:
@@ -98,18 +86,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
   m_Name: 3905efb4-c402-437a-9d10-7bf90c2f56a9
   m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 75
-    y: 425
-    width: 200
-    height: 80
+  text: "It\u2019s all wrong. Hours stacked on top of each other, gears turning and
+    spinning - backwards, sideways\u2026"
   onEnterActions:
   - miyu
   onExitActions:
   - exit
-  text: "It\u2019s all wrong. Hours stacked on top of each other, gears turning and
-    spinning - backwards, sideways\u2026"
   child: 
   speaker: Miyu
   voiceClip:
@@ -131,21 +113,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
   m_Name: 3200f4de-6a6d-430d-9707-50a8b94630d1
   m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 43
-    y: 14
-    width: 200
-    height: 80
+  text: You said the Omamori helped you remember him. Maybe it still can. Do you
+    remember where you were when you last held it?
   onEnterActions:
   - enter
   - moveTo
   - player
   onExitActions: []
-  text: You said the Omamori helped you remember him. Maybe it still can. Do you
-    remember where you were when you last held it?
   child: 79944dcb-a2d0-4043-a463-bece8a1a9c1a
-  speaker: Player
+  speaker: Ghost Binder
   voiceClip:
     Guid:
       Data1: 0
@@ -165,15 +141,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
   m_Name: 2a8ad912-3a19-4890-8afb-2abe1a424f0e
   m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 596
-    y: 154
-    width: 200
-    height: 80
+  text: "Everything else is blurred\u2014like time folding in on itself."
   onEnterActions: []
   onExitActions: []
-  text: "Everything else is blurred\u2014like time folding in on itself."
   child: 488dd0c9-2c83-4857-a0f0-d492481afbe8
   speaker: Miyu
   voiceClip:
