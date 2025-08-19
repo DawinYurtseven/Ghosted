@@ -47,6 +47,7 @@ public class EmotionSingletonMock : MonoBehaviour
         }
         if (currentEmotion == Emotion.Fear)
         {
+            
             changeToJoy();
         }
 

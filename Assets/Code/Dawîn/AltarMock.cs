@@ -6,6 +6,8 @@ public class AltarMock : MonoBehaviour
     public UIInteractionHint uiHint;
     [SerializeField] private AltarUI uiAltar;
     
+    [SerializeField] private FMODUnity.StudioEventEmitter _emitter;
+    
     
     public void ChangeEmotion(Emotion emotion)
     {
@@ -14,12 +16,19 @@ public class AltarMock : MonoBehaviour
 
     public void ChangeEmotionJoy()
     {
+        if (EmotionSingletonMock.Instance.getCurrentEmotion() == Emotion.Fear)
+        {
+            _emitter.Play(); 
+        }
         EmotionSingletonMock.Instance.ChangeEmotion(Emotion.Joy);
-
     }
     
     public void ChangeEmotionFear()
     {
+        if (EmotionSingletonMock.Instance.getCurrentEmotion() == Emotion.Joy)
+        {
+            _emitter.Play(); 
+        }
         EmotionSingletonMock.Instance.ChangeEmotion(Emotion.Fear);
     }
 
