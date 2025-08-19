@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1621647412334084560}
   - component: {fileID: 5433540673598882497}
   - component: {fileID: 8015939103660190146}
+  - component: {fileID: 390583994850454404}
   m_Layer: 0
   m_Name: Chair_model
   m_TagString: Untagged
@@ -62,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 70d55a419ff8622458765f8b2ebbc279, type: 2}
+  - {fileID: 2100000, guid: 9be46616f2dcf4341a3ea62d915afe58, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -106,3 +107,17 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -6264831526926562434, guid: d22393827291d5246b8d3a2bc4137448, type: 3}
+--- !u!114 &390583994850454404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4512080381353572864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fcacceb754f6a14882b9a57267900a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joyMaterial: {fileID: 2100000, guid: 70d55a419ff8622458765f8b2ebbc279, type: 2}
+  fearMaterial: {fileID: 2100000, guid: 9be46616f2dcf4341a3ea62d915afe58, type: 2}

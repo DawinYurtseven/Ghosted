@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5715783718077613627}
   - component: {fileID: 5502428428837912414}
   - component: {fileID: 7292868331273199640}
+  - component: {fileID: 5576728691301900009}
   m_Layer: 10
   m_Name: ArchLongGlass
   m_TagString: Untagged
@@ -1078,3 +1079,17 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &5576728691301900009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3744794296592867988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fcacceb754f6a14882b9a57267900a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joyMaterial: {fileID: 2100000, guid: 04f76ea1821b93941bd131c5803b57c7, type: 2}
+  fearMaterial: {fileID: 2100000, guid: 99b92dc0c1d6a994ca76a696b4adcdb4, type: 2}
