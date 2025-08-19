@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2246575358772558364}
   - component: {fileID: 3909947916189211513}
   - component: {fileID: 1073627116286183862}
+  - component: {fileID: 8361899746730901499}
   m_Layer: 0
   m_Name: Cylinder (10)
   m_TagString: Untagged
@@ -1120,7 +1121,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6591e55e6828cac44987ba27d171e9c5, type: 2}
+  - {fileID: 2100000, guid: bc0d5e4cde253a84d900c149650379f7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1172,6 +1173,20 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &8361899746730901499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153798007351007043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fcacceb754f6a14882b9a57267900a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joyMaterial: {fileID: 2100000, guid: 6591e55e6828cac44987ba27d171e9c5, type: 2}
+  fearMaterial: {fileID: 2100000, guid: bc0d5e4cde253a84d900c149650379f7, type: 2}
 --- !u!1 &2744912762724188358
 GameObject:
   m_ObjectHideFlags: 0
@@ -1186,6 +1201,7 @@ GameObject:
   - component: {fileID: 4701408381916366144}
   - component: {fileID: 382224767359560414}
   - component: {fileID: 3299816215202241761}
+  - component: {fileID: 7216257942928804079}
   m_Layer: 0
   m_Name: Cylinder (9)
   m_TagString: Untagged
@@ -2292,7 +2308,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6591e55e6828cac44987ba27d171e9c5, type: 2}
+  - {fileID: 2100000, guid: bc0d5e4cde253a84d900c149650379f7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2344,6 +2360,20 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &7216257942928804079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2744912762724188358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fcacceb754f6a14882b9a57267900a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joyMaterial: {fileID: 2100000, guid: 6591e55e6828cac44987ba27d171e9c5, type: 2}
+  fearMaterial: {fileID: 2100000, guid: bc0d5e4cde253a84d900c149650379f7, type: 2}
 --- !u!1 &2806754209692297441
 GameObject:
   m_ObjectHideFlags: 0
@@ -2358,6 +2388,7 @@ GameObject:
   - component: {fileID: 1436442700659458207}
   - component: {fileID: 5111022811801128974}
   - component: {fileID: 7637439179042771375}
+  - component: {fileID: 8480554777378353909}
   m_Layer: 0
   m_Name: Cylinder (4)
   m_TagString: Untagged
@@ -3464,7 +3495,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6591e55e6828cac44987ba27d171e9c5, type: 2}
+  - {fileID: 2100000, guid: bc0d5e4cde253a84d900c149650379f7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3516,6 +3547,20 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &8480554777378353909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2806754209692297441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fcacceb754f6a14882b9a57267900a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joyMaterial: {fileID: 2100000, guid: 6591e55e6828cac44987ba27d171e9c5, type: 2}
+  fearMaterial: {fileID: 2100000, guid: bc0d5e4cde253a84d900c149650379f7, type: 2}
 --- !u!1 &4172865699571775111
 GameObject:
   m_ObjectHideFlags: 0
@@ -3530,6 +3575,7 @@ GameObject:
   - component: {fileID: 959473650002078855}
   - component: {fileID: 2307691674795263760}
   - component: {fileID: 8644041483194964739}
+  - component: {fileID: 1616580802112221310}
   m_Layer: 0
   m_Name: Cylinder (7)
   m_TagString: Untagged
@@ -4636,7 +4682,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6591e55e6828cac44987ba27d171e9c5, type: 2}
+  - {fileID: 2100000, guid: bc0d5e4cde253a84d900c149650379f7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4688,6 +4734,20 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &1616580802112221310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4172865699571775111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fcacceb754f6a14882b9a57267900a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joyMaterial: {fileID: 2100000, guid: 6591e55e6828cac44987ba27d171e9c5, type: 2}
+  fearMaterial: {fileID: 2100000, guid: bc0d5e4cde253a84d900c149650379f7, type: 2}
 --- !u!1 &4632617595769426917
 GameObject:
   m_ObjectHideFlags: 0
@@ -4702,6 +4762,7 @@ GameObject:
   - component: {fileID: 7128988339348701180}
   - component: {fileID: 6544779803431111336}
   - component: {fileID: 3194972551880634610}
+  - component: {fileID: 2743789393119188889}
   m_Layer: 0
   m_Name: BodyJoy
   m_TagString: Untagged
@@ -4989,7 +5050,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6591e55e6828cac44987ba27d171e9c5, type: 2}
+  - {fileID: 2100000, guid: bc0d5e4cde253a84d900c149650379f7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5041,6 +5102,20 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &2743789393119188889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4632617595769426917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fcacceb754f6a14882b9a57267900a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joyMaterial: {fileID: 2100000, guid: 6591e55e6828cac44987ba27d171e9c5, type: 2}
+  fearMaterial: {fileID: 2100000, guid: bc0d5e4cde253a84d900c149650379f7, type: 2}
 --- !u!1 &6452329717820485463
 GameObject:
   m_ObjectHideFlags: 0
@@ -5055,6 +5130,7 @@ GameObject:
   - component: {fileID: 2875992543616873135}
   - component: {fileID: 416919409955926821}
   - component: {fileID: 8754536814052173971}
+  - component: {fileID: 7067421136177766665}
   m_Layer: 0
   m_Name: Cylinder (8)
   m_TagString: Untagged
@@ -6161,7 +6237,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6591e55e6828cac44987ba27d171e9c5, type: 2}
+  - {fileID: 2100000, guid: bc0d5e4cde253a84d900c149650379f7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6213,6 +6289,20 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &7067421136177766665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6452329717820485463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fcacceb754f6a14882b9a57267900a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joyMaterial: {fileID: 2100000, guid: 6591e55e6828cac44987ba27d171e9c5, type: 2}
+  fearMaterial: {fileID: 2100000, guid: bc0d5e4cde253a84d900c149650379f7, type: 2}
 --- !u!1 &7356007874667823790
 GameObject:
   m_ObjectHideFlags: 0
@@ -6227,6 +6317,7 @@ GameObject:
   - component: {fileID: 3375110268038837879}
   - component: {fileID: 3487571245814291346}
   - component: {fileID: 7712898705943159386}
+  - component: {fileID: 5064841380977759514}
   m_Layer: 0
   m_Name: Cylinder (5)
   m_TagString: Untagged
@@ -7333,7 +7424,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6591e55e6828cac44987ba27d171e9c5, type: 2}
+  - {fileID: 2100000, guid: bc0d5e4cde253a84d900c149650379f7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7385,6 +7476,20 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &5064841380977759514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7356007874667823790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fcacceb754f6a14882b9a57267900a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joyMaterial: {fileID: 2100000, guid: 6591e55e6828cac44987ba27d171e9c5, type: 2}
+  fearMaterial: {fileID: 2100000, guid: bc0d5e4cde253a84d900c149650379f7, type: 2}
 --- !u!1 &7507934859579778847
 GameObject:
   m_ObjectHideFlags: 0
@@ -7460,6 +7565,7 @@ GameObject:
   - component: {fileID: 7388641251379787283}
   - component: {fileID: 4400029567976473752}
   - component: {fileID: 4865711338844075619}
+  - component: {fileID: 4756737753655507500}
   m_Layer: 0
   m_Name: Wheel
   m_TagString: Untagged
@@ -8566,7 +8672,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6591e55e6828cac44987ba27d171e9c5, type: 2}
+  - {fileID: 2100000, guid: bc0d5e4cde253a84d900c149650379f7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8618,3 +8724,17 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &4756737753655507500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8230094157582111532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fcacceb754f6a14882b9a57267900a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joyMaterial: {fileID: 2100000, guid: 6591e55e6828cac44987ba27d171e9c5, type: 2}
+  fearMaterial: {fileID: 2100000, guid: bc0d5e4cde253a84d900c149650379f7, type: 2}

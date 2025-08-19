@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 939566655262833789}
   - component: {fileID: 3462112328605565795}
   - component: {fileID: 200743670087722685}
+  - component: {fileID: 7054482241348198012}
   m_Layer: 10
   m_Name: Cube (15)
   m_TagString: Untagged
@@ -301,7 +302,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dfc08c90188302847afb04f628582097, type: 2}
+  - {fileID: 2100000, guid: 2e307293f4fe09045832849911c29e5f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -353,6 +354,20 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &7054482241348198012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3209469721023052762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fcacceb754f6a14882b9a57267900a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joyMaterial: {fileID: 2100000, guid: 6cbedab2a899a6d448fabb7926e67b03, type: 2}
+  fearMaterial: {fileID: 2100000, guid: 2e307293f4fe09045832849911c29e5f, type: 2}
 --- !u!1 &3745176429290173184
 GameObject:
   m_ObjectHideFlags: 0
@@ -513,6 +528,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2774324404992709075, guid: 1c11d3bad9ae8854fa30d26275701e04, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cfaab9ef695566e4f8e396c98d6fa51a, type: 2}
     - target: {fileID: 4337514528918232756, guid: 1c11d3bad9ae8854fa30d26275701e04, type: 3}
       propertyPath: m_Name
       value: BritishStationArch (21)
@@ -525,6 +544,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5591234793947576959, guid: 1c11d3bad9ae8854fa30d26275701e04, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c060a32e7b56b2a498596c80b205e273, type: 2}
     - target: {fileID: 6584134964956593472, guid: 1c11d3bad9ae8854fa30d26275701e04, type: 3}
       propertyPath: m_Layer
       value: 10
@@ -663,6 +686,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2774324404992709075, guid: 1c11d3bad9ae8854fa30d26275701e04, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cfaab9ef695566e4f8e396c98d6fa51a, type: 2}
     - target: {fileID: 4337514528918232756, guid: 1c11d3bad9ae8854fa30d26275701e04, type: 3}
       propertyPath: m_Name
       value: BritishStationArch (26)
@@ -675,6 +702,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5591234793947576959, guid: 1c11d3bad9ae8854fa30d26275701e04, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c060a32e7b56b2a498596c80b205e273, type: 2}
     - target: {fileID: 6584134964956593472, guid: 1c11d3bad9ae8854fa30d26275701e04, type: 3}
       propertyPath: m_Layer
       value: 10
@@ -1205,6 +1236,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2774324404992709075, guid: 1c11d3bad9ae8854fa30d26275701e04, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cfaab9ef695566e4f8e396c98d6fa51a, type: 2}
     - target: {fileID: 4337514528918232756, guid: 1c11d3bad9ae8854fa30d26275701e04, type: 3}
       propertyPath: m_Name
       value: BritishStationArch (28)
@@ -1217,6 +1252,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5591234793947576959, guid: 1c11d3bad9ae8854fa30d26275701e04, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c060a32e7b56b2a498596c80b205e273, type: 2}
     - target: {fileID: 6584134964956593472, guid: 1c11d3bad9ae8854fa30d26275701e04, type: 3}
       propertyPath: m_Layer
       value: 10
@@ -1767,6 +1806,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2774324404992709075, guid: 1c11d3bad9ae8854fa30d26275701e04, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cfaab9ef695566e4f8e396c98d6fa51a, type: 2}
     - target: {fileID: 4337514528918232756, guid: 1c11d3bad9ae8854fa30d26275701e04, type: 3}
       propertyPath: m_Name
       value: BritishStationArch (27)
@@ -1779,6 +1822,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5591234793947576959, guid: 1c11d3bad9ae8854fa30d26275701e04, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c060a32e7b56b2a498596c80b205e273, type: 2}
     - target: {fileID: 6584134964956593472, guid: 1c11d3bad9ae8854fa30d26275701e04, type: 3}
       propertyPath: m_Layer
       value: 10
@@ -2329,6 +2376,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2774324404992709075, guid: 1c11d3bad9ae8854fa30d26275701e04, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cfaab9ef695566e4f8e396c98d6fa51a, type: 2}
     - target: {fileID: 4337514528918232756, guid: 1c11d3bad9ae8854fa30d26275701e04, type: 3}
       propertyPath: m_Name
       value: BritishStationArch (23)
@@ -2341,6 +2392,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5591234793947576959, guid: 1c11d3bad9ae8854fa30d26275701e04, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c060a32e7b56b2a498596c80b205e273, type: 2}
     - target: {fileID: 6584134964956593472, guid: 1c11d3bad9ae8854fa30d26275701e04, type: 3}
       propertyPath: m_Layer
       value: 10
@@ -2895,6 +2950,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2774324404992709075, guid: 1c11d3bad9ae8854fa30d26275701e04, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cfaab9ef695566e4f8e396c98d6fa51a, type: 2}
     - target: {fileID: 4337514528918232756, guid: 1c11d3bad9ae8854fa30d26275701e04, type: 3}
       propertyPath: m_Name
       value: BritishStationArch (24)
@@ -2907,6 +2966,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5591234793947576959, guid: 1c11d3bad9ae8854fa30d26275701e04, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c060a32e7b56b2a498596c80b205e273, type: 2}
     - target: {fileID: 6584134964956593472, guid: 1c11d3bad9ae8854fa30d26275701e04, type: 3}
       propertyPath: m_Layer
       value: 10
@@ -3045,6 +3108,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2774324404992709075, guid: 1c11d3bad9ae8854fa30d26275701e04, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cfaab9ef695566e4f8e396c98d6fa51a, type: 2}
     - target: {fileID: 4337514528918232756, guid: 1c11d3bad9ae8854fa30d26275701e04, type: 3}
       propertyPath: m_Name
       value: BritishStationArch (25)
@@ -3057,6 +3124,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5591234793947576959, guid: 1c11d3bad9ae8854fa30d26275701e04, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c060a32e7b56b2a498596c80b205e273, type: 2}
     - target: {fileID: 6584134964956593472, guid: 1c11d3bad9ae8854fa30d26275701e04, type: 3}
       propertyPath: m_Layer
       value: 10
@@ -3195,6 +3266,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2774324404992709075, guid: 1c11d3bad9ae8854fa30d26275701e04, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cfaab9ef695566e4f8e396c98d6fa51a, type: 2}
     - target: {fileID: 4337514528918232756, guid: 1c11d3bad9ae8854fa30d26275701e04, type: 3}
       propertyPath: m_Name
       value: BritishStationArch (22)
@@ -3207,6 +3282,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5591234793947576959, guid: 1c11d3bad9ae8854fa30d26275701e04, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c060a32e7b56b2a498596c80b205e273, type: 2}
     - target: {fileID: 6584134964956593472, guid: 1c11d3bad9ae8854fa30d26275701e04, type: 3}
       propertyPath: m_Layer
       value: 10

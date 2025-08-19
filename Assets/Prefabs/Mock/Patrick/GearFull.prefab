@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3322146229262095539}
   - component: {fileID: 3337837782403247414}
   - component: {fileID: 3600469095634387601}
+  - component: {fileID: 464832743140403170}
   m_Layer: 0
   m_Name: GearFull
   m_TagString: Untagged
@@ -4444,7 +4445,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1295ef7c59b31e34aac3d94e2277377b, type: 2}
+  - {fileID: 2100000, guid: 9bf9e40cf2ccf244888865cf7936dd70, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4496,3 +4497,17 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &464832743140403170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1601517548593856172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fcacceb754f6a14882b9a57267900a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joyMaterial: {fileID: 2100000, guid: 1295ef7c59b31e34aac3d94e2277377b, type: 2}
+  fearMaterial: {fileID: 2100000, guid: 9bf9e40cf2ccf244888865cf7936dd70, type: 2}
