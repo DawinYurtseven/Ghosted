@@ -31,6 +31,8 @@ public class TrainCutsceneController : MonoBehaviour
     private int trainSceneCount = 0;        //keep track (pun intended)
     private int trainStartSceneCount = 0;   //for the start train
     
+    [SerializeField] private FMODUnity.StudioEventEmitter _emitter;
+    
     private void OnEnable()
     {
         CutSceneTrigger.OnCutScenePlayerTriggered += TrainCutscene;
@@ -58,12 +60,16 @@ public class TrainCutsceneController : MonoBehaviour
             spline?.Play();
             
             trainSceneCount++;
+            
+            _emitter.Play();
         }
         
         if(name == CutSceneName.Start2StartStation)
         {
             startTrain(splineStart, trainCameraStart);
             trainStartSceneCount++;
+            
+            _emitter.Play();
         }
     }
 
