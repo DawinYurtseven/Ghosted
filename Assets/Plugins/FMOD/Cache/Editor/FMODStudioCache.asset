@@ -354,7 +354,7 @@ MonoBehaviour:
   Path: FMod/ghosted/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638911846065437507
+  lastModified: 638912026649712389
   FileSizes:
   - Name: Desktop
     Value: 11816736
@@ -1216,7 +1216,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 1600
+  Length: 4888
 --- !u!114 &-866219814596668207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1232,10 +1232,10 @@ MonoBehaviour:
   Path: FMod/ghosted/Build/Desktop/Character.bank
   Name: Character
   StudioPath: bank:/Character
-  lastModified: 638911846064407540
+  lastModified: 638912051122283723
   FileSizes:
   - Name: Desktop
-    Value: 1552704
+    Value: 1535648
   Exists: 1
 --- !u!114 &-757512207406194088
 MonoBehaviour:
@@ -1505,8 +1505,9 @@ MonoBehaviour:
   - {fileID: 8331531293561246778}
   - {fileID: -5816818565891400262}
   - {fileID: -5360679264225283125}
-  - {fileID: 3372774790848879171}
-  - {fileID: -76930394029489922}
+  - {fileID: 1841703968884939755}
+  - {fileID: -8489662704299221416}
+  - {fileID: 7265522059610983800}
   EditorParameters:
   - {fileID: 377465009096036401}
   - {fileID: 1316675867748271751}
@@ -1515,7 +1516,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 8145881761011800595}
   cacheVersion: 131848
-  cacheTime: 638912032761033161
+  cacheTime: 638912051122283723
   SerializableEventsDict:
   - key: event:/SFX/Binding/Bind loop
     index: 0
@@ -1687,6 +1688,8 @@ MonoBehaviour:
     index: 83
   - key: event:/SFX/Level/Birthday/JumpPad
     index: 84
+  - key: event:/SFX/Level/Birthday/CakeDestruction
+    index: 85
 --- !u!114 &17777720020034600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2044,10 +2047,10 @@ MonoBehaviour:
   Path: FMod/ghosted/Build/Desktop/Level.bank
   Name: Level
   StudioPath: bank:/Level
-  lastModified: 638912032761017680
+  lastModified: 638912026648480907
   FileSizes:
   - Name: Desktop
-    Value: 3179616
+    Value: 3223296
   Exists: 1
 --- !u!114 &2840741616920250837
 MonoBehaviour:
@@ -2716,6 +2719,33 @@ MonoBehaviour:
   - Name: Desktop
     Value: 3439552
   Exists: 1
+--- !u!114 &7265522059610983800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Level/Birthday/CakeDestruction
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Level/Birthday/CakeDestruction
+  Guid:
+    Data1: -754826052
+    Data2: 1166934857
+    Data3: -880033119
+    Data4: 1052597927
+  Banks:
+  - {fileID: 2633107891268416129}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3248
 --- !u!114 &7908677746975762649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2758,10 +2788,10 @@ MonoBehaviour:
   Path: FMod/ghosted/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638912032761033161
+  lastModified: 638912026649732424
   FileSizes:
   - Name: Desktop
-    Value: 4818
+    Value: 4874
   Exists: 1
 --- !u!114 &8330151729175129455
 MonoBehaviour:

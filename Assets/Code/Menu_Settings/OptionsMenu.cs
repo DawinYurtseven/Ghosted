@@ -29,9 +29,7 @@ public class OptionsMenu : MonoBehaviour
         SetResolution(PlayerPrefs.GetInt("Resolution") == 0 ? 1 : PlayerPrefs.GetInt("Resolution"));
 
         // Volume
-        FMODUnity.RuntimeManager.GetBus("bus:/").getVolume(out var volume);
-        volumeSlider.value = volume;
-        volumeSlider.onValueChanged.AddListener(SetVolume);
+        SetVolume(PlayerPrefs.GetFloat("Volume") == 0f ? 1f : PlayerPrefs.GetFloat("Volume"));
         
         //Sensitivity
         SetSensitivity(PlayerPrefs.GetFloat("sensitivity") == 0f ? 30f : PlayerPrefs.GetFloat("sensitivity"));
@@ -79,6 +77,9 @@ public class OptionsMenu : MonoBehaviour
 
     public void SetVolume(float volume)
     {
+        PlayerPrefs.SetFloat("Volume", volume);
+        PlayerPrefs.Save();
+        volumeSlider.value = volume;
         FMODUnity.RuntimeManager.GetBus("bus:/").setVolume(volume);
     }
     
