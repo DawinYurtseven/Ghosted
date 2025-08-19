@@ -6250,15 +6250,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4548676403080198800, guid: a0d0df5c6dcec6d488dfefaeb5d2b2a4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.00000028505562
+      value: 8.611881
       objectReference: {fileID: 0}
     - target: {fileID: 4548676403080198800, guid: a0d0df5c6dcec6d488dfefaeb5d2b2a4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.6484664
+      value: 1.6370116
       objectReference: {fileID: 0}
     - target: {fileID: 4548676403080198800, guid: a0d0df5c6dcec6d488dfefaeb5d2b2a4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.1877313
+      value: 16.56566
       objectReference: {fileID: 0}
     - target: {fileID: 4548676403080198800, guid: a0d0df5c6dcec6d488dfefaeb5d2b2a4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6312,6 +6312,10 @@ PrefabInstance:
       propertyPath: camera
       value: 
       objectReference: {fileID: 6224467332607290589}
+    - target: {fileID: 6496545617559681279, guid: a0d0df5c6dcec6d488dfefaeb5d2b2a4, type: 3}
+      propertyPath: _emitter
+      value: 
+      objectReference: {fileID: 1948057342356241545}
     - target: {fileID: 6496545617559681279, guid: a0d0df5c6dcec6d488dfefaeb5d2b2a4, type: 3}
       propertyPath: nameField
       value: 
@@ -6696,7 +6700,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 977797181012412812, guid: a0d0df5c6dcec6d488dfefaeb5d2b2a4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8730432706504759689}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7186854931979958255, guid: a0d0df5c6dcec6d488dfefaeb5d2b2a4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1948057342356241545}
   m_SourcePrefab: {fileID: 100100000, guid: a0d0df5c6dcec6d488dfefaeb5d2b2a4, type: 3}
 --- !u!224 &3136649607546829229 stripped
 RectTransform:
@@ -6718,12 +6725,48 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7266318017597648310, guid: a0d0df5c6dcec6d488dfefaeb5d2b2a4, type: 3}
   m_PrefabInstance: {fileID: 2744463933215469601}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 5019997442385381326}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &5019997442385381326 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7186854931979958255, guid: a0d0df5c6dcec6d488dfefaeb5d2b2a4, type: 3}
+  m_PrefabInstance: {fileID: 2744463933215469601}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1948057342356241545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5019997442385381326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 2033216908
+      Data2: 1222011055
+      Data3: 549413295
+      Data4: -1048870889
+    Path: event:/SFX/Level/Birthday/Talisman
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!114 &6224467332607290589 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8104099331024968956, guid: a0d0df5c6dcec6d488dfefaeb5d2b2a4, type: 3}
@@ -6756,7 +6799,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6496545617559681279, guid: a0d0df5c6dcec6d488dfefaeb5d2b2a4, type: 3}
   m_PrefabInstance: {fileID: 2744463933215469601}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 5019997442385381326}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6efaacd539578b84aa08d87299fcb477, type: 3}

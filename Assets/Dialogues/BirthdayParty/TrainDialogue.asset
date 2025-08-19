@@ -12,15 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
   m_Name: 9618fd51-4209-4f73-96b4-c7233d13c534
   m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 560
-    y: 163
-    width: 200
-    height: 80
+  text: ...
   onEnterActions: []
   onExitActions: []
-  text: ...
   child: 28a3c1b6-0118-431e-8114-d82a9937945f
   speaker: Miyu
   voiceClip:
@@ -42,16 +36,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
   m_Name: c7457ae6-29f1-4f38-82e1-b8d2952ad6f4
   m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 1755
-    y: 388
-    width: 200
-    height: 80
+  text: "You\u2019ll understand once you see it.\r"
   onEnterActions: []
   onExitActions:
   - exit
-  text: "You\u2019ll understand once you see it.\r"
   child: 
   speaker: Ghost Binder
   voiceClip:
@@ -73,15 +61,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
   m_Name: bbfd4bae-6e4c-4252-b93a-ff7aca2713e3
   m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 311
-    y: 95
-    width: 200
-    height: 80
+  text: Should we go on?
   onEnterActions: []
   onExitActions: []
-  text: Should we go on?
   child: 9618fd51-4209-4f73-96b4-c7233d13c534
   speaker: Ghost Binder
   voiceClip:
@@ -103,15 +85,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
   m_Name: 3b54ef93-a612-4607-af57-d0d07205f744
   m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 1437
-    y: 367
-    width: 200
-    height: 80
+  text: "I\u2019m not sure I get it."
   onEnterActions: []
   onExitActions: []
-  text: "I\u2019m not sure I get it."
   child: c7457ae6-29f1-4f38-82e1-b8d2952ad6f4
   speaker: Miyu
   voiceClip:
@@ -139,11 +115,10 @@ MonoBehaviour:
   dialogueNodes:
   - {fileID: 5357615108362744399}
   - {fileID: -1218873031638777603}
-  - {fileID: -2906217645163519970}
+  - {fileID: 3926542566857034767}
   - {fileID: 3729557253263164330}
   - {fileID: -1136851469993964585}
   - {fileID: -2695430335982704713}
-  - {fileID: 3926542566857034767}
   replyNodes: []
 --- !u!114 &3729557253263164330
 MonoBehaviour:
@@ -157,18 +132,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
   m_Name: c69f66b8-5d52-449b-9568-d7b49dc58e56
   m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 1058
-    y: 303
-    width: 200
-    height: 80
-  onEnterActions: []
-  onExitActions: []
   text: "I can also use the talismans to bind objects to a specific emotion. That
     means when I throw a talisman onto an object and then change the emotion at the
     shrine, that object won\u2019t be affected by the emotion change. It\u2019ll
     stay the same until I remove the talisman."
+  onEnterActions: []
+  onExitActions: []
   child: 3b54ef93-a612-4607-af57-d0d07205f744
   speaker: Ghost Binder
   voiceClip:
@@ -190,15 +159,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
   m_Name: 28a3c1b6-0118-431e-8114-d82a9937945f
   m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 670
-    y: 300
-    width: 200
-    height: 80
+  text: That looks dangerous. How do we even get on the train?
   onEnterActions: []
   onExitActions: []
-  text: That looks dangerous. How do we even get on the train?
   child: c69f66b8-5d52-449b-9568-d7b49dc58e56
   speaker: Ghost Binder
   voiceClip:
@@ -220,16 +183,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
   m_Name: a2e1522c-cccd-470e-a652-db82315ff4bd
   m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 38
-    y: 41
-    width: 200
-    height: 80
+  text: Trains bring back a lot of memories... Some are really hard to remember.
   onEnterActions:
   - enter
   onExitActions: []
-  text: Trains bring back a lot of memories... Some are really hard to remember.
   child: bbfd4bae-6e4c-4252-b93a-ff7aca2713e3
   speaker: Miyu
   voiceClip:
