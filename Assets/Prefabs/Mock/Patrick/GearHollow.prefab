@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8136782261377170694}
   - component: {fileID: 2841454288220607976}
   - component: {fileID: 8926862475123534248}
+  - component: {fileID: 1071140077096598158}
   m_Layer: 0
   m_Name: GearHollow
   m_TagString: Untagged
@@ -8043,7 +8044,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1295ef7c59b31e34aac3d94e2277377b, type: 2}
+  - {fileID: 2100000, guid: 9bf9e40cf2ccf244888865cf7936dd70, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8095,3 +8096,17 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &1071140077096598158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3235275010783954364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fcacceb754f6a14882b9a57267900a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joyMaterial: {fileID: 2100000, guid: 1295ef7c59b31e34aac3d94e2277377b, type: 2}
+  fearMaterial: {fileID: 2100000, guid: 9bf9e40cf2ccf244888865cf7936dd70, type: 2}

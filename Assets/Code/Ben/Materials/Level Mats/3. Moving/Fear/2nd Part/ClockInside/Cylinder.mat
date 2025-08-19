@@ -101,6 +101,8 @@ Material:
     - _Alpha: 1
     - _AlphaClip: 0
     - _AlphaToMask: 0
+    - _BandCenter: 0.5
+    - _BandWidth: 1
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BlendOp: 0
@@ -109,6 +111,7 @@ Material:
     - _ClearCoatSmoothness: 0
     - _Cull: 2
     - _Cutoff: 0.5
+    - _DarkEmissiveness: 1
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -119,6 +122,7 @@ Material:
     - _GlossyReflections: 0
     - _HeightMax: 52.62
     - _HeightMin: 32.9
+    - _LightEmissiveness: 1
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
@@ -133,14 +137,15 @@ Material:
     - _Surface: 0
     - _Switch: 0
     - _TextureSpace: 3
+    - _UseEmissive: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 0.8154625, b: 0.60099995, a: 1}
     - _Color: {r: 1, g: 0.8154625, b: 0.60099995, a: 1}
     - _Colour: {r: 0.341, g: 0.278149, b: 0.2046, a: 1}
-    - _DarkTint: {r: 0.34117648, g: 0.2784314, b: 0.20392157, a: 1}
+    - _DarkTint: {r: 0.105882324, g: 0.090196066, b: 0.14117643, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _LightTint: {r: 1, g: 0.8509804, b: 0.6862745, a: 1}
+    - _LightTint: {r: 0.28731418, g: 0.22936985, b: 0.32075468, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
