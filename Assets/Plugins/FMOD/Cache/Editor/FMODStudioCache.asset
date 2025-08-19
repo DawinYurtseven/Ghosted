@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: FMod/ghosted/Build/Desktop/Ghost.bank
   Name: Ghost
   StudioPath: bank:/Ghost
-  lastModified: 638912001846232531
+  lastModified: 638898459199724217
   FileSizes:
   - Name: Desktop
     Value: 467328
@@ -307,7 +307,7 @@ MonoBehaviour:
   Path: FMod/ghosted/Build/Desktop/UI.bank
   Name: UI
   StudioPath: bank:/UI
-  lastModified: 638912001899707689
+  lastModified: 638898459200387409
   FileSizes:
   - Name: Desktop
     Value: 245760
@@ -354,11 +354,38 @@ MonoBehaviour:
   Path: FMod/ghosted/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638911452740000000
+  lastModified: 638911468686835800
   FileSizes:
   - Name: Desktop
     Value: 11816736
   Exists: 1
+--- !u!114 &-6573220233384180275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Bell Clock/Bell
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Bell Clock/Bell
+  Guid:
+    Data1: -128309474
+    Data2: 1229437511
+    Data3: -1239341902
+    Data4: 1981037277
+  Banks:
+  - {fileID: 2633107891268416129}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1164
 --- !u!114 &-6307999702165553646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -455,7 +482,7 @@ MonoBehaviour:
   Path: FMod/ghosted/Build/Desktop/Emotions.bank
   Name: Emotions
   StudioPath: bank:/Emotions
-  lastModified: 638912001840149007
+  lastModified: 638911468685889783
   FileSizes:
   - Name: Desktop
     Value: 315040
@@ -1232,7 +1259,7 @@ MonoBehaviour:
   Path: FMod/ghosted/Build/Desktop/Character.bank
   Name: Character
   StudioPath: bank:/Character
-  lastModified: 638912095640000000
+  lastModified: 638911468685710207
   FileSizes:
   - Name: Desktop
     Value: 1535648
@@ -1500,14 +1527,10 @@ MonoBehaviour:
   - {fileID: 17777720020034600}
   - {fileID: -8094361753242677089}
   - {fileID: -9055262190133859264}
-  - {fileID: 3783017658194211127}
-  - {fileID: 8331531293561246778}
-  - {fileID: -5816818565891400262}
-  - {fileID: -5360679264225283125}
-  - {fileID: 1841703968884939755}
-  - {fileID: -8489662704299221416}
-  - {fileID: 7265522059610983800}
-  - {fileID: -3281407485334698537}
+  - {fileID: -6573220233384180275}
+  - {fileID: 1926869667600763788}
+  - {fileID: 8373556284780222657}
+  - {fileID: 5536708840095837526}
   EditorParameters:
   - {fileID: 377465009096036401}
   - {fileID: 1316675867748271751}
@@ -1516,7 +1539,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 8145881761011800595}
   cacheVersion: 131848
-  cacheTime: 638912120576324891
+  cacheTime: 638911468686850990
   SerializableEventsDict:
   - key: event:/SFX/Binding/Bind loop
     index: 0
@@ -1785,7 +1808,7 @@ MonoBehaviour:
   Path: FMod/ghosted/Build/Desktop/Binding.bank
   Name: Binding
   StudioPath: bank:/Binding
-  lastModified: 638912001820883782
+  lastModified: 638898459199572594
   FileSizes:
   - Name: Desktop
     Value: 430720
@@ -1978,7 +2001,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 4980
---- !u!114 &1841703968884939755
+--- !u!114 &1926869667600763788
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1988,23 +2011,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Level/Birthday/Talisman
+  m_Name: event:/SFX/Light switch/switch off
   m_EditorClassIdentifier: 
-  Path: event:/SFX/Level/Birthday/Talisman
+  Path: event:/SFX/Light switch/switch off
   Guid:
-    Data1: 2033216908
-    Data2: 1222011055
-    Data3: 549413295
-    Data4: -1048870889
+    Data1: 1917480322
+    Data2: 1208120988
+    Data3: -1929503095
+    Data4: 2031836613
   Banks:
   - {fileID: 2633107891268416129}
   IsStream: 0
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 999
+  Length: 192
 --- !u!114 &2540318440189218112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2047,7 +2070,7 @@ MonoBehaviour:
   Path: FMod/ghosted/Build/Desktop/Level.bank
   Name: Level
   StudioPath: bank:/Level
-  lastModified: 638912120576324891
+  lastModified: 638911468686047245
   FileSizes:
   - Name: Desktop
     Value: 3190048
@@ -2482,6 +2505,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2509
+--- !u!114 &5536708840095837526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Light switch/switch on
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Light switch/switch on
+  Guid:
+    Data1: -2060777766
+    Data2: 1090120282
+    Data3: 1645489287
+    Data4: -1355785203
+  Banks:
+  - {fileID: 2633107891268416129}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 256
 --- !u!114 &5735427042759416907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2714,7 +2764,7 @@ MonoBehaviour:
   Path: FMod/ghosted/Build/Desktop/Dialogs.bank
   Name: Dialogs
   StudioPath: bank:/Dialogs
-  lastModified: 638912001834758026
+  lastModified: 638906201749777966
   FileSizes:
   - Name: Desktop
     Value: 3439552
@@ -2788,7 +2838,7 @@ MonoBehaviour:
   Path: FMod/ghosted/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638912140080000000
+  lastModified: 638911468686850990
   FileSizes:
   - Name: Desktop
     Value: 4880
@@ -2874,6 +2924,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 3801
+--- !u!114 &8373556284780222657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Bell Clock/Complete
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Bell Clock/Complete
+  Guid:
+    Data1: -1429393757
+    Data2: 1085360266
+    Data3: 1628868527
+    Data4: -260677324
+  Banks:
+  - {fileID: 2633107891268416129}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1500
 --- !u!114 &8768222568011117068
 MonoBehaviour:
   m_ObjectHideFlags: 0
