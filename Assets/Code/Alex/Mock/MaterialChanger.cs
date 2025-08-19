@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UniRx;
@@ -10,7 +8,7 @@ public class MaterialChanger : MonoBehaviour
     [SerializeField] private Material joyMaterial, fearMaterial;
     private Renderer _renderer;
     private System.IDisposable _sub;
-
+    
     void Start()
     {
         _renderer = gameObject.GetComponent<MeshRenderer>();
@@ -18,7 +16,7 @@ public class MaterialChanger : MonoBehaviour
 
         _renderer.material = joyMaterial;
 
-        EmotionSingletonMock.Instance.EmotionSubject
+        _sub = EmotionSingletonMock.Instance.EmotionSubject
             .Subscribe(emotion => { ChangeMaterial(emotion); });
 
         ChangeMaterial(EmotionSingletonMock.Instance.getCurrentEmotion());
