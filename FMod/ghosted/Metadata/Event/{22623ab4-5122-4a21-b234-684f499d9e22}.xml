@@ -204,6 +204,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{e46e577a-6553-4771-8db9-82d61aead461}">
+		<property name="volume">
+			<value>-6</value>
+		</property>
 		<relationship name="effectChain">
 			<destination>{4af69142-6bbb-4d2c-b837-8ad724b28ec2}</destination>
 		</relationship>
@@ -290,6 +293,9 @@
 	<object class="EventMixerGroup" id="{5a6e6636-53b8-4de7-961a-1d0333538e79}">
 		<property name="color">
 			<value>Blue Light 2</value>
+		</property>
+		<property name="volume">
+			<value>-10</value>
 		</property>
 		<property name="name">
 			<value>Base</value>
@@ -944,7 +950,7 @@
 			<value>0.0044698955429041121</value>
 		</property>
 		<property name="value">
-			<value>3.81469727e-06</value>
+			<value>-10</value>
 		</property>
 		<property name="curveShape">
 			<value>0.564591944</value>
@@ -974,7 +980,7 @@
 			<value>1</value>
 		</property>
 		<property name="value">
-			<value>0</value>
+			<value>-22.8571434</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{ec34063a-8b2a-4409-af12-edbb3c11b432}">

@@ -32,6 +32,8 @@ public class Fear : EmotionAbstract
             shadow.SetActive(currentEmotion == Emotion.Fear);
             locked = false;
             lockedInFear = false;
+            stopAudio();
+            
             if (specialEffect)
             {
                 specialEffect.SetActive(false);
@@ -53,7 +55,7 @@ public class Fear : EmotionAbstract
                     fearVFX.SetActive(true);
                     lockedInFear = true;
                 }
-                StartCoroutine(PlayAudioSequentially());
+                currentCourutine = StartCoroutine(PlayAudioSequentially());
             }
         }
     }
