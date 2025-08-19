@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5584120277985408677}
   - component: {fileID: 964999437831374356}
   - component: {fileID: 513400331294162361}
+  - component: {fileID: 1021127710417921837}
   m_Layer: 10
   m_Name: Cube (3)
   m_TagString: Untagged
@@ -353,6 +354,20 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &1021127710417921837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 337335344429552621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fcacceb754f6a14882b9a57267900a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joyMaterial: {fileID: 2100000, guid: 1696a7f6307016c4e88800c1b1dff0d6, type: 2}
+  fearMaterial: {fileID: 2100000, guid: 5706577226352904d9c0b0005ee65999, type: 2}
 --- !u!1 &4143304850282056786
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,6 +382,7 @@ GameObject:
   - component: {fileID: 5858841178225711009}
   - component: {fileID: 728492250471229826}
   - component: {fileID: 3879749957111415555}
+  - component: {fileID: 8079900478693980104}
   m_Layer: 10
   m_Name: Cube (5)
   m_TagString: Untagged
@@ -1306,6 +1322,20 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &8079900478693980104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4143304850282056786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fcacceb754f6a14882b9a57267900a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joyMaterial: {fileID: 2100000, guid: 1696a7f6307016c4e88800c1b1dff0d6, type: 2}
+  fearMaterial: {fileID: 2100000, guid: 5706577226352904d9c0b0005ee65999, type: 2}
 --- !u!1 &4721675717326547386
 GameObject:
   m_ObjectHideFlags: 0
@@ -1320,6 +1350,7 @@ GameObject:
   - component: {fileID: 2318874051087399965}
   - component: {fileID: 6866327384371545605}
   - component: {fileID: 2567536186982152050}
+  - component: {fileID: 6651793987630763567}
   m_Layer: 10
   m_Name: Arch
   m_TagString: Untagged
@@ -2744,6 +2775,20 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &6651793987630763567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4721675717326547386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fcacceb754f6a14882b9a57267900a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joyMaterial: {fileID: 2100000, guid: 9b43052c2abffd24fb9c938a5e338cc3, type: 2}
+  fearMaterial: {fileID: 2100000, guid: eacb370a783de3e48b14ad920492818b, type: 2}
 --- !u!1 &5046238899262300890
 GameObject:
   m_ObjectHideFlags: 0
@@ -2794,6 +2839,7 @@ GameObject:
   - component: {fileID: 752133453294600982}
   - component: {fileID: 9201290118348021782}
   - component: {fileID: 4135307357261425832}
+  - component: {fileID: 417863595642637985}
   m_Layer: 10
   m_Name: Cube (6)
   m_TagString: Untagged
@@ -3733,6 +3779,20 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &417863595642637985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5836332160224925897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fcacceb754f6a14882b9a57267900a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joyMaterial: {fileID: 2100000, guid: 1696a7f6307016c4e88800c1b1dff0d6, type: 2}
+  fearMaterial: {fileID: 2100000, guid: 5706577226352904d9c0b0005ee65999, type: 2}
 --- !u!1 &8322411716904158875
 GameObject:
   m_ObjectHideFlags: 0
@@ -3747,6 +3807,7 @@ GameObject:
   - component: {fileID: 7149562579711618989}
   - component: {fileID: 505111848912657254}
   - component: {fileID: 5121829684339520574}
+  - component: {fileID: 6734191010418043655}
   m_Layer: 10
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -4086,3 +4147,17 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &6734191010418043655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8322411716904158875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fcacceb754f6a14882b9a57267900a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joyMaterial: {fileID: 2100000, guid: 9b43052c2abffd24fb9c938a5e338cc3, type: 2}
+  fearMaterial: {fileID: 2100000, guid: eacb370a783de3e48b14ad920492818b, type: 2}

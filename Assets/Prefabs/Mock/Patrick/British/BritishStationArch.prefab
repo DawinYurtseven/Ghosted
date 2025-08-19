@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5591234793947576959}
   - component: {fileID: 1499578370631261619}
   - component: {fileID: 3689406062364781599}
+  - component: {fileID: 6487635794071311374}
   m_Layer: 0
   m_Name: BritishStationArch
   m_TagString: Untagged
@@ -29,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4337514528918232756}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000000054495366, y: -3.4802645e-17, z: -6.386349e-10, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1209,7 +1210,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 151
+  m_VersionIndex: 193
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1319,6 +1320,20 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &6487635794071311374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4337514528918232756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fcacceb754f6a14882b9a57267900a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joyMaterial: {fileID: 2100000, guid: 7b35d4224b419c142ac7cb7aa09c0fd3, type: 2}
+  fearMaterial: {fileID: 2100000, guid: c060a32e7b56b2a498596c80b205e273, type: 2}
 --- !u!1 &6584134964956593472
 GameObject:
   m_ObjectHideFlags: 0
@@ -1333,6 +1348,7 @@ GameObject:
   - component: {fileID: 2774324404992709075}
   - component: {fileID: 6802133048860519170}
   - component: {fileID: 6442856062462286468}
+  - component: {fileID: 4314450628353120324}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -1567,7 +1583,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 242
+  m_VersionIndex: 163
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1672,3 +1688,17 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &4314450628353120324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6584134964956593472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fcacceb754f6a14882b9a57267900a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joyMaterial: {fileID: 2100000, guid: 377d8e4a58a93fa49b65efcd6dbb88df, type: 2}
+  fearMaterial: {fileID: 2100000, guid: cfaab9ef695566e4f8e396c98d6fa51a, type: 2}
