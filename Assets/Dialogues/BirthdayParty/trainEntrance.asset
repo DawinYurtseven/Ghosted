@@ -12,17 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
   m_Name: 1cc37f86-6e15-40e3-89ef-0c449b3b699c
   m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 200
-    height: 80
+  text: "I don\u2019t think it\u2019ll move while the barrier is closed"
   onEnterActions: []
-  onExitActions: []
-  text: "I don\u2019t think it\u2019ll move while the barrier\u2019s closed"
+  onExitActions:
+  - exit
   child: 
   speaker: Miyu
+  voiceClip:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
