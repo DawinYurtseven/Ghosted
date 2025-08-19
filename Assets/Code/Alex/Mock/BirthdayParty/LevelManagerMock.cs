@@ -1,6 +1,7 @@
 using Cinemachine;
 using Ghosted.Dialogue;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 using UnityEngine.Splines;
 
@@ -109,7 +110,10 @@ public class LevelManagerMock : MonoBehaviour
         {
             playerCamera.Priority = 0;
             trainCamera.Priority = 10;
-            _emitter.Play();
+            if (!_emitter.IsPlaying())
+            {
+                _emitter.Play();
+            }
             train.GetComponent<SplineAnimate>()?.Play();
             trainSceneCount++;
            // ghost.FollowObject(train.transform);
@@ -118,7 +122,7 @@ public class LevelManagerMock : MonoBehaviour
 
         if (!calledFromTrain && (trainSceneCount == 1 || trainSceneCount == 2))
         {
-            trainDialogue.StartDialogue();
+            //trainDialogue.StartDialogue();
         }
 
         return false;

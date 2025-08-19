@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="Event" id="{9b149e32-258a-4da4-9df2-34726026d598}">
 		<property name="name">
-			<value>Closing</value>
+			<value>JapaneseDoor</value>
 		</property>
 		<property name="outputFormat">
 			<value>1</value>
@@ -39,7 +39,7 @@
 	</object>
 	<object class="MasterTrack" id="{c295fba3-8187-470e-89b2-55afffaf057f}">
 		<relationship name="modules">
-			<destination>{f12bcf0e-d904-4a92-861e-505717b771a4}</destination>
+			<destination>{121358d7-0c50-4237-a82a-efa7ff43c3eb}</destination>
 		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{c98f5595-eaa0-4d59-a088-0fab3a8f62a9}</destination>
@@ -60,7 +60,7 @@
 	<object class="MarkerTrack" id="{3c1f5550-85a5-4cd8-8674-e6c706b39676}" />
 	<object class="Timeline" id="{7cde6a15-afae-43f7-bfe5-b510eb693eed}">
 		<relationship name="modules">
-			<destination>{f12bcf0e-d904-4a92-861e-505717b771a4}</destination>
+			<destination>{121358d7-0c50-4237-a82a-efa7ff43c3eb}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{c98f5595-eaa0-4d59-a088-0fab3a8f62a9}">
@@ -74,12 +74,12 @@
 			<destination>{6d9b7dcf-c0f6-4414-9901-1d7d71be6183}</destination>
 		</relationship>
 	</object>
-	<object class="SingleSound" id="{f12bcf0e-d904-4a92-861e-505717b771a4}">
+	<object class="SingleSound" id="{121358d7-0c50-4237-a82a-efa7ff43c3eb}">
 		<property name="length">
 			<value>1.2906666666666666</value>
 		</property>
 		<relationship name="audioFile">
-			<destination>{a5c7de14-defc-487a-8612-d2ad6ab12ea1}</destination>
+			<destination>{08e2d14d-e652-4863-8729-ee0db97ee8ef}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{f7473ba1-673c-4838-81db-5f5ff21f5a02}">

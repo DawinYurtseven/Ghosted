@@ -10,6 +10,7 @@ public abstract class EmotionAbstract : TalismanTargetMock
     [SerializeField] protected GameObject fearVFX;
     public FMODUnity.StudioEventEmitter bindingSFX;
     public FMODUnity.StudioEventEmitter boundSFX;
+    protected Coroutine currentCourutine;
     
     protected IEnumerator PlayAudioSequentially()
     {
@@ -27,6 +28,20 @@ public abstract class EmotionAbstract : TalismanTargetMock
         if (boundSFX != null)
         {
             boundSFX.Play();
+        }
+    }
+    
+    protected void stopAudio()
+    {
+        StopCoroutine(currentCourutine);
+        if (bindingSFX != null && bindingSFX.IsPlaying())
+        {
+            bindingSFX.Stop();
+        }
+
+        if (boundSFX != null && boundSFX.IsPlaying())
+        {
+            boundSFX.Stop();
         }
     }
 }

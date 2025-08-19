@@ -94,6 +94,7 @@ public class Joy : EmotionAbstract
             _col.enabled = currentEmotion == Emotion.Joy;
             _renderer.material = currentEmotion == Emotion.Joy ? turnedOn : turnedOff;
             locked = false;
+            stopAudio();
 
             if (specialEffect)
             {
@@ -117,7 +118,7 @@ public class Joy : EmotionAbstract
                     joyVFX.SetActive(false);
                     fearVFX.SetActive(true);
                 }
-                StartCoroutine(PlayAudioSequentially());
+                currentCourutine = StartCoroutine(PlayAudioSequentially());
             }
         }
     }
