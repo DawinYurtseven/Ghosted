@@ -12,16 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
   m_Name: 4fbfa745-9f52-4e07-b6ca-28c11231e417
   m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 1066
-    y: 454
-    width: 200
-    height: 80
+  text: It was the perfect party!
   onEnterActions:
   - miyu
   onExitActions: []
-  text: It was the perfect party
   child: ba89ad3d-6aae-4184-9f59-9fa1ac3670db
   speaker: Miyu
   voiceClip:
@@ -43,16 +37,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
   m_Name: 68e811b5-8a24-4597-ba87-d635f86e68cd
   m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 767
-    y: 452
-    width: 200
-    height: 80
+  text: Wait, what else do you remember from the party, Miyu?
   onEnterActions:
   - face
   onExitActions: []
-  text: Wait, what else do you remember from the party, Miyu?
   child: 4fbfa745-9f52-4e07-b6ca-28c11231e417
   speaker: Ghost Binder
   voiceClip:
@@ -98,16 +86,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
   m_Name: b174e885-e799-4181-9350-7ca5683e5c83
   m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 336
-    y: 296
-    width: 200
-    height: 80
+  text: "Sorry, I didn\u2019t mean to... "
   onEnterActions:
   - face
   onExitActions: []
-  text: "Sorry, I didn\u2019t mean to ... "
   child: 8c528eed-d5f3-42ce-a675-d2b362e06f2b
   speaker: Ghost Binder
   voiceClip:
@@ -129,16 +111,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
   m_Name: ba89ad3d-6aae-4184-9f59-9fa1ac3670db
   m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 1330
-    y: 378
-    width: 200
-    height: 80
+  text: 'Was your family happy? '
   onEnterActions:
   - face
   onExitActions: []
-  text: 'Was your family happy? '
   child: 8ec406c9-e436-40d0-97c2-7d019d8e97de
   speaker: Ghost Binder
   voiceClip:
@@ -160,18 +136,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
   m_Name: 8ec406c9-e436-40d0-97c2-7d019d8e97de
   m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 1239
-    y: 526
-    width: 200
-    height: 80
+  text: Of course they were happy! We were all very happy! Well, sometimes Mama and
+    Papa fought. Just sometimes! About little things.
   onEnterActions:
   - miyu
   onExitActions:
   - exit
-  text: Of course they were happy! We were all very happy! Well, sometimes Mama and
-    Papa fought. Just sometimes! About little things.
   child: removed
   speaker: Miyu
   voiceClip:
@@ -193,17 +163,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
   m_Name: 8c528eed-d5f3-42ce-a675-d2b362e06f2b
   m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 579
-    y: 278
-    width: 200
-    height: 80
+  text: "But that\u2019s okay! Come on, let\u2019s play!"
   onEnterActions:
   - miyu
   - playEnter
   onExitActions: []
-  text: "But that\u2019s okay! Come on, let\u2019s play!"
   child: 68e811b5-8a24-4597-ba87-d635f86e68cd
   speaker: Miyu
   voiceClip:
@@ -225,17 +189,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
   m_Name: 55de919d-0ec6-4ac5-a821-0a08f61fc0b0
   m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 75
-    y: 146
-    width: 200
-    height: 80
+  text: "Oh no, you\u2019ve ruined my cake. "
   onEnterActions:
   - enter
   - miyu
   onExitActions: []
-  text: "Oh no, you\u2019ve ruined my cake. "
   child: b174e885-e799-4181-9350-7ca5683e5c83
   speaker: Miyu
   voiceClip:

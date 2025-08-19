@@ -28,10 +28,10 @@ public class UIHintShow : MonoBehaviour
     
     [SerializeField] private readonly Dictionary<string, string> actionHintTemplates = new()
     {
-        { "Jump", "Press [Jump] to leap" },
+        { "Jump", "Press [Jump] to jump" },
         { "Move", "Use [Move] to move" },
-        { "Shoot", "Press [Shoot] to throw a talisman to or recall from an object when you see the circle" },
-        { "Recall", "Use [Recall] near shrine to recall all talismans at once" },
+        { "Shoot", "Press [Shoot] to throw a talisman or recall it from an object when you see the circle" },
+        { "Recall", "Use [Recall] near a shrine to recall all talismans at once" },
     };
     
     

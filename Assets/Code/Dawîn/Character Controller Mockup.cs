@@ -23,6 +23,8 @@ public class CharacterControllerMockup : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject characterObject;
     
+    [SerializeField] private FMODUnity.StudioEventEmitter _emitter;
+    
 
     public void Awake()
     {
@@ -464,6 +466,7 @@ public class CharacterControllerMockup : MonoBehaviour
             if (EmotionSingletonMock.Instance.disableAll) return;
             if (!target || _thrownTalisman) return;
             if (UIHintShow.Instance) UIHintShow.Instance.NotifyActionPerformed("Shoot");
+            _emitter.Play();
             //If the object is already bounded, recall talisman
             if (lockedObjects.Contains(target))
             {
