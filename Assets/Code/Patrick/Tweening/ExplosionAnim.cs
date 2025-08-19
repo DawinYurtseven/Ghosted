@@ -22,6 +22,8 @@ public class ExplosionAnim : MonoBehaviour
     
     private bool isTrainCrashed = false;
     
+    [SerializeField] private FMODUnity.StudioEventEmitter _emitter;
+    
     public void OnTrainCrash(float delay = 0f)
     {
         if(isTrainCrashed)
@@ -54,6 +56,11 @@ public class ExplosionAnim : MonoBehaviour
         if (explodingObject != null)
         {
             explodingObject.SetActive(false);
+        }
+
+        if (_emitter != null)
+        {
+            _emitter.Play();
         }
         
         if(withCamShake)
