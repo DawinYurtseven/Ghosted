@@ -787,6 +787,7 @@ MonoBehaviour:
   OnInteract:
     m_PersistentCalls:
       m_Calls: []
+  Interact: {fileID: 0}
 --- !u!1001 &17533465
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11585,6 +11586,17 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &339739646 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3485311343511182388, guid: a5c2ec4fdfdd00141ab9323efa79dcd9, type: 3}
+  m_PrefabInstance: {fileID: 1404809728}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 339739643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &343299663 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: eaf51f2801efb14428cf8b9ffde04e2b, type: 3}
@@ -22619,12 +22631,25 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 339739646}
+        m_TargetAssemblyTypeName: FMODUnity.StudioEventEmitter, FMODUnity
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onTriggerExit:
     m_PersistentCalls:
       m_Calls: []
   OnInteract:
     m_PersistentCalls:
       m_Calls: []
+  Interact: {fileID: 0}
 --- !u!1001 &703018110
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32600,6 +32625,7 @@ MonoBehaviour:
   OnInteract:
     m_PersistentCalls:
       m_Calls: []
+  Interact: {fileID: 0}
 --- !u!1001 &1007293140
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36795,6 +36821,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4f47187900de6ac41ad9a1b3559d37b2, type: 3}
   - {fileID: 8300000, guid: 562aaafc74dec024c8d44c53d502e095, type: 3}
   - {fileID: 8300000, guid: 767afcc573098ef42a63865737762848, type: 3}
+  ghostMove: {fileID: 0}
   floatHeight: 0.3
   floatDuration: 1.5
   jitterAmount: 0.1
@@ -41189,6 +41216,7 @@ MonoBehaviour:
   OnInteract:
     m_PersistentCalls:
       m_Calls: []
+  Interact: {fileID: 0}
 --- !u!1001 &1268762763
 PrefabInstance:
   m_ObjectHideFlags: 0
