@@ -38,6 +38,7 @@ public class LevelManagerMock : MonoBehaviour
    
     private ThisIsAProperDialogueSystem dialogue;
     [SerializeField] private ThisIsAProperDialogueSystem trainDialogue;
+    [SerializeField] private FMODUnity.StudioEventEmitter _emitter;
 
     void Start()
     {
@@ -108,6 +109,7 @@ public class LevelManagerMock : MonoBehaviour
         {
             playerCamera.Priority = 0;
             trainCamera.Priority = 10;
+            _emitter.Play();
             train.GetComponent<SplineAnimate>()?.Play();
             trainSceneCount++;
            // ghost.FollowObject(train.transform);
