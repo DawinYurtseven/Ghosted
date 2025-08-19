@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2906685903339675303}
   - component: {fileID: 6778150583333470424}
   - component: {fileID: 361301119983433749}
+  - component: {fileID: 137267732689511493}
   m_Layer: 0
   m_Name: TrainTable
   m_TagString: Untagged
@@ -661,8 +662,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b6d72699bfd6894498fa0e428dbd83ff, type: 2}
-  - {fileID: 2100000, guid: a684d877d4acc2144a42b0d4f298ae41, type: 2}
+  - {fileID: 2100000, guid: 31bfc20242c94804fb32c985be9fe409, type: 2}
+  - {fileID: 2100000, guid: 31bfc20242c94804fb32c985be9fe409, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -714,3 +715,17 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &137267732689511493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6941428732990568453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fcacceb754f6a14882b9a57267900a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joyMaterial: {fileID: 2100000, guid: 0436b4af909ef484ca19e9ad01aac251, type: 2}
+  fearMaterial: {fileID: 2100000, guid: 31bfc20242c94804fb32c985be9fe409, type: 2}

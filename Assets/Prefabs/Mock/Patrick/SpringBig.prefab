@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7750679011846363373}
   - component: {fileID: 5146870295530381943}
   - component: {fileID: 2452554981150701470}
+  - component: {fileID: 675126558617026771}
   m_Layer: 0
   m_Name: Stairs (1)
   m_TagString: Untagged
@@ -872,7 +873,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dfc08c90188302847afb04f628582097, type: 2}
+  - {fileID: 2100000, guid: 651bb7ab8c5714849a9ceb15af94d098, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -924,6 +925,20 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &675126558617026771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299304904768396176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fcacceb754f6a14882b9a57267900a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joyMaterial: {fileID: 2100000, guid: dab7b4a1ac272db449b4e9bd9acc2f83, type: 2}
+  fearMaterial: {fileID: 2100000, guid: 651bb7ab8c5714849a9ceb15af94d098, type: 2}
 --- !u!1 &4491061416844805915
 GameObject:
   m_ObjectHideFlags: 0
@@ -938,6 +953,7 @@ GameObject:
   - component: {fileID: 4197856387312418599}
   - component: {fileID: 8318439142384101421}
   - component: {fileID: 267566231927645191}
+  - component: {fileID: 1166669189399759862}
   m_Layer: 0
   m_Name: SpringBig
   m_TagString: Untagged
@@ -1797,7 +1813,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dfc08c90188302847afb04f628582097, type: 2}
+  - {fileID: 2100000, guid: 651bb7ab8c5714849a9ceb15af94d098, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1849,3 +1865,17 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &1166669189399759862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4491061416844805915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fcacceb754f6a14882b9a57267900a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joyMaterial: {fileID: 2100000, guid: dab7b4a1ac272db449b4e9bd9acc2f83, type: 2}
+  fearMaterial: {fileID: 2100000, guid: 651bb7ab8c5714849a9ceb15af94d098, type: 2}
