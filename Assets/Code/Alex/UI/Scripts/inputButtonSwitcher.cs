@@ -21,7 +21,8 @@ public class InputButtonSwitcher : MonoBehaviour
             //Debug.Log($"{gameObject.name} subscribed to InputChanged");
             subscribed = true;
         }
-        OnInputChanged(inputManager.Instance.currentScheme);
+        if(inputManager.Instance != null)
+            OnInputChanged(inputManager.Instance.currentScheme);
         if (inputManager.Instance != null)
         {
             inputManager.Instance.InputChanged += OnInputChanged;
