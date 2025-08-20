@@ -736,7 +736,6 @@ GameObject:
   - component: {fileID: 6496545617559681279}
   - component: {fileID: 7266318017597648310}
   - component: {fileID: 1143476629435873370}
-  - component: {fileID: 2507525355676472002}
   m_Layer: 8
   m_Name: Player Mock
   m_TagString: Player
@@ -884,7 +883,7 @@ MonoBehaviour:
     m_Bits: 3319
   animator: {fileID: 5301832819132237187}
   characterObject: {fileID: 3859801504133262998}
-  conversant: {fileID: 0}
+  _emitter: {fileID: 0}
   moveVector: {x: 0, y: 0}
   maxSpeed: 10
   acceleration: 20
@@ -921,11 +920,9 @@ MonoBehaviour:
   talismansUsed: {fileID: 3884390130369572595}
   lockedObjects: []
   tempAltar: {fileID: 0}
-  interactionRange: 10
   interactDistanceAltar: 3
   checkFrom: {fileID: 4529237661815272492}
   maxSlopeAngle: 45
-  slopeAdjustment: 1.2
 --- !u!114 &7266318017597648310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1077,7 +1074,7 @@ MonoBehaviour:
     m_ActionName: Character Control/RecallTalismans[/Keyboard/r]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2507525355676472002}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Ghosted.Dialogue.PlayerConversant, Assembly-CSharp
         m_MethodName: Next
         m_Mode: 0
@@ -1091,10 +1088,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: b7cd53a8-5467-48fd-bfd6-9780e919d5e7
     m_ActionName: Dialogue/NextLine[/Keyboard/space,/Keyboard/e]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 56b8881c-0875-4bcf-9add-ac61322f673b
-    m_ActionName: UI/Escape[/Keyboard/escape]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6768811827126889070}
@@ -1123,6 +1116,50 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: ce844e42-e068-4590-9d62-977597b5d138
     m_ActionName: CutScene/Next[/Keyboard/e,/Keyboard/space,/XInputControllerWindows/buttonWest,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 10ebcf32-2a08-4924-bbaf-96ccde25f38e
+    m_ActionName: Character Control/Pause[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3afb22a5-a3c5-4b75-b301-b8bb2794de3a
+    m_ActionName: Dialogue/Pause[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2d7cb23d-1031-4fce-bed5-b63afd4021a1
+    m_ActionName: AltarUI/Pause[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 28c2b339-cba8-42af-abbb-5b474a0bc89a
+    m_ActionName: AltarUI/Click[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 36c4b36e-3e1b-496d-b916-ebad572ed2e3
+    m_ActionName: AltarUI/Point[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a1065efd-d567-4ac9-b477-51bf07d2c80c
+    m_ActionName: AltarUI/MiddleClick[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4d3371f6-69fc-429d-83a0-1f8c1d778f2d
+    m_ActionName: AltarUI/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b2456412-ca81-4537-9603-1cd1eaf0e656
+    m_ActionName: AltarUI/Cancel[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 42bfc8bf-b216-4846-ac99-df601ec6bcc6
+    m_ActionName: AltarUI/ScrollWheel[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4007ea4d-32a1-4386-b50a-4f18931fb425
+    m_ActionName: AltarUI/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 25c1a3f6-60b1-4915-a508-b33d77180c41
+    m_ActionName: AltarUI/TrackedDeviceOrientation
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Character Control
@@ -1141,21 +1178,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultActionMap: Character Control
---- !u!114 &2507525355676472002
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7186854931979958255}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ec74bc4997d59d44b2b913feacaf866, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  checkForDialoguefrom: {fileID: 4529237661815272492}
-  interactDistance: 15
-  dialogueAIConversant: {fileID: 0}
 --- !u!1 &7359274990481609994
 GameObject:
   m_ObjectHideFlags: 0
@@ -2469,7 +2491,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3859801504133262998}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: a0320ca399dadda4c9e0d247b2b6d971, type: 3}
   m_Controller: {fileID: 9100000, guid: 31eeb8c9565ca3e48ba399866a079908, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0

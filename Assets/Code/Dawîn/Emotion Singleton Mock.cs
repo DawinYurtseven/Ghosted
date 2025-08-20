@@ -113,8 +113,6 @@ public class EmotionSingletonMock : MonoBehaviour
 
         availableTalismanTargetMocks.Add(target);
     }
-
-    private TalismanTargetMock lastTarget;
     
     private void CheckTargets()
     {
@@ -128,24 +126,17 @@ public class EmotionSingletonMock : MonoBehaviour
                 }
             }
 
-            lastTarget = null;
             CurrentTarget.OnNext(null);
             return;
         }
 
         if (availableTalismanTargetMocks.Count == 0)
         {
-            lastTarget = null;
             CurrentTarget.OnNext(null);
             return;
         }
-        
-        float dtc = Vector3.Distance(mainCamera.transform.position, lastTarget.transform.position);
-        if (dtc > range)
-        {
-            lastTarget = null;
-        } 
-        TalismanTargetMock closestTarget = lastTarget == null ? null : lastTarget;
+         
+        TalismanTargetMock closestTarget = null;
         Vector3 closestTargetScreenPoint = Vector3.zero;
         float closestDistance = float.MaxValue;
   
@@ -173,7 +164,6 @@ public class EmotionSingletonMock : MonoBehaviour
         if (!closestTarget)
         {
             CurrentTarget.OnNext(null);
-            lastTarget = null;
             return;
         }
         closestTarget.Highlight();
@@ -184,7 +174,6 @@ public class EmotionSingletonMock : MonoBehaviour
             temp.UnHighlight();
         }
         CurrentTarget.OnNext(currentTarget);
-        lastTarget = closestTarget;
     }
 
     public void RemoveTarget(TalismanTargetMock target)
