@@ -6743,6 +6743,7 @@ GameObject:
   - component: {fileID: 5513369789867111941}
   - component: {fileID: 6663381205024677721}
   - component: {fileID: 3977496891586066084}
+  - component: {fileID: 5676669832312475542}
   m_Layer: 10
   m_Name: BodyJoy
   m_TagString: Untagged
@@ -6979,17 +6980,9 @@ MonoBehaviour:
   m_Mesh: {fileID: 0}
   m_VersionIndex: 573
   m_IsSelectable: 1
-  m_SelectedFaces: 02000000
-  m_SelectedEdges:
-  - a: 8
-    b: 9
-  - a: 10
-    b: 8
-  - a: 9
-    b: 11
-  - a: 11
-    b: 10
-  m_SelectedVertices: 08000000090000000a0000000b000000
+  m_SelectedFaces: 
+  m_SelectedEdges: []
+  m_SelectedVertices: 
 --- !u!114 &4359489332335113974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7090,6 +7083,20 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &5676669832312475542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7496472147234890238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fcacceb754f6a14882b9a57267900a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joyMaterial: {fileID: 2100000, guid: 6591e55e6828cac44987ba27d171e9c5, type: 2}
+  fearMaterial: {fileID: 2100000, guid: 6591e55e6828cac44987ba27d171e9c5, type: 2}
 --- !u!1 &8100333392151686034
 GameObject:
   m_ObjectHideFlags: 0
@@ -9478,6 +9485,7 @@ GameObject:
   - component: {fileID: 3340093302908461644}
   - component: {fileID: 166522586963958029}
   - component: {fileID: 7394493234823843254}
+  - component: {fileID: 7549194808042509009}
   m_Layer: 10
   m_Name: Cylinder (10)
   m_TagString: Untagged
@@ -10636,6 +10644,20 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &7549194808042509009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8355591384293740288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fcacceb754f6a14882b9a57267900a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joyMaterial: {fileID: 2100000, guid: 382c18de2571a17489e51edfa22f6b50, type: 2}
+  fearMaterial: {fileID: 2100000, guid: 6d5d70889d07ebb4a995989184546aa3, type: 2}
 --- !u!1 &8447146581360604353
 GameObject:
   m_ObjectHideFlags: 0
