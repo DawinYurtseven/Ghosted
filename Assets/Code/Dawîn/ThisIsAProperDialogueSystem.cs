@@ -36,7 +36,7 @@ public class ThisIsAProperDialogueSystem : MonoBehaviour
         _text = EmotionSingletonMock.Instance.textField;
         _name = EmotionSingletonMock.Instance.nameField;
         
-        PlayerInputDisabler.Instance.SwitchInputMapDelayed("Dialogue");
+        PlayerInputDisabler.Instance.SwitchInputMap("Dialogue");
         _index = 0;
         _text.text = nodes[0].text;
         _name.text = nodes[0].speaker;
@@ -58,7 +58,7 @@ public class ThisIsAProperDialogueSystem : MonoBehaviour
         _index++;
         if (_index > dialogue.GetAllNodes().Count-1)
         {
-            PlayerInputDisabler.Instance.SwitchInputMapDelayed("Character Control");
+            PlayerInputDisabler.Instance.SwitchInputMap("Character Control");
             CameraManager.Instance.turnOffAll();
             dialogueWindowGameObject.SetActive(false);
             return false;

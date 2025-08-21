@@ -14,6 +14,15 @@ public class InputButtonSwitcher : MonoBehaviour
     
     private void OnEnable()
     {
+        targetImage = GetComponent<Image>();
+        if (!subscribed && inputManager.Instance != null)
+        {
+            inputManager.Instance.InputChanged += OnInputChanged;
+            //Debug.Log($"{gameObject.name} subscribed to InputChanged");
+            subscribed = true;
+        }
+        if(inputManager.Instance != null)
+            OnInputChanged(inputManager.Instance.currentScheme);
         if (inputManager.Instance != null)
         {
             inputManager.Instance.InputChanged += OnInputChanged;
@@ -33,17 +42,6 @@ public class InputButtonSwitcher : MonoBehaviour
             subscribed = false;
         }
             
-    }
-
-    void Start()
-    {
-        targetImage = GetComponent<Image>();
-        if (!subscribed && inputManager.Instance != null)
-        {
-            inputManager.Instance.InputChanged += OnInputChanged;
-            //Debug.Log($"{gameObject.name} subscribed to InputChanged");
-            subscribed = true;
-        }
     }
 
     private void OnInputChanged(string scheme)

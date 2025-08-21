@@ -125,6 +125,7 @@ public class EmotionSingletonMock : MonoBehaviour
                     target.turnOff();
                 }
             }
+
             CurrentTarget.OnNext(null);
             return;
         }
@@ -134,7 +135,7 @@ public class EmotionSingletonMock : MonoBehaviour
             CurrentTarget.OnNext(null);
             return;
         }
-        
+         
         TalismanTargetMock closestTarget = null;
         Vector3 closestTargetScreenPoint = Vector3.zero;
         float closestDistance = float.MaxValue;

@@ -43,8 +43,14 @@ public class CharacterControllerMockup : MonoBehaviour
                 StartCoroutine(LerpBackFocus());
                 StartCoroutine(LerpActionShotLockInput(60f, CameraShoulderOffset, 2.5f));
             }*/
-
-            target = talisman;
+            if (talisman == null && target != null && Vector3.Distance(target.gameObject.transform.position, transform.position) > 20f)
+            {
+                target = null;
+            }
+            else if (talisman != null)
+            {
+                target = talisman;
+            }
         });
     }
 
@@ -502,6 +508,7 @@ public class CharacterControllerMockup : MonoBehaviour
     public void ThrowTalismanAnim()
     {
         //curTalismans++;
+        if (Vector3.Distance(transform.position, target.transform.position) > 20f) return;
         lockedObjects.Add(target);
         _thrownTalisman = Instantiate(talismanPrefab, gameObject.transform.position,
             Quaternion.LookRotation((target.transform.position - transform.position).normalized));
