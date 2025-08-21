@@ -250,12 +250,14 @@ public class CharacterControllerMockup : MonoBehaviour
 
     private void RegulateJump()
     {
-        Debug.DrawLine(transform.position, transform.position - transform.up * groundCheckDistance, Color.red, 0.5f);
-        if (!Physics.SphereCast(transform.position, 0.3f, -transform.up, out _, groundCheckDistance, ground))
+        Debug.DrawLine(transform.position - transform.up * 1f, transform.position - transform.up * 1f - transform.up * groundCheckDistance, Color.red, 0.5f);
+        if (!Physics.SphereCast(transform.position - transform.up * 1f, 0.3f, -transform.up, out var hit, groundCheckDistance, ground))
         {
-            if (!Physics.SphereCast(transform.position, 0.3f, -transform.up, out _, groundCheckDistance * 1.2f, ground))
+            var distance = Vector3.Distance(hit.point, transform.position - transform.up * 1f);
+            if (distance > 0.4f)
             {
                 animator.SetBool(NotGrounded, true);
+                Debug.Log(Physics.SphereCast(transform.position - transform.up * 1f, 0.3f, -transform.up, out _, groundCheckDistance, ground));
             }
             else
                 animator.SetBool(NotGrounded, false);
@@ -266,6 +268,10 @@ public class CharacterControllerMockup : MonoBehaviour
                 coyoteJumped = false;
                 StartCoroutine(CoyoteJump());
             }
+        }
+        else
+        {
+            animator.SetBool(NotGrounded, false);
         }
 
         _rb.AddForce(-transform.up * fallStrength, ForceMode.Acceleration);

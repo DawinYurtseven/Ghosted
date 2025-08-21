@@ -53,7 +53,7 @@ public class ThisIsAProperDialogueSystem : MonoBehaviour
 
     public bool Next()
     {
-        _emitter.Stop();
+        if(_emitter != null) _emitter.Stop();
         TriggerDialogueExitEvents();
         _index++;
         if (_index > dialogue.GetAllNodes().Count-1)

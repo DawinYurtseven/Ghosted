@@ -1,6 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
@@ -135,11 +136,8 @@ public class PauseMenu : MonoBehaviour
     public void ExitGame()
     {
         Debug.Log("Exiting Game...");
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-        Application.Quit();
-#endif
+        SceneManager.LoadScene("StartScreen");
+
     }
 
     public void OpenOptionsMenu()

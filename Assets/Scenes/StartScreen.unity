@@ -497,6 +497,8 @@ GameObject:
   m_Component:
   - component: {fileID: 775462062}
   - component: {fileID: 775462063}
+  - component: {fileID: 775462065}
+  - component: {fileID: 775462064}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -534,6 +536,33 @@ MonoBehaviour:
   introSceneName: IntroductionLevel
   cakeSceneName: Birthday_ThirdPlayable
   trainSceneName: MoveMockPart1
+--- !u!114 &775462064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 775462061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fad035e3d3fefbc4e8f3f1584ce26d08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inactiveSceneName: DemoScene
+--- !u!114 &775462065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 775462061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b56a4320f0297042ba5dd37b8d0745a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inactivityTime: 60
+  inactiveSceneName: InactiveScreen
 --- !u!850595691 &1292299827
 LightingSettings:
   m_ObjectHideFlags: 0
