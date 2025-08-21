@@ -64,8 +64,8 @@ public class EmotionSingletonMock : MonoBehaviour
     private void changeToJoy()
     {
         if (currentEmotion == Emotion.Joy) return;
-        joyGameObject.SetActive(true);
-        fearGameObject.SetActive(false);
+        if(joyGameObject) joyGameObject.SetActive(true);
+        if (fearGameObject) fearGameObject.SetActive(false);
         currentEmotion = Emotion.Joy;
         
         if (Application.isPlaying)
@@ -208,7 +208,7 @@ public class EmotionSingletonMock : MonoBehaviour
     {
         ChangeEmotion(initialEmotion);
         music = FMODUnity.RuntimeManager.CreateInstance("event:/Music/Main");
-        music.start();
+		if(joyGameObject) music.start();
     }
 
     // Update is called once per frame

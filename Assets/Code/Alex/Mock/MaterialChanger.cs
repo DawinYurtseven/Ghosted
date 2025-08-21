@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using UnityEngine;
 using UniRx;
@@ -9,17 +10,32 @@ public class MaterialChanger : MonoBehaviour
     private Renderer _renderer;
     private System.IDisposable _sub;
     
-    void Start()
+    void OnEnable()
     {
         _renderer = gameObject.GetComponent<MeshRenderer>();
         if (!_renderer) return;
 
         _renderer.material = joyMaterial;
 
-        _sub = EmotionSingletonMock.Instance.EmotionSubject
-            .Subscribe(emotion => { ChangeMaterial(emotion); });
+        if (EmotionSingletonMock.Instance != null)
+        {
+            _sub = EmotionSingletonMock.Instance.EmotionSubject
+                        .Subscribe(emotion => { ChangeMaterial(emotion); });
+            
+                    ChangeMaterial(EmotionSingletonMock.Instance.getCurrentEmotion());
+        }
+        
+    }
 
-        ChangeMaterial(EmotionSingletonMock.Instance.getCurrentEmotion());
+    private void Start()
+    {
+        if (EmotionSingletonMock.Instance != null)
+        {
+            _sub = EmotionSingletonMock.Instance.EmotionSubject
+                .Subscribe(emotion => { ChangeMaterial(emotion); });
+            
+            ChangeMaterial(EmotionSingletonMock.Instance.getCurrentEmotion());
+        }
     }
 
     public void ChangeMaterial(Emotion emotion)

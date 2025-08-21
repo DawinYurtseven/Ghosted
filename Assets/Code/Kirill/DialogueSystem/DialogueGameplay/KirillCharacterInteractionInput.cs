@@ -17,7 +17,7 @@ public class KirillCharacterInteractionInput : MonoBehaviour
     
     void OnEnable()
     {
-        controls.Enable();
+        if(controls != null) controls.Enable();
     }
     
     public bool GetInteracted()
