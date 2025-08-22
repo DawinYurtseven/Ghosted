@@ -11,7 +11,6 @@ public class PlayerPref_Speed : MonoBehaviour
     void Start()
     {
         sensitivity = PlayerPrefs.GetFloat(SensitivityKey, sensitivity);
-        Debug.Log("Loaded Sensitivity: " + sensitivity);
     }
 
     void Update()

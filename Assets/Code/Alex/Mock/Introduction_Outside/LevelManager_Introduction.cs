@@ -24,7 +24,7 @@ public class LevelManager_Introduction : MonoBehaviour
     [Header("Cutscenes Canvas")]
     [SerializeField] private CutSceneCanvas[] cutScenes;
     
-    private CutSceneCanvas currentCutScene = null;
+    [SerializeField] private CutSceneCanvas currentCutScene = null;
 
 
     void Start()

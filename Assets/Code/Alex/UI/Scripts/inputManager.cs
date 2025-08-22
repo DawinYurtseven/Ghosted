@@ -33,7 +33,6 @@ public class inputManager : MonoBehaviour
 
     public void OnControlsChanged()
     {
-        Debug.Log("Input Manager changed controls");
         currentScheme = playerInput.currentControlScheme;
         InputChanged?.Invoke(currentScheme);
     }

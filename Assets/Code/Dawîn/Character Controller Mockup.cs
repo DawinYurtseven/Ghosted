@@ -250,14 +250,12 @@ public class CharacterControllerMockup : MonoBehaviour
 
     private void RegulateJump()
     {
-        Debug.DrawLine(transform.position - transform.up * 1f, transform.position - transform.up * 1f - transform.up * groundCheckDistance, Color.red, 0.5f);
         if (!Physics.SphereCast(transform.position - transform.up * 1f, 0.3f, -transform.up, out var hit, groundCheckDistance, ground))
         {
             var distance = Vector3.Distance(hit.point, transform.position - transform.up * 1f);
             if (distance > 0.4f)
             {
                 animator.SetBool(NotGrounded, true);
-                Debug.Log(Physics.SphereCast(transform.position - transform.up * 1f, 0.3f, -transform.up, out _, groundCheckDistance, ground));
             }
             else
                 animator.SetBool(NotGrounded, false);
@@ -290,7 +288,6 @@ public class CharacterControllerMockup : MonoBehaviour
                 float size = Mathf.Clamp(1f / distance * scaleFactor, shadowMinSize, shadowMaxSize);
                 shadowDecal.size = new Vector3(size, size, shadowDecal.size.z);
                 shadowDecal.transform.position = hit.point + Vector3.up * 0.01f; // avoid z-fighting
-                Debug.Log("Distance to next ground: " + distance + " and size: " + size);
             }
         }
     }
@@ -558,11 +555,9 @@ public class CharacterControllerMockup : MonoBehaviour
     {
         if (context.performed)
         {
-            Debug.Log("E performed");
             // if (tempTar == null && tempAltar == null) return;
             if (tempAltar)
             {
-                Debug.Log("Altar found");
 
                 tempAltar.InteractAltar();
             }
@@ -629,7 +624,7 @@ public class CharacterControllerMockup : MonoBehaviour
 
     private void Slope()
     {
-        if (Physics.SphereCast(transform.position, 0.3f, -transform.up, out var hit, groundCheckDistance, ground))
+        if (Physics.SphereCast(transform.position - transform.up * 1f, 0.3f, -transform.up, out var hit, groundCheckDistance, ground))
         {
             float slopeAngle = Vector3.Angle(hit.normal, transform.up);
             if (moveVector == Vector2.zero && slopeAngle >= 0 && slopeAngle <= maxSlopeAngle && !coyoteJumped)

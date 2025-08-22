@@ -14,7 +14,7 @@ public class SceneLoaderMock : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
     }
-    
+
     // quick mockup for start menu 
     public void loadIntroScene()
     {
@@ -23,10 +23,10 @@ public class SceneLoaderMock : MonoBehaviour
             Debug.LogError("Intro scene name is not set.");
             return;
         }
-        
+
         SceneManager.LoadScene(introSceneName);
     }
-    
+
     public void loadCake()
     {
         if (string.IsNullOrEmpty(cakeSceneName))
@@ -34,10 +34,10 @@ public class SceneLoaderMock : MonoBehaviour
             Debug.LogError("Intro scene name is not set.");
             return;
         }
-        
+
         SceneManager.LoadScene(cakeSceneName);
     }
-    
+
     public void loadTrainScene()
     {
         if (string.IsNullOrEmpty(trainSceneName))
@@ -45,14 +45,14 @@ public class SceneLoaderMock : MonoBehaviour
             Debug.LogError("Train scene name is not set.");
             return;
         }
-        
+
         // private FadeOut fadeOut;
         // fadeOut.Fade(true, () => {
         //     SceneManager.LoadScene(trainSceneName);
         // });
         SceneManager.LoadScene(trainSceneName);
     }
-    
+
     //actual cool scene loader
     private List<AsyncOperation> scenesToLoad = new List<AsyncOperation>();
 
@@ -60,19 +60,16 @@ public class SceneLoaderMock : MonoBehaviour
     {
         loadIntroScene();
     }
-    
+
     public void loadNextScene(string sceneName = "")
     {
         if (!string.IsNullOrEmpty(sceneName))
         {
             // Load the specified scene by name
             AsyncOperation o = SceneManager.LoadSceneAsync(sceneName);
-            
-            o.completed += (AsyncOperation op) =>
-            {
-                Debug.Log("Scene " + sceneName + " loaded successfully.");
-            };
-            
+
+            o.completed += (AsyncOperation op) => { Debug.Log("Scene " + sceneName + " loaded successfully."); };
+
             scenesToLoad.Add(o);
             return;
         }
@@ -80,7 +77,7 @@ public class SceneLoaderMock : MonoBehaviour
         // If no scene name is provided, load the next scene in the build settings
         LoadNextSceneInBuildSettings();
     }
-    
+
     private void LoadNextSceneInBuildSettings()
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
@@ -95,5 +92,14 @@ public class SceneLoaderMock : MonoBehaviour
         {
             Debug.LogWarning("No more scenes to load in the build settings.");
         }
+    }
+
+    public void QuitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 }

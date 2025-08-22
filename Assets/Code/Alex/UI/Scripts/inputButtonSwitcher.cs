@@ -1,35 +1,37 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Image))]
 public class InputButtonSwitcher : MonoBehaviour
 {
-    [Header("Sprites")]
-    [SerializeField] private Sprite keyboardMouseSprite;
+    [Header("Sprites")] [SerializeField] private Sprite keyboardMouseSprite;
     [SerializeField] private Sprite gamepadSprite;
 
     private Image targetImage;
-    private bool subscribed = false;
+    private bool subscribed;
 
-    
+
     private void OnEnable()
     {
-        targetImage = GetComponent<Image>();
-        if (!subscribed && inputManager.Instance != null)
-        {
-            inputManager.Instance.InputChanged += OnInputChanged;
-            //Debug.Log($"{gameObject.name} subscribed to InputChanged");
-            subscribed = true;
-        }
-        if(inputManager.Instance != null)
-            OnInputChanged(inputManager.Instance.currentScheme);
         if (inputManager.Instance != null)
         {
+            OnInputChanged(inputManager.Instance.currentScheme);
+            
             inputManager.Instance.InputChanged += OnInputChanged;
-            Debug.Log($"{gameObject.name} subscribed to InputChanged");
             subscribed = true;
         }
+    }
+
+    public void Start()
+    {
+        if (inputManager.Instance != null)
+        {
+            OnInputChanged(inputManager.Instance.currentScheme);
             
+            inputManager.Instance.InputChanged += OnInputChanged;
+            subscribed = true;
+        }
     }
 
     private void OnDisable()
@@ -38,15 +40,14 @@ public class InputButtonSwitcher : MonoBehaviour
         {
             inputManager.Instance.InputChanged -= OnInputChanged;
             inputManager.Instance.InputChanged += OnInputChanged;
-            //Debug.Log($"{gameObject.name} unsubscribed from InputChanged");
             subscribed = false;
         }
-            
     }
 
     private void OnInputChanged(string scheme)
     {
-        Debug.Log("reacted to input change");
+        targetImage = GetComponent<Image>();
+        Debug.Log(targetImage.sprite.name);
         if (targetImage == null)
             return;
 

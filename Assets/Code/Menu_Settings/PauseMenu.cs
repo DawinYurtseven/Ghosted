@@ -136,6 +136,15 @@ public class PauseMenu : MonoBehaviour
     public void ExitGame()
     {
         Debug.Log("Exiting Game...");
+        canvasGroup.blocksRaycasts = false;
+        canvasGroup.interactable = false;
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
+        Time.timeScale = 1;
+        FMODUnity.RuntimeManager.GetBus("bus:/").setPaused(false);
+        pauseUI.SetActive(false);
+        optionsUI.SetActive(false);
+        isPaused = false;
         SceneManager.LoadScene("StartScreen");
 
     }

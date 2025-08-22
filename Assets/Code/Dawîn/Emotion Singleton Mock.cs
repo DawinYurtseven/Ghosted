@@ -202,6 +202,8 @@ public class EmotionSingletonMock : MonoBehaviour
         mainCamera = Camera.main;
         if (disableAll) talismanCounter.SetActive(false);
         
+        Cursor.visible = false;
+
     }
 
     void Start()

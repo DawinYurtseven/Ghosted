@@ -13,7 +13,7 @@ public class CutSceneCanvas : MonoBehaviour
     public CanvasGroup[] groups;
     public TextFadeReveal[] textAnimator;
     public float fadeDuration = 0.5f;
-    private int _currentIndex = 0;
+    [SerializeField] private int _currentIndex = 0;
      private Action onCompleted;
    
 
@@ -26,6 +26,7 @@ public class CutSceneCanvas : MonoBehaviour
         {
             group.alpha = 0f;
         }
+        
         Show();
     }
 

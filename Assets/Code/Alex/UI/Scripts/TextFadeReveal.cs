@@ -115,7 +115,7 @@ public class TextFadeReveal : MonoBehaviour
                     newVertexColors[vertexIndex + j].a = (byte)(a * 255);
                 }
                 tmpText.UpdateVertexData(TMP_VertexDataUpdateFlags.Colors32);
-            }, 1f, characterFadeDuration).SetId(this);;
+            }, 1f, characterFadeDuration).SetId(this);
             
             //yield return fadeTween.WaitForCompletion();
             yield return new WaitForSeconds(delayBetweenChars);
