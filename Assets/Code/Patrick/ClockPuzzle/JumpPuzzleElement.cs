@@ -31,8 +31,8 @@ public class JumpPuzzleElement : MonoBehaviour
         originalPos = animObj.transform.position;
         
         rend = indicator? indicator.GetComponent<Renderer>() : animObj.GetComponent<Renderer>();
-        if (rend) defaultColor = rend.material.color;
-        
+        //if (rend) defaultColor = rend.material.color;
+        if (rend) defaultColor = rend.material.HasProperty("_Color") ? rend.material.color : rend.material.GetColor("_LightTint");
         //if the FMOD event is not set, get the sound from the path
         if (effect.IsNull)
         {

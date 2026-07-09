@@ -47,7 +47,7 @@ public class InputButtonSwitcher : MonoBehaviour
     private void OnInputChanged(string scheme)
     {
         targetImage = GetComponent<Image>();
-        Debug.Log(targetImage.sprite.name);
+        // Debug.Log(targetImage.sprite.name);
         if (targetImage == null)
             return;
 

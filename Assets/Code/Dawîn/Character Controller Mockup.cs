@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UniRx;
 using UnityEngine;
@@ -612,6 +613,13 @@ public class CharacterControllerMockup : MonoBehaviour
             lockedObjects.Clear();
             _curTalismans = 0;
             talismansUsed.text = maxTalismans - _curTalismans + " / " + maxTalismans;
+            var tr = talismansUsed.transform;
+            tr.DOKill();
+            tr.localScale = Vector3.one;
+            tr.DOScale(1.5f, 0.12f).SetEase(Ease.OutCubic).OnComplete(() =>
+            {
+                tr.DOScale(1f, 0.12f).SetEase(Ease.InCubic);
+            });
         }
     }
 

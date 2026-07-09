@@ -8,7 +8,7 @@ public class SceneLoaderMock : MonoBehaviour
     public String introSceneName;
     public String cakeSceneName;
     public String trainSceneName;
-
+    public FadeOut fadeOut;
 
     void Start()
     {
@@ -47,10 +47,10 @@ public class SceneLoaderMock : MonoBehaviour
         }
 
         // private FadeOut fadeOut;
-        // fadeOut.Fade(true, () => {
-        //     SceneManager.LoadScene(trainSceneName);
-        // });
-        SceneManager.LoadScene(trainSceneName);
+        fadeOut.Fade(true, () => {
+            SceneManager.LoadScene(trainSceneName);
+        });
+        //SceneManager.LoadScene(trainSceneName);
     }
 
     //actual cool scene loader
@@ -94,6 +94,36 @@ public class SceneLoaderMock : MonoBehaviour
         }
     }
 
+    public void LoadSceneWithFade(string sceneName)
+    {
+        fadeOut.Fade(true, () => {
+            SceneManager.LoadScene(sceneName);
+        });
+    }
+
+    public void LoadSceneHardDelay(string sceneName)
+    {
+        LoadSceneWithDelay(sceneName, delay:7.0f);
+    }
+    
+    public void LoadSceneWithDelay(string sceneName, float delay = 3.0f, bool useFade = true)
+    {
+        StartCoroutine(LoadSceneAfterDelay(sceneName, delay));
+    }
+    
+    private System.Collections.IEnumerator LoadSceneAfterDelay(string sceneName, float delay, bool useFade = false)
+    {
+        yield return new WaitForSeconds(delay);
+        if (useFade)
+        {
+            LoadSceneWithFade(sceneName);
+        }
+        else
+        {
+            loadNextScene(sceneName);
+        }
+    }
+    
     public void QuitGame()
     {
 #if UNITY_EDITOR

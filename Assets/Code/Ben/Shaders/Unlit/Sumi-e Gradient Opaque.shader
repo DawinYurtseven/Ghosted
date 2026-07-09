@@ -8,7 +8,7 @@ Shader "ForgottenColours/Unlit/Sumi-E Gradient Opaque"
         _DarkTint("Dark Tint", Color) = (1,1,1,1)
         _BaseTexture("Base Texture", 2D) = "white" {}
         _Alpha("Alpha", Range(0,1)) = 1
-
+        
         [Toggle(SWITCH)] _Switch("Swap Colours", float) = 0
 
         [Header(Emissiveness)][Space(10)]
