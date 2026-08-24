@@ -56,7 +56,7 @@ public class LevelManager_Introduction : MonoBehaviour
     {
         fade.Fade(true, () =>
         {
-            SceneManager.LoadScene("HomeLevel");
+            SceneManager.LoadScene("Birthday_ThirdPlayable");
         });
         
     }
