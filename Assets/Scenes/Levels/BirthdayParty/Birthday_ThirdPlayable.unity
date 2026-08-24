@@ -3461,6 +3461,7 @@ GameObject:
   - component: {fileID: 10527396}
   - component: {fileID: 10527394}
   - component: {fileID: 10527393}
+  - component: {fileID: 10527398}
   - component: {fileID: 10527397}
   m_Layer: 11
   m_Name: TrainDialogueTrigger
@@ -3594,6 +3595,46 @@ MonoBehaviour:
   ForcedDialogue: 1
   dialogueWindowGameObject: {fileID: 0}
   uiHint: {fileID: 0}
+--- !u!114 &10527398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 10527391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c00f7e671c43994f8c59c79eb2af5bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  action: exit
+  onTrigger:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1204622455}
+        m_TargetAssemblyTypeName: ghostOrb, Assembly-CSharp
+        m_MethodName: MoveToTransform
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1320905830}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1299931324}
+        m_TargetAssemblyTypeName: PopUpUI, Assembly-CSharp
+        m_MethodName: StartPopUpWithDelay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 4edf14e013302e145b69b28046979bf6, type: 2}
+          m_ObjectArgumentAssemblyTypeName: PopUpData, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &10898802
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -236368,6 +236409,59 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!1 &1766750242
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1766750243}
+  - component: {fileID: 1766750244}
+  m_Layer: 0
+  m_Name: Train Open Door Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1766750243
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766750242}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.030855373, y: 0.002792537, z: -0.004334444, w: 0.9995105}
+  m_LocalPosition: {x: -0.902, y: 2.16, z: -2.179}
+  m_LocalScale: {x: 0.43057, y: 3.1531425, z: 2.282383}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7143058707728904280}
+  m_LocalEulerAnglesHint: {x: 3.538, y: 0.305, z: -0.488}
+--- !u!65 &1766750244
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766750242}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1768297740
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -283115,9 +283209,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1398010417399735661}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.019128693, y: -0.034312006, z: -0.000042403113, w: 0.9992281}
-  m_LocalPosition: {x: 2.122, y: 2.349, z: -1.966}
-  m_LocalScale: {x: 1.8181, y: 2.6336, z: 2.491783}
+  m_LocalRotation: {x: 0.030855374, y: 0.0027925668, z: -0.0043344432, w: 0.9995105}
+  m_LocalPosition: {x: 1.1660006, y: 2.0950017, z: -2.2669992}
+  m_LocalScale: {x: 0.43057, y: 3.1531425, z: 2.282383}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2744287190474019559}
@@ -286870,6 +286964,7 @@ Transform:
   - {fileID: 61695445427827731}
   - {fileID: 6844131150100534675}
   - {fileID: 2450765715376743782}
+  - {fileID: 1766750243}
   m_Father: {fileID: 127582483}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7143058707728904281
@@ -289261,8 +289356,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.3213956, y: 1, z: 0.9500002}
-  m_Center: {x: -0.33930266, y: 2.7159971e-10, z: -0.025830973}
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!224 &8944361495801382659
 RectTransform:
   m_ObjectHideFlags: 0
