@@ -12,16 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
   m_Name: e17e36cd-02ea-4b2e-9c62-bc0aa0c95f3c
   m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 50
-    y: 102
-    width: 200
-    height: 80
+  text: How can you use these talismans to help me?
   onEnterActions:
   - enter
   onExitActions: []
-  text: How can you use these talismans to help me?
   child: ac29ce5e-07d2-47dd-8261-331206e3c334
   speaker: Miyu
   voiceClip:
@@ -43,16 +37,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
   m_Name: 59ecb59e-c197-4c4a-bb3a-46bb0572c3ed
   m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 593
-    y: 159
-    width: 200
-    height: 80
+  text: I think I can help you with that!
   onEnterActions: []
   onExitActions:
   - exit
-  text: I think I can help you with that!
   child: 
   speaker: Miyu
   voiceClip:
@@ -94,22 +82,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
   m_Name: ac29ce5e-07d2-47dd-8261-331206e3c334
   m_EditorClassIdentifier: 
-  rect:
-    serializedVersion: 2
-    x: 276
-    y: 92
-    width: 200
-    height: 80
+  text: First, I need to find a shrine. Once I do, I can show you.
   onEnterActions: []
   onExitActions:
   - popup
-  text: First, I need to find a shrine. Once I do, I can show you.
   child: 59ecb59e-c197-4c4a-bb3a-46bb0572c3ed
   speaker: Ghost Binder
   voiceClip:
     Guid:
-      Data1: 407832929
-      Data2: 1301921328
-      Data3: -839943751
-      Data4: 1708145162
-    Path: event:/Dialogue/Dialogue 4/2
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 

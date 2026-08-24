@@ -79,7 +79,7 @@ public class LevelManagerMock : MonoBehaviour
                 //train.GetComponent<SplineAnimate>()?.Restart(false);
                 fadeOut.Fade(true, () => {
                     //SceneManager.LoadScene("Thank_You");
-                    SceneManager.LoadScene("MoveMockPart1");
+                    SceneManager.LoadScene("Thank_You");
                 });
                 break;
             case CutSceneName.ChangeTrain:

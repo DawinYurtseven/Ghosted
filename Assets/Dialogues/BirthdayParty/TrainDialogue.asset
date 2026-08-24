@@ -36,7 +36,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b1e9adeff67d1142a32c3517da8ea4c, type: 3}
   m_Name: c7457ae6-29f1-4f38-82e1-b8d2952ad6f4
   m_EditorClassIdentifier: 
-  text: "You\u2019ll understand once you see it.\r"
+  text: "I can bind the presents while the room is in the Joy state, allowing me
+    to jump higher on them when it shifts to Fear. I can also bind the doors open
+    in the Fear state, allowing me to pass through them without the shadows when
+    the room returns to Joy. You\u2019ll understand it better once you see it.\r"
   onEnterActions: []
   onExitActions:
   - exit
@@ -44,11 +47,11 @@ MonoBehaviour:
   speaker: Ghost Binder
   voiceClip:
     Guid:
-      Data1: 2083001426
-      Data2: 1193365523
-      Data3: -761739108
-      Data4: 1723985516
-    Path: event:/Dialogue/Dialogue 6/6
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &-1218873031638777603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,7 +117,6 @@ MonoBehaviour:
   - Miyu
   dialogueNodes:
   - {fileID: 5357615108362744399}
-  - {fileID: -1218873031638777603}
   - {fileID: 3926542566857034767}
   - {fileID: 3729557253263164330}
   - {fileID: -1136851469993964585}
@@ -142,11 +144,11 @@ MonoBehaviour:
   speaker: Ghost Binder
   voiceClip:
     Guid:
-      Data1: -1616027953
-      Data2: 1121410787
-      Data3: -1448866900
-      Data4: 199495802
-    Path: event:/Dialogue/Dialogue 6/4
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &3926542566857034767
 MonoBehaviour:
   m_ObjectHideFlags: 0
