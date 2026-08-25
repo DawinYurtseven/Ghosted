@@ -1,85 +1,45 @@
 using UnityEngine;
+using System.Linq;
+using UnityEngine;
+using UniRx;
+//just to activate the shadow for tunnels
 
-
-
-/// <summary>
-/// DEPRECATED, USE Dawin -> Fear INSTEAD!!!!
-/// </summary>
-
-public class FearObjectParent : Lockable
+public class FearObjectParent : MonoBehaviour
 {
-    public GameObject openState, closedState, shadow;
+    public GameObject shadow;
+    private System.IDisposable _sub;
 
-   
-
-    public GameObject specialEffect;
-
-    private void OnEnable()
+    
+    
+    void Start()
     {
-        StateManagerMock.OnStateChanged += ChangeState;
-    }
-
-
-    private void OnDisable()
-    {
-        StateManagerMock.OnStateChanged -= ChangeState;
-    }
-
-
-    protected void ChangeState(State newState)
-    {   if (!_locked) {
-            if (newState == State.Fear) {
-                closedState.SetActive(false);
-                openState.SetActive(true);   
-                shadow.SetActive(true);
-            }
-            else {
-                closedState.SetActive(true);
-                openState.SetActive(false);
-                shadow.SetActive(false);
-            }
-        }
-
-        if (_locked && openState.activeSelf)
+        if (EmotionSingletonMock.Instance != null)
         {
-            if (newState == State.Joy)
-            {
-                shadow.SetActive(false);
-            }
-            else
-            {
-                shadow.SetActive(true);
-            }
+            _sub = EmotionSingletonMock.Instance.EmotionSubject
+                .Subscribe(emotion => { ChangeMaterial(emotion); });
             
+            ChangeMaterial(EmotionSingletonMock.Instance.getCurrentEmotion());
         }
+        
+    }
 
-        if (_locked && closedState.activeSelf)
+
+    public void ChangeMaterial(Emotion emotion)
+    {
+        if (emotion == Emotion.Fear)
+        {
+            shadow.SetActive(true);
+        }
+        else
         {
             shadow.SetActive(false);
         }
-        
-        currentState = newState;
-        
     }
     
-    public override void Lock() {
-        _locked = true;
-        if (specialEffect != null)
-        {
-            specialEffect.SetActive(true);
-        }
-    }
-
-    public override void Unlock()
+    private void OnDisable()
     {
-        closedState.SetActive(currentState == State.Joy);
-        openState.SetActive(currentState != State.Joy);
-        shadow.SetActive(currentState == State.Fear);
-        _locked = false;
-        if (specialEffect != null)
-        {
-            specialEffect.SetActive(false);
-        }
+        _sub?.Dispose();
+        _sub = null;
     }
 
 }

@@ -138,7 +138,8 @@ MonoBehaviour:
   text: "I was looking for matches to light the candles and... I found the divorce
     papers in one of the office drawers. I wasn\u2019t supposed to see them. I was
     so scared. Everything changed after that. And the party was ruined."
-  onEnterActions: []
+  onEnterActions:
+  - miyu
   onExitActions: []
   child: 7f5b4c58-a422-45e7-8655-bee804a7a022
   speaker: Miyu
@@ -237,7 +238,8 @@ MonoBehaviour:
   m_Name: babd6fbd-0e20-48ee-b798-b60a5905000a
   m_EditorClassIdentifier: 
   text: "Yes. If you help me find the other emotions you\u2019ve forgotten."
-  onEnterActions: []
+  onEnterActions:
+  - face
   onExitActions: []
   child: ec524a80-4560-40b1-898d-072f845ba19b
   speaker: Ghost Binder
@@ -335,7 +337,8 @@ MonoBehaviour:
   m_Name: ae5decfe-8abd-4074-b34c-bb1c83878a39
   m_EditorClassIdentifier: 
   text: 'Really? '
-  onEnterActions: []
+  onEnterActions:
+  - miyu
   onExitActions: []
   child: babd6fbd-0e20-48ee-b798-b60a5905000a
   speaker: Miyu
@@ -392,8 +395,6 @@ MonoBehaviour:
   - {fileID: -8100558565694840840}
   - {fileID: -7279868297669876929}
   - {fileID: 552831665752469294}
-  - {fileID: 3570951185976205636}
-  - {fileID: 8303755707737489144}
   - {fileID: -9016361461540225428}
   - {fileID: 2382922964711176580}
   - {fileID: 3419938349654655233}
@@ -443,8 +444,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: "I blew out the candle and wished for them to get back together. But they
     didn\u2019t. Everything was ruined. And I was so scared to lose everything. "
-  onEnterActions:
-  - miyu
+  onEnterActions: []
   onExitActions: []
   child: f30d4dba-8b81-4b58-b487-3b12ef528997
   speaker: Miyu
@@ -594,7 +594,8 @@ MonoBehaviour:
   m_Name: 60f72e6d-fb82-4a77-9696-41ba88eda7a7
   m_EditorClassIdentifier: 
   text: 'No, nobody can help me. '
-  onEnterActions: []
+  onEnterActions:
+  - miyu
   onExitActions: []
   child: bed2f799-d831-44b9-8c25-93dbea341d1a
   speaker: Miyu
@@ -715,7 +716,8 @@ MonoBehaviour:
   m_Name: bed2f799-d831-44b9-8c25-93dbea341d1a
   m_EditorClassIdentifier: 
   text: If you move on, you can be with your family again.
-  onEnterActions: []
+  onEnterActions:
+  - face
   onExitActions: []
   child: ae5decfe-8abd-4074-b34c-bb1c83878a39
   speaker: Ghost Binder

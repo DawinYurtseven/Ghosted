@@ -30,6 +30,7 @@ public class LevelManagerMock : MonoBehaviour
     
     [Header("Enter Train third time")]
     [SerializeField] private Fear barier2;
+    [SerializeField] private GameObject wall;
     
     [Header("Enter Train fourth time")]
     [SerializeField] private Fear barier3;
@@ -123,10 +124,15 @@ public class LevelManagerMock : MonoBehaviour
                 _emitter.Play();
             }
             train.GetComponent<SplineAnimate>()?.Play();
+            if (trainSceneCount == 2)
+            {
+                wall.SetActive(false);
+            }
             trainSceneCount++;
            // ghost.FollowObject(train.transform);
            return true;
         }
+       
 
         if (!calledFromTrain && (trainSceneCount == 1 || trainSceneCount == 2))
         {
@@ -189,7 +195,7 @@ public class LevelManagerMock : MonoBehaviour
                 player.transform.position = playerSpawn3.position;
                 player.GetComponent<Rigidbody>().velocity = Vector3.zero;
             }
-
+            
             roadPart++;
             
         }
