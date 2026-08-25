@@ -21,11 +21,18 @@ public class LevelManagerMock : MonoBehaviour
     [Header("Train stop 2")]
     [SerializeField] private SplineContainer thirdSpline;
     [SerializeField] private Transform playerSpawn2;
+    
+    [Header("Train stop 3")]
+    [SerializeField] private SplineContainer fourthSpline;
+    [SerializeField] private Transform playerSpawn3;
     [Header("Enter Train second time")]
     [SerializeField] private Fear barier;
     
     [Header("Enter Train third time")]
     [SerializeField] private Fear barier2;
+    
+    [Header("Enter Train fourth time")]
+    [SerializeField] private Fear barier3;
     
     [Header("Transition to move mock")]
     [SerializeField] private FadeOut fadeOut;
@@ -107,7 +114,7 @@ public class LevelManagerMock : MonoBehaviour
 
     bool TrainCutScene(bool calledFromTrain)
     {
-        if (trainSceneCount == 0 || trainSceneCount == 1 && barier.lockedInFear || trainSceneCount == 2 && barier2.lockedInFear)
+        if (trainSceneCount == 0 || trainSceneCount == 1 && barier.lockedInFear || trainSceneCount == 2 && barier2.lockedInFear  || trainSceneCount == 3 && barier3.lockedInFear)
         {
             playerCamera.Priority = 0;
             trainCamera.Priority = 10;
@@ -164,6 +171,23 @@ public class LevelManagerMock : MonoBehaviour
                  player.transform.position = playerSpawn2.position;
                  player.GetComponent<Rigidbody>().velocity = Vector3.zero;
                  UIHintShow.Instance.ShowHintUntilAction("Recall");
+            }
+
+            roadPart++;
+            
+        }
+        else if (roadPart == 2)
+        {
+            train.GetComponent<SplineAnimate>().Container = fourthSpline;
+            ghost.MoveToNextWaypoint();
+            train.GetComponent<SplineAnimate>()?.Restart(false);
+            if (!TrainCutScene(true))
+            {
+                //train.GetComponent<SplineAnimate>().Pause();
+                playerCamera.Priority = 10;
+                trainCamera.Priority = 0;
+                player.transform.position = playerSpawn3.position;
+                player.GetComponent<Rigidbody>().velocity = Vector3.zero;
             }
 
             roadPart++;
