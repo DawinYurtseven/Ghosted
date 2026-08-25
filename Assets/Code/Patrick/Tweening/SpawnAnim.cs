@@ -15,8 +15,10 @@ public class SpawnAnim : MonoBehaviour
     [Header("Spawn Many")]
     [SerializeField] private GameObject[] spawnObjs;
     private float delay = 9f;
-    
-    
+
+    private Vector3 originalScale;
+
+
     // Set all required Attributes
     private void Awake()
     {
@@ -49,7 +51,10 @@ public class SpawnAnim : MonoBehaviour
             Debug.LogWarning("No gameobject to spawn!");
             return;
         }
-        
+
+        if (obj)
+            originalScale = obj.transform.localScale;
+
         Transform t = obj.transform;
         obj.SetActive(true);
         //Debug.Log("Got: " + state);
@@ -65,7 +70,7 @@ public class SpawnAnim : MonoBehaviour
             cg.alpha = 0;
             
             t.localScale = Vector3.zero; // Start from zero scale
-            t.DOScale(Vector3.one, animDuration).SetEase(Ease.OutBack);
+            t.DOScale(originalScale, animDuration).SetEase(Ease.OutBack);
             cg.DOFade(1, animDuration);
             
             //Debug.Log("Showing obj " + obj.name);
