@@ -9,6 +9,8 @@ public class MaterialChanger : MonoBehaviour
     [SerializeField] private Material joyMaterial, fearMaterial;
     private Renderer _renderer;
     private System.IDisposable _sub;
+
+    public bool isChangerDisabled = false;
     
     void OnEnable()
     {
@@ -42,6 +44,7 @@ public class MaterialChanger : MonoBehaviour
     {
         if (!_renderer) _renderer = GetComponent<Renderer>();
         if (!_renderer) return;
+        if (isChangerDisabled) return;
 
         var mat = (emotion == Emotion.Joy) ? joyMaterial : fearMaterial;
 
