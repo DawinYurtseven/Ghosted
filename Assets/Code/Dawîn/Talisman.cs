@@ -23,7 +23,7 @@ public class Talisman : MonoBehaviour
         this.emotion = emotion;
     }
 
-    public IEnumerator MoveTowards(TalismanTargetMock target)
+    public IEnumerator MoveTowards(TalismanTargetMock target, CharacterControllerMockup owner)
     {
         //Should we probably do this with DoTween or so?
         var startPos = transform.position;
@@ -36,7 +36,7 @@ public class Talisman : MonoBehaviour
         }
         
         target.Bind();
-        
+        owner.Unlock();
         Destroy(gameObject);
     }
     
@@ -50,7 +50,8 @@ public class Talisman : MonoBehaviour
             clock += Time.deltaTime;
             transform.position = Vector3.Lerp(startPos, player.transform.position, clock / timer);
             yield return null;
-        }
+        } 
+        player.Unlock();
         Destroy(gameObject);
     }
 }

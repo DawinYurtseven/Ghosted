@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using DG.Tweening;
 using TMPro;
 using UniRx;
@@ -479,8 +480,18 @@ public class CharacterControllerMockup : MonoBehaviour
 
 
     [SerializeField] private GameObject talismanPrefab;
+    private int _locked;
 
-    private GameObject _thrownTalisman;
+    private bool TryLock()
+    {
+        return Interlocked.CompareExchange(ref _locked, 1, 0) == 0;
+    }
+
+    public void Unlock()
+    {
+        Volatile.Write(ref _locked, 0);
+    }
+    public GameObject _thrownTalisman;
 
 
     //Check this 
@@ -491,10 +502,18 @@ public class CharacterControllerMockup : MonoBehaviour
 
     public void ThrowTalisman(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && TryLock())
         {
-            if (EmotionSingletonMock.Instance.disableAll) return;
-            if (!target || _thrownTalisman) return;
+            if (EmotionSingletonMock.Instance.disableAll)
+            {
+                Unlock();
+                return;
+            }
+
+            if (!target || _thrownTalisman)
+            {
+                Unlock();return;
+            }
             if (UIHintShow.Instance) UIHintShow.Instance.NotifyActionPerformed("Shoot");
             _emitter.Play();
             //If the object is already bounded, recall talisman
@@ -518,7 +537,10 @@ public class CharacterControllerMockup : MonoBehaviour
             //Throw talisman
             else
             {
-                if (_curTalismans == maxTalismans) return;
+                if (_curTalismans == maxTalismans)
+                {
+                    Unlock();return;
+                }
                 _curTalismans++;
                 talismansUsed.text = maxTalismans - _curTalismans + " / " + maxTalismans;
                 animator.SetTrigger(Throw);
@@ -537,7 +559,7 @@ public class CharacterControllerMockup : MonoBehaviour
         _thrownTalisman = Instantiate(talismanPrefab, gameObject.transform.position,
             Quaternion.LookRotation((target.transform.position - transform.position).normalized));
         _thrownTalisman.GetComponent<Talisman>().Initialize(tMode, talismanEmotion);
-        StartCoroutine(_thrownTalisman.GetComponent<Talisman>().MoveTowards(target));
+        StartCoroutine(_thrownTalisman.GetComponent<Talisman>().MoveTowards(target, this));
         //talismansUsed.text = "Talismans used: " + curTalismans + " / " + maxTalismans;
     }
 
