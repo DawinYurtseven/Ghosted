@@ -13,7 +13,7 @@ public class ThisIsAProperDialogueSystem : MonoBehaviour
     [SerializeField] private StudioEventEmitter _emitter;
     [SerializeField] private bool ForcedDialogue = false;
     [SerializeField] private GameObject dialogueWindowGameObject;
-
+    private bool _isInDialogue = false;
     private int _index ;
     private DialogueNode[] nodes;
 
@@ -41,7 +41,7 @@ public class ThisIsAProperDialogueSystem : MonoBehaviour
         _text.text = nodes[0].text;
         _name.text = nodes[0].speaker;
         _emitter.Stop();
-        
+        _isInDialogue = true;
         if (!nodes[0].voiceClip.IsNull)
         {
             _emitter.EventReference = nodes[0].voiceClip;
@@ -61,6 +61,7 @@ public class ThisIsAProperDialogueSystem : MonoBehaviour
             PlayerInputDisabler.Instance.SwitchInputMap("Character Control");
             CameraManager.Instance.turnOffAll();
             dialogueWindowGameObject.SetActive(false);
+            _isInDialogue = false;
             return false;
         }
 
@@ -115,8 +116,10 @@ public class ThisIsAProperDialogueSystem : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         var player = other.GetComponent<CharacterControllerMockup>();
+        
         if (player != null)
         {
+            if (_isInDialogue) return;
             player.SetDialogue(this);
             if (ForcedDialogue)
             {
@@ -130,10 +133,18 @@ public class ThisIsAProperDialogueSystem : MonoBehaviour
     void OnTriggerExit(Collider other)
     {
         var player = other.GetComponent<CharacterControllerMockup>();
+        
         if (player != null)
         {
             player.LeaveDialogue();
             if (uiHint) uiHint.Hide();
+            if (_isInDialogue)
+            {
+                PlayerInputDisabler.Instance.SwitchInputMap("Character Control");
+                CameraManager.Instance.turnOffAll();
+                dialogueWindowGameObject.SetActive(false);
+                _isInDialogue = false;
+            }
         }
     }
 }
