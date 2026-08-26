@@ -63,10 +63,14 @@ public class CharacterControllerMockup : MonoBehaviour
         //interactable check
         //CheckForInteractables();
         ScaleShadowDecal();
-        #if UNITY_EDITOR
-            checkReloadScene();
-            Teleport();
-        #endif
+        checkReloadScenePlay();
+        TeleportPlay();
+        // #if UNITY_EDITOR
+        //     checkReloadScene();
+        //     Teleport();
+        // #else
+        //     checkReloadScene
+        // #endif
     }
 
     public void FixedUpdate()
@@ -310,8 +314,7 @@ public class CharacterControllerMockup : MonoBehaviour
         }
     }
     
-    public Transform trainTeleporter;
-    public Transform lastTeleporter;
+    
     
     private void Teleport()
     {
@@ -330,6 +333,44 @@ public class CharacterControllerMockup : MonoBehaviour
         }
     }
 #endif
+    public Transform trainTeleporter;
+    public Transform secondPlatform;
+    public Transform thirdPlatform;
+    public Transform lastTeleporter;
+    private void checkReloadScenePlay()
+    {
+        // Szene neu laden bei Strg + R
+        if ((Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl)) && 
+            Input.GetKeyDown(KeyCode.P))
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(
+                UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+        }
+    }
+    private void TeleportPlay()
+    {
+        if (!UnityEditor.EditorApplication.isPlaying) return;
+        if ((Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.O) && Input.GetKey(KeyCode.Alpha1)))
+        {
+            this.transform.position = trainTeleporter.position;
+            EmotionSingletonMock.Instance.disableAll = false;
+        }
+        else if ((Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.O) && Input.GetKey(KeyCode.Alpha2)))
+        {
+            this.transform.position = secondPlatform.position;
+            EmotionSingletonMock.Instance.disableAll = false;
+        }
+        else if ((Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.O) && Input.GetKey(KeyCode.Alpha3)))
+        {
+            this.transform.position = thirdPlatform.position;
+            EmotionSingletonMock.Instance.disableAll = false;
+        }
+        else if ((Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.O) && Input.GetKey(KeyCode.Alpha4)))
+        {
+            this.transform.position = lastTeleporter.position;
+            EmotionSingletonMock.Instance.disableAll = false;
+        }
+    }
     #region Target System
 
     //If merge conflict -> change to private, used for Mock for level design
