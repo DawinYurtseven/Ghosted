@@ -33,11 +33,12 @@ public class AltarUI : MonoBehaviour
         onActivateUI?.Invoke();
         CameraManager.Instance.turnOnOtherCamera(altarCamera);
         PlayerInputDisabler.Instance.SwitchInputMap("AltarUI");
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(defaultButton);
         uiAnimator.Show(() =>
         {
             brushStroke.Animate(() => {
-                 EventSystem.current.SetSelectedGameObject(null);
-                 EventSystem.current.SetSelectedGameObject(defaultButton);});
+                 });
         });
     }
 
