@@ -309,12 +309,20 @@ public class CharacterControllerMockup : MonoBehaviour
     }
     
     public Transform trainTeleporter;
+    public Transform lastTeleporter;
     private void Teleport()
     {
-        if (UnityEditor.EditorApplication.isPlaying &&
-            (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.Q)))
+        if (!UnityEditor.EditorApplication.isPlaying) return;
+        if ((Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.Q)))
         {
             this.transform.position = trainTeleporter.position;
+            EmotionSingletonMock.Instance.disableAll = false;
+        }
+        
+        else if (
+                      (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.R)))
+        {
+            this.transform.position = lastTeleporter.position;
             EmotionSingletonMock.Instance.disableAll = false;
         }
     }
