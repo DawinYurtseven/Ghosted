@@ -72,27 +72,29 @@ public class Joy : EmotionAbstract
         // Why would you want to Reset Emotion?
         base.EmotionalBehaviour();
         if (!locked) {
-            if (surroundEmotion == Emotion.Joy) {
-                _col.enabled = true;
-                _renderer.material = turnedOn;
-                parent.layer = LayerMask.NameToLayer("JumpPad");
-                gameObject.layer = LayerMask.NameToLayer("JumpPad");
-            }
-            else {
-                _col.enabled = false;
-                _renderer.material = turnedOff;
-                parent.layer = LayerMask.NameToLayer("Default");
-                gameObject.layer = LayerMask.NameToLayer("Default");
-            }
+            AdjustBehavior(surroundEmotion);
         }
     }
 
+    private void AdjustBehavior(Emotion emotion)
+    {
+        if (emotion == Emotion.Joy) {
+            _col.enabled = true;
+            _renderer.material = turnedOn;
+            parent.layer = LayerMask.NameToLayer("JumpPad");
+            gameObject.layer = LayerMask.NameToLayer("JumpPad");
+        }
+        else {
+            _col.enabled = false;
+            _renderer.material = turnedOff;
+            parent.layer = LayerMask.NameToLayer("Default");
+            gameObject.layer = LayerMask.NameToLayer("Default");
+        }
+    }
     public override void Bind()
     {
         if (locked) {
-            currentEmotion = surroundEmotion;
-            _col.enabled = currentEmotion == Emotion.Joy;
-            _renderer.material = currentEmotion == Emotion.Joy ? turnedOn : turnedOff;
+            AdjustBehavior(surroundEmotion);
             locked = false;
             stopAudio();
 
