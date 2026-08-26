@@ -33,5 +33,21 @@ public class FadeOut : MonoBehaviour
         fadeImage.DOFade(reversed ? 1: 0, fadeDuration_final).OnComplete(() => 
             { onCompleted?.Invoke(); });
     }
+    
+    public void Fade (float duration, bool reversed = false,  Action onCompleted = null)
+    {
+        fadeImage.gameObject.SetActive(true);
+        fadeImage.color = new Color(0, 0, 0, reversed ? 0 : 1);
+        fadeImage.DOFade(reversed ? 1: 0, duration).OnComplete(() => 
+            { onCompleted?.Invoke(); });
+    }
+    
+    public void Fade (float duration, float delay, bool reversed = false,  Action onCompleted = null)
+    {
+        fadeImage.gameObject.SetActive(true);
+        fadeImage.color = new Color(0, 0, 0, reversed ? 0 : 1);
+        fadeImage.DOFade(reversed ? 1: 0, duration).SetDelay(delay).OnComplete(() => 
+            { onCompleted?.Invoke(); });
+    }
 
 }

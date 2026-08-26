@@ -62,9 +62,10 @@ public class CharacterControllerMockup : MonoBehaviour
         //interactable check
         //CheckForInteractables();
         ScaleShadowDecal();
-#if UnityEditor
+        #if UNITY_EDITOR
             checkReloadScene();
-#endif
+            Teleport();
+        #endif
     }
 
     public void FixedUpdate()
@@ -295,7 +296,6 @@ public class CharacterControllerMockup : MonoBehaviour
 
     #endregion
 
-#if UNITY_EDITOR
     private void checkReloadScene()
     {
         // Szene neu laden bei Strg + R
@@ -307,7 +307,17 @@ public class CharacterControllerMockup : MonoBehaviour
                 UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
         }
     }
-#endif
+    
+    public Transform trainTeleporter;
+    private void Teleport()
+    {
+        if (UnityEditor.EditorApplication.isPlaying &&
+            (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.Q)))
+        {
+            this.transform.position = trainTeleporter.position;
+            EmotionSingletonMock.Instance.disableAll = false;
+        }
+    }
     
     #region Target System
 

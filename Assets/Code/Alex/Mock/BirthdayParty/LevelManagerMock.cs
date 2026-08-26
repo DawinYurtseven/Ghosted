@@ -40,6 +40,8 @@ public class LevelManagerMock : MonoBehaviour
     
     private int trainSceneCount = 0;
     
+    private int layerPlayer;
+    
 
     [SerializeField] private ghostOrb ghost;
     public GameObject[] objectsToActivate;
@@ -52,6 +54,7 @@ public class LevelManagerMock : MonoBehaviour
     void Start()
     {
         dialogue = this.GetComponent<ThisIsAProperDialogueSystem>();
+        layerPlayer = LayerMask.NameToLayer("Player");
     }
     private void OnEnable()
     {
@@ -117,26 +120,24 @@ public class LevelManagerMock : MonoBehaviour
     {
         if (trainSceneCount == 0 || trainSceneCount == 1 && barier.lockedInFear || trainSceneCount == 2 && barier2.lockedInFear  || trainSceneCount == 3 && barier3.lockedInFear)
         {
-            playerCamera.Priority = 0;
-            trainCamera.Priority = 10;
-            if (!_emitter.IsPlaying())
+            fadeOut.Fade(0.7f, true, () =>
             {
-                _emitter.Play();
-            }
-            train.GetComponent<SplineAnimate>()?.Play();
-            if (trainSceneCount == 2)
-            {
-                wall.SetActive(false);
-            }
-            trainSceneCount++;
-           // ghost.FollowObject(train.transform);
-           return true;
-        }
-       
-
-        if (!calledFromTrain && (trainSceneCount == 1 || trainSceneCount == 2))
-        {
-            //trainDialogue.StartDialogue();
+                if (Camera.main != null) Camera.main.cullingMask &= ~(1 << LayerMask.NameToLayer("Player"));
+                trainCamera.Priority = 10;
+                playerCamera.Priority = 0;
+                if (!_emitter.IsPlaying())
+                {
+                    _emitter.Play();
+                }
+                train.GetComponent<SplineAnimate>()?.Play();
+                if (trainSceneCount == 2)
+                {
+                    wall.SetActive(false);
+                }
+                trainSceneCount++;
+                fadeOut.Fade(0.7f, 0.2f);
+            });
+            return true;
         }
 
         return false;
@@ -145,59 +146,39 @@ public class LevelManagerMock : MonoBehaviour
 
     void TrainChangeScene()
     {
-        
-        if (roadPart == 0)
+        switch (roadPart)
         {
-            train.GetComponent<SplineAnimate>().Container = secondSpline;
-            ghost.MoveToNextWaypoint();
-            train.GetComponent<SplineAnimate>()?.Restart(false);
-            if (!TrainCutScene(true))
-            {
-                //train.GetComponent<SplineAnimate>().Pause();
+            case 0: splineChange(playerSpawn1, secondSpline); break;
+            case 1: splineChange(playerSpawn2, thirdSpline); 
+                UIHintShow.Instance.ShowHintUntilAction("Recall");
+                break;
+            case 2: splineChange(playerSpawn3, fourthSpline);
+                break;
                 
-                playerCamera.Priority = 10;
-                trainCamera.Priority = 0;
-                player.transform.position = playerSpawn1.position;
-                player.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            }
-
-            roadPart++;
-        }
-        
-        else if (roadPart == 1)
-        {
-            train.GetComponent<SplineAnimate>().Container = thirdSpline;
-            ghost.MoveToNextWaypoint();
-            train.GetComponent<SplineAnimate>()?.Restart(false);
-            if (!TrainCutScene(true))
-            {
-                //train.GetComponent<SplineAnimate>().Pause();
-                 playerCamera.Priority = 10;
-                 trainCamera.Priority = 0;
-                 player.transform.position = playerSpawn2.position;
-                 player.GetComponent<Rigidbody>().velocity = Vector3.zero;
-                 UIHintShow.Instance.ShowHintUntilAction("Recall");
-            }
-
-            roadPart++;
-            
-        }
-        else if (roadPart == 2)
-        {
-            train.GetComponent<SplineAnimate>().Container = fourthSpline;
-            ghost.MoveToNextWaypoint();
-            train.GetComponent<SplineAnimate>()?.Restart(false);
-            if (!TrainCutScene(true))
-            {
-                //train.GetComponent<SplineAnimate>().Pause();
-                playerCamera.Priority = 10;
-                trainCamera.Priority = 0;
-                player.transform.position = playerSpawn3.position;
-                player.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            }
-            
-            roadPart++;
-            
         }
     }
+
+        private void splineChange(Transform playerSpawn, SplineContainer nextSpline)
+        {
+            fadeOut.Fade(0.5f, true, () =>
+            {
+                Debug.Log("finished fade");
+                train.GetComponent<SplineAnimate>().Container = nextSpline;
+                ghost.MoveToNextWaypoint();
+                train.GetComponent<SplineAnimate>()?.Restart(false);
+                if (!TrainCutScene(true))
+                {
+
+                    //train.GetComponent<SplineAnimate>().Pause();
+                    player.transform.position = playerSpawn.position;
+                    playerCamera.Priority = 10;
+                    trainCamera.Priority = 0;
+                    if (Camera.main != null) Camera.main.cullingMask |= (1 << LayerMask.NameToLayer("Player"));
+                    player.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                    fadeOut.Fade(0.7f, 0.2f);
+                }
+
+                roadPart++;
+            });
+        }
 } 
