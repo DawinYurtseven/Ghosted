@@ -296,6 +296,7 @@ public class CharacterControllerMockup : MonoBehaviour
 
     #endregion
 
+#if UNITY_EDITOR
     private void checkReloadScene()
     {
         // Szene neu laden bei Strg + R
@@ -310,6 +311,7 @@ public class CharacterControllerMockup : MonoBehaviour
     
     public Transform trainTeleporter;
     public Transform lastTeleporter;
+    
     private void Teleport()
     {
         if (!UnityEditor.EditorApplication.isPlaying) return;
@@ -326,7 +328,7 @@ public class CharacterControllerMockup : MonoBehaviour
             EmotionSingletonMock.Instance.disableAll = false;
         }
     }
-    
+#endif
     #region Target System
 
     //If merge conflict -> change to private, used for Mock for level design
